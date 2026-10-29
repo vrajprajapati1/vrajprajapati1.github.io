@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>High School Projects | Vraj Prajapati</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap"><nav aria-label="Pages"><span class="name">Vraj Prajapati</span><a href="index.html">About</a><a href="projects.html" aria-current="page">High School Projects</a><a href="internship.html">DPEA Internship</a><a href="capstone.html">Senior Capstone</a><a href="aerospace.html">Aerospace</a><a href="rc.html">RC Airplane</a><a href="skills.html">Skills</a></nav>
+<header class="page-head">
+  <p class="eyebrow">Dos Pueblos Engineering Academy</p>
+  <h1>High school projects</h1>
+  <p class="lede">Three projects from my time at the Academy. Each one combined art, CAD, shop work, electronics and code, and each taught me something I still use.</p>
+</header>
+
+<section>
+  <article class="project proj-body">
+    <h3>Kinetic Sculpture</h3>
+    <p class="tagline">Two spinning moiré discs, several hundred parts, and a sensor that reacts to you.</p>
+    <dl class="spec"><div><dt>Where</dt><dd>Dos Pueblos Engineering Academy</dd></div><div><dt>Role</dt><dd>Designed, built and programmed it</dd></div></dl>
+    <p>A motor-driven pulley system spins two custom moiré discs at different intervals, so the patterns shift as you watch. It has a custom soldered circuit with programmable LED lighting and motor control.</p>
+    <h4>Art</h4>
+    <p>I started in my art rotation sketching patterns, then settled on interlocking polygons that make a dynamic optical illusion as the discs turn at different speeds.</p>
+    <h4>CAD</h4>
+    <p>I modeled every part in SolidWorks and made a full assembly drawing. A stubborn parallel-extrusion constraint kept breaking one disc. I fixed it by redrawing that section and applying the right geometric constraints.</p>
+    <h4>Shop work</h4>
+    <p>I machined the vertical base from raw stock on the Hardinge lathe and mill, using an edge finder for setup and peck drilling for deep holes. I deburred the laser-cut discs by hand before they went out for anodizing, and I tapped a Delrin part with a 6-32 tap.</p>
+    <h4>Electronics</h4>
+    <p>I soldered the main board, including polarity-sensitive capacitors. Getting their orientation wrong would have made the motors spin in only one direction. I also soldered the LED strip and mounted it in its hoop.</p>
+    <h4>Code</h4>
+    <p>I wrote the Arduino program that sets the speed and direction of both motors at different intervals. I also added an ultrasonic sensor so the sculpture changes with how close a viewer stands.</p>
+    <h4>Final assembly</h4>
+    <p>I used an arbor press to seat bearings in the transmission plate without damaging them, fastened the plates and spacers with 4-40, 6-32 and 8-32 screws, and tidied the wiring with zip ties and a heat gun.</p>
+    <h4>What went wrong</h4>
+    <p>The LED strip in the hoop mount failed again and again after it was screwed in. I kept troubleshooting until the connection held. I also went through many disc designs before one looked right, and I learned to ask classmates for help when I was stuck.</p>
+    <ul class="tools"><li>SolidWorks</li><li>Hardinge lathe</li><li>Manual mill</li><li>Soldering</li><li>Arduino</li><li>Ultrasonic sensor</li></ul>
+  </article>
+
+  <article class="project proj-body">
+    <h3>Light Sculpture</h3>
+    <p class="tagline">Acrylic rods lit in the colors of the Indian flag, dimmed by a knob I machined.</p>
+    <dl class="spec"><div><dt>Where</dt><dd>Dos Pueblos Engineering Academy</dd></div><div><dt>Role</dt><dd>Designed, machined and programmed it</dd></div></dl>
+    <p>I designed, machined and assembled a metal enclosure holding acrylic rods lit by a custom LED circuit. A Delrin knob I machined by hand controls the brightness and effects.</p>
+    <h4>Concept</h4>
+    <p>I sketched a 3D version with three poles for the rods, and chose the theme because I was born in India. The LED colors and positions match the flag.</p>
+    <h4>CAD and drawing</h4>
+    <p>I modeled the parts and made a formal multi-view drawing showing every view and dimension of the final design.</p>
+    <h4>Shop work</h4>
+    <p>The project taught me edge finding and peck drilling on the mill. I machined the base and base plate, which were then anodized, and the Delrin knob.</p>
+    <h4>Electronics and code</h4>
+    <p>I soldered the LEDs, resistors and potentiometer into one circuit, then measured its voltage use in my physics class. I wrote the code that lights the LEDs in the flag's sequence.</p>
+    <h4>What went wrong</h4>
+    <p>A family event took me away from school for two weeks, so I had to finish the design, machining, electronics and code ahead of schedule. The deadline sharpened my time management and my machining.</p>
+    <ul class="tools"><li>CAD</li><li>Multi-view drawing</li><li>Machining</li><li>Soldering</li><li>Microcontroller code</li></ul>
+  </article>
+
+  <article class="project proj-body">
+    <h3>Luminism Shadow Box</h3>
+    <p class="tagline">A hand-drawn scene that glows on its own when the room gets dark.</p>
+    <dl class="spec"><div><dt>Where</dt><dd>Dos Pueblos Engineering Academy</dd></div><div><dt>Role</dt><dd>Individual design, fabrication and assembly</dd></div></dl>
+    <p>A perspective drawing sits in a layered frame lit from behind by LEDs. A small Arduino on a circuit board turns the lights on as the ambient light fades, so it works as an automated night light.</p>
+    <h4>Drawing</h4>
+    <p>I practiced architectural-style drafting to make a precise two-point perspective drawing. It was hard at first, then it felt like my regular sketching.</p>
+    <h4>CAD and fabrication</h4>
+    <p>I designed the acrylic back plate and a front plate with different perspectives and hidden images in SolidWorks. I built the wooden frame in the shop and pressed the box together with an arbor press.</p>
+    <h4>Electronics and code</h4>
+    <p>I learned series and parallel wiring for LEDs, built practice circuits to check my understanding, then assembled the final circuit on a board mounted to the back plate with Velcro. In Arduino, I used arrays and loops, and read a photoresistor to decide when to turn the LEDs on.</p>
+    <h4>What went wrong</h4>
+    <p>Drafting felt clumsy at first, and the practice circuits were harder than they looked until I understood how a breadboard actually carries current. Both became things I enjoy.</p>
+    <ul class="tools"><li>Perspective drawing</li><li>SolidWorks</li><li>Arduino</li><li>Circuit design</li><li>Woodworking</li></ul>
+  </article>
+</section>
+<p class="back"><a href="index.html">Back to the home page</a></p>
+<footer>Vraj Prajapati. Last updated October 2026.</footer></div>
+</body>
+</html>
