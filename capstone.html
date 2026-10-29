@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Senior Capstone | Vraj Prajapati</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout concept: a warm project-sheet portfolio. Every project opens with a small spec strip (where, when, role), then a plain story. */
+:root {
+  --bg: #F3F6F4;
+  --surface: #FFFFFF;
+  --ink: #15262E;
+  --muted: #4A5D65;
+  --line: #D3DDD9;
+  --accent: #0E5F5A;
+  --pop: #F2A900;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1B20; --surface: #16272D; --ink: #EAF1EE; --muted: #A5B7B4;
+    --line: #2A4140; --accent: #5CC8BE; --pop: #F2B83A; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1B20; --surface: #16272D; --ink: #EAF1EE; --muted: #A5B7B4;
+  --line: #2A4140; --accent: #5CC8BE; --pop: #F2B83A; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--body); font-size: 17px; line-height: 1.65;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 64rem; margin: 0 auto; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, summary:focus-visible, button:focus-visible { outline: 3px solid var(--pop); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.15; text-wrap: balance; margin: 0; }
+p { margin: 0 0 1rem; max-width: 65ch; }
+
+nav { display: flex; flex-wrap: wrap; gap: 0.25rem 1.5rem; padding-block: 1.25rem; font-weight: 600; font-size: 0.95rem; }
+nav a { color: var(--ink); text-decoration: none; padding: 0.25rem 0; border-bottom: 2px solid transparent; }
+nav a:hover { border-bottom-color: var(--pop); }
+nav .name { font-family: var(--display); font-weight: 700; margin-right: auto; font-size: 1.05rem; }
+
+.hero { padding-block: 2.5rem 3rem; border-bottom: 1px solid var(--line); }
+.eyebrow { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+.hero h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); font-weight: 700; margin-bottom: 1rem; }
+.hero h1 mark { background: linear-gradient(transparent 62%, var(--pop) 62%); color: inherit; padding: 0 0.1em; }
+.lede { font-size: 1.2rem; max-width: 40rem; }
+.links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+.btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.1rem; border-radius: 999px; border: 1.5px solid var(--ink); color: var(--ink); background: transparent; font: inherit; font-weight: 600; font-size: 0.95rem; text-decoration: none; cursor: pointer; }
+.btn.fill { background: var(--ink); color: var(--bg); }
+.btn:hover { border-color: var(--accent); }
+
+section { padding-block: 3rem; border-bottom: 1px solid var(--line); }
+section > h2 { font-size: clamp(1.6rem, 4vw, 2.1rem); margin-bottom: 0.5rem; }
+.sub { color: var(--muted); max-width: 42rem; margin-bottom: 2rem; }
+
+.about-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem 3rem; }
+@media (min-width: 52rem) { .about-grid { grid-template-columns: 1.4fr 1fr; } }
+.facts { display: grid; gap: 0.9rem; align-content: start; }
+.fact { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 0.9rem 1.1rem; }
+.fact b { display: block; font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); font-weight: 500; margin-bottom: 0.15rem; }
+
+.project { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1.4rem 1.5rem; margin-bottom: 1.5rem; min-width: 0; }
+.project h3 { font-size: 1.45rem; margin-bottom: 0.25rem; }
+.tagline { color: var(--muted); margin-bottom: 1rem; }
+.spec { display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; margin: 0 0 1.1rem; padding: 0.7rem 0; border-block: 1px dashed var(--line); }
+.spec div { min-width: 0; }
+.spec dt { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); }
+.spec dd { margin: 0; font-weight: 600; font-size: 0.95rem; }
+.pill { display: inline-block; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.15rem 0.6rem; border-radius: 999px; background: var(--pop); color: #15262E; margin-left: 0.5rem; vertical-align: middle; }
+details { margin-top: 0.5rem; }
+summary { cursor: pointer; font-weight: 600; color: var(--accent); }
+details[open] summary { margin-bottom: 0.9rem; }
+details h4 { font-family: var(--display); font-size: 1.05rem; margin: 1.2rem 0 0.35rem; }
+.tools { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; padding: 0; margin: 1rem 0 0; }
+.tools li { font-size: 0.82rem; padding: 0.15rem 0.65rem; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); }
+
+.small-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(16.5rem, 1fr)); gap: 1.25rem; }
+.small-grid .project { margin: 0; }
+.small-grid h3 { font-size: 1.2rem; }
+
+.timeline { display: grid; gap: 1.25rem; }
+.row { display: grid; grid-template-columns: 1fr; gap: 0.25rem 2rem; padding-bottom: 1.25rem; border-bottom: 1px dashed var(--line); }
+.row:last-child { border-bottom: 0; padding-bottom: 0; }
+@media (min-width: 46rem) { .row { grid-template-columns: 12rem 1fr; } }
+.when { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); }
+.row h3 { font-size: 1.15rem; margin-bottom: 0.15rem; }
+.row p { margin-bottom: 0.4rem; }
+
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.25rem; }
+.skills h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+.skills ul { list-style: none; padding: 0; margin: 0; }
+.skills li { padding: 0.25rem 0; border-bottom: 1px solid var(--line); font-size: 0.95rem; }
+
+.contact { border-bottom: 0; }
+.addr { font-family: var(--mono); font-size: 1rem; user-select: all; overflow-wrap: anywhere; }
+footer { padding-block: 1.5rem 2.5rem; color: var(--muted); font-size: 0.85rem; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+nav a[aria-current="page"] { border-bottom-color: var(--accent); color: var(--accent); }
+.page-head { padding-block: 2rem 1.5rem; border-bottom: 1px solid var(--line); }
+.page-head h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; margin-bottom: 0.75rem; }
+.explore { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
+.explore a { display: block; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1.1rem 1.2rem; text-decoration: none; color: var(--ink); }
+.explore a:hover { border-color: var(--accent); }
+.explore strong { display: block; font-family: var(--display); font-size: 1.15rem; margin-bottom: 0.25rem; }
+.explore span { color: var(--muted); font-size: 0.95rem; }
+.phase { margin-bottom: 1.5rem; }
+.phase h3 { font-size: 1.2rem; margin-bottom: 0.2rem; }
+.phase .when { margin-bottom: 0.5rem; }
+.proj-body h4 { font-family: var(--display); font-size: 1.05rem; margin: 1.3rem 0 0.3rem; }
+.back { margin-top: 2rem; }
+</style>
+</head>
+<body>
+<div class="wrap"><nav aria-label="Pages"><span class="name">Vraj Prajapati</span><a href="index.html">About</a><a href="projects.html">High School Projects</a><a href="internship.html">Year 1 Internship</a><a href="capstone.html" aria-current="page">Senior Capstone</a><a href="rc.html">RC Airplane</a><a href="skills.html">Skills</a></nav>
+<header class="page-head">
+  <p class="eyebrow">Dos Pueblos Engineering Academy, Aug 2023 to Jun 2024</p>
+  <h1>Senior capstone: the Origami Penguin Folder</h1>
+  <p class="lede">A year-long, four-person project to build a machine that folds paper into a penguin. My piece was the half-fold mechanism, and the gearbox that ran backwards.</p>
+</header>
+
+<section>
+  <article class="project proj-body">
+    <dl class="spec"><div><dt>Team</dt><dd>4 students, 1 faculty mentor</dd></div><div><dt>My part</dt><dd>Led the half-fold mechanism prototype</dd></div><div><dt>Result</dt><dd>3 working prototypes, 3 folds</dd></div></dl>
+    <p>Our challenge was to design and build a machine from scratch that automates the precise art of origami. We took a modular approach to prove a fully mechanical solution could work, and at the end of the year we demonstrated three connected prototypes that complete the first three folds of an origami penguin.</p>
+    <p>I led the half-fold mechanism, a critical module in the sequence. I owned everything about it: CAD modeling, parts sourcing, machining, assembly, and testing of the power transmission and roller system.</p>
+    <h4>Goals</h4>
+    <ul>
+      <li>Build precision machining skills, including edge-finder setups and advanced work on the Hardinge lathe and mills.</li>
+      <li>Write control logic for a microcontroller that drives motors.</li>
+      <li>Build and document a complex multi-part system with advanced SolidWorks assemblies and detailed drawings.</li>
+      <li>Manage a long project, from parts specification to integration with my teammates' modules.</li>
+    </ul>
+  </article>
+
+  <div class="project proj-body">
+    <h3>How the year went</h3>
+    <div class="phase"><h3>Foundation skills and ideas</h3><div class="when">August to September</div><p>I started the year in product development, my first-choice department. Training came first: new mill features like auto-feed, and in-depth Hardinge lathe setups, including building a collet stop in several configurations.</p><p>Our new team's warm-up was a French cleat for the shop's tool wall, designed in CAD and made with the router, manual lathe and laser cutter. Then we chose the big goal: an automated machine built around complex gear systems to fold an origami penguin. To start prototyping, we took apart a salvaged office printer for its rollers, gears and belts.</p></div>
+    <div class="phase"><h3>Modular prototyping and system design</h3><div class="when">October to December</div><p>Early tests with flat plates failed. Paper has a natural warp and memory, and it resists simple creasing. So in October we dropped a single monolithic design for a modular one, and each of us took ownership of one folding stage so we could work in parallel.</p><p>I modeled the first two folds, and by November I was on my second or third iteration of the half-fold mechanism, making it more efficient and easier to assemble. In December I found the core problem of my subsystem: turning vertical rotation from the main drive into the horizontal rotation the rollers need. With my mentor, I decided on a custom miter gearbox.</p></div>
+    <div class="phase"><h3>CAD design and digital iteration</h3><div class="when">January to March</div><p>I finalized the CAD for fabrication and made precise DXF files for the laser-cut acrylic parts, nested on a single sheet to save material. A faulty STL file put the holes in the wrong places on my 3D-printed bases, so I made a cardboard template and moved the hole locations back into the model.</p><p>I recalibrated the bevel gearbox for better efficiency and weight distribution on the top plate. When the original hex shaft made gear alignment difficult, I switched to a round shaft so the set screws would seat reliably, and I printed extra D-shaft pulleys to fit the final miter box.</p></div>
+    <div class="phase"><h3>Advanced fabrication and precision machining</h3><div class="when">February to April</div><p>I turned brass roller inserts on the lathe, using several unconventional setups to hold a tight shoulder tolerance, and I learned to hold round parts in a V-block on the mill. A broach kept jamming on the steel pulleys until I realized my pilot hole was slightly too small, so I re-drilled it and the cut came out clean.</p><p>In March I made the Delrin passive rollers and worked on the motor mount. The curved L-stock for the motor didn't fit, so I filed and sanded it into a true corner until the motor sat flush.</p></div>
+    <div class="phase"><h3>Electronics, assembly and real-world troubleshooting</h3><div class="when">April to June</div><p>I ordered transmission belts in the wrong size because of my own miscalculation. That taught me to be exact when I specify parts. While replacements came, I matched spare belts to the existing pitch and width and got ready to 3D-print new pulleys as a backup.</p><p>In May the prototype was fully assembled, and the first test failed. The miter gear transmission had reversed kinematics, so the rollers ejected the paper instead of pulling it in. I did a full root-cause analysis and found the shaft orientation was wrong. I redesigned the shaft and made a new one. In the final weeks, the corrected shaft and new belts went in, and the prototype finally worked as intended. It was a huge relief and a lesson in testing digital designs on real hardware.</p></div>
+    <div class="phase"><h3>Team integration and the showcase</h3><div class="when">Late May to June</div><p>Working with my teammates, I finished the magnetic connection that links a teammate's transition assembly to my half-fold mechanism. When we found that one 3D-printed base was a completely different size, the team shifted components and fixed alignments on the spot to make the modules fit. With my prototype running, I also helped a teammate finish his assembly, including brass inserts.</p><p>In June we presented all three working prototypes to elementary school children and to 9th through 11th graders, in a line that showed the whole process. Many people had doubted the project would get past CAD, which made it satisfying.</p></div>
+  </div>
+
+  <article class="project proj-body">
+    <h3>What came out of it</h3>
+    <p>The modular approach worked. We built three functional prototypes that execute the first three sequential folds of an origami penguin. That proved a purely mechanical solution is viable for automated paper folding. The project is fully documented so a future capstone team can build toward a machine that folds everything on its own.</p>
+    <h4>Lessons</h4>
+    <ul>
+      <li>Digital models need rigorous physical testing. The reversed gearbox made that clear.</li>
+      <li>Parts sourcing and datasheets deserve a second look. A wrong belt size cost us time.</li>
+      <li>Defining and managing the mechanical interfaces between modules is real systems engineering.</li>
+      <li>Delivering on an accelerated timeline sharpened my project management and prioritization.</li>
+    </ul>
+    <ul class="tools"><li>SolidWorks</li><li>Gear design</li><li>Lathe and mill</li><li>Laser cutting</li><li>3D printing</li><li>Root-cause analysis</li></ul>
+  </article>
+</section>
+<p class="back"><a href="index.html">Back to the home page</a></p>
+<footer>Vraj Prajapati. Last updated October 2026.</footer></div>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Skills | Vraj Prajapati</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout concept: a warm project-sheet portfolio. Every project opens with a small spec strip (where, when, role), then a plain story. */
+:root {
+  --bg: #F3F6F4;
+  --surface: #FFFFFF;
+  --ink: #15262E;
+  --muted: #4A5D65;
+  --line: #D3DDD9;
+  --accent: #0E5F5A;
+  --pop: #F2A900;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1B20; --surface: #16272D; --ink: #EAF1EE; --muted: #A5B7B4;
+    --line: #2A4140; --accent: #5CC8BE; --pop: #F2B83A; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1B20; --surface: #16272D; --ink: #EAF1EE; --muted: #A5B7B4;
+  --line: #2A4140; --accent: #5CC8BE; --pop: #F2B83A; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--body); font-size: 17px; line-height: 1.65;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 64rem; margin: 0 auto; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, summary:focus-visible, button:focus-visible { outline: 3px solid var(--pop); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.15; text-wrap: balance; margin: 0; }
+p { margin: 0 0 1rem; max-width: 65ch; }
+
+nav { display: flex; flex-wrap: wrap; gap: 0.25rem 1.5rem; padding-block: 1.25rem; font-weight: 600; font-size: 0.95rem; }
+nav a { color: var(--ink); text-decoration: none; padding: 0.25rem 0; border-bottom: 2px solid transparent; }
+nav a:hover { border-bottom-color: var(--pop); }
+nav .name { font-family: var(--display); font-weight: 700; margin-right: auto; font-size: 1.05rem; }
+
+.hero { padding-block: 2.5rem 3rem; border-bottom: 1px solid var(--line); }
+.eyebrow { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+.hero h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); font-weight: 700; margin-bottom: 1rem; }
+.hero h1 mark { background: linear-gradient(transparent 62%, var(--pop) 62%); color: inherit; padding: 0 0.1em; }
+.lede { font-size: 1.2rem; max-width: 40rem; }
+.links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+.btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.1rem; border-radius: 999px; border: 1.5px solid var(--ink); color: var(--ink); background: transparent; font: inherit; font-weight: 600; font-size: 0.95rem; text-decoration: none; cursor: pointer; }
+.btn.fill { background: var(--ink); color: var(--bg); }
+.btn:hover { border-color: var(--accent); }
+
+section { padding-block: 3rem; border-bottom: 1px solid var(--line); }
+section > h2 { font-size: clamp(1.6rem, 4vw, 2.1rem); margin-bottom: 0.5rem; }
+.sub { color: var(--muted); max-width: 42rem; margin-bottom: 2rem; }
+
+.about-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem 3rem; }
+@media (min-width: 52rem) { .about-grid { grid-template-columns: 1.4fr 1fr; } }
+.facts { display: grid; gap: 0.9rem; align-content: start; }
+.fact { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 0.9rem 1.1rem; }
+.fact b { display: block; font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); font-weight: 500; margin-bottom: 0.15rem; }
+
+.project { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1.4rem 1.5rem; margin-bottom: 1.5rem; min-width: 0; }
+.project h3 { font-size: 1.45rem; margin-bottom: 0.25rem; }
+.tagline { color: var(--muted); margin-bottom: 1rem; }
+.spec { display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; margin: 0 0 1.1rem; padding: 0.7rem 0; border-block: 1px dashed var(--line); }
+.spec div { min-width: 0; }
+.spec dt { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); }
+.spec dd { margin: 0; font-weight: 600; font-size: 0.95rem; }
+.pill { display: inline-block; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.15rem 0.6rem; border-radius: 999px; background: var(--pop); color: #15262E; margin-left: 0.5rem; vertical-align: middle; }
+details { margin-top: 0.5rem; }
+summary { cursor: pointer; font-weight: 600; color: var(--accent); }
+details[open] summary { margin-bottom: 0.9rem; }
+details h4 { font-family: var(--display); font-size: 1.05rem; margin: 1.2rem 0 0.35rem; }
+.tools { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; padding: 0; margin: 1rem 0 0; }
+.tools li { font-size: 0.82rem; padding: 0.15rem 0.65rem; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); }
+
+.small-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(16.5rem, 1fr)); gap: 1.25rem; }
+.small-grid .project { margin: 0; }
+.small-grid h3 { font-size: 1.2rem; }
+
+.timeline { display: grid; gap: 1.25rem; }
+.row { display: grid; grid-template-columns: 1fr; gap: 0.25rem 2rem; padding-bottom: 1.25rem; border-bottom: 1px dashed var(--line); }
+.row:last-child { border-bottom: 0; padding-bottom: 0; }
+@media (min-width: 46rem) { .row { grid-template-columns: 12rem 1fr; } }
+.when { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); }
+.row h3 { font-size: 1.15rem; margin-bottom: 0.15rem; }
+.row p { margin-bottom: 0.4rem; }
+
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.25rem; }
+.skills h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+.skills ul { list-style: none; padding: 0; margin: 0; }
+.skills li { padding: 0.25rem 0; border-bottom: 1px solid var(--line); font-size: 0.95rem; }
+
+.contact { border-bottom: 0; }
+.addr { font-family: var(--mono); font-size: 1rem; user-select: all; overflow-wrap: anywhere; }
+footer { padding-block: 1.5rem 2.5rem; color: var(--muted); font-size: 0.85rem; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+nav a[aria-current="page"] { border-bottom-color: var(--accent); color: var(--accent); }
+.page-head { padding-block: 2rem 1.5rem; border-bottom: 1px solid var(--line); }
+.page-head h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; margin-bottom: 0.75rem; }
+.explore { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
+.explore a { display: block; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1.1rem 1.2rem; text-decoration: none; color: var(--ink); }
+.explore a:hover { border-color: var(--accent); }
+.explore strong { display: block; font-family: var(--display); font-size: 1.15rem; margin-bottom: 0.25rem; }
+.explore span { color: var(--muted); font-size: 0.95rem; }
+.phase { margin-bottom: 1.5rem; }
+.phase h3 { font-size: 1.2rem; margin-bottom: 0.2rem; }
+.phase .when { margin-bottom: 0.5rem; }
+.proj-body h4 { font-family: var(--display); font-size: 1.05rem; margin: 1.3rem 0 0.3rem; }
+.back { margin-top: 2rem; }
+</style>
+</head>
+<body>
+<div class="wrap"><nav aria-label="Pages"><span class="name">Vraj Prajapati</span><a href="index.html">About</a><a href="projects.html">High School Projects</a><a href="internship.html">Year 1 Internship</a><a href="capstone.html">Senior Capstone</a><a href="rc.html">RC Airplane</a><a href="skills.html" aria-current="page">Skills</a></nav>
+<header class="page-head">
+  <p class="eyebrow">What I use</p>
+  <h1>Skills</h1>
+  <p class="lede">Grouped by what I do with them.</p>
+</header>
+
+<section>
+  <div class="skills">
+    <div><h3>CAD and design</h3><ul><li>SolidWorks: 3D modeling, assemblies, technical drawings, basic simulation</li><li>Creo Parametric</li><li>Fusion 360</li><li>MATLAB</li><li>OpenRocket</li><li>Design for manufacturing and assembly</li><li>Iterative design and rapid prototyping</li></ul></div>
+    <div><h3>CNC and manual machining</h3><ul><li>CNC mill and lathe (Haas, Tormach)</li><li>G-code and M-code</li><li>SolidWorks CAM</li><li>Manual mill and lathe</li><li>Calipers and micrometers</li></ul></div>
+    <div><h3>Fabrication</h3><ul><li>3D printing: FDM (PLA, ABS, PETG, carbon fiber) and SLA</li><li>Laser cutting (neoprene, acrylic, wood, cardboard)</li><li>Sheet metal cutting and bending</li><li>Hand tools for assembly and finishing</li></ul></div>
+    <div><h3>Electronics and circuits</h3><ul><li>Analog and digital circuit design</li><li>Through-hole and surface-mount soldering</li><li>Breadboarding, wiring and cabling</li><li>PCB design and assembly</li><li>Multimeter and function generator</li><li>Troubleshooting circuits</li></ul></div>
+    <div><h3>Controls and hardware</h3><ul><li>Arduino (Uno, Nano) and ESP32</li><li>Infrared, ultrasonic and encoder sensors</li><li>Servo, NEMA 17 stepper and DC motors</li><li>Bench and battery power supplies</li></ul></div>
+  </div>
+</section>
+<p class="back"><a href="index.html">Back to the home page</a></p>
+<footer>Vraj Prajapati. Last updated October 2026.</footer></div>
+</body>
+</html>
