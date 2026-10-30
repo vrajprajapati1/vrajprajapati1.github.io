@@ -114,3 +114,21 @@ nav a[aria-current="page"] { border-bottom-color: var(--accent); color: var(--ac
 .phase .when { margin-bottom: 0.5rem; }
 .proj-body h4 { font-family: var(--display); font-size: 1.05rem; margin: 1.3rem 0 0.3rem; }
 .back { margin-top: 2rem; }
+
+/* figures */
+.hero-fig { margin: 0 0 1.4rem; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: var(--bg); }
+.hero-fig img, .hero-fig video { display: block; width: 100%; height: auto; max-height: 26rem; object-fit: cover; }
+.hero-fig figcaption { padding: 0.6rem 0.9rem; font-size: 0.85rem; color: var(--muted); background: var(--surface); }
+.fig { float: right; width: 15.5rem; max-width: 42%; margin: 0.2rem 0 1rem 1.3rem; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--bg); }
+.fig img { display: block; width: 100%; height: auto; }
+.fig figcaption { padding: 0.5rem 0.7rem; font-size: 0.8rem; color: var(--muted); background: var(--surface); }
+.fig.wide { float: none; width: 100%; max-width: 100%; margin: 1rem 0; }
+.fig.wide img { max-height: 22rem; width: 100%; object-fit: contain; background: var(--surface); }
+.clear { clear: both; }
+.gallery-head { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 1.6rem 0 0.7rem; clear: both; }
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); gap: 0.6rem; }
+.gallery figure { margin: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--bg); }
+.gallery img, .gallery video { display: block; width: 100%; height: 7rem; object-fit: cover; }
+.gallery figcaption { padding: 0.4rem 0.55rem; font-size: 0.74rem; color: var(--muted); line-height: 1.3; }
+.gallery .side figcaption { font-style: italic; }
+@media (max-width: 30rem) { .fig { float: none; width: 100%; max-width: 100%; margin: 1rem 0; } }

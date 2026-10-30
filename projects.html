@@ -12,64 +12,135 @@
 <header class="page-head">
   <p class="eyebrow">Dos Pueblos Engineering Academy</p>
   <h1>High school projects</h1>
-  <p class="lede">Three projects from my time at the Academy. Each one combined art, CAD, shop work, electronics and code, and each taught me something I still use.</p>
+  <p class="lede">Three independent mechatronics builds spanning art, CAD, machining, electronics and embedded code. Each one was taken from a concept sketch to a working, soldered, machined final assembly.</p>
 </header>
 
 <section>
   <article class="project proj-body">
     <h3>Kinetic Sculpture</h3>
-    <p class="tagline">Two spinning moiré discs, several hundred parts, and a sensor that reacts to you.</p>
-    <dl class="spec"><div><dt>Where</dt><dd>Dos Pueblos Engineering Academy</dd></div><div><dt>Role</dt><dd>Designed, built and programmed it</dd></div></dl>
-    <p>A motor-driven pulley system spins two custom moiré discs at different intervals, so the patterns shift as you watch. It has a custom soldered circuit with programmable LED lighting and motor control.</p>
-    <h4>Art</h4>
-    <p>I started in my art rotation sketching patterns, then settled on interlocking polygons that make a dynamic optical illusion as the discs turn at different speeds.</p>
-    <h4>CAD</h4>
-    <p>I modeled every part in SolidWorks and made a full assembly drawing. A stubborn parallel-extrusion constraint kept breaking one disc. I fixed it by redrawing that section and applying the right geometric constraints.</p>
-    <h4>Shop work</h4>
-    <p>I machined the vertical base from raw stock on the Hardinge lathe and mill, using an edge finder for setup and peck drilling for deep holes. I deburred the laser-cut discs by hand before they went out for anodizing, and I tapped a Delrin part with a 6-32 tap.</p>
-    <h4>Electronics</h4>
-    <p>I soldered the main board, including polarity-sensitive capacitors. Getting their orientation wrong would have made the motors spin in only one direction. I also soldered the LED strip and mounted it in its hoop.</p>
-    <h4>Code</h4>
-    <p>I wrote the Arduino program that sets the speed and direction of both motors at different intervals. I also added an ultrasonic sensor so the sculpture changes with how close a viewer stands.</p>
-    <h4>Final assembly</h4>
-    <p>I used an arbor press to seat bearings in the transmission plate without damaging them, fastened the plates and spacers with 4-40, 6-32 and 8-32 screws, and tidied the wiring with zip ties and a heat gun.</p>
-    <h4>What went wrong</h4>
-    <p>The LED strip in the hoop mount failed again and again after it was screwed in. I kept troubleshooting until the connection held. I also went through many disc designs before one looked right, and I learned to ask classmates for help when I was stuck.</p>
-    <ul class="tools"><li>SolidWorks</li><li>Hardinge lathe</li><li>Manual mill</li><li>Soldering</li><li>Arduino</li><li>Ultrasonic sensor</li></ul>
+    <p class="tagline">A motor-driven pulley system spinning two custom moiré discs at independent speeds, with proximity-reactive lighting.</p>
+    <dl class="spec"><div><dt>Where</dt><dd>Dos Pueblos Engineering Academy</dd></div><div><dt>Role</dt><dd>Sole designer, machinist and programmer</dd></div><div><dt>Parts</dt><dd>Several hundred, fabricated and assembled</dd></div></dl>
+
+    <figure class="hero-fig"><img src="images/kinetic/17-moire-disc-lit.jpg" alt="The finished Kinetic Sculpture, lit blue, showing the moiré disc pattern" loading="lazy"><figcaption>The finished sculpture, lit and running.</figcaption></figure>
+
+    <p>A multi-disciplinary electromechanical sculpture built around a motor-driven pulley transmission that spins two custom moiré discs at independent intervals, producing a shifting interference pattern as the discs pass through phase. The system integrates a scratch-built PCB for LED and dual-motor control, an ultrasonic sensor for proximity response, and a mechanical assembly of several hundred discrete parts.</p>
+
+    <h4>Design</h4>
+    <figure class="fig"><img src="images/kinetic/19-moire-sketch-pencil.png" alt="Pencil concept sketch of the moiré disc pattern" loading="lazy"><figcaption>Early hand-sketched moiré concept.</figcaption></figure>
+    <p>The visual concept originated from hand-sketched moiré studies, refined into a final pattern of interlocking polygons engineered to produce a strong optical interference effect as the two discs rotate at different rates. The mechanical and structural components were modeled in SolidWorks, with a full assembly drawing produced for fabrication reference. One disc's extrusion feature carried a persistent parallel-extrusion constraint error; resolving it required isolating the offending sketch geometry, redrawing the affected region and reapplying the correct geometric constraints to restore a fully defined, mateable assembly. This modeling work doubled as CSWA (Certified SOLIDWORKS Associate) exam preparation, including practice with mating-error diagnosis across a complex assembly.</p>
+    <figure class="fig"><img src="images/kinetic/05-assembly-drawing.png" alt="Full SolidWorks assembly drawing of the Kinetic Sculpture" loading="lazy"><figcaption>Full assembly drawing, with the moiré disc detail.</figcaption></figure>
+    <p class="clear"></p>
+
+    <h4>Fabrication</h4>
+    <figure class="fig"><img src="images/kinetic/08-drill-press-disc.jpg" alt="Drilling the moiré disc blank on a drill press" loading="lazy"><figcaption>Drilling a disc blank.</figcaption></figure>
+    <p>The primary vertical base and supporting structural components were machined from raw stock on a Hardinge lathe and manual mill, using edge-finder setup for datum location and peck drilling for deep, chip-clearing holes. The laser-cut moiré discs were hand-deburred to a finish suitable for anodizing, and a Delrin component was tapped with a 6-32 thread for a durable fastening point. Final assembly required an arbor press to seat bearings into the transmission plate without inducing bore damage, followed by systematic fastening of plates and spacers with 4-40, 6-32 and 8-32 hardware identified and verified with calipers.</p>
+    <figure class="fig"><img src="images/kinetic/09-tapped-spacer-pair.jpg" alt="A tapped Delrin spacer, two halves" loading="lazy"><figcaption>Tapped Delrin spacer.</figcaption></figure>
+    <p class="clear"></p>
+
+    <h4>Electronics and controls</h4>
+    <figure class="fig"><img src="images/kinetic/21-pcb-board.jpg" alt="The completed custom PCB for motor and LED control" loading="lazy"><figcaption>The completed PCB.</figcaption></figure>
+    <p>The full electronic system, including the main PCB, was built from the ground up. Component population required attention to polarity-sensitive capacitors, since incorrect orientation would constrain the motors to single-direction rotation. The firmware, written for the onboard microcontroller, drives independent speed and direction profiles for the two motors to generate the shifting moiré effect, and integrates an ultrasonic rangefinder so the sculpture's behavior responds to viewer proximity. Final wire management used zip ties and heat-shrink for a clean, failure-resistant harness.</p>
+    <figure class="fig"><img src="images/kinetic/23-led-strip-install.jpg" alt="LED strip being fitted into the hoop enclosure" loading="lazy"><figcaption>LED strip set into the hoop mount.</figcaption></figure>
+    <p class="clear"></p>
+
+    <h4>Outcome and failure analysis</h4>
+    <p>The completed sculpture met all design goals: a fully synchronized mechanical, electronic and firmware system producing the intended moiré effect. The LED strip in the hoop enclosure failed intermittently after installation; isolating the fault required repeated disassembly and continuity checks before the connection was made stable. The disc pattern itself went through several design iterations before converging on the final geometry.</p>
+    <ul class="tools"><li>SolidWorks</li><li>Hardinge lathe</li><li>Edge finder / peck drilling</li><li>PCB soldering</li><li>Arduino (C/C++)</li><li>Ultrasonic sensing</li><li>Arbor press</li></ul>
+
+    <p class="gallery-head">Gallery</p>
+    <div class="gallery">
+      <figure><img src="images/kinetic/02-moire-disc-cad-sketch.jpg" alt="SolidWorks sketch of the moiré disc geometry" loading="lazy"><figcaption>Disc geometry in SolidWorks.</figcaption></figure>
+      <figure><img src="images/kinetic/20-moire-pattern-digital.png" alt="Final digital moiré pattern design" loading="lazy"><figcaption>Final digital pattern.</figcaption></figure>
+      <figure><img src="images/kinetic/03-solidworks-part.png" alt="SolidWorks render of a structural part" loading="lazy"><figcaption>Structural part model.</figcaption></figure>
+      <figure><img src="images/kinetic/06-base-render.png" alt="Rendered base component" loading="lazy"><figcaption>Base, rendered.</figcaption></figure>
+      <figure><img src="images/kinetic/07-lit-disc.gif" alt="Animated clip of the lit disc spinning" loading="lazy"><figcaption>The discs in motion.</figcaption></figure>
+      <figure><img src="images/kinetic/18-moire-disc-finished-b.png" alt="The finished moiré disc housing" loading="lazy"><figcaption>Finished disc housing.</figcaption></figure>
+      <figure><img src="images/kinetic/16-moire-disc-finished-a.jpg" alt="The finished sculpture on the bench" loading="lazy"><figcaption>On the bench, lit.</figcaption></figure>
+      <figure><img src="images/kinetic/10-tapped-spacer-single.jpg" alt="A single tapped spacer held in hand" loading="lazy"><figcaption>A tapped spacer.</figcaption></figure>
+      <figure><img src="images/kinetic/12-transmission-plate.png" alt="The transmission plate with bearings installed" loading="lazy"><figcaption>Transmission plate, bearings installed.</figcaption></figure>
+      <figure><img src="images/kinetic/22-painting-disc-sticker.jpg" alt="Hand-painting a small disc sticker" loading="lazy"><figcaption>Painting a disc detail.</figcaption></figure>
+      <figure><img src="images/kinetic/24-led-strip-soldering.jpg" alt="Soldering the LED strip leads" loading="lazy"><figcaption>Soldering the LED leads.</figcaption></figure>
+      <figure><img src="images/kinetic/13-team-assembly.png" alt="Two students assembling the sculpture together" loading="lazy"><figcaption>Final assembly, with a teammate.</figcaption></figure>
+      <figure><img src="images/kinetic/14-final-embrace.png" alt="Holding the finished disc housing" loading="lazy"><figcaption>The finished housing.</figcaption></figure>
+      <figure><img src="images/kinetic/25-shop-portrait.jpg" alt="In the shop during fabrication" loading="lazy"><figcaption>In the shop.</figcaption></figure>
+      <figure class="side"><img src="images/kinetic/26-side-kitkat-drawing.jpg" alt="A side-project colored pencil drawing of a KitKat Duos wrapper" loading="lazy"><figcaption>Side project: colored-pencil study.</figcaption></figure>
+      <figure><img src="images/kinetic/11-mill-video.gif" alt="Animated clip of the mill machining a part" loading="lazy"><figcaption>Machining on the mill.</figcaption></figure>
+    </div>
+    <figure class="fig wide"><video src="images/kinetic/15-final-video.mp4" controls preload="metadata"></video><figcaption>The finished Kinetic Sculpture running.</figcaption></figure>
   </article>
 
   <article class="project proj-body">
     <h3>Light Sculpture</h3>
-    <p class="tagline">Acrylic rods lit in the colors of the Indian flag, dimmed by a knob I machined.</p>
-    <dl class="spec"><div><dt>Where</dt><dd>Dos Pueblos Engineering Academy</dd></div><div><dt>Role</dt><dd>Designed, machined and programmed it</dd></div></dl>
-    <p>I designed, machined and assembled a metal enclosure holding acrylic rods lit by a custom LED circuit. A Delrin knob I machined by hand controls the brightness and effects.</p>
-    <h4>Concept</h4>
-    <p>I sketched a 3D version with three poles for the rods, and chose the theme because I was born in India. The LED colors and positions match the flag.</p>
-    <h4>CAD and drawing</h4>
-    <p>I modeled the parts and made a formal multi-view drawing showing every view and dimension of the final design.</p>
-    <h4>Shop work</h4>
-    <p>The project taught me edge finding and peck drilling on the mill. I machined the base and base plate, which were then anodized, and the Delrin knob.</p>
-    <h4>Electronics and code</h4>
-    <p>I soldered the LEDs, resistors and potentiometer into one circuit, then measured its voltage use in my physics class. I wrote the code that lights the LEDs in the flag's sequence.</p>
-    <h4>What went wrong</h4>
-    <p>A family event took me away from school for two weeks, so I had to finish the design, machining, electronics and code ahead of schedule. The deadline sharpened my time management and my machining.</p>
-    <ul class="tools"><li>CAD</li><li>Multi-view drawing</li><li>Machining</li><li>Soldering</li><li>Microcontroller code</li></ul>
+    <p class="tagline">A machined metal enclosure with backlit acrylic rods, driven by a custom circuit and a hand-machined potentiometer knob.</p>
+    <dl class="spec"><div><dt>Where</dt><dd>Dos Pueblos Engineering Academy</dd></div><div><dt>Role</dt><dd>Sole designer, machinist and programmer</dd></div><div><dt>Constraint</dt><dd>Completed two weeks ahead of schedule</dd></div></dl>
+
+    <figure class="hero-fig"><img src="images/light/06-rod-cluster-lit.jpg" alt="The finished Light Sculpture, acrylic rods lit red, white, blue and green" loading="lazy"><figcaption>The finished rod cluster, lit and running.</figcaption></figure>
+
+    <p>A metal-fabricated light sculpture integrating a three-pole acrylic rod array, a custom LED driver circuit and a machined Delrin potentiometer knob for brightness and effect control. The lighting sequence and color scheme are themed to the Indian flag.</p>
+
+    <h4>Design</h4>
+    <figure class="fig"><img src="images/light/01-mvd-sheet.png" alt="Multi-view technical drawing of the rod cluster assembly" loading="lazy"><figcaption>Final assembly MVD.</figcaption></figure>
+    <p>The form was developed as a 3D concept study before being formalized in CAD, where mechanical components were modeled and documented in a multi-view technical drawing (MVD) specifying every dimension and view required for fabrication.</p>
+    <p class="clear"></p>
+
+    <h4>Fabrication and electronics</h4>
+    <figure class="fig"><img src="images/light/02-base-plate-drilled.jpg" alt="The anodized base plate drilled for the acrylic rods" loading="lazy"><figcaption>Base plate, drilled and anodized.</figcaption></figure>
+    <p>Machining introduced edge-finding and peck-drilling technique on the mill, applied to the base and base plate, which were subsequently anodized. The potentiometer knob was machined from Delrin to close tolerance for a smooth, play-free fit on the shaft. The LED, resistor and potentiometer circuit was soldered and assembled as a single unit, with current draw measured and documented as part of a physics-rotation voltage analysis. The microcontroller firmware sequences the LEDs through the flag's color pattern, with brightness and effect state read from the potentiometer in real time.</p>
+    <figure class="fig"><img src="images/light/21-voltage-table.jpg" alt="Spreadsheet of voltage, current and power measurements for each rod" loading="lazy"><figcaption>Voltage usage, by rod.</figcaption></figure>
+    <p class="clear"></p>
+
+    <h4>Outcome</h4>
+    <p>A two-week absence for a family event compressed the remaining schedule, requiring the design, machining, electronics and firmware to be finished ahead of the original deadline. The constraint sharpened task sequencing and shop-time efficiency without a reduction in scope; the final piece met every original design goal.</p>
+    <ul class="tools"><li>CAD / multi-view drawing</li><li>Manual mill (edge finder, peck drilling)</li><li>Anodizing prep</li><li>Soldering</li><li>Microcontroller firmware</li></ul>
+
+    <p class="gallery-head">Gallery</p>
+    <div class="gallery">
+      <figure><img src="images/light/22-rod-render-cad.jpg" alt="Rendered CAD model of the rod cluster" loading="lazy"><figcaption>Rod cluster, rendered.</figcaption></figure>
+      <figure><img src="images/light/05-rod-cluster-clear.jpg" alt="The unlit clear acrylic rod cluster" loading="lazy"><figcaption>Unlit, pre-assembly.</figcaption></figure>
+      <figure><img src="images/light/24-rod-cluster-clear-standalone.jpg" alt="The rod cluster on its base, unlit" loading="lazy"><figcaption>Rods on the base.</figcaption></figure>
+      <figure><img src="images/light/03-enclosure-box-open.jpg" alt="The open aluminum enclosure, labeled" loading="lazy"><figcaption>Aluminum enclosure, before closing.</figcaption></figure>
+      <figure><img src="images/light/20-enclosure-small-finished.jpg" alt="The finished small black enclosure with knob holes" loading="lazy"><figcaption>Finished enclosure.</figcaption></figure>
+      <figure><img src="images/light/23-tapped-rod-spacer.jpg" alt="A machined Delrin spacer for the rod mount" loading="lazy"><figcaption>Machined mounting spacer.</figcaption></figure>
+      <figure class="side"><img src="images/light/04-necklace.jpg" alt="A side-project machined metal necklace pendant" loading="lazy"><figcaption>Side project: machined pendant.</figcaption></figure>
+    </div>
   </article>
 
   <article class="project proj-body">
     <h3>Luminism Shadow Box</h3>
-    <p class="tagline">A hand-drawn scene that glows on its own when the room gets dark.</p>
-    <dl class="spec"><div><dt>Where</dt><dd>Dos Pueblos Engineering Academy</dd></div><div><dt>Role</dt><dd>Individual design, fabrication and assembly</dd></div></dl>
-    <p>A perspective drawing sits in a layered frame lit from behind by LEDs. A small Arduino on a circuit board turns the lights on as the ambient light fades, so it works as an automated night light.</p>
-    <h4>Drawing</h4>
-    <p>I practiced architectural-style drafting to make a precise two-point perspective drawing. It was hard at first, then it felt like my regular sketching.</p>
-    <h4>CAD and fabrication</h4>
-    <p>I designed the acrylic back plate and a front plate with different perspectives and hidden images in SolidWorks. I built the wooden frame in the shop and pressed the box together with an arbor press.</p>
-    <h4>Electronics and code</h4>
-    <p>I learned series and parallel wiring for LEDs, built practice circuits to check my understanding, then assembled the final circuit on a board mounted to the back plate with Velcro. In Arduino, I used arrays and loops, and read a photoresistor to decide when to turn the LEDs on.</p>
-    <h4>What went wrong</h4>
-    <p>Drafting felt clumsy at first, and the practice circuits were harder than they looked until I understood how a breadboard actually carries current. Both became things I enjoy.</p>
-    <ul class="tools"><li>Perspective drawing</li><li>SolidWorks</li><li>Arduino</li><li>Circuit design</li><li>Woodworking</li></ul>
+    <p class="tagline">A layered, backlit shadow box that senses ambient light and switches on automatically as a night light.</p>
+    <dl class="spec"><div><dt>Where</dt><dd>Dos Pueblos Engineering Academy</dd></div><div><dt>Role</dt><dd>Individual design, fabrication and firmware</dd></div></dl>
+
+    <figure class="hero-fig"><img src="images/luminism/03-final-lit.png" alt="The finished Luminism Shadow Box, backlit, showing a food-stand scene under a starry sky" loading="lazy"><figcaption>The finished piece, lit at night.</figcaption></figure>
+
+    <p>A shadow box holding a hand-drawn, two-point perspective illustration within a layered acrylic and wood structure, backlit by an LED array controlled through a photoresistor feedback loop. The result functions as a self-regulating night light, switching on as ambient light falls below a programmed threshold.</p>
+
+    <h4>Design and fabrication</h4>
+    <figure class="fig"><img src="images/luminism/13-final-drawing-bright.jpg" alt="The colored two-point perspective illustration, unframed" loading="lazy"><figcaption>The illustration, fully colored.</figcaption></figure>
+    <p>The illustration was produced using architectural-style two-point perspective drafting. In SolidWorks, the acrylic back plate and a front plate carrying multiple perspective layers and hidden imagery were modeled, dimensioned and cut. The wooden frame was built in the shop and the assembly was pressed together on an arbor press for a tight, glue-free fit.</p>
+    <figure class="fig"><img src="images/luminism/12-cad-acrylic-frame.png" alt="CAD technical drawing of the acrylic back plate" loading="lazy"><figcaption>Acrylic back plate, CAD drawing.</figcaption></figure>
+    <p class="clear"></p>
+
+    <h4>Electronics and firmware</h4>
+    <figure class="fig"><img src="images/luminism/02-circuit-diagram.png" alt="Breadboard and pin wiring diagram for the LED and photoresistor circuit" loading="lazy"><figcaption>Circuit and pin diagram.</figcaption></figure>
+    <p>The circuit covers series and parallel LED wiring, validated first on a breadboard before transfer to the final PCB, which was mounted to the back plate with Velcro for serviceability. The firmware uses arrays and loop structures to drive the LED matrix, and reads a photoresistor on an analog input to evaluate ambient light against a threshold, triggering the lighting conditionally without manual input.</p>
+    <figure class="fig"><img src="images/luminism/06-frame-lit-electronics.png" alt="The assembled electronics inside the frame, lit" loading="lazy"><figcaption>Electronics assembled inside the frame.</figcaption></figure>
+    <p class="clear"></p>
+
+    <h4>Outcome</h4>
+    <p>Perspective drafting and breadboard-level circuit debugging were both unfamiliar skills at the start of the project; both became comfortable with repetition, and the finished piece operates as a fully automated, ambient-light-triggered display.</p>
+    <ul class="tools"><li>Perspective drawing</li><li>SolidWorks</li><li>Breadboarding</li><li>PCB assembly</li><li>Arduino (arrays, conditionals, analog input)</li><li>Woodworking</li></ul>
+
+    <p class="gallery-head">Gallery</p>
+    <div class="gallery">
+      <figure><img src="images/luminism/11-wood-frame-bare.jpg" alt="The bare, unfinished wooden frame" loading="lazy"><figcaption>Bare wood frame.</figcaption></figure>
+      <figure><img src="images/luminism/05-frame-diffuser-layers.png" alt="Layered diffuser fabric strips inside the frame" loading="lazy"><figcaption>Diffuser layers.</figcaption></figure>
+      <figure><img src="images/luminism/10-diffuser-cutout.png" alt="The moon and star diffuser cutout backing" loading="lazy"><figcaption>Moon and star diffuser cutout.</figcaption></figure>
+      <figure><img src="images/luminism/07-frame-uncolored-drawing.png" alt="The black frame standing with the uncolored line drawing" loading="lazy"><figcaption>Uncolored line drawing in frame.</figcaption></figure>
+      <figure><img src="images/luminism/08-arbor-press.png" alt="Arbor press with frame pieces and fasteners" loading="lazy"><figcaption>Pressing the frame together.</figcaption></figure>
+      <figure><img src="images/luminism/09-frame-colored-hand.png" alt="Holding the frame with the colored drawing inside" loading="lazy"><figcaption>Colored drawing, in frame.</figcaption></figure>
+      <figure><img src="images/luminism/01-code-exercise8.png" alt="Arduino code for LED blink functions" loading="lazy"><figcaption>Early Arduino exercise.</figcaption></figure>
+      <figure><img src="images/luminism/04-code-exercise6.png" alt="Arduino code using functions and arrays" loading="lazy"><figcaption>Functions and arrays practice.</figcaption></figure>
+    </div>
   </article>
 </section>
 <p class="back"><a href="index.html">Back to the home page</a></p>
