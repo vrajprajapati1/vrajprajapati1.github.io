@@ -26,16 +26,18 @@
     <p>A multi-disciplinary electromechanical sculpture built around a motor-driven pulley transmission that spins two custom moiré discs at independent intervals, producing a shifting interference pattern as the discs pass through phase. The system integrates a scratch-built PCB for LED and dual-motor control, an ultrasonic sensor for proximity response, and a mechanical assembly of several hundred discrete parts.</p>
 
     <h4>Design</h4>
-    <figure class="fig"><img src="images/ks-19-moire-sketch-pencil.png" alt="Pencil concept sketch of the moiré disc pattern" loading="lazy"><figcaption>Early hand-sketched moiré concept.</figcaption></figure>
     <p>The visual concept originated from hand-sketched moiré studies, refined into a final pattern of interlocking polygons engineered to produce a strong optical interference effect as the two discs rotate at different rates. The mechanical and structural components were modeled in SolidWorks, with a full assembly drawing produced for fabrication reference. One disc's extrusion feature carried a persistent parallel-extrusion constraint error; resolving it required isolating the offending sketch geometry, redrawing the affected region and reapplying the correct geometric constraints to restore a fully defined, mateable assembly. This modeling work doubled as CSWA (Certified SOLIDWORKS Associate) exam preparation, including practice with mating-error diagnosis across a complex assembly.</p>
-    <figure class="fig"><img src="images/ks-05-assembly-drawing.png" alt="Full SolidWorks assembly drawing of the Kinetic Sculpture" loading="lazy"><figcaption>Full assembly drawing, with the moiré disc detail.</figcaption></figure>
-    <p class="clear"></p>
+    <div class="shot-row">
+      <figure><img src="images/ks-19-moire-sketch-pencil.png" alt="Pencil concept sketch of the moiré disc pattern" loading="lazy"><figcaption>Early hand-sketched moiré concept.</figcaption></figure>
+      <figure><img src="images/ks-05-assembly-drawing.png" alt="Full SolidWorks assembly drawing of the Kinetic Sculpture" loading="lazy"><figcaption>Full assembly drawing, with the moiré disc detail.</figcaption></figure>
+    </div>
 
     <h4>Fabrication</h4>
-    <figure class="fig"><img src="images/ks-08-drill-press-disc.jpg" alt="Drilling the moiré disc blank on a drill press" loading="lazy"><figcaption>Drilling a disc blank.</figcaption></figure>
     <p>The primary vertical base and supporting structural components were machined from raw stock on a Hardinge lathe and manual mill, using edge-finder setup for datum location and peck drilling for deep, chip-clearing holes. The laser-cut moiré discs were hand-deburred to a finish suitable for anodizing, and a Delrin component was tapped with a 6-32 thread for a durable fastening point. Final assembly required an arbor press to seat bearings into the transmission plate without inducing bore damage, followed by systematic fastening of plates and spacers with 4-40, 6-32 and 8-32 hardware identified and verified with calipers.</p>
-    <figure class="fig"><img src="images/ks-09-tapped-spacer-pair.jpg" alt="A tapped Delrin spacer, two halves" loading="lazy"><figcaption>Tapped Delrin spacer.</figcaption></figure>
-    <p class="clear"></p>
+    <div class="shot-row">
+      <figure><img src="images/ks-08-drill-press-disc.jpg" alt="Drilling the moiré disc blank on a drill press" loading="lazy"><figcaption>Drilling a disc blank.</figcaption></figure>
+      <figure><img src="images/ks-09-tapped-spacer-pair.jpg" alt="A tapped Delrin spacer, two halves" loading="lazy"><figcaption>Tapped Delrin spacer.</figcaption></figure>
+    </div>
 
     <h4>Electronics and controls</h4>
     <p>The full electronic system, including the main PCB, was built from the ground up. Component population required attention to polarity-sensitive capacitors, since incorrect orientation would constrain the motors to single-direction rotation. The firmware, written for the onboard microcontroller, drives independent speed and direction profiles for the two motors to generate the shifting moiré effect, and integrates an ultrasonic rangefinder so the sculpture's behavior responds to viewer proximity. Final wire management used zip ties and heat-shrink for a clean, failure-resistant harness.</p>
@@ -43,6 +45,10 @@
     <h4>Outcome and failure analysis</h4>
     <p>The completed sculpture met all design goals: a fully synchronized mechanical, electronic and firmware system producing the intended moiré effect. The LED strip in the hoop enclosure failed intermittently after installation; isolating the fault required repeated disassembly and continuity checks before the connection was made stable. The disc pattern itself went through several design iterations before converging on the final geometry.</p>
     <ul class="tools"><li>SolidWorks</li><li>Hardinge lathe</li><li>Edge finder / peck drilling</li><li>PCB soldering</li><li>Arduino (C/C++)</li><li>Ultrasonic sensing</li><li>Arbor press</li></ul>
+
+    <div class="shot-row wide">
+      <figure><video src="images/ks-15-final-video.mp4" controls preload="metadata"></video><figcaption>The finished Kinetic Sculpture running.</figcaption></figure>
+    </div>
 
     <p class="gallery-head">Gallery</p>
     <div class="gallery">
@@ -59,7 +65,6 @@
       <figure><img src="images/ks-14-final-embrace.png" alt="Completed assembly, final inspection" loading="lazy"><figcaption>Completed assembly, final inspection.</figcaption></figure>
       <figure><img src="images/ks-11-mill-video.gif" alt="Animated clip of the mill machining a part" loading="lazy"><figcaption>Machining operation, final boring pass.</figcaption></figure>
     </div>
-    <figure class="fig wide"><video src="images/ks-15-final-video.mp4" controls preload="metadata"></video><figcaption>The finished Kinetic Sculpture running.</figcaption></figure>
   </article>
 
   <article class="project proj-body">
@@ -72,15 +77,17 @@
     <p>A metal-fabricated light sculpture integrating a three-pole acrylic rod array, a custom LED driver circuit and a machined Delrin potentiometer knob for brightness and effect control. The lighting sequence and color scheme are themed to the Indian flag.</p>
 
     <h4>Design</h4>
-    <figure class="fig"><img src="images/ls-01-mvd-sheet.png" alt="Multi-view technical drawing of the rod cluster assembly" loading="lazy"><figcaption>Final assembly MVD.</figcaption></figure>
     <p>The form was developed as a 3D concept study before being formalized in CAD, where mechanical components were modeled and documented in a multi-view technical drawing (MVD) specifying every dimension and view required for fabrication.</p>
-    <p class="clear"></p>
+    <div class="shot-row">
+      <figure><img src="images/ls-01-mvd-sheet.png" alt="Multi-view technical drawing of the rod cluster assembly" loading="lazy"><figcaption>Final assembly MVD.</figcaption></figure>
+    </div>
 
     <h4>Fabrication and electronics</h4>
-    <figure class="fig"><img src="images/ls-02-base-plate-drilled.jpg" alt="The anodized base plate drilled for the acrylic rods" loading="lazy"><figcaption>Base plate, drilled and anodized.</figcaption></figure>
     <p>Machining introduced edge-finding and peck-drilling technique on the mill, applied to the base and base plate, which were subsequently anodized. The potentiometer knob was machined from Delrin to close tolerance for a smooth, play-free fit on the shaft. The LED, resistor and potentiometer circuit was soldered and assembled as a single unit, with current draw measured and documented as part of a physics-rotation voltage analysis. The microcontroller firmware sequences the LEDs through the flag's color pattern, with brightness and effect state read from the potentiometer in real time.</p>
-    <figure class="fig"><img src="images/ls-21-voltage-table.jpg" alt="Spreadsheet of voltage, current and power measurements for each rod" loading="lazy"><figcaption>Voltage usage, by rod.</figcaption></figure>
-    <p class="clear"></p>
+    <div class="shot-row">
+      <figure><img src="images/ls-02-base-plate-drilled.jpg" alt="The anodized base plate drilled for the acrylic rods" loading="lazy"><figcaption>Base plate, drilled and anodized.</figcaption></figure>
+      <figure><img src="images/ls-21-voltage-table.jpg" alt="Spreadsheet of voltage, current and power measurements for each rod" loading="lazy"><figcaption>Voltage usage, by rod.</figcaption></figure>
+    </div>
 
     <h4>Outcome</h4>
     <p>A two-week absence for a family event compressed the remaining schedule, requiring the design, machining, electronics and firmware to be finished ahead of the original deadline. The constraint sharpened task sequencing and shop-time efficiency without a reduction in scope; the final piece met every original design goal.</p>
@@ -108,16 +115,18 @@
     <p>A shadow box holding a hand-drawn, two-point perspective illustration within a layered acrylic and wood structure, backlit by an LED array controlled through a photoresistor feedback loop. The result functions as a self-regulating night light, switching on as ambient light falls below a programmed threshold.</p>
 
     <h4>Design and fabrication</h4>
-    <figure class="fig"><img src="images/lsb-13-final-drawing-bright.jpg" alt="The colored two-point perspective illustration, unframed" loading="lazy"><figcaption>The illustration, fully colored.</figcaption></figure>
     <p>The illustration was produced using architectural-style two-point perspective drafting. In SolidWorks, the acrylic back plate and a front plate carrying multiple perspective layers and hidden imagery were modeled, dimensioned and cut. The wooden frame was built in the shop and the assembly was pressed together on an arbor press for a tight, glue-free fit.</p>
-    <figure class="fig"><img src="images/lsb-12-cad-acrylic-frame.png" alt="CAD technical drawing of the acrylic back plate" loading="lazy"><figcaption>Acrylic back plate, CAD drawing.</figcaption></figure>
-    <p class="clear"></p>
+    <div class="shot-row">
+      <figure><img src="images/lsb-13-final-drawing-bright.jpg" alt="The colored two-point perspective illustration, unframed" loading="lazy"><figcaption>The illustration, fully colored.</figcaption></figure>
+      <figure><img src="images/lsb-12-cad-acrylic-frame.png" alt="CAD technical drawing of the acrylic back plate" loading="lazy"><figcaption>Acrylic back plate, CAD drawing.</figcaption></figure>
+    </div>
 
     <h4>Electronics and firmware</h4>
-    <figure class="fig"><img src="images/lsb-02-circuit-diagram.png" alt="Breadboard and pin wiring diagram for the LED and photoresistor circuit" loading="lazy"><figcaption>Circuit and pin diagram.</figcaption></figure>
     <p>The circuit covers series and parallel LED wiring, validated first on a breadboard before transfer to the final PCB, which was mounted to the back plate with Velcro for serviceability. The firmware uses arrays and loop structures to drive the LED matrix, and reads a photoresistor on an analog input to evaluate ambient light against a threshold, triggering the lighting conditionally without manual input.</p>
-    <figure class="fig"><img src="images/lsb-06-frame-lit-electronics.png" alt="The assembled electronics inside the frame, lit" loading="lazy"><figcaption>Electronics assembled inside the frame.</figcaption></figure>
-    <p class="clear"></p>
+    <div class="shot-row">
+      <figure><img src="images/lsb-02-circuit-diagram.png" alt="Breadboard and pin wiring diagram for the LED and photoresistor circuit" loading="lazy"><figcaption>Circuit and pin diagram.</figcaption></figure>
+      <figure><img src="images/lsb-06-frame-lit-electronics.png" alt="The assembled electronics inside the frame, lit" loading="lazy"><figcaption>Electronics assembled inside the frame.</figcaption></figure>
+    </div>
 
     <h4>Outcome</h4>
     <p>Perspective drafting and breadboard-level circuit debugging were both unfamiliar skills at the start of the project; both became comfortable with repetition, and the finished piece operates as a fully automated, ambient-light-triggered display.</p>
@@ -137,6 +146,7 @@
   </article>
 </section>
 <p class="back"><a href="index.html">Back to the home page</a></p>
-<footer>Vraj Prajapati. Last updated October 2026.</footer></div>
+<footer>Vraj Prajapati. Last updated November 2026.</footer></div>
+<script src="lightbox.js" defer></script>
 </body>
 </html>

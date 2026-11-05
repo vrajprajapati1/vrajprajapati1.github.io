@@ -116,25 +116,42 @@ nav a[aria-current="page"] { border-bottom-color: var(--accent); color: var(--ac
 .back { margin-top: 2rem; }
 
 /* figures */
-.hero-fig { margin: 0 0 1.4rem; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: var(--bg); }
-.hero-fig img, .hero-fig video { display: block; width: 100%; height: auto; max-height: 26rem; object-fit: cover; }
+/* Every image shows in full (object-fit: contain on a neutral surface) rather than being cropped,
+   and every photo/video is laid out in its own row under the text it illustrates rather than
+   floated into the paragraph. Click any still image to open it full-size. */
+.hero-fig { margin: 0 0 1.4rem; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+.hero-fig img, .hero-fig video { display: block; width: 100%; height: auto; max-height: 26rem; object-fit: contain; background: var(--surface); }
+.hero-fig img { cursor: zoom-in; }
 .hero-fig figcaption { padding: 0.6rem 0.9rem; font-size: 0.85rem; color: var(--muted); background: var(--surface); }
-.fig { float: right; width: 15.5rem; max-width: 42%; margin: 0.2rem 0 1rem 1.3rem; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--bg); }
-.fig img { display: block; width: 100%; height: auto; }
-.fig figcaption { padding: 0.5rem 0.7rem; font-size: 0.8rem; color: var(--muted); background: var(--surface); }
-.fig.wide { float: none; width: 100%; max-width: 100%; margin: 1rem 0; }
-.fig.wide img { max-height: 22rem; width: 100%; object-fit: contain; background: var(--surface); }
-.clear { clear: both; }
-.gallery-head { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 1.6rem 0 0.7rem; clear: both; }
-.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); gap: 0.6rem; }
-.gallery figure { margin: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--bg); }
-.gallery img, .gallery video { display: block; width: 100%; height: 7rem; object-fit: cover; }
+
+.shot-row { display: flex; flex-wrap: wrap; gap: 0.9rem; margin: 0 0 1.5rem; }
+.shot-row figure { margin: 0; flex: 1 1 14rem; max-width: 19rem; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--surface); display: flex; flex-direction: column; }
+.shot-row img, .shot-row video { display: block; width: 100%; height: 11.5rem; object-fit: contain; background: var(--surface); }
+.shot-row img { cursor: zoom-in; }
+.shot-row figcaption { padding: 0.5rem 0.7rem; font-size: 0.8rem; color: var(--muted); background: var(--surface); border-top: 1px solid var(--line); margin-top: auto; }
+.shot-row.wide figure { flex-basis: 100%; max-width: 100%; }
+.shot-row.wide img, .shot-row.wide video { height: auto; max-height: 24rem; }
+
+.gallery-head { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 1.6rem 0 0.7rem; }
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); gap: 0.6rem; }
+.gallery figure { margin: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--surface); }
+.gallery img, .gallery video { display: block; width: 100%; height: 9rem; object-fit: contain; background: var(--surface); }
+.gallery img { cursor: zoom-in; }
 .gallery figcaption { padding: 0.4rem 0.55rem; font-size: 0.74rem; color: var(--muted); line-height: 1.3; }
 .gallery .side figcaption { font-style: italic; }
-.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.2rem 0; clear: both; }
-.compare figure { margin: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--bg); }
-.compare img { display: block; width: 100%; height: 14rem; object-fit: cover; }
+
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.2rem 0; }
+.compare figure { margin: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--surface); }
+.compare img { display: block; width: 100%; height: 14rem; object-fit: contain; background: var(--surface); cursor: zoom-in; }
 .compare figcaption { padding: 0.5rem 0.7rem; font-size: 0.8rem; color: var(--muted); background: var(--surface); }
 .compare .placeholder { display: flex; align-items: center; justify-content: center; height: 14rem; background: var(--surface); color: var(--muted); font-family: var(--mono); font-size: 0.76rem; text-align: center; padding: 1rem; border: 1px dashed var(--line); box-sizing: border-box; }
 
-@media (max-width: 30rem) { .fig { float: none; width: 100%; max-width: 100%; margin: 1rem 0; } .compare { grid-template-columns: 1fr; } }
+@media (max-width: 30rem) { .shot-row figure { flex-basis: 100%; max-width: 100%; } .compare { grid-template-columns: 1fr; } }
+
+/* lightbox */
+.lightbox-overlay { position: fixed; inset: 0; background: rgba(8, 14, 14, 0.94); display: flex; align-items: center; justify-content: center; padding: 3rem 1.25rem; z-index: 999; cursor: zoom-out; }
+.lightbox-overlay[hidden] { display: none; }
+.lightbox-overlay img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 6px; cursor: default; }
+.lightbox-close { position: fixed; top: 1rem; right: 1.25rem; width: 2.5rem; height: 2.5rem; border-radius: 999px; border: none; background: rgba(255,255,255,0.12); color: #fff; font-size: 1.6rem; line-height: 1; cursor: pointer; z-index: 1000; }
+.lightbox-close[hidden] { display: none; }
+.lightbox-close:hover { background: rgba(255,255,255,0.22); }
