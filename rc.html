@@ -10,18 +10,88 @@
 <body>
 <div class="wrap"><nav aria-label="Pages"><span class="name">Vraj Prajapati</span><a href="index.html">About</a><a href="aerospace.html">Aerospace &amp; Propulsion</a><a href="capstone.html">Senior Capstone</a><a href="internship.html">DPEA Internship</a><a href="projects.html">Electromechanical Sculptures</a><a href="rc.html" aria-current="page">RC Airplane</a><a href="skills.html">Technical Skills</a></nav>
 <header class="page-head">
-  <p class="eyebrow">Cal Poly Pomona</p>
-  <h1>RC airplane <span class="pill">In progress</span></h1>
-  <p class="lede">A radio-controlled airplane I'm building at Cal Poly Pomona.</p>
+  <p class="eyebrow">ARO 1011L Aerospace Engineering Laboratory, Cal Poly Pomona, Fall 2026</p>
+  <h1>Fixed-Wing RC Aircraft Build</h1>
+  <p class="lede">A kit-built foam trainer taken from assembly through flight test, with aerodynamic and propulsive performance characterized against flight-mechanics theory.</p>
 </header>
 
 <section>
   <article class="project proj-body">
-    <dl class="spec"><div><dt>Where</dt><dd>Cal Poly Pomona</dd></div><div><dt>When</dt><dd>2026 to present</dd></div><div><dt>Status</dt><dd>In progress</dd></div></dl>
-    <p>This build is still underway, so the full write-up isn't ready yet. I'll add the design, the parts I'm making, what goes wrong and the first flight here as they happen.</p>
+    <dl class="spec"><div><dt>Where</dt><dd>ARO 1011L, Cal Poly Pomona</dd></div><div><dt>Team</dt><dd>5, team lead</dd></div><div><dt>Aircraft</dt><dd>FT Tutor MKR2 kit</dd></div><div><dt>Testing</dt><dd>Thrust bench + 200 ft flight course</dd></div></dl>
+
+    <figure class="hero-fig"><img src="images/rc-01-airframe-complete.jpg" alt="Completed FT Tutor MKR2 foam trainer, assembled, on a cutting mat" loading="lazy"><figcaption>Completed FT Tutor MKR2 airframe, final configuration.</figcaption></figure>
+
+    <p>This project paired a hands-on build with a flight-mechanics characterization of the finished aircraft. As team lead, I oversaw construction and final assembly of a foam R/C trainer built from a kit, then ran the completed airplane through two complementary tests: a ground bench calibration of the motor-propeller system's static thrust and electrical power across throttle settings, and a timed free-flight pass over a measured 200&nbsp;ft course. Because actual in-flight lift and thrust can't be measured directly with hobby-level instrumentation, both were backed out using the standard steady-level-flight assumption: in unaccelerated, wings-level cruise, lift equals weight and thrust equals drag.</p>
+
+    <h4>Build and assembly</h4>
+    <p>The airframe came from an FT Tutor MKR2 kit. The team split into sub-groups, one on the wing and one on the fuselage and tail, building to the kit's reference plans while I coordinated final assembly and fit-up. The first session covered the foam shell: fuselage, tail, and wing. The second covered the inner electronics and landing gear, with two people wiring the motor and propeller, two on the wing servos, and the last person on the landing gear. Pairing the radio to the aircraft took longer than expected, since the controller kept trying to bind to other kit planes being built in the same room; moving to an open corner of the shop solved it. On first power-up, the rudder and elevator channels came back reversed, which we corrected in the transmitter's control settings rather than rewiring the servos.</p>
+    <div class="shot-row">
+      <figure><img src="images/rc-02-kit-assembly-table.jpg" alt="Three team members assembling foam wing and fuselage panels at a workbench" loading="lazy"><figcaption>Kit assembly, wing panel layout, build session.</figcaption></figure>
+      <figure><img src="images/rc-03-wing-panel-fit.jpg" alt="Two team members measuring a foam wing panel with a straightedge" loading="lazy"><figcaption>Wing panel dimensional check, straightedge measurement.</figcaption></figure>
+      <figure><img src="images/rc-05-fuselage-landing-gear.jpg" alt="Team members inspecting the assembled tail section and landing gear in the shop" loading="lazy"><figcaption>Tail assembly and landing gear, team check, shop floor.</figcaption></figure>
+    </div>
+
+    <h4>Propulsion and wiring</h4>
+    <p>Power comes from a single brushless motor and propeller on a plywood firewall at the nose, fed by a 3-cell lithium-polymer battery (Tattu 1300&nbsp;mAh, 45C discharge, 11.1&nbsp;V nominal, 14.43&nbsp;Wh). Servo and motor leads route aft through the wing root and fuselage boom to the receiver and electronic speed controller in the tail section. Hobby blades, wire cutters, and hot glue were the build's main tools; uneven glue joints and a motor mount that needed re-shimming for alignment were two of the build's recurring snags.</p>
+    <div class="shot-row">
+      <figure><img src="images/rc-04-wing-servo-wiring.jpg" alt="Close-up of servo wiring and a carbon spar being installed inside a foam wing panel" loading="lazy"><figcaption>Servo wiring and carbon spar installation, wing bay.</figcaption></figure>
+      <figure><img src="images/rc-07-motor-mount-wiring.jpg" alt="Motor mount and wiring harness at the nose of the fuselage, held up for inspection" loading="lazy"><figcaption>Motor mount and wiring, nose section, bench inspection.</figcaption></figure>
+      <figure><img src="images/rc-06-tail-boom-esc.jpg" alt="Interior view of the fuselage tail boom showing the battery bay and dowel wing mounts" loading="lazy"><figcaption>Tail boom interior, battery bay, dowel wing mounts.</figcaption></figure>
+      <figure><img src="images/rc-08-battery-pack.jpg" alt="Tattu 1300 mAh 3-cell 45C lithium-polymer battery pack with XT60 connector" loading="lazy"><figcaption>Tattu 1300&nbsp;mAh 3S 45C LiPo battery pack.</figcaption></figure>
+    </div>
+
+    <h4>Wing reference geometry</h4>
+    <p>The wing's reference area and aspect ratio were needed to reduce the flight data to non-dimensional lift and drag coefficients later. With a measured span of b&nbsp;=&nbsp;41.5&nbsp;in (3.458&nbsp;ft) and a constant chord of c&nbsp;=&nbsp;8.5&nbsp;in (0.708&nbsp;ft), the trapezoidal planform formula gives a reference area S&nbsp;=&nbsp;(b/2)&middot;(c<sub>root</sub>&nbsp;+&nbsp;c<sub>tip</sub>)&nbsp;&approx;&nbsp;2.45&nbsp;ft&sup2; and an aspect ratio AR&nbsp;=&nbsp;b&sup2;/S&nbsp;&approx;&nbsp;4.88. Aircraft weight, measured on a scale the morning of the test, was 720&nbsp;g (1.587&nbsp;lbf).</p>
+
+    <h4>Static thrust and power bench calibration</h4>
+    <p>Before flying, the completed airframe was mounted to a thrust stand and run at four throttle settings in 25% increments, with a note-taker, a controller operator, a data collector, and a dedicated person holding the airplane steady for each reading. At each setting the stand reported static thrust directly, while DC bus voltage and motor current were logged to compute electrical power; shaft power was then estimated from electrical power using an assumed propeller efficiency of &eta;&nbsp;=&nbsp;0.85.</p>
+    <table class="data-table">
+      <caption>Thrust and power bench calibration, by throttle setting</caption>
+      <thead><tr><th>Throttle</th><th>Thrust (lbf)</th><th>V<sub>DC</sub> (V)</th><th>I<sub>motor</sub> (A)</th><th>P<sub>elec</sub> (W)</th><th>P<sub>shaft</sub> (W)</th></tr></thead>
+      <tbody>
+        <tr><td>25%</td><td>0.287</td><td>9.25</td><td>4.00</td><td>37.00</td><td>31.45</td></tr>
+        <tr><td>50%</td><td>0.606</td><td>9.71</td><td>8.50</td><td>82.50</td><td>70.13</td></tr>
+        <tr><td>75%</td><td>1.157</td><td>7.50</td><td>14.00</td><td>105.00</td><td>89.25</td></tr>
+        <tr><td>100%</td><td>1.984</td><td>7.50</td><td>18.00</td><td>135.00</td><td>114.75</td></tr>
+      </tbody>
+    </table>
+    <p>Thrust tracked power roughly linearly up to about 80&nbsp;W, then climbed more steeply above it. That kink lines up with a drop in bus voltage between the 50% and 75–100% settings, consistent with the battery sagging under higher current draw rather than with any change in propeller behavior.</p>
+    <div class="shot-row">
+      <figure><img src="images/rc-10-thrust-stand-bench.jpg" alt="Completed airplane mounted on a REDBIRD MCX thrust stand for static testing" loading="lazy"><figcaption>Static thrust bench, REDBIRD MCX test stand.</figcaption></figure>
+      <figure><img src="images/rc-09-prelaunch-wiring-check.jpg" alt="Wiring harness being checked at the lab bench before flight testing" loading="lazy"><figcaption>Wiring harness routing, lab bench, pre-test setup.</figcaption></figure>
+    </div>
+
+    <h4>Flight test and results</h4>
+    <p>The flight course was two cones set 200&nbsp;ft apart on an open field. Roles were split across the team: a pilot, a stopwatch operator, a distance-marker observer at the far cone, and a data recorder, with one person filming. After a hand launch at partial throttle, the pilot flew 7 laps of the course at a steady cruise setting, averaging V<sub>avg</sub>&nbsp;=&nbsp;26.652&nbsp;ft/s over an average lap time of 7.504&nbsp;s, at an estimated throttle setting of about 65%.</p>
+    <p>Using the L&nbsp;=&nbsp;W and T&nbsp;=&nbsp;D steady-flight assumption, aircraft weight gives lift directly, and interpolated shaft power divided by flight velocity (D&nbsp;=&nbsp;P<sub>shaft</sub>/V<sub>avg</sub>) gives drag. Dynamic pressure from local air density and V<sub>avg</sub> then converts both to coefficients.</p>
+    <table class="data-table">
+      <caption>Flight-test results, steady cruise condition</caption>
+      <tbody>
+        <tr><th>Weight, W</th><td>1.587 lbf</td></tr>
+        <tr><th>Thrust (bench-inferred)</th><td>1.009 lbf</td></tr>
+        <tr><th>Drag (calculated)</th><td>0.908 lbf</td></tr>
+        <tr><th>Average propulsive power</th><td>&asymp;90 W</td></tr>
+        <tr><th>C<sub>L</sub></th><td>0.865</td></tr>
+        <tr><th>C<sub>D</sub></th><td>0.449</td></tr>
+        <tr><th>L/D (C<sub>L</sub>/C<sub>D</sub>)</th><td>1.93</td></tr>
+        <tr><th>Max thrust/weight</th><td>1.250</td></tr>
+      </tbody>
+    </table>
+    <p>The measured thrust exceeded the calculated drag by 0.101&nbsp;lbf, an 11.1% deviation against the ±10% tolerance the lab set for the T&nbsp;=&nbsp;D assumption, so the steady-flight condition didn't quite hold within budget. Unmodeled climb or acceleration during the pass is the most likely explanation. The resulting lift-to-drag ratio of 1.93 is low next to a clean, efficient airframe, but is in line with what's expected of a kit foam trainer at the low Reynolds numbers this aircraft flies at.</p>
+    <div class="shot-row wide">
+      <figure><video src="images/rc-12-launch.mp4" poster="images/rc-12-launch-poster.jpg" controls playsinline muted></video><figcaption>Hand launch, start of a flight-test pass.</figcaption></figure>
+    </div>
+    <div class="shot-row wide">
+      <figure><video src="images/rc-11-flight-laps.mp4" poster="images/rc-11-flight-laps-poster.jpg" controls playsinline muted></video><figcaption>Flight test, timed lap around the 200&nbsp;ft course.</figcaption></figure>
+    </div>
+
+    <h4>Sources of error and takeaways</h4>
+    <p>The flight-test numbers carry several known sources of error: stopwatch-timed laps with roughly 0.1–0.2&nbsp;s of reaction-time uncertainty, ground wind speed used as a stand-in for true airspeed, an assumed-identical flight path across all 7 laps, a fixed propeller efficiency of 0.85 rather than one measured for this specific propeller, and the gap between this finite, 3D wing and the 2D airfoil theory the coefficients are built on. On the build side, the hot glue joints, an uneven motor mount, and a loose horizontal stabilizer were the main sources of build variance. Flying multiple passes in alternating directions and averaging the resulting velocities, using a dedicated timing device, and recalibrating the thrust bench at the flight voltage would all tighten the result in a repeat of this test. The airframe itself was retired after testing and its electronics were salvaged for the team's next build.</p>
+    <ul class="tools"><li>Kit assembly and foam fabrication</li><li>RC electronics integration</li><li>Static thrust and power bench calibration</li><li>Flight-test data reduction</li><li>Lift/drag coefficient analysis</li><li>Team lead, build coordination</li></ul>
   </article>
 </section>
 <p class="back"><a href="index.html">Back to the home page</a></p>
 <footer>Vraj Prajapati. Last updated November 2026.</footer></div>
+<script src="lightbox.js" defer></script>
 </body>
 </html>
