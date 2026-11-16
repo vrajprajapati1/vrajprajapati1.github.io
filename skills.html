@@ -3,28 +3,93 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Technical Skills | Vraj Prajapati</title>
+<title>Technical Skills &mdash; Vraj R. Prajapati</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="wrap"><nav aria-label="Pages"><span class="name">Vraj Prajapati</span><a href="index.html">About</a><a href="aerospace.html">Aerospace &amp; Propulsion</a><a href="capstone.html">Senior Capstone</a><a href="internship.html">DPEA Internship</a><a href="projects.html">Electromechanical Sculptures</a><a href="rc.html">RC Airplane</a><a href="skills.html" aria-current="page">Technical Skills</a></nav>
+<div class="wrap">
+<nav aria-label="Pages"><a href="index.html">About</a><a href="aerospace.html">Aerospace &amp; Propulsion</a><a href="capstone.html">Senior Capstone</a><a href="internship.html">DPEA Internship</a><a href="projects.html">Electromechanical Sculptures</a><a href="rc.html">RC Airplane</a><a href="skills.html" aria-current="page">Technical Skills</a></nav>
+
 <header class="page-head">
-  <p class="eyebrow">What I use</p>
+  <p class="eyebrow">06 // TECHNICAL ARSENAL &amp; SHOP CAPABILITIES</p>
   <h1>Technical Skills</h1>
-  <p class="lede">Grouped by what I do with them.</p>
+  <p class="lede">CAD packages, machine-shop equipment, rapid prototyping tools, and embedded test hardware applied across propulsion, mechanisms, and mechatronics projects.</p>
 </header>
 
 <section>
-  <div class="skills">
-    <div><h3>CAD and design</h3><ul><li>SolidWorks: 3D modeling, assemblies, technical drawings, basic simulation</li><li>Creo Parametric</li><li>Fusion 360</li><li>MATLAB</li><li>OpenRocket</li><li>Design for manufacturing and assembly</li><li>Iterative design and rapid prototyping</li></ul></div>
-    <div><h3>CNC and manual machining</h3><ul><li>CNC mill and lathe (Haas, Tormach)</li><li>G-code and M-code</li><li>SolidWorks CAM</li><li>Manual mill and lathe</li><li>Calipers and micrometers</li></ul></div>
-    <div><h3>Fabrication</h3><ul><li>3D printing: FDM (PLA, ABS, PETG, carbon fiber) and SLA</li><li>Laser cutting (neoprene, acrylic, wood, cardboard)</li><li>Sheet metal cutting and bending</li><li>Hand tools for assembly and finishing</li></ul></div>
-    <div><h3>Electronics and circuits</h3><ul><li>Analog and digital circuit design</li><li>Through-hole and surface-mount soldering</li><li>Breadboarding, wiring and cabling</li><li>PCB design and assembly</li><li>Multimeter and function generator</li><li>Troubleshooting circuits</li></ul></div>
-    <div><h3>Controls and hardware</h3><ul><li>Arduino (Uno, Nano) and ESP32</li><li>Infrared, ultrasonic and encoder sensors</li><li>Servo, NEMA 17 stepper and DC motors</li><li>Bench and battery power supplies</li></ul></div>
+  <div class="skills" id="skills-grid">
+    <div data-category="cad">
+      <h3>CAD &amp; Analysis</h3>
+      <ul>
+        <li>SolidWorks (3D part modeling, large assemblies, GD&amp;T drawings, CSWA prep)</li>
+        <li>Onshape (cloud collaborative assemblies &amp; recovery bay packaging)</li>
+        <li>Creo Parametric &amp; Autodesk Fusion 360</li>
+        <li>MATLAB &amp; OpenRocket (flight trajectory &amp; data reduction)</li>
+        <li>Design for Manufacturing &amp; Assembly (DFMA)</li>
+        <li>Tolerance stack-up &amp; iterative prototyping</li>
+      </ul>
+    </div>
+
+    <div data-category="machining">
+      <h3>CNC &amp; Manual Machining</h3>
+      <ul>
+        <li>Manual Precision Lathe (Hardinge &mdash; facing, turning, shoulders, collet stops)</li>
+        <li>Manual Vertical Mill (edge-finder setups, V-block fixturing, boring, broaching)</li>
+        <li>CNC Mill &amp; Lathe Operations (Tormach &amp; Haas setups)</li>
+        <li>SolidWorks CAM, G-code &amp; M-code fundamentals</li>
+        <li>Aluminum (6061-T6), brass, steel, Delrin &amp; phenolic stock</li>
+        <li>Precision metrology (calipers, micrometers, dial indicators, DROs)</li>
+      </ul>
+    </div>
+
+    <div data-category="machining">
+      <h3>Rapid Prototyping &amp; Shop</h3>
+      <ul>
+        <li>FDM 3D Printing (PLA, PETG, ABS, carbon-fiber composites) &amp; SLA resin</li>
+        <li>CO&#8322; Laser Cutting &amp; DXF nesting (acrylic, wood, neoprene, cardboard)</li>
+        <li>Composite wet layup &amp; structural epoxy bonding (high-power rocketry)</li>
+        <li>Sheet-metal cutting, bending, arbor-press bearing seating &amp; hand tapping</li>
+      </ul>
+    </div>
+
+    <div data-category="avionics">
+      <h3>Electronics &amp; Instrumentation</h3>
+      <ul>
+        <li>Analog &amp; digital circuit breadboarding and schematic verification</li>
+        <li>Through-hole &amp; surface-mount PCB soldering and harness dressing</li>
+        <li>Multimeter, bench power supply &amp; function generator diagnostics</li>
+        <li>Infrared thermography calibration (emissivity compensation &amp; SOPs)</li>
+        <li>Static thrust-stand &amp; voltage/current power characterization</li>
+      </ul>
+    </div>
+
+    <div data-category="avionics">
+      <h3>Embedded Controls &amp; Actuators</h3>
+      <ul>
+        <li>Arduino (Uno, Nano) &amp; ESP32 firmware in C/C++</li>
+        <li>Raspberry Pi flight-computer &amp; sensor-logging architectures</li>
+        <li>Ultrasonic, infrared, photoresistor, barometric &amp; accelerometer sensors</li>
+        <li>Brushless motors/ESCs, NEMA 17 steppers, servos &amp; DC gearmotors</li>
+        <li>LiPo battery safety, XT60 power distribution &amp; RC transmitter binding</li>
+      </ul>
+    </div>
+
+    <div data-category="cad">
+      <h3>Engineering Workflow</h3>
+      <ul>
+        <li>Hardware root-cause failure analysis &amp; teardown documentation</li>
+        <li>Standard Operating Procedures (SOPs) &amp; range safety checklists</li>
+        <li>Trade studies &amp; subsystem interface control</li>
+        <li>Small-batch shop assembly-line setup &amp; quality inspection</li>
+      </ul>
+    </div>
   </div>
 </section>
-<p class="back"><a href="index.html">Back to the home page</a></p>
-<footer>Vraj Prajapati. Last updated November 2026.</footer></div>
+
+<p class="back"><a href="index.html">&larr; Back to overview</a></p>
+<footer>Vraj R. Prajapati. Last updated November 2026.</footer>
+</div>
+<script src="lightbox.js" defer></script>
 </body>
 </html>
