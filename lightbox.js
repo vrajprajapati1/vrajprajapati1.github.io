@@ -1,4 +1,13 @@
-// Click-to-expand lightbox for project photos. Videos are left alone (they already have controls).
+// Click-to-expand lightbox and case-insensitive image extension fallback.
+function tryNextExt(img) {
+  var exts = ['.JPG', '.jpeg', '.JPEG', '.png', '.PNG'];
+  var step = parseInt(img.dataset.step || '0', 10);
+  if (step < exts.length) {
+    img.dataset.step = step + 1;
+    img.src = img.src.replace(/\.[^.]+$/, exts[step]);
+  }
+}
+
 (function () {
   var overlay = document.createElement('div');
   overlay.className = 'lightbox-overlay';
@@ -11,7 +20,7 @@
   closeBtn.className = 'lightbox-close';
   closeBtn.type = 'button';
   closeBtn.setAttribute('aria-label', 'Close image');
-  closeBtn.textContent = '×';
+  closeBtn.textContent = '\u00d7';
   closeBtn.hidden = true;
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -35,7 +44,7 @@
     overlay.addEventListener('click', closeLightbox);
     closeBtn.addEventListener('click', closeLightbox);
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'Escape' && !overlay.hidden) closeLightbox();
     });
 
     var selector = '.hero-fig img, .shot-row img, .gallery img, .compare img';

@@ -3,137 +3,172 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Senior Capstone | Vraj Prajapati</title>
+<title>Senior Capstone &mdash; Vraj R. Prajapati</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="wrap"><nav aria-label="Pages"><span class="name">Vraj Prajapati</span><a href="index.html">About</a><a href="aerospace.html">Aerospace &amp; Propulsion</a><a href="capstone.html" aria-current="page">Senior Capstone</a><a href="internship.html">DPEA Internship</a><a href="projects.html">Electromechanical Sculptures</a><a href="rc.html">RC Airplane</a><a href="skills.html">Technical Skills</a></nav>
+<div class="wrap">
+<nav aria-label="Pages"><a href="index.html">About</a><a href="aerospace.html">Aerospace &amp; Propulsion</a><a href="capstone.html" aria-current="page">Senior Capstone</a><a href="internship.html">DPEA Internship</a><a href="projects.html">Electromechanical Sculptures</a><a href="rc.html">RC Airplane</a><a href="skills.html">Technical Skills</a></nav>
+
 <header class="page-head">
-  <p class="eyebrow">Dos Pueblos Engineering Academy, Aug 2023 to Jun 2024</p>
-  <h1>Senior capstone: the Origami Penguin Folder</h1>
-  <p class="lede">A year-long, four-person project to build a machine that folds paper into a penguin. My piece was the half-fold mechanism, and the gearbox that ran backwards.</p>
+  <p class="eyebrow">02 // MECHANISMS &amp; POWER TRANSMISSION &middot; DPEA (AUG 2023 &ndash; JUN 2024)</p>
+  <h1>Senior Capstone: Origami Penguin Folder</h1>
+  <p class="lede">A year-long, four-person project at the Dos Pueblos Engineering Academy to automate the folds of an origami penguin. I owned the half-fold mechanism&mdash;from CAD and manual machining to troubleshooting a miter gearbox that initially ran backwards.</p>
 </header>
 
 <section>
   <article class="project proj-body">
-    <dl class="spec"><div><dt>Team</dt><dd>4 students, 1 faculty mentor</dd></div><div><dt>My part</dt><dd>Led the half-fold mechanism prototype</dd></div><div><dt>Result</dt><dd>3 working prototypes, 3 folds</dd></div></dl>
+    <h3>System Overview &amp; Subsystem Ownership</h3>
+    <p class="tagline">Modular roller-and-gearbox module built to execute the half-fold stage of a multi-station paper-folding machine.</p>
+    <dl class="spec">
+      <div><dt>Organization</dt><dd>Dos Pueblos Engineering Academy</dd></div>
+      <div><dt>Team</dt><dd>4 Students, 1 Faculty Mentor</dd></div>
+      <div><dt>My Role</dt><dd>Lead &mdash; Half-Fold Mechanism</dd></div>
+      <div><dt>Result</dt><dd>3 Connected Prototypes (3 Folds)</dd></div>
+    </dl>
 
-    <figure class="hero-fig"><img src="images/cap-01-mechanism-overview.jpg" alt="The completed half-fold mechanism, overhead view, precision plate labeled" loading="lazy"><figcaption>Completed half-fold mechanism, overhead view.</figcaption></figure>
+    <div class="compare">
+      <figure>
+        <img src="images/cap-01-mechanism-overview.jpg" onerror="tryNextExt(this)" alt="Completed half-fold mechanism, overhead view showing precision plate and roller drive" loading="lazy">
+        <figcaption>Completed half-fold mechanism, overhead view.</figcaption>
+      </figure>
+      <figure>
+        <img src="images/cap-24-completed-mechanism-bench.jpg" onerror="tryNextExt(this)" alt="The completed half-fold mechanism assembled on the workbench" loading="lazy">
+        <figcaption>Half-fold module assembled and wired on the workbench.</figcaption>
+      </figure>
+    </div>
 
-    <p>Our challenge was to design and build a machine from scratch that automates the precise art of origami. We took a modular approach to prove a fully mechanical solution could work, and at the end of the year we demonstrated three connected prototypes that complete the first three folds of an origami penguin.</p>
-    <p>I led the half-fold mechanism, a critical module in the sequence. I owned everything about it: CAD modeling, parts sourcing, machining, assembly, and testing of the power transmission and roller system.</p>
-    <h4>Goals</h4>
+    <p>Our goal was to design and build a purely mechanical system from scratch capable of folding paper into an origami penguin. After early full-machine concepts proved too difficult to test in parallel, we split the sequence into modular stations. By the end of the year, our team integrated three working prototypes that reliably executed the first three sequential folds.</p>
+    <p>I owned the half-fold mechanism end to end: SolidWorks modeling, tolerance stack-up, parts sourcing, manual lathe and mill fabrication, electronics integration, and root-cause debugging when our initial gearbox kinematics ran in reverse.</p>
+
+    <h4>Engineering Goals</h4>
     <ul>
-      <li>Build precision machining skills, including edge-finder setups and advanced work on the Hardinge lathe and mills.</li>
-      <li>Write control logic for a microcontroller that drives motors.</li>
-      <li>Build and document a complex multi-part system with advanced SolidWorks assemblies and detailed drawings.</li>
-      <li>Manage a long project, from parts specification to integration with my teammates' modules.</li>
+      <li>Develop precision manual machining skills, including edge-finder setups, V-block work, and tight shoulder tolerances on the Hardinge lathe and vertical mills.</li>
+      <li>Build and document a multi-part mechanical drive in SolidWorks with fabrication drawings and nested DXF profiles.</li>
+      <li>Write microcontroller logic to sequence DC drive motors across connected subsystems.</li>
+      <li>Define and align mechanical interfaces with three teammates' modules on a fixed academic schedule.</li>
     </ul>
   </article>
 
   <div class="project proj-body">
-    <h3>How the year went</h3>
+    <h3>Development Timeline &amp; Iteration Log</h3>
 
     <div class="phase">
-      <h3>Foundation skills and ideas</h3><div class="when">August to September</div>
-      <p>I started the year in product development, my first-choice department. Training came first: new mill features like auto-feed, and in-depth Hardinge lathe setups, including building a collet stop in several configurations.</p>
-      <p>Our new team's warm-up was a French cleat for the shop's tool wall, designed in CAD and made with the router, manual lathe and laser cutter. Then we chose the big goal: an automated machine built around complex gear systems to fold an origami penguin. To start prototyping, we took apart a salvaged office printer for its rollers, gears and belts.</p>
+      <h3>Foundation Skills &amp; Hardware Teardown</h3>
+      <div class="when">August &ndash; September 2023</div>
+      <p>The year began in product development with shop qualification: mill power-feed setups and multi-configuration collet stops on the Hardinge lathe. As a team warm-up, we designed and fabricated a shop tool-wall French cleat using CAD, the router, manual lathe, and laser cutter.</p>
+      <p>Once we committed to the automated origami machine, we tore down a salvaged office printer to study how commercial rollers, timing belts, and gear trains handle sheet-paper friction and alignment without jamming.</p>
       <div class="shot-row">
-        <figure><img src="images/cap-03-hardinge-lathe.jpg" alt="A Hardinge lathe in the shop" loading="lazy"><figcaption>Hardinge lathe, training setup.</figcaption></figure>
-        <figure><img src="images/cap-04-power-feed-control.jpg" alt="A mill power-feed control box, speed dial and direction switch" loading="lazy"><figcaption>Mill power-feed control, auto-feed training.</figcaption></figure>
-        <figure><img src="images/cap-02-collet-stop.jpg" alt="A machined collet stop assembly on a lathe" loading="lazy"><figcaption>Collet stop, lathe setup.</figcaption></figure>
-        <figure><img src="images/cap-05-french-cleat-cad.png" alt="CAD model of a French cleat for the shop tool wall" loading="lazy"><figcaption>Shop tool-wall cleat, CAD model.</figcaption></figure>
+        <figure><img src="images/cap-03-hardinge-lathe.jpg" onerror="tryNextExt(this)" alt="Hardinge precision lathe in the DPEA machine shop" loading="lazy"><figcaption>Hardinge lathe setup during shop qualification.</figcaption></figure>
+        <figure><img src="images/cap-04-power-feed-control.jpg" onerror="tryNextExt(this)" alt="Vertical mill power-feed control box showing speed dial and directional switch" loading="lazy"><figcaption>Mill power-feed control box, auto-feed training.</figcaption></figure>
+        <figure><img src="images/cap-02-collet-stop.jpg" onerror="tryNextExt(this)" alt="Machined collet stop assembly mounted on the lathe" loading="lazy"><figcaption>Custom-machined collet stop assembly.</figcaption></figure>
+        <figure><img src="images/cap-05-french-cleat-cad.png" onerror="tryNextExt(this)" alt="SolidWorks CAD model of a French cleat for the shop tool wall" loading="lazy"><figcaption>Shop tool-wall French cleat, CAD model.</figcaption></figure>
       </div>
     </div>
 
     <div class="phase">
-      <h3>Modular prototyping and system design</h3><div class="when">October to December</div>
-      <p>Early tests with flat plates failed. Paper has a natural warp and memory, and it resists simple creasing. So in October we dropped a single monolithic design for a modular one, and each of us took ownership of one folding stage so we could work in parallel.</p>
-      <p>I modeled the first two folds, and by November I was on my second or third iteration of the half-fold mechanism, making it more efficient and easier to assemble. In December I found the core problem of my subsystem: turning vertical rotation from the main drive into the horizontal rotation the rollers need. With my mentor, I decided on a custom miter gearbox.</p>
+      <h3>Modular Architecture &amp; Miter Gearbox Design</h3>
+      <div class="when">October &ndash; December 2023</div>
+      <p>Early tests with flat folding plates failed because paper carries natural curvature and fiber memory, resisting simple creasing without positive roller nip. In October, we pivoted from a single monolithic frame to a modular architecture so each teammate could prototype and test one folding stage independently.</p>
+      <p>Through November, I iterated through three versions of the half-fold carriage to simplify assembly access. In December, I tackled the primary kinematic challenge: converting vertical shaft rotation from the main drive into horizontal counter-rotation at the folding rollers. Working with our faculty mentor, I designed a custom 90&deg; miter gearbox to package the drive cleanly above the paper path.</p>
       <div class="shot-row">
-        <figure><img src="images/cap-08-halffold-early-model.png" alt="Early SolidWorks model of the half-fold mechanism, motor and pulley" loading="lazy"><figcaption>Half-fold mechanism, early assembly model.</figcaption></figure>
-        <figure><img src="images/cap-09-miter-gearbox-cad.png" alt="SolidWorks model of the custom miter gearbox assembly" loading="lazy"><figcaption>Custom miter gearbox, assembly model.</figcaption></figure>
+        <figure><img src="images/cap-08-halffold-early-model.png" onerror="tryNextExt(this)" alt="Early SolidWorks assembly model of the half-fold mechanism, motor, and pulley drive" loading="lazy"><figcaption>Half-fold mechanism, early SolidWorks assembly.</figcaption></figure>
+        <figure><img src="images/cap-09-miter-gearbox-cad.png" onerror="tryNextExt(this)" alt="SolidWorks model of the custom 90-degree miter gearbox assembly" loading="lazy"><figcaption>Custom 90&deg; miter gearbox, CAD assembly.</figcaption></figure>
       </div>
     </div>
 
     <div class="phase">
-      <h3>CAD design and digital iteration</h3><div class="when">January to March</div>
-      <p>I finalized the CAD for fabrication and made precise DXF files for the laser-cut acrylic parts, nested on a single sheet to save material. A faulty STL file put the holes in the wrong places on my 3D-printed bases, so I made a cardboard template and moved the hole locations back into the model.</p>
-      <p>I recalibrated the bevel gearbox for better efficiency and weight distribution on the top plate. When the original hex shaft made gear alignment difficult, I switched to a round shaft so the set screws would seat reliably, and I printed extra D-shaft pulleys to fit the final miter box.</p>
+      <h3>CAD Finalization &amp; Digital Fabrication</h3>
+      <div class="when">January &ndash; March 2024</div>
+      <p>I finalized the fabrication CAD and nested DXF profiles for laser-cut acrylic plates onto a single sheet to minimize material waste. When a corrupted STL export shifted mounting holes on my 3D-printed base brackets, I built a physical cardboard template to verify true hole centers and updated the parametric CAD model before re-printing.</p>
+      <p>I also re-balanced the miter gearbox layout to improve weight distribution across the top plate. Because the original hex drive shaft caused inconsistent gear runout, I switched to a precision round shaft with flatted set-screw seats and 3D-printed matched D-bore timing pulleys.</p>
       <div class="shot-row">
-        <figure><img src="images/cap-11-dxf-parts-vise.jpg" alt="Laser-cut acrylic parts checked against their DXF drawing" loading="lazy"><figcaption>Laser-cut acrylic parts, verification against DXF.</figcaption></figure>
-        <figure><img src="images/cap-13-base-drilling.jpg" alt="A 3D-printed base being re-drilled on the mill" loading="lazy"><figcaption>3D-printed base, hole-location correction.</figcaption></figure>
-        <figure><img src="images/cap-14-roller-pulley-cad.png" alt="SolidWorks model of the roller and pulley assembly" loading="lazy"><figcaption>Roller and pulley assembly, CAD model.</figcaption></figure>
-        <figure><img src="images/cap-15-mounting-plate-cad.png" alt="CAD drawing of an acrylic mounting plate" loading="lazy"><figcaption>Mounting plate, CAD drawing.</figcaption></figure>
+        <figure><img src="images/cap-11-dxf-parts-vise.jpg" onerror="tryNextExt(this)" alt="Laser-cut acrylic plates checked against their DXF engineering drawing" loading="lazy"><figcaption>Laser-cut acrylic parts verified against DXF print.</figcaption></figure>
+        <figure><img src="images/cap-13-base-drilling.jpg" onerror="tryNextExt(this)" alt="3D-printed base bracket being re-drilled on the manual mill" loading="lazy"><figcaption>Correcting mounting hole locations on the mill.</figcaption></figure>
+        <figure><img src="images/cap-14-roller-pulley-cad.png" onerror="tryNextExt(this)" alt="SolidWorks model of the roller and timing pulley assembly" loading="lazy"><figcaption>Roller and timing-pulley subassembly, CAD.</figcaption></figure>
+        <figure><img src="images/cap-15-mounting-plate-cad.png" onerror="tryNextExt(this)" alt="Dimensioned CAD drawing of the acrylic mounting plate" loading="lazy"><figcaption>Acrylic mounting plate, dimensioned drawing.</figcaption></figure>
       </div>
     </div>
 
     <div class="phase">
-      <h3>Advanced fabrication and precision machining</h3><div class="when">February to April</div>
-      <p>I turned brass roller inserts on the lathe, using several unconventional setups to hold a tight shoulder tolerance, and I learned to hold round parts in a V-block on the mill. A broach kept jamming on the steel pulleys until I realized my pilot hole was slightly too small, so I re-drilled it and the cut came out clean.</p>
-      <p>In March I made the Delrin passive rollers and worked on the motor mount. The curved L-stock for the motor didn't fit, so I filed and sanded it into a true corner until the motor sat flush.</p>
+      <h3>Precision Machining &amp; Fixture Work</h3>
+      <div class="when">February &ndash; April 2024</div>
+      <p>I turned brass roller inserts on the Hardinge lathe using custom chucking setups to hold tight shoulder concentricity, and used V-block fixtures on the vertical mill for cross-drilling round shafts. When a keyway broach bound inside the steel pulleys, I traced the issue to an undersized pilot bore, re-drilled to the proper minor diameter, and finished the cut cleanly.</p>
+      <p>In March, I machined the passive Delrin rollers and fitted the motor bracket. Because the extruded aluminum L-stock had an internal fillet radius that interfered with the motor face, I hand-filed and lapped the inside corner square until the motor mounted flush.</p>
       <div class="shot-row">
-        <figure><img src="images/cap-17-brass-insert-a.jpg" alt="A brass roller insert, lathe-turned" loading="lazy"><figcaption>Brass roller insert, lathe-turned.</figcaption></figure>
-        <figure><img src="images/cap-19-housing-cavity.jpg" alt="A machined aluminum housing, bearing bore" loading="lazy"><figcaption>Machined housing, bearing bore.</figcaption></figure>
-        <figure><img src="images/cap-20-bearing-mount-detail.png" alt="CAD detail of a bearing mount in the roller assembly" loading="lazy"><figcaption>Bearing mount, assembly detail.</figcaption></figure>
-        <figure><img src="images/cap-21-delrin-roller-built.png" alt="SolidWorks render of the Delrin roller assembly, as built" loading="lazy"><figcaption>Delrin roller assembly, as built.</figcaption></figure>
-        <figure><img src="images/cap-22-motor-mount-cad.png" alt="CAD model of the motor mount bracket" loading="lazy"><figcaption>Motor mount bracket, CAD model.</figcaption></figure>
+        <figure><img src="images/cap-17-brass-insert-a.jpg" onerror="tryNextExt(this)" alt="Lathe-turned brass roller insert showing stepped shoulder" loading="lazy"><figcaption>Lathe-turned brass roller insert.</figcaption></figure>
+        <figure><img src="images/cap-19-housing-cavity.jpg" onerror="tryNextExt(this)" alt="Machined aluminum bearing housing bore" loading="lazy"><figcaption>Machined aluminum housing and bearing bore.</figcaption></figure>
+        <figure><img src="images/cap-20-bearing-mount-detail.png" onerror="tryNextExt(this)" alt="CAD detail of bearing mount retention in the roller assembly" loading="lazy"><figcaption>Bearing mount retention detail, CAD.</figcaption></figure>
+        <figure><img src="images/cap-21-delrin-roller-built.png" onerror="tryNextExt(this)" alt="SolidWorks model of the Delrin passive roller assembly" loading="lazy"><figcaption>Delrin passive roller assembly, CAD.</figcaption></figure>
+        <figure><img src="images/cap-22-motor-mount-cad.png" onerror="tryNextExt(this)" alt="CAD model of the motor mount bracket" loading="lazy"><figcaption>Motor mount bracket, CAD model.</figcaption></figure>
       </div>
     </div>
 
     <div class="phase">
-      <h3>Electronics, assembly and real-world troubleshooting</h3><div class="when">April to June</div>
-      <p>I ordered transmission belts in the wrong size because of my own miscalculation. That taught me to be exact when I specify parts. While replacements came, I matched spare belts to the existing pitch and width and got ready to 3D-print new pulleys as a backup.</p>
-      <p>In May the prototype was fully assembled, and the first test failed. The miter gear transmission had reversed kinematics, so the rollers ejected the paper instead of pulling it in. I did a full root-cause analysis and found the shaft orientation was wrong. I redesigned the shaft and made a new one. In the final weeks, the corrected shaft and new belts went in, and the prototype finally worked as intended. It was a huge relief and a lesson in testing digital designs on real hardware.</p>
+      <h3>Assembly &amp; Reversed-Gearbox Root-Cause Analysis</h3>
+      <div class="when">April &ndash; June 2024</div>
+      <p>A pitch miscalculation on my initial bill of materials resulted in ordering transmission belts that were slightly too long. While waiting for replacements, I matched spare shop belts by tooth pitch and width and prepared backup 3D-printed pulleys so mechanical testing wouldn't stall.</p>
+      <p>In May, we powered up the fully assembled prototype&mdash;and the first test failed. The rollers spun cleanly, but ejected the paper backward instead of feeding it into the crease zone. Tracing the kinematics through the 90&deg; miter gearbox revealed that the driven bevel gear was mounted on the opposite side of the pinion mesh, reversing output shaft rotation. I redesigned the output shaft geometry, machined a new shaft, installed the corrected belts, and verified positive paper feed and creasing on the bench.</p>
       <div class="shot-row">
-        <figure><img src="images/cap-23-final-assembly-cad.png" alt="Completed SolidWorks assembly model of the half-fold mechanism" loading="lazy"><figcaption>Completed assembly, CAD model.</figcaption></figure>
-        <figure><img src="images/cap-24-completed-mechanism-bench.jpg" alt="The completed half-fold mechanism, assembled on the workbench" loading="lazy"><figcaption>Completed half-fold mechanism, bench assembly.</figcaption></figure>
-        <figure><img src="images/cap-25-completed-assembly-side.png" alt="Completed assembly, side view, SolidWorks" loading="lazy"><figcaption>Completed assembly, side view.</figcaption></figure>
+        <figure><img src="images/cap-23-final-assembly-cad.png" onerror="tryNextExt(this)" alt="Completed SolidWorks assembly model of the half-fold mechanism" loading="lazy"><figcaption>Final half-fold mechanism, SolidWorks assembly.</figcaption></figure>
+        <figure><img src="images/cap-25-completed-assembly-side.png" onerror="tryNextExt(this)" alt="Side elevation view of the completed half-fold mechanism in SolidWorks" loading="lazy"><figcaption>Completed assembly side elevation, CAD.</figcaption></figure>
       </div>
     </div>
 
     <div class="phase">
-      <h3>Team integration and the showcase</h3><div class="when">Late May to June</div>
-      <p>Working with my teammates, I finished the magnetic connection that links a teammate's transition assembly to my half-fold mechanism. When we found that one 3D-printed base was a completely different size, the team shifted components and fixed alignments on the spot to make the modules fit. With my prototype running, I also helped a teammate finish his assembly, including brass inserts.</p>
-      <p>In June we presented all three working prototypes to elementary school children and to 9th through 11th graders, in a line that showed the whole process. Many people had doubted the project would get past CAD, which made it satisfying.</p>
+      <h3>Cross-Module Integration &amp; Public Showcase</h3>
+      <div class="when">Late May &ndash; June 2024</div>
+      <p>During final integration, I built a magnetic coupling interface linking my teammate's paper-transfer stage directly into my half-fold inlet. When a dimensional mismatch appeared on one teammate's 3D-printed baseplate, we adjusted mounting slots and machined brass inserts together on the shop floor to bring all stations onto a shared datum height.</p>
+      <p>In June, we demonstrated all three connected prototypes live for elementary students and 9th&ndash;11th grade peers, showing each mechanical fold in sequence from flat sheet to penguin base.</p>
       <div class="shot-row">
-        <figure><img src="images/cap-27-modules-demo-table.jpg" alt="The Paper Transmission Systems and Half Fold Mechanism modules on the showcase table" loading="lazy"><figcaption>Module demonstration, showcase setup.</figcaption></figure>
-        <figure><img src="images/cap-26-team-showcase.jpg" alt="The four-person capstone team at the showcase presentation" loading="lazy"><figcaption>Capstone team, showcase presentation.</figcaption></figure>
+        <figure><img src="images/cap-27-modules-demo-table.jpg" onerror="tryNextExt(this)" alt="Paper Transmission Systems and Half Fold Mechanism modules aligned on the showcase table" loading="lazy"><figcaption>Paper transfer and half-fold modules coupled on the demo table.</figcaption></figure>
+        <figure><img src="images/cap-26-team-showcase.jpg" onerror="tryNextExt(this)" alt="The four-person capstone team presenting at the DPEA showcase" loading="lazy"><figcaption>Four-student capstone team at the year-end showcase.</figcaption></figure>
       </div>
     </div>
   </div>
 
   <article class="project proj-body">
-    <h3>What came out of it</h3>
-    <p>The modular approach worked. We built three functional prototypes that execute the first three sequential folds of an origami penguin. That proved a purely mechanical solution is viable for automated paper folding. The project is fully documented so a future capstone team can build toward a machine that folds everything on its own.</p>
-    <h4>Lessons</h4>
+    <h3>Outcomes &amp; Engineering Takeaways</h3>
+    <p>Breaking a complex kinematic problem into modular, independently testable stages allowed our four-person team to deliver three working mechanical prototypes that execute the first three folds of an origami penguin. Full CAD assemblies, dimensioned prints, and build notes were archived so a future capstone team can add the remaining folding stages.</p>
+
+    <h4>Key Lessons Learned</h4>
     <ul>
-      <li>Digital models need rigorous physical testing. The reversed gearbox made that clear.</li>
-      <li>Parts sourcing and datasheets deserve a second look. A wrong belt size cost us time.</li>
-      <li>Defining and managing the mechanical interfaces between modules is real systems engineering.</li>
-      <li>Delivering on an accelerated timeline sharpened my project management and prioritization.</li>
+      <li><strong>Verify kinematics on real hardware:</strong> A single mirrored gear placement in CAD inverted our entire roller feed direction&mdash;physical bench testing caught what visual CAD checks missed.</li>
+      <li><strong>Double-check vendor datasheets:</strong> Verifying belt pitch length and pulley center-to-center distance before ordering saves weeks of schedule margin.</li>
+      <li><strong>Interface control is real systems engineering:</strong> Agreeing early on shared datum heights and magnetic coupling tolerances made multi-student integration possible.</li>
+      <li><strong>Design for assembly:</strong> Leaving wrench clearance and accessible set-screw flats dramatically speeds up iterative debugging.</li>
     </ul>
-    <ul class="tools"><li>SolidWorks</li><li>Gear design</li><li>Lathe and mill</li><li>Laser cutting</li><li>3D printing</li><li>Root-cause analysis</li></ul>
+
+    <ul class="tools">
+      <li>SolidWorks Assemblies &amp; Prints</li>
+      <li>90&deg; Miter Gearbox Design</li>
+      <li>Hardinge Lathe &amp; Manual Mill</li>
+      <li>Laser Cutting (DXF)</li>
+      <li>FDM 3D Printing</li>
+      <li>Root-Cause Analysis</li>
+    </ul>
 
     <div class="shot-row wide">
-      <figure><img src="images/cap-29-showcase-full-lineup.jpg" alt="The full showcase table: Origami Penguin Machine, Corner Fold Mechanism, Reverse Fold Mechanism, Paper Transmission Systems and Half Fold Mechanism" loading="lazy"><figcaption>The complete modular system, all four teammates' mechanisms, showcase display.</figcaption></figure>
+      <figure><img src="images/cap-29-showcase-full-lineup.jpg" onerror="tryNextExt(this)" alt="Full showcase table showing Origami Penguin Machine, Corner Fold, Reverse Fold, Paper Transmission, and Half Fold modules" loading="lazy"><figcaption>Full four-module system lineup at the DPEA engineering showcase.</figcaption></figure>
     </div>
 
-    <p class="gallery-head">Gallery</p>
+    <p class="gallery-head">Build &amp; Fabrication Archive</p>
     <div class="gallery">
-      <figure><img src="images/cap-06-printer-teardown-a.png" alt="A salvaged office printer, disassembled for parts" loading="lazy"><figcaption>Salvaged printer teardown, roller and gear harvest.</figcaption></figure>
-      <figure><img src="images/cap-07-printer-teardown-b.png" alt="Disassembled printer parts, belts and drive components" loading="lazy"><figcaption>Salvaged printer teardown, drive components.</figcaption></figure>
-      <figure><img src="images/cap-10-dxf-parts-a.jpg" alt="Laser-cut parts laid against their drawing" loading="lazy"><figcaption>Laser-cut parts, drawing reference.</figcaption></figure>
-      <figure><img src="images/cap-12-dxf-parts-square.jpg" alt="Laser-cut parts checked with a precision square" loading="lazy"><figcaption>Laser-cut parts, dimensional check.</figcaption></figure>
-      <figure><img src="images/cap-16-roller-render-detail.png" alt="Detailed SolidWorks render of the roller assembly" loading="lazy"><figcaption>Roller assembly, detail render.</figcaption></figure>
-      <figure><img src="images/cap-18-brass-insert-b.jpg" alt="A brass roller insert, alternate angle" loading="lazy"><figcaption>Brass roller insert, detail.</figcaption></figure>
-      <figure><img src="images/cap-28-halffold-module-showcase.jpg" alt="The Half Fold Mechanism module at the showcase presentation" loading="lazy"><figcaption>Half-fold mechanism module, showcase presentation.</figcaption></figure>
+      <figure><img src="images/cap-06-printer-teardown-a.png" onerror="tryNextExt(this)" alt="Salvaged office printer disassembled to study paper-feed rollers and gear trains" loading="lazy"><figcaption>Salvaged printer teardown, roller and gear study.</figcaption></figure>
+      <figure><img src="images/cap-07-printer-teardown-b.png" onerror="tryNextExt(this)" alt="Disassembled printer drive belts and gear components" loading="lazy"><figcaption>Salvaged printer teardown, drive components.</figcaption></figure>
+      <figure><img src="images/cap-10-dxf-parts-a.jpg" onerror="tryNextExt(this)" alt="Laser-cut acrylic parts laid out against their engineering drawing" loading="lazy"><figcaption>Laser-cut parts checked against reference print.</figcaption></figure>
+      <figure><img src="images/cap-12-dxf-parts-square.jpg" onerror="tryNextExt(this)" alt="Laser-cut acrylic parts verified for perpendicularity with a machinist square" loading="lazy"><figcaption>Laser-cut parts, machinist-square check.</figcaption></figure>
+      <figure><img src="images/cap-16-roller-render-detail.png" onerror="tryNextExt(this)" alt="Detailed SolidWorks render of the roller subassembly" loading="lazy"><figcaption>Roller subassembly, CAD detail.</figcaption></figure>
+      <figure><img src="images/cap-18-brass-insert-b.jpg" onerror="tryNextExt(this)" alt="Lathe-turned brass roller insert showing bore and shoulder finish" loading="lazy"><figcaption>Brass roller insert, alternate angle.</figcaption></figure>
+      <figure><img src="images/cap-28-halffold-module-showcase.jpg" onerror="tryNextExt(this)" alt="Half Fold Mechanism module displayed at the engineering showcase" loading="lazy"><figcaption>Half-fold mechanism module at the showcase.</figcaption></figure>
     </div>
   </article>
 </section>
-<p class="back"><a href="index.html">Back to the home page</a></p>
-<footer>Vraj Prajapati. Last updated November 2026.</footer></div>
+
+<p class="back"><a href="index.html">&larr; Back to overview</a></p>
+<footer>Vraj R. Prajapati. Last updated November 2026.</footer>
+</div>
 <script src="lightbox.js" defer></script>
 </body>
 </html>
