@@ -54,15 +54,33 @@
 
       <div class="shot-row">
         <figure>
-          <img src="images/aero-04-fin-can.jpg" onerror="if(!this.dataset.tried){this.dataset.tried=1;this.src=this.src.replace('.jpg','.JPG');}" alt="Close-up of the painted ARC fin can and aft motor retainer" loading="lazy">
+          <video controls preload="metadata" playsinline>
+            <source src="images/aero-02-launch-video.mp4" type="video/mp4">
+            Your browser does not support embedded video.
+          </video>
+          <figcaption>Mojave desert launch sequence: rail ignition, boost, apogee separation, and drogue/main deployment.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/aero-01-desert-recovery.jpg" onerror="tryNextExt(this)" alt="Recovered ARC rocket on the Mojave desert floor with nosecone and pink parachute deployed" loading="lazy">
+          <figcaption>Post-flight recovery in the Mojave desert with intact airframe, shock cord, and deployed parachute.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/aero-03-team-desert.jpg" onerror="tryNextExt(this)" alt="SBCC Aerospace and Rocket Club team on the desert launch range with the rocket and flight card" loading="lazy">
+          <figcaption>SBCC Aerospace &amp; Rocket Club range crew after successful qualification flight and recovery.</figcaption>
+        </figure>
+      </div>
+
+      <div class="shot-row">
+        <figure>
+          <img src="images/aero-04-fin-can.jpg" onerror="tryNextExt(this)" alt="Close-up of the painted ARC fin can and aft motor retainer" loading="lazy">
           <figcaption>Finished ARC fin can, aerodynamic fillets, and aft motor retention hardware.</figcaption>
         </figure>
         <figure>
-          <img src="images/aero-05-epoxy-prep.jpg" onerror="if(!this.dataset.tried){this.dataset.tried=1;this.src=this.src.replace('.jpg','.JPG');}" alt="Mixing structural epoxy and bonding the fin assembly outdoors with teammates" loading="lazy">
+          <img src="images/aero-05-epoxy-prep.jpg" onerror="tryNextExt(this)" alt="Mixing structural epoxy and bonding the fin assembly outdoors with teammates" loading="lazy">
           <figcaption>Structural epoxy mixing and fin-can bonding during airframe assembly.</figcaption>
         </figure>
         <figure>
-          <img src="images/aero-13-shop-build-prep.jpg" onerror="if(!this.dataset.tried){this.dataset.tried=1;this.src=this.src.replace('.jpg','.JPG');}" alt="Vraj Prajapati in the lab with drill, epoxy supplies, and the ARC rocket airframe" loading="lazy">
+          <img src="images/aero-13-shop-build-prep.jpg" onerror="tryNextExt(this)" alt="Vraj Prajapati in the lab with drill, epoxy supplies, and the ARC rocket airframe" loading="lazy">
           <figcaption>Drilling retention hardware holes and prepping the aft airframe in the lab.</figcaption>
         </figure>
       </div>
@@ -72,7 +90,7 @@
 
       <div class="shot-row">
         <figure>
-          <img src="images/aero-06-lathe-machining.jpg" onerror="if(!this.dataset.tried){this.dataset.tried=1;this.src=this.src.replace('.jpg','.JPG');}" alt="Vraj Prajapati inspecting cylindrical stock at the manual lathe chuck" loading="lazy">
+          <img src="images/aero-06-lathe-machining.jpg" onerror="tryNextExt(this)" alt="Vraj Prajapati inspecting cylindrical stock at the manual lathe chuck" loading="lazy">
           <figcaption>Inspecting cylindrical aluminum stock and setup at the manual lathe chuck in the machine shop.</figcaption>
         </figure>
         <figure>
@@ -120,15 +138,15 @@
 
       <div class="shot-row">
         <figure>
-          <img src="images/aero-11-onshape-recovery-cad.jpg" onerror="if(!this.dataset.tried){this.dataset.tried=1;this.src=this.src.replace('.jpg','.JPG');}" alt="Onshape CAD assembly titled Final Recovery System showing full rocket and recovery bay integration" loading="lazy">
+          <img src="images/aero-11-onshape-recovery-cad.jpg" onerror="tryNextExt(this)" alt="Onshape CAD assembly titled Final Recovery System showing full rocket and recovery bay integration" loading="lazy">
           <figcaption>Onshape assembly (&ldquo;Final Recovery System&rdquo;) integrating the CO&#8322; actuator, puncture needle, and eyebolt bulkheads.</figcaption>
         </figure>
         <figure>
-          <img src="images/aero-09-recovery-whiteboard-piston.jpg" onerror="if(!this.dataset.tried){this.dataset.tried=1;this.src=this.src.replace('.jpg','.JPG');}" alt="Whiteboard diagram of the piston ejection system, cut shell interface, shock cord, and parachute bay" loading="lazy">
+          <img src="images/aero-09-recovery-whiteboard-piston.jpg" onerror="tryNextExt(this)" alt="Whiteboard diagram of the piston ejection system, cut shell interface, shock cord, and parachute bay" loading="lazy">
           <figcaption>Internal piston ejection and shock-cord load-path schematic.</figcaption>
         </figure>
         <figure>
-          <img src="images/aero-10-recovery-whiteboard-rigging.jpg" onerror="if(!this.dataset.tried){this.dataset.tried=1;this.src=this.src.replace('.jpg','.JPG');}" alt="Whiteboard rigging diagram showing bulkhead, quick link, deployment bag, hairtie retention, and drogue riser" loading="lazy">
+          <img src="images/aero-10-recovery-whiteboard-rigging.jpg" onerror="tryNextExt(this)" alt="Whiteboard rigging diagram showing bulkhead, quick link, deployment bag, hairtie retention, and drogue riser" loading="lazy">
           <figcaption>Harness rigging sequence mapping quick links, deployment bag staging, and drogue riser.</figcaption>
         </figure>
       </div>
@@ -157,7 +175,7 @@
       <p>To evaluate methods for detecting casing insulation breakdown, uneven propellant burn, or gas leaks before structural burn-through, I researched and authored a complete experimental payload proposal and standard operating procedure (SOP). The proposed architecture paired a Raspberry Pi flight computer, barometric altimeter, triaxial accelerometer, and RF telemetry transceiver with a TOPDON TC004 thermal camera to compare ground static-fire thermal profiles against flight conditions.</p>
 
       <h4>Calibration, Emissivity &amp; Quantitative Anomaly Thresholds</h4>
-      <p>Because bare metallic motor casings reflect ambient IR radiation, the protocol specifies surface prep using high-temperature matte black reference patches ($\epsilon \approx 0.95$ vs. $\epsilon = 0.60\text{--}0.80$ for bare aluminum), dual-band temperature switching ($-20\text{ to }100\,^\circ\text{C}$ pre-launch; up to $350\,^\circ\text{C}$ at T&minus;30 s before ignition), and quantitative abort/inspection flags&mdash;such as localized spikes exceeding $50\,^\circ\text{C}$ within 2 seconds or persistent post-burn heat soak above $30\text{--}40\,^\circ\text{C}$ outside the nozzle zone.</p>
+      <p>Because bare metallic motor casings reflect ambient IR radiation, the protocol specifies surface prep using high-temperature matte black reference patches (&epsilon; &approx; 0.95 vs. &epsilon; = 0.60&ndash;0.80 for bare aluminum), dual-band temperature switching (&minus;20 to 100&deg;C pre-launch; up to 350&deg;C at T&minus;30 s before ignition), and quantitative abort/inspection flags&mdash;such as localized spikes exceeding 50&deg;C within 2 seconds or persistent post-burn heat soak above 30&ndash;40&deg;C outside the nozzle zone.</p>
     </div>
 
     <ul class="tools">
@@ -177,11 +195,11 @@
     <p class="tagline">Behind-the-scenes tour of JPL&rsquo;s Deep Space Network mission control and spacecraft assembly facilities in Pasadena, CA.</p>
     <div class="shot-row">
       <figure>
-        <img src="images/aero-14-jpl-center-of-universe.jpg" onerror="if(!this.dataset.tried){this.dataset.tried=1;this.src=this.src.replace('.jpg','.JPG');}" alt="Vraj Prajapati standing beside the illuminated JPL seal known as the Center of the Universe inside the Charles Elachi Mission Control Center" loading="lazy">
+        <img src="images/aero-14-jpl-center-of-universe.jpg" onerror="tryNextExt(this)" alt="Vraj Prajapati standing beside the illuminated JPL seal known as the Center of the Universe inside the Charles Elachi Mission Control Center" loading="lazy">
         <figcaption>Standing at &ldquo;The Center of the Universe&rdquo;&mdash;the famous illuminated floor seal inside JPL&rsquo;s Charles Elachi Mission Control Center, where Deep Space Network telemetry links to active interplanetary missions.</figcaption>
       </figure>
       <figure>
-        <img src="images/aero-15-jpl-voyager-model.jpg" onerror="if(!this.dataset.tried){this.dataset.tried=1;this.src=this.src.replace('.jpg','.JPG');}" alt="Vraj Prajapati and teammate in front of the full-scale Voyager spacecraft model at NASA JPL" loading="lazy">
+        <img src="images/aero-15-jpl-voyager-model.jpg" onerror="tryNextExt(this)" alt="Vraj Prajapati and teammate in front of the full-scale Voyager spacecraft model at NASA JPL" loading="lazy">
         <figcaption>In front of the full-scale Voyager spacecraft model during the JPL technical visit.</figcaption>
       </figure>
     </div>
@@ -197,6 +215,14 @@
   <img id="lightbox-img" src="" alt="">
 </div>
 <script>
+function tryNextExt(img) {
+  var exts = ['.JPG', '.jpeg', '.JPEG', '.png', '.PNG'];
+  var step = parseInt(img.dataset.step || '0', 10);
+  if (step < exts.length) {
+    img.dataset.step = step + 1;
+    img.src = img.src.replace(/\.[^.]+$/, exts[step]);
+  }
+}
 (function () {
   var overlay = document.getElementById('lightbox');
   var lbImg = document.getElementById('lightbox-img');
