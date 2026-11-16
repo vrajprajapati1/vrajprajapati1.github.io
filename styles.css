@@ -409,4 +409,322 @@ section > h2::before {
 .skills > div.is-hidden { display: none; }
 .skills h3 { font-size: 1.02rem; margin-bottom: 0.65rem; color: var(--accent); font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.05em; }
 .skills ul { list-style: none; padding: 0; margin: 0; }
-.skills li { padding: 0.35rem 0; border-bottom: 1px solid var(--line); font-size:
+.skills li { padding: 0.35rem 0; border-bottom: 1px solid var(--line); font-size: 0.94rem; }
+.skills li:last-child { border-bottom: 0; }
+
+/* Page Header & Interactive Micro-Interactions */
+.page-head { position: relative; padding-block: 2.25rem 1.75rem; border-bottom: 1px solid var(--line); overflow: hidden; }
+.page-head h1 { font-size: clamp(2rem, 5vw, 3.1rem); font-weight: 700; margin-bottom: 0.75rem; color: #FFFFFF; }
+.page-head-grid { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.25rem; }
+
+/* Aerospace Flight Trajectory Track */
+.trajectory-hud {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  padding: 0.65rem 0.9rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+}
+.traj-step { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--muted); transition: color 0.2s ease; }
+.traj-step .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--line); transition: all 0.2s ease; }
+.traj-step.active { color: var(--accent); font-weight: 600; }
+.traj-step.active .dot { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+
+/* Capstone Meshing Miter Gears & CAD/Physical Toggle */
+.gear-widget {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 0.9rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+.gear-widget svg { width: 64px; height: 40px; color: var(--accent); overflow: visible; }
+.gear-a { transform-origin: 20px 20px; }
+.gear-b { transform-origin: 44px 20px; color: var(--pop); }
+
+.xray-toggle-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.85rem; }
+.xray-btn {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.38rem 0.85rem;
+  border-radius: 4px;
+  border: 1px solid var(--pop);
+  background: var(--pop-dim);
+  color: var(--pop);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.xray-btn:hover { background: var(--pop); color: var(--btn-ink); }
+
+/* Internship Vernier Caliper Scale & Fleet Status */
+.caliper-strip {
+  position: relative;
+  height: 26px;
+  margin: 0.75rem 0 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding-inline: 0.75rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+}
+.caliper-ticks {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(90deg, var(--line) 0, var(--line) 1px, transparent 1px, transparent 12px);
+  opacity: 0.7;
+  will-change: transform;
+}
+.caliper-readout { position: relative; z-index: 2; background: var(--surface); padding-inline: 0.45rem; border: 1px solid var(--line); border-radius: 3px; }
+.fleet-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
+  border: 1px solid var(--accent);
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+.fleet-badge .pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+
+/* RC Artificial Horizon Reticle */
+.horizon-widget {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 0.9rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+.horizon-widget svg { width: 54px; height: 54px; color: var(--accent); }
+
+/* Projects Moire Phase Overlay & PCB Pulse */
+.moire-banner {
+  position: relative;
+  height: 36px;
+  margin-top: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.moire-layer {
+  position: absolute;
+  inset: -20px;
+  background-image: repeating-linear-gradient(60deg, rgba(var(--accent-rgb), 0.28) 0, rgba(var(--accent-rgb), 0.28) 2px, transparent 2px, transparent 10px);
+}
+.moire-layer.layer-2 {
+  background-image: repeating-linear-gradient(-60deg, rgba(var(--pop-rgb), 0.28) 0, rgba(var(--pop-rgb), 0.28) 2px, transparent 2px, transparent 10px);
+  will-change: transform;
+}
+
+.phase { margin-bottom: 1.75rem; padding-left: 1rem; border-left: 2px solid var(--line); }
+.phase h3 { font-size: 1.2rem; margin-bottom: 0.2rem; color: #FFFFFF; }
+.phase .when { margin-bottom: 0.5rem; }
+.proj-body h4 { font-family: var(--display); font-size: 1.1rem; margin: 1.4rem 0 0.4rem; color: var(--accent); }
+.back { margin-top: 2rem; font-family: var(--mono); font-size: 0.88rem; }
+
+/* Figures & Media Containers — Strict Proportional Bounds */
+.hero-fig {
+  margin: 0 0 1.5rem;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #04080D;
+  max-width: 100%;
+}
+.hero-fig img, .hero-fig video {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 22rem;
+  object-fit: contain;
+  background: #04080D;
+}
+.hero-fig img { cursor: zoom-in; }
+.hero-fig figcaption {
+  padding: 0.6rem 0.9rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+  background: var(--surface-elevated);
+  border-top: 1px solid var(--line);
+}
+
+.shot-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin: 0 0 1.5rem;
+}
+.shot-row figure {
+  margin: 0;
+  flex: 1 1 14rem;
+  max-width: 18.5rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  background: #04080D;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s ease;
+}
+.shot-row figure:hover { border-color: var(--accent); }
+.shot-row img, .shot-row video {
+  display: block;
+  width: 100%;
+  height: 11rem;
+  max-height: 11rem;
+  object-fit: contain;
+  background: #04080D;
+}
+.shot-row img { cursor: zoom-in; }
+.shot-row figcaption {
+  padding: 0.55rem 0.75rem;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  color: var(--muted);
+  background: var(--surface-elevated);
+  border-top: 1px solid var(--line);
+  margin-top: auto;
+}
+.shot-row.wide figure { flex-basis: 100%; max-width: 100%; }
+.shot-row.wide img, .shot-row.wide video { height: auto; max-height: 22rem; }
+
+.gallery-head {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pop);
+  margin: 1.75rem 0 0.75rem;
+}
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: 0.65rem;
+}
+.gallery figure {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  background: #04080D;
+  transition: border-color 0.2s ease;
+}
+.gallery figure:hover { border-color: var(--accent); }
+.gallery img, .gallery video {
+  display: block;
+  width: 100%;
+  height: 8.5rem;
+  max-height: 8.5rem;
+  object-fit: contain;
+  background: #04080D;
+}
+.gallery img { cursor: zoom-in; }
+.gallery figcaption {
+  padding: 0.45rem 0.55rem;
+  font-size: 0.74rem;
+  color: var(--muted);
+  line-height: 1.35;
+  background: var(--surface-elevated);
+  border-top: 1px solid var(--line);
+}
+.gallery .side figcaption { font-style: italic; }
+
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1.2rem 0;
+}
+.compare figure {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  background: #04080D;
+}
+.compare img {
+  display: block;
+  width: 100%;
+  height: 13rem;
+  max-height: 13rem;
+  object-fit: contain;
+  background: #04080D;
+  cursor: zoom-in;
+}
+.compare figcaption {
+  padding: 0.5rem 0.7rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  background: var(--surface-elevated);
+  border-top: 1px solid var(--line);
+}
+
+/* Telemetry Data Tables */
+.data-table { width: 100%; border-collapse: collapse; margin: 0 0 1.5rem; font-size: 0.88rem; background: rgba(var(--accent-rgb), 0.02); border: 1px solid var(--line); }
+.data-table caption { text-align: left; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+.data-table th, .data-table td { padding: 0.55rem 0.85rem; border-bottom: 1px solid var(--line); text-align: left; }
+.data-table th { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--pop); font-weight: 500; background: var(--surface-elevated); }
+.data-table td:not(:first-child), .data-table th:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--mono); }
+.data-table tbody tr:hover { background: rgba(var(--accent-rgb), 0.05); }
+.data-table tbody tr:last-child td { border-bottom: none; }
+
+.contact { border-bottom: 0; }
+.topics { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 0 0 1.5rem; }
+.addr { font-family: var(--mono); font-size: 1.05rem; color: var(--accent); user-select: all; overflow-wrap: anywhere; }
+footer {
+  padding-block: 1.5rem 2.5rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 30rem) {
+  .shot-row figure { flex-basis: 100%; max-width: 100%; }
+  .compare { grid-template-columns: 1fr; }
+  .data-table { font-size: 0.8rem; }
+  .data-table th, .data-table td { padding: 0.4rem 0.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero-reticle .orbit-cw, .hero-reticle .orbit-ccw { animation: none; }
+}
+
+/* Lightbox */
+.lightbox-overlay { position: fixed; inset: 0; background: rgba(4, 9, 14, 0.96); display: flex; align-items: center; justify-content: center; padding: 3rem 1.25rem; z-index: 999; cursor: zoom-out; }
+.lightbox-overlay[hidden] { display: none; }
+.lightbox-overlay img { max-width: 100%; max-height: 100%; object-fit: contain; border: 1px solid var(--accent); box-shadow: 0 0 30px rgba(var(--accent-rgb), 0.25); border-radius: 4px; cursor: default; }
+.lightbox-close { position: fixed; top: 1rem; right: 1.25rem; width: 2.5rem; height: 2.5rem; border-radius: 4px; border: 1px solid var(--accent); background: rgba(var(--accent-rgb), 0.12); color: var(--accent); font-size: 1.6rem; line-height: 1; cursor: pointer; z-index: 1000; }
+.lightbox-close[hidden] { display: none; }
+.lightbox-close:hover { background: var(--accent); color: var(--btn-ink); }
