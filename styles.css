@@ -394,4 +394,19 @@ section > h2::before {
   border-color: var(--accent);
   color: var(--btn-ink);
   font-weight: 600;
-  box-shadow: 0 0 14px rgba
+  box-shadow: 0 0 14px rgba(var(--accent-rgb), 0.3);
+}
+
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr)); gap: 1.25rem; }
+.skills > div {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1.15rem 1.25rem;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.skills > div:hover { border-color: var(--accent); }
+.skills > div.is-hidden { display: none; }
+.skills h3 { font-size: 1.02rem; margin-bottom: 0.65rem; color: var(--accent); font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.05em; }
+.skills ul { list-style: none; padding: 0; margin: 0; }
+.skills li { padding: 0.35rem 0; border-bottom: 1px solid var(--line); font-size:
