@@ -4,21 +4,277 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>DPEA Internship &mdash; Vraj R. Prajapati</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="styles.css">
+<style>
+  :root {
+    --dro-green: #10B981;
+    --dro-bright: #34D399;
+    --dro-amber: #F59E0B;
+    --dro-surface: rgba(7, 14, 13, 0.9);
+    --dro-border: rgba(16, 185, 129, 0.24);
+  }
+
+  /* Precision Machine-Tool & Vernier Scale Backdrop */
+  body[data-page="internship"] {
+    background-color: #050A09;
+    background-image:
+      radial-gradient(circle at 18% 8%, rgba(16, 185, 129, 0.08), transparent 45%),
+      radial-gradient(circle at 85% 22%, rgba(245, 158, 11, 0.05), transparent 40%),
+      repeating-linear-gradient(
+        90deg,
+        rgba(16, 185, 129, 0.03) 0px,
+        rgba(16, 185, 129, 0.03) 1px,
+        transparent 1px,
+        transparent 48px
+      );
+  }
+
+  /* DRO Header Frame with Vernier Ruler Tick Strip */
+  .dro-header {
+    position: relative;
+    padding: 1.55rem 1.7rem 1.35rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(145deg, rgba(16, 185, 129, 0.08), rgba(7, 14, 13, 0.94) 60%);
+    border: 1px solid var(--dro-border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .dro-header::after {
+    content: "";
+    display: block;
+    height: 8px;
+    margin-top: 1.25rem;
+    opacity: 0.45;
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--dro-bright) 0px,
+      var(--dro-bright) 1px,
+      transparent 1px,
+      transparent 10px
+    );
+  }
+
+  .dro-top-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.9rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.07em;
+    color: var(--dro-bright);
+  }
+  .dro-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.24rem 0.65rem;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(52, 211, 153, 0.35);
+    border-radius: 4px;
+  }
+  .dro-led {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--dro-bright);
+    box-shadow: 0 0 9px var(--dro-bright);
+  }
+
+  /* Clean Metrology Cards */
+  .dro-card {
+    background: var(--dro-surface) !important;
+    border: 1px solid rgba(16, 185, 129, 0.2) !important;
+    border-radius: 10px !important;
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.52);
+  }
+
+  /* Interactive 3-Axis Digital Readout (DRO) & Fleet Console */
+  .dro-console {
+    margin: 1.5rem 0 1.8rem;
+    padding: 1.25rem;
+    background: #040807;
+    border: 1px solid rgba(52, 211, 153, 0.32);
+    border-radius: 8px;
+    box-shadow: inset 0 0 28px rgba(16, 185, 129, 0.06);
+  }
+  .dro-console-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-bottom: 0.85rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(52, 211, 153, 0.16);
+  }
+  .dro-console-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dro-bright);
+  }
+  .dro-mode-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+  .dro-btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    padding: 0.36rem 0.72rem;
+    border-radius: 4px;
+    border: 1px solid rgba(52, 211, 153, 0.28);
+    background: rgba(16, 185, 129, 0.06);
+    color: #CBD5E1;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .dro-btn:hover {
+    border-color: var(--dro-bright);
+    color: #FFF;
+  }
+  .dro-btn.active {
+    background: rgba(16, 185, 129, 0.2);
+    border-color: var(--dro-bright);
+    color: var(--dro-bright);
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.22);
+  }
+  .dro-btn.stock.active {
+    background: rgba(245, 158, 11, 0.16);
+    border-color: var(--dro-amber);
+    color: var(--dro-amber);
+  }
+
+  .dro-axes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 0.9rem;
+  }
+  @media (max-width: 720px) {
+    .dro-axes-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .axis-readout {
+    padding: 0.75rem 0.9rem;
+    background: rgba(16, 185, 129, 0.05);
+    border: 1px solid rgba(52, 211, 153, 0.22);
+    border-radius: 6px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  .axis-readout.stock-mode {
+    background: rgba(245, 158, 11, 0.05);
+    border-color: rgba(245, 158, 11, 0.25);
+  }
+  .axis-tag {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--dro-bright);
+  }
+  .axis-readout.stock-mode .axis-tag {
+    color: var(--dro-amber);
+  }
+  .axis-digits {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: #ECFDF5;
+    text-shadow: 0 0 10px rgba(52, 211, 153, 0.45);
+  }
+  .axis-readout.stock-mode .axis-digits {
+    color: #FDE68A;
+    text-shadow: none;
+  }
+
+  .fleet-strip {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.65rem;
+  }
+  @media (max-width: 720px) {
+    .fleet-strip {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .fleet-stat {
+    padding: 0.55rem 0.7rem;
+    background: rgba(255, 255, 255, 0.025);
+    border-left: 2px solid var(--dro-bright);
+    border-radius: 3px;
+  }
+  .fleet-k {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #94A3B8;
+  }
+  .fleet-v {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #F8FAFC;
+  }
+
+  /* Subtle Sub-Section Header Accent */
+  .dro-card h4 {
+    padding-left: 0.75rem;
+    border-left: 2px solid var(--dro-bright);
+  }
+
+  /* Smooth Image Hover Polish */
+  .hero-fig img,
+  .compare figure img,
+  .shot-row figure img,
+  .gallery figure img {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .hero-fig:hover img,
+  .compare figure:hover img,
+  .shot-row figure:hover img,
+  .gallery figure:hover img {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+  }
+</style>
+<script>
+function tryNextExt(img) {
+  var exts = ['.JPG', '.jpeg', '.JPEG', '.png', '.PNG'];
+  var step = parseInt(img.dataset.step || '0', 10);
+  if (step < exts.length) {
+    img.dataset.step = step + 1;
+    img.src = img.src.replace(/\.[^.]+$/, exts[step]);
+  }
+}
+</script>
 </head>
-<body>
+<body data-page="internship" data-palette="emerald">
 <div class="wrap">
 <nav aria-label="Pages"><a href="index.html">About</a><a href="aerospace.html">Aerospace &amp; Propulsion</a><a href="capstone.html">Senior Capstone</a><a href="internship.html" aria-current="page">DPEA Internship</a><a href="projects.html">Electromechanical Sculptures</a><a href="rc.html">RC Airplane</a><a href="skills.html">Technical Skills</a></nav>
 
-<header class="page-head">
+<header class="page-head dro-header">
+  <div class="dro-top-bar">
+    <span class="dro-badge"><span class="dro-led"></span>SHOP METROLOGY // 21-MILL FLEET COMMISSIONED</span>
+    <span>LINEAR GLASS DRO &middot; TORMACH CNC &middot; HARDINGE LATHE</span>
+  </div>
   <p class="eyebrow">03 // MANUFACTURING, CNC &amp; OUTREACH &middot; DPEA (AUG 2024 &ndash; DEC 2025)</p>
   <h1>DPEA Internship: Precision Mill Overhaul &amp; Physics Demos</h1>
   <p class="lede">Mechanical rebuild, DRO integration, and batch machining across 21 shop milling machines, followed by rapid 3D-printed physics demonstrations designed for elementary school students.</p>
 </header>
 
 <section>
-  <article class="project proj-body">
+  <article class="project proj-body dro-card">
     <h3>Year 1: Fleet Overhaul of 21 Hobby Milling Machines</h3>
     <p class="tagline">Teardown, custom spacer/shaft machining, Tormach CNC tooling, and full electrical/DRO integration for a 21-machine student shop fleet.</p>
     <dl class="spec">
@@ -27,6 +283,50 @@
       <div><dt>My Role</dt><dd>Machinist &amp; Technical Contributor</dd></div>
       <div><dt>Fleet Scope</dt><dd>21 Milling Machines</dd></div>
     </dl>
+
+    <!-- Interactive 3-Axis Digital Readout (DRO) & Fleet Overhaul Simulator -->
+    <div class="dro-console" aria-label="Interactive 3-axis mill digital readout simulator">
+      <div class="dro-console-head">
+        <span class="dro-console-title">// Linear Glass-Scale DRO &amp; Fleet Calibration Readout</span>
+        <div class="dro-mode-btns">
+          <button type="button" class="dro-btn active" id="dro-rebuilt">Rebuilt DRO Fleet (21 Units)</button>
+          <button type="button" class="dro-btn" id="dro-zero">Zero Datum (0.0000")</button>
+          <button type="button" class="dro-btn stock" id="dro-stock">Baseline Factory Stock</button>
+        </div>
+      </div>
+      <div class="dro-axes-grid">
+        <div class="axis-readout" id="card-x">
+          <span class="axis-tag">X</span>
+          <span class="axis-digits" id="val-x">+04.2500"</span>
+        </div>
+        <div class="axis-readout" id="card-y">
+          <span class="axis-tag">Y</span>
+          <span class="axis-digits" id="val-y">-01.8750"</span>
+        </div>
+        <div class="axis-readout" id="card-z">
+          <span class="axis-tag">Z</span>
+          <span class="axis-digits" id="val-z">+00.5005"</span>
+        </div>
+      </div>
+      <div class="fleet-strip">
+        <div class="fleet-stat">
+          <span class="fleet-k">Commissioned Fleet</span>
+          <span class="fleet-v" id="stat-fleet">21 / 21 MILLS</span>
+        </div>
+        <div class="fleet-stat">
+          <span class="fleet-k">Custom Spacers</span>
+          <span class="fleet-v" id="stat-spacers">42 INDIV. FITTED</span>
+        </div>
+        <div class="fleet-stat">
+          <span class="fleet-k">Cart Mounting Holes</span>
+          <span class="fleet-v" id="stat-holes">~75 PER FRAME</span>
+        </div>
+        <div class="fleet-stat">
+          <span class="fleet-k">CNC Batch Run</span>
+          <span class="fleet-v" id="stat-cnc">SAFETY CHUCK KEYS</span>
+        </div>
+      </div>
+    </div>
 
     <figure class="hero-fig">
       <img src="images/int-01-shop-overview.jpg" onerror="tryNextExt(this)" alt="DPEA machine shop row of rebuilt hobby mill stations" loading="lazy">
@@ -126,7 +426,7 @@
     </div>
   </article>
 
-  <article class="project proj-body">
+  <article class="project proj-body dro-card">
     <h3>Year 2: Interactive Physics Demonstrations for Elementary Students</h3>
     <p class="tagline">Rapid-prototyped 3D-printed mechanical toys illustrating center of mass, static equilibrium, and worm-gear kinematics.</p>
     <dl class="spec">
@@ -139,7 +439,7 @@
     <p>During the final five months of my internship, my focus shifted from heavy shop equipment to designing tactile, durable 3D-printed physics demonstrations that elementary school students could spin, nudge, and test hands-on.</p>
 
     <h4>Incline Mobile (Center-of-Mass &amp; Torque Balance)</h4>
-    <p>The Incline Mobile is a tabletop center-of-mass demonstration inspired by Calder mobiles: colored disc weights suspend from two tiered crossarms balanced atop a vertical pivot over an angled flywheel base. When students nudge or spin the flywheel, the tiered arms oscillate and settle back into level equilibrium, visibly demonstrating how moments ($r \times F$) must balance around each pivot point.</p>
+    <p>The Incline Mobile is a tabletop center-of-mass demonstration inspired by Calder mobiles: colored disc weights suspend from two tiered crossarms balanced atop a vertical pivot over an angled flywheel base. When students nudge or spin the flywheel, the tiered arms oscillate and settle back into level equilibrium, visibly demonstrating how moments (r &times; F) must balance around each pivot point.</p>
     <div class="shot-row">
       <figure><img src="images/int-30-incline-mobile-overview.jpg" onerror="tryNextExt(this)" alt="3D-printed Incline Mobile balance demonstration mounted on weighted rotating base" loading="lazy"><figcaption>Incline Mobile fully assembled on its inclined flywheel base.</figcaption></figure>
       <figure><img src="images/int-31-incline-mobile-detail.jpg" onerror="tryNextExt(this)" alt="Close-up detail of the Incline Mobile crossarms and suspended disc weights" loading="lazy"><figcaption>Close-up of tiered crossarm pivots and suspended disc weights.</figcaption></figure>
@@ -167,5 +467,59 @@
 <footer>Vraj R. Prajapati. Last updated November 2026.</footer>
 </div>
 <script src="lightbox.js" defer></script>
+<script>
+(function () {
+  var btnRebuilt = document.getElementById('dro-rebuilt');
+  var btnZero = document.getElementById('dro-zero');
+  var btnStock = document.getElementById('dro-stock');
+  if (!btnRebuilt) return;
+
+  var cards = [document.getElementById('card-x'), document.getElementById('card-y'), document.getElementById('card-z')];
+  var valX = document.getElementById('val-x');
+  var valY = document.getElementById('val-y');
+  var valZ = document.getElementById('val-z');
+  var statFleet = document.getElementById('stat-fleet');
+  var statSpacers = document.getElementById('stat-spacers');
+  var statCnc = document.getElementById('stat-cnc');
+
+  function setActive(btn) {
+    [btnRebuilt, btnZero, btnStock].forEach(function (b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+  }
+
+  btnRebuilt.addEventListener('click', function () {
+    setActive(btnRebuilt);
+    cards.forEach(function (c) { c.classList.remove('stock-mode'); });
+    valX.textContent = '+04.2500"';
+    valY.textContent = '-01.8750"';
+    valZ.textContent = '+00.5005"';
+    statFleet.textContent = '21 / 21 MILLS';
+    statSpacers.textContent = '42 INDIV. FITTED';
+    statCnc.textContent = 'SAFETY CHUCK KEYS';
+  });
+
+  btnZero.addEventListener('click', function () {
+    setActive(btnZero);
+    cards.forEach(function (c) { c.classList.remove('stock-mode'); });
+    valX.textContent = '+00.0000"';
+    valY.textContent = '+00.0000"';
+    valZ.textContent = '+00.0000"';
+    statFleet.textContent = 'DATUM ZEROED';
+    statSpacers.textContent = 'SHIMMED CONCENTRIC';
+    statCnc.textContent = 'LIMIT SWITCHES OK';
+  });
+
+  btnStock.addEventListener('click', function () {
+    setActive(btnStock);
+    cards.forEach(function (c) { c.classList.add('stock-mode'); });
+    valX.textContent = 'NO DRO (DIAL)';
+    valY.textContent = 'NO DRO (DIAL)';
+    valZ.textContent = 'NO DRO (DIAL)';
+    statFleet.textContent = 'UNMODIFIED STOCK';
+    statSpacers.textContent = 'CAST VARIANCE';
+    statCnc.textContent = 'LEGACY TRANSFORMER';
+  });
+})();
+</script>
 </body>
 </html>
