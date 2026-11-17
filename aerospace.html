@@ -6,6 +6,88 @@
 <title>Aerospace &amp; Propulsion &mdash; Vraj R. Prajapati</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
 <link rel="stylesheet" href="styles.css">
+<style>
+  /* Vertical Flight-Profile Telemetry Track (Pinned on Desktop Margin) */
+  @media (min-width: 1180px) {
+    .trajectory-hud {
+      position: fixed;
+      right: max(1.25rem, calc((100vw - 980px) / 2 - 195px));
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.35rem;
+      padding: 1rem 0.95rem 1rem 1.25rem;
+      background: rgba(9, 10, 15, 0.86);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 158, 0, 0.24);
+      border-radius: 12px;
+      z-index: 40;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    }
+    /* Vertical rail line */
+    .trajectory-hud::before {
+      content: "";
+      position: absolute;
+      left: 1.52rem;
+      top: 1.45rem;
+      bottom: 1.45rem;
+      width: 2px;
+      background: rgba(255, 158, 0, 0.18);
+      border-radius: 2px;
+    }
+    /* Live vertical fill bar driven by --traj-pct */
+    .trajectory-hud::after {
+      content: "";
+      position: absolute;
+      left: 1.52rem;
+      top: 1.45rem;
+      width: 2px;
+      height: calc((100% - 2.9rem) * var(--traj-pct, 0));
+      background: var(--accent, #FF9E00);
+      box-shadow: 0 0 10px var(--accent, #FF9E00);
+      border-radius: 2px;
+      transition: height 80ms linear;
+    }
+    .trajectory-hud .traj-step {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      color: var(--muted, #94A3B8);
+      transition: color 0.2s ease, transform 0.2s ease;
+      z-index: 1;
+    }
+    .trajectory-hud .traj-step .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #090A0F;
+      border: 2px solid rgba(255, 158, 0, 0.4);
+      flex-shrink: 0;
+      transition: all 0.25s ease;
+    }
+    .trajectory-hud .traj-step.passed .dot {
+      background: var(--accent, #FF9E00);
+      border-color: var(--accent, #FF9E00);
+    }
+    .trajectory-hud .traj-step.active {
+      color: var(--accent, #FF9E00);
+      transform: translateX(-2px);
+    }
+    .trajectory-hud .traj-step.active .dot {
+      background: var(--accent, #FF9E00);
+      border-color: #FFF;
+      box-shadow: 0 0 12px var(--accent, #FF9E00);
+      transform: scale(1.25);
+    }
+  }
+</style>
 <script>
 function tryNextExt(img) {
   var exts = ['.JPG', '.jpeg', '.JPEG', '.png', '.PNG'];
@@ -24,78 +106,232 @@ function tryNextExt(img) {
 <header class="page-head">
   <p class="eyebrow">01 // PROPULSION &amp; HIGH-POWER ROCKETRY</p>
   <h1>Aerospace &amp; Propulsion</h1>
-  <p class="lede">Liquid-propulsion sub-team hardware with Cal Poly Pomona's THRUST lab and three high-power composite rockets flown with SBCC Rocketry.</p>
-  <div class="trajectory-hud" aria-label="Scroll-linked flight profile">
+  <p class="lede">High-power rocketry airframe fabrication, manual lathe machining, desert launch operations, pre-hardware recovery and thermal diagnostic research, and propulsion sub-team work at Cal Poly Pomona.</p>
+  <aside class="trajectory-hud" id="traj-hud" aria-label="Scroll-linked flight profile">
     <span class="traj-step active"><span class="dot"></span>01 // PAD</span>
     <span class="traj-step"><span class="dot"></span>02 // MAX-Q</span>
     <span class="traj-step"><span class="dot"></span>03 // APOGEE</span>
     <span class="traj-step"><span class="dot"></span>04 // MAIN DEPLOY</span>
     <span class="traj-step"><span class="dot"></span>05 // TOUCHDOWN</span>
-  </div>
+  </aside>
 </header>
 
-<section>
+<section id="thrust">
+  <h2>Cal Poly Pomona &mdash; THRUST</h2>
   <article class="project proj-body">
-    <h3>THRUST Propulsion Sub-Team <span class="pill">Current &middot; Cal Poly Pomona</span></h3>
-    <p class="tagline">Feed-system, injector, and test-stand hardware design for student liquid-rocket propulsion at Cal Poly Pomona.</p>
+    <h3>THRUST Propulsion Sub-Team <span class="pill">Active &middot; Cal Poly Pomona</span></h3>
+    <p class="tagline">Propulsion hardware design, plumbing, and test-stand operations at Cal Poly Pomona.</p>
     <dl class="spec">
-      <div><dt>Organization</dt><dd>THRUST, Cal Poly Pomona</dd></div>
+      <div><dt>Organization</dt><dd>THRUST (Cal Poly Pomona)</dd></div>
       <div><dt>Role</dt><dd>Propulsion Sub-Team Member</dd></div>
-      <div><dt>Focus</dt><dd>CAD Packaging, Plumbing &amp; Test Hardware</dd></div>
+      <div><dt>Focus</dt><dd>CAD, DFM &amp; Test Hardware</dd></div>
       <div><dt>Status</dt><dd>Active (Junior Year)</dd></div>
     </dl>
-    <p>As a junior in Aerospace Engineering at Cal Poly Pomona, I contribute to the THRUST propulsion sub-team, translating fluid-system schematics into manufacturable CAD assemblies, mounting brackets, and pressurized test-stand interfaces. Working alongside upperclassmen and propulsion leads, I focus on fastener accessibility, O-ring gland tolerances, and clean routing for pressure transducers and solenoid valves so hardware can be assembled and leak-checked safely on the test stand.</p>
+    <p>Currently contributing to propulsion hardware and test-stand integration with THRUST at Cal Poly Pomona. Detailed CAD, test-stand photos, and cold-flow/hot-fire documentation will be uploaded as this cycle progresses.</p>
     <ul class="tools">
       <li>SolidWorks</li>
-      <li>Fluid Systems &amp; Fittings</li>
-      <li>DFMA</li>
-      <li>Test-Stand Integration</li>
+      <li>Propulsion Hardware</li>
+      <li>DFM</li>
+      <li>Test Operations</li>
+    </ul>
+  </article>
+</section>
+
+<section id="sbcc-flight">
+  <h2>SBCC Rocketry &mdash; Airframe, Shop Work &amp; Flight</h2>
+  <article class="project">
+    <h3>High-Power Rocketry &amp; Shop Fabrication</h3>
+    <p class="tagline">Hands-on airframe integration, manual lathe machining on phenolic stock, and desert launch/recovery operations with the Santa Barbara City College Aerospace &amp; Rocket Club.</p>
+    <dl class="spec">
+      <div><dt>Organization</dt><dd>SBCC Aerospace &amp; Rocket Club</dd></div>
+      <div><dt>Role</dt><dd>Payload &amp; Recovery Lead / Shop Machinist</dd></div>
+      <div><dt>Vehicles</dt><dd>Level 1 &amp; Level 2 Team Builds</dd></div>
+    </dl>
+
+    <div class="proj-body">
+      <h4>L1 / L2 Certification Flights &amp; Airframe Prep</h4>
+      <p>The core mission of the Santa Barbara City College Aerospace &amp; Rocket Club was to obtain our Level 1 and Level 2 high-power certifications so we could progress to fabricating and flying our own custom-built rocket. As one of the primary hands-on builders, I worked across airframe assembly, structural fin-can epoxy bonding, recovery harness rigging, and range prep for our L1 and L2 qualification flights (with a teammate serving as the certified flyer of record). On launch day in the Mojave desert, the vehicle achieved a clean boost off the rail, nominal apogee separation, and full parachute inflation for a damage-free recovery.</p>
+
+      <div class="shot-row">
+        <figure>
+          <video controls preload="metadata" playsinline>
+            <source src="images/aero-02-launch-video.mp4" type="video/mp4">
+            Your browser does not support embedded video.
+          </video>
+          <figcaption>Mojave desert launch sequence: rail ignition, boost, apogee separation, and drogue/main deployment.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/aero-01-desert-recovery.jpg" onerror="tryNextExt(this)" alt="Recovered ARC rocket on the Mojave desert floor with nosecone and pink parachute deployed" loading="lazy">
+          <figcaption>Post-flight recovery in the Mojave desert with intact airframe, shock cord, and deployed parachute.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/aero-03-team-desert.jpg" onerror="tryNextExt(this)" alt="SBCC Aerospace and Rocket Club team on the desert launch range with the rocket and flight card" loading="lazy">
+          <figcaption>SBCC Aerospace &amp; Rocket Club range crew after successful qualification flight and recovery.</figcaption>
+        </figure>
+      </div>
+
+      <div class="shot-row">
+        <figure>
+          <img src="images/aero-04-fin-can.jpg" onerror="tryNextExt(this)" alt="Close-up of the painted ARC fin can and aft motor retainer" loading="lazy">
+          <figcaption>Finished ARC fin can, aerodynamic fillets, and aft motor retention hardware.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/aero-05-epoxy-prep.jpg" onerror="tryNextExt(this)" alt="Mixing structural epoxy and bonding the fin assembly outdoors with teammates" loading="lazy">
+          <figcaption>Structural epoxy mixing and fin-can bonding during airframe assembly.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/aero-13-shop-build-prep.jpg" onerror="tryNextExt(this)" alt="Vraj R. Prajapati in the lab with drill, epoxy supplies, and the ARC rocket airframe" loading="lazy">
+          <figcaption>Drilling retention hardware holes and prepping the aft airframe in the lab.</figcaption>
+        </figure>
+      </div>
+
+      <h4>Shop Machining &amp; Custom Rocket Nozzle Prints</h4>
+      <p>Alongside another student machinist, I operated the manual lathe in the campus shop to perform smaller machining operations on aluminum and phenolic stock. To prepare for fabricating our own custom rocket after the certification flights, the team also completed CAD cross-sections and dimensioned engineering prints for 6061-T6 aluminum and phenolic linen converging-diverging nozzles; physical machining of the nozzles and full custom airframe was paused before fabrication when club funding ran out.</p>
+
+      <div class="shot-row">
+        <figure>
+          <img src="images/aero-06-lathe-machining.jpg" onerror="tryNextExt(this)" alt="Vraj R. Prajapati inspecting cylindrical stock at the manual lathe chuck" loading="lazy">
+          <figcaption>Inspecting cylindrical aluminum stock and setup at the manual lathe chuck in the machine shop.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/aero-07-nozzle-cad-section.PNG" onerror="tryNextExt(this)" alt="CAD cross-section of the converging-diverging nozzle showing internal contour, O-ring grooves, and threaded ports" loading="lazy">
+          <figcaption>Converging-diverging nozzle CAD cross-section with O-ring seal glands and threaded radial ports.</figcaption>
+        </figure>
+      </div>
+
+      <div class="links" style="margin-top:0.5rem;">
+        <a class="btn" href="images/aero-08a-aluminum-nozzle-print.pdf" target="_blank" rel="noopener">View 6061-T6 Aluminum Nozzle Print (PDF)</a>
+        <a class="btn" href="images/aero-08b-phenolic-nozzle-print.pdf" target="_blank" rel="noopener">View Phenolic Linen Nozzle Print (PDF)</a>
+      </div>
+    </div>
+
+    <ul class="tools">
+      <li>Manual Lathe</li>
+      <li>Aluminum &amp; Phenolic Machining</li>
+      <li>Engineering Prints</li>
+      <li>Composite / Epoxy Layup</li>
+      <li>Recovery Rigging</li>
+      <li>Range Operations</li>
+    </ul>
+  </article>
+</section>
+
+<section id="sbcc-research">
+  <h2>Payload &amp; Recovery Systems Research</h2>
+  <p class="sub">As Payload &amp; Recovery Lead at SBCC, I led our sub-team in authoring trade studies, CAD assemblies, and test protocols for our custom rocket&rsquo;s recovery and payload subsystems. Both concepts were paused prior to hardware procurement due to club funding limits.</p>
+
+  <article class="project">
+    <h3>Dual-Stage Piston Recovery &amp; GPS-Guided Parafoil Study <span class="pill">Concept &amp; CAD</span></h3>
+    <p class="tagline">Team architecture trade study and Onshape mechanical assembly for active apogee piston ejection and steerable parafoil descent.</p>
+    <dl class="spec">
+      <div><dt>Status</dt><dd>CAD &amp; Trade Study Complete (Unfunded)</dd></div>
+      <div><dt>CAD Platform</dt><dd>Onshape Assembly</dd></div>
+      <div><dt>Architecture</dt><dd>CO&#8322;/Pyro Piston + Steerable Parafoil</dd></div>
+    </dl>
+
+    <div class="proj-body">
+      <h4>Recovery Architecture &amp; Rigging Design</h4>
+      <p>To protect onboard electronics and minimize post-touchdown desert recovery distance on our custom vehicle, my team and I evaluated passive vs. active recovery architectures and designed a two-stage sequence: a pressurized piston ejection system at apogee to deploy a high-speed stabilizing drogue chute, followed by a lower-altitude (500&ndash;1,000 ft) main parafoil deployment. Using whiteboard rigging schematics, we mapped load paths across the bulkhead (&ldquo;godnut&rdquo;), quick links, shock cord, deployment bag retention (&ldquo;hairtie&rdquo; staging), and drogue riser so lines would deploy cleanly without tangling.</p>
+
+      <h4>GPS-Guided Parafoil Concept &amp; Onshape Model</h4>
+      <p>For guided landing near the launch rail, we studied servo-actuated parafoil guidance units (referencing COTS 1-axis/2-axis steering controllers with swivel-mounted control lines) and modeled a full-vehicle recovery housing in Onshape&mdash;integrating the bulkhead, puncture needle/CO&#8322; canister actuator, and shock-cord eyebolts. Because club funding stopped before hardware procurement, the physical unit was never built, but the study established packaging constraints and deployment sequencing for future club teams.</p>
+
+      <div class="shot-row">
+        <figure>
+          <img src="images/aero-11-onshape-recovery-cad.jpg" onerror="tryNextExt(this)" alt="Onshape CAD assembly titled Final Recovery System showing full rocket and recovery bay integration" loading="lazy">
+          <figcaption>Onshape assembly (&ldquo;Final Recovery System&rdquo;) integrating the CO&#8322; actuator, puncture needle, and eyebolt bulkheads.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/aero-09-recovery-whiteboard-piston.jpg" onerror="tryNextExt(this)" alt="Whiteboard diagram of the piston ejection system, cut shell interface, shock cord, and parachute bay" loading="lazy">
+          <figcaption>Internal piston ejection and shock-cord load-path schematic.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/aero-10-recovery-whiteboard-rigging.jpg" onerror="tryNextExt(this)" alt="Whiteboard rigging diagram showing bulkhead, quick link, deployment bag, hairtie retention, and drogue riser" loading="lazy">
+          <figcaption>Harness rigging sequence mapping quick links, deployment bag staging, and drogue riser.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <ul class="tools">
+      <li>Onshape CAD</li>
+      <li>Recovery Systems</li>
+      <li>Trade Studies</li>
+      <li>Harness Rigging</li>
+      <li>Systems Engineering</li>
     </ul>
   </article>
 
-  <article class="project proj-body">
-    <h3>High-Power Rocketry &mdash; L1/L2 Airframes &amp; Avionics Bays</h3>
-    <p class="tagline">Composite airframes, custom CAD recovery bays, and desert launch operations with SBCC Rocketry.</p>
+  <article class="project">
+    <h3>IR Thermal Diagnostic Payload &amp; Static-Fire Protocol <span class="pill">Research Protocol</span></h3>
+    <p class="tagline">16-page experimental research document and operating procedure for infrared hotspot detection during static-fire and flight testing.</p>
     <dl class="spec">
-      <div><dt>Team</dt><dd>SBCC Rocketry Club</dd></div>
-      <div><dt>Airframes</dt><dd>3 Composite Vehicles (L1/L2 Class)</dd></div>
-      <div><dt>Role</dt><dd>Avionics Bay CAD, Layup &amp; Pad Ops</dd></div>
-      <div><dt>Recovery</dt><dd>Dual-Deploy Black Powder / Altimeter</dd></div>
+      <div><dt>Status</dt><dd>Research &amp; SOP Authored (Unfunded)</dd></div>
+      <div><dt>Target Sensor</dt><dd>TOPDON TC004 IR Camera (256&times;192, 25 Hz)</dd></div>
+      <div><dt>Telemetry Stack</dt><dd>Raspberry Pi + Barometer + Triaxial Accel</dd></div>
     </dl>
 
-    <figure class="hero-fig">
-      <img src="images/aero-01-desert-recovery.jpg" onerror="tryNextExt(this)" alt="Team recovering high-power composite rocket in the Mojave desert after successful parachute descent" loading="lazy">
-      <figcaption>Post-flight recovery walk in the Mojave desert after a clean dual-deploy parachute descent.</figcaption>
-    </figure>
+    <div class="proj-body">
+      <h4>Research Objective &amp; Instrumentation Architecture</h4>
+      <p>To evaluate methods for detecting casing insulation breakdown, uneven propellant burn, or gas leaks before structural burn-through, I researched and authored a complete experimental payload proposal and standard operating procedure (SOP). The proposed architecture paired a Raspberry Pi flight computer, barometric altimeter, triaxial accelerometer, and RF telemetry transceiver with a TOPDON TC004 thermal camera to compare ground static-fire thermal profiles against flight conditions.</p>
 
-    <p>Across three high-power rocket builds with Santa Barbara City College's rocketry team, I worked across composite fiberglass layups, CNC/laser-cut centering rings, and custom 3D-printed avionics sleds. My primary ownership centered on packaging dual-deploy flight computers, LiPo batteries, and screw switches inside tight coupler bays while keeping charge wells accessible for range-safety inspection.</p>
-
-    <h4>Avionics Sled CAD &amp; Fiberglass Airframe Fabrication</h4>
-    <p>In Onshape and SolidWorks, I modeled modular avionics sleds with dedicated wire-routing channels and threaded brass inserts so flight altimeters could be swapped or bench-tested between launches without disturbing bulkheads. On the shop floor, I assisted with wet-layup fiberglass airframe tubes, fin alignment jigs, and high-temp epoxy fillets.</p>
-    <div class="shot-row">
-      <figure><img src="images/aero-02-avionics-cad.jpg" onerror="tryNextExt(this)" alt="CAD model of custom 3D-printed avionics sled and bulkhead assembly" loading="lazy"><figcaption>Custom avionics sled CAD packaging flight computers and battery retention.</figcaption></figure>
-      <figure><img src="images/aero-03-fiberglass-layup.jpg" onerror="tryNextExt(this)" alt="Composite fiberglass tube layup and fin alignment fixture on workbench" loading="lazy"><figcaption>Composite tube preparation and fin-slot alignment in the lab.</figcaption></figure>
-      <figure><img src="images/aero-04-rail-integration.jpg" onerror="tryNextExt(this)" alt="Assembled rocket mounted on launch rail during pre-flight safety check" loading="lazy"><figcaption>Launch-rail fit check and final continuity verification prior to pad arming.</figcaption></figure>
+      <h4>Calibration, Emissivity &amp; Quantitative Anomaly Thresholds</h4>
+      <p>Because bare metallic motor casings reflect ambient IR radiation, the protocol specifies surface prep using high-temperature matte black reference patches (&epsilon; &approx; 0.95 vs. &epsilon; = 0.60&ndash;0.80 for bare aluminum), dual-band temperature switching (&minus;20 to 100&deg;C pre-launch; up to 350&deg;C at T&minus;30 s before ignition), and quantitative abort/inspection flags&mdash;such as localized spikes exceeding 50&deg;C within 2 seconds or persistent post-burn heat soak above 30&ndash;40&deg;C outside the nozzle zone.</p>
     </div>
 
-    <h4>Launch Operations &amp; Post-Flight Inspection</h4>
-    <p>At launch sites in the Mojave desert, I helped execute pre-flight range checklists, verify altimeter continuity beeps on the rail, and inspect airframe couplers and shock-cord mounts after recovery to document char marks or shear-pin wear for the next flight iteration.</p>
-
     <ul class="tools">
-      <li>Onshape &amp; SolidWorks</li>
-      <li>OpenRocket</li>
-      <li>Fiberglass Composite Layup</li>
-      <li>Dual-Deploy Avionics</li>
-      <li>3D Printing (PETG / ABS)</li>
-      <li>Range Safety Checklists</li>
+      <li>Infrared Thermography</li>
+      <li>Test Protocol &amp; SOP</li>
+      <li>Emissivity Calibration</li>
+      <li>Raspberry Pi Telemetry</li>
+      <li>Static-Fire Diagnostics</li>
     </ul>
+  </article>
+</section>
+
+<section id="jpl">
+  <h2>NASA Jet Propulsion Laboratory &mdash; Facility Visit</h2>
+  <article class="project">
+    <h3>Space Flight Operations Facility (Building 230)</h3>
+    <p class="tagline">Behind-the-scenes tour of JPL&rsquo;s Deep Space Network mission control and spacecraft assembly facilities in Pasadena, CA.</p>
+    <div class="shot-row">
+      <figure>
+        <img src="images/aero-14-jpl-center-of-universe.jpg" onerror="tryNextExt(this)" alt="Vraj R. Prajapati standing beside the illuminated JPL seal known as the Center of the Universe inside the Charles Elachi Mission Control Center" loading="lazy">
+        <figcaption>Standing at &ldquo;The Center of the Universe&rdquo;&mdash;the famous illuminated floor seal inside JPL&rsquo;s Charles Elachi Mission Control Center, where Deep Space Network telemetry links to active interplanetary missions.</figcaption>
+      </figure>
+      <figure>
+        <img src="images/aero-15-jpl-voyager-model.jpg" onerror="tryNextExt(this)" alt="Vraj R. Prajapati and teammate in front of the full-scale Voyager spacecraft model at NASA JPL" loading="lazy">
+        <figcaption>In front of the full-scale Voyager spacecraft model during the JPL technical visit.</figcaption>
+      </figure>
+    </div>
   </article>
 </section>
 
 <p class="back"><a href="index.html">&larr; Back to overview</a></p>
 <footer>Vraj R. Prajapati. Last updated November 2026.</footer>
 </div>
+
 <script src="lightbox.js" defer></script>
 <script src="hud.js" defer></script>
+<script>
+(function () {
+  var hud = document.getElementById('traj-hud');
+  if (!hud) return;
+  var steps = hud.querySelectorAll('.traj-step');
+  function updateTraj() {
+    var doc = document.documentElement;
+    var maxScroll = Math.max(1, doc.scrollHeight - window.innerHeight);
+    var pct = Math.min(1, Math.max(0, window.scrollY / maxScroll));
+    hud.style.setProperty('--traj-pct', pct.toFixed(4));
+    var activeIdx = Math.min(steps.length - 1, Math.floor(pct * steps.length));
+    steps.forEach(function (step, idx) {
+      step.classList.toggle('active', idx === activeIdx);
+      step.classList.toggle('passed', idx < activeIdx);
+    });
+  }
+  window.addEventListener('scroll', updateTraj, { passive: true });
+  window.addEventListener('resize', updateTraj, { passive: true });
+  updateTraj();
+})();
+</script>
 </body>
 </html>
