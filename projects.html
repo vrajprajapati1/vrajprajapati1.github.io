@@ -4,21 +4,233 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Electromechanical Sculptures &mdash; Vraj R. Prajapati</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="styles.css">
+<style>
+  :root {
+    --opt-violet: #C084FC;
+    --opt-pink: #F472B6;
+    --opt-cyan: #38BDF8;
+    --opt-gold: #FBBF24;
+    --opt-surface: rgba(11, 8, 20, 0.9);
+    --opt-border: rgba(192, 132, 252, 0.24);
+  }
+
+  /* Optical Interference & PCB Trace Backdrop */
+  body[data-page="projects"] {
+    background-color: #07050E;
+    background-image:
+      radial-gradient(circle at 16% 10%, rgba(192, 132, 252, 0.09), transparent 44%),
+      radial-gradient(circle at 84% 38%, rgba(56, 189, 248, 0.07), transparent 44%),
+      radial-gradient(circle at 24% 78%, rgba(244, 114, 182, 0.07), transparent 44%),
+      radial-gradient(rgba(192, 132, 252, 0.08) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 100% 100%, 28px 28px;
+  }
+
+  /* Mechatronics & Photonics Header Frame */
+  .opt-header {
+    position: relative;
+    padding: 1.55rem 1.7rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, rgba(192, 132, 252, 0.09), rgba(11, 8, 20, 0.94) 60%);
+    border: 1px solid var(--opt-border);
+    border-radius: 10px;
+  }
+  .opt-ribbon {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-bottom: 0.85rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(192, 132, 252, 0.2);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.07em;
+    color: var(--opt-violet);
+  }
+  .opt-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.22rem 0.65rem;
+    background: rgba(192, 132, 252, 0.12);
+    border: 1px solid rgba(192, 132, 252, 0.35);
+    border-radius: 4px;
+  }
+  .opt-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--opt-violet);
+    box-shadow: 0 0 10px var(--opt-violet);
+  }
+
+  /* Clean Mechatronics Cards */
+  .opt-card {
+    background: var(--opt-surface) !important;
+    border: 1px solid rgba(192, 132, 252, 0.2) !important;
+    border-radius: 10px !important;
+    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.56);
+  }
+  .opt-card h4 {
+    padding-left: 0.75rem;
+    border-left: 2px solid var(--opt-violet);
+  }
+
+  /* Interactive Optical & Circuit Simulators */
+  .lab-bench {
+    margin: 1.5rem 0 1.75rem;
+    padding: 1.25rem;
+    background: #06040C;
+    border: 1px solid rgba(192, 132, 252, 0.32);
+    border-radius: 8px;
+    box-shadow: inset 0 0 30px rgba(192, 132, 252, 0.05);
+  }
+  .lab-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-bottom: 0.85rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(192, 132, 252, 0.16);
+  }
+  .lab-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--opt-violet);
+  }
+  .lab-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.73rem;
+    color: #E2E8F0;
+  }
+  .lab-controls input[type="range"] {
+    accent-color: var(--opt-violet);
+    cursor: pointer;
+    width: 145px;
+  }
+  .lab-btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 4px;
+    border: 1px solid rgba(192, 132, 252, 0.4);
+    background: rgba(192, 132, 252, 0.14);
+    color: var(--opt-violet);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .lab-btn:hover,
+  .lab-btn.active {
+    background: rgba(192, 132, 252, 0.24);
+    color: #FFF;
+    box-shadow: 0 0 12px rgba(192, 132, 252, 0.25);
+  }
+
+  .lab-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 1.2rem;
+    align-items: center;
+  }
+  @media (max-width: 760px) {
+    .lab-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .lab-viewport {
+    background: rgba(192, 132, 252, 0.03);
+    border: 1px solid rgba(192, 132, 252, 0.2);
+    border-radius: 6px;
+    padding: 0.65rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .lab-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+  }
+  .l-cell {
+    padding: 0.6rem 0.75rem;
+    background: rgba(255, 255, 255, 0.025);
+    border-left: 2px solid var(--opt-violet);
+    border-radius: 3px;
+  }
+  .l-k {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #94A3B8;
+    margin-bottom: 0.18rem;
+  }
+  .l-v {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: #F8FAFC;
+  }
+  .lab-note {
+    grid-column: 1 / -1;
+    margin: 0.2rem 0 0;
+    font-size: 0.84rem;
+    line-height: 1.5;
+    color: #CBD5E1;
+  }
+
+  /* Smooth Photo Hover Lift */
+  .compare figure img,
+  .shot-row figure img,
+  .gallery figure img {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .compare figure:hover img,
+  .shot-row figure:hover img,
+  .gallery figure:hover img {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+  }
+</style>
+<script>
+function tryNextExt(img) {
+  var exts = ['.JPG', '.jpeg', '.JPEG', '.png', '.PNG'];
+  var step = parseInt(img.dataset.step || '0', 10);
+  if (step < exts.length) {
+    img.dataset.step = step + 1;
+    img.src = img.src.replace(/\.[^.]+$/, exts[step]);
+  }
+}
+</script>
 </head>
-<body>
+<body data-page="projects" data-palette="violet">
 <div class="wrap">
 <nav aria-label="Pages"><a href="index.html">About</a><a href="aerospace.html">Aerospace &amp; Propulsion</a><a href="capstone.html">Senior Capstone</a><a href="internship.html">DPEA Internship</a><a href="projects.html" aria-current="page">Electromechanical Sculptures</a><a href="rc.html">RC Airplane</a><a href="skills.html">Technical Skills</a></nav>
 
-<header class="page-head">
+<header class="page-head opt-header">
+  <div class="opt-ribbon">
+    <span class="opt-pill"><span class="opt-dot"></span>MECHATRONICS LAB // 3 INDIVIDUAL BUILDS</span>
+    <span>SOLIDWORKS CAD &middot; CUSTOM PCB &middot; ARDUINO C/C++</span>
+  </div>
   <p class="eyebrow">05 // MECHATRONICS, OPTICS &amp; EMBEDDED HARDWARE &middot; DPEA</p>
   <h1>Electromechanical Sculptures</h1>
   <p class="lede">Three individual mechatronics builds completed at the Dos Pueblos Engineering Academy&mdash;taking each project from hand-drawn concept studies through SolidWorks CAD, manual machining, custom PCB soldering, and microcontroller firmware.</p>
 </header>
 
 <section>
-  <article class="project proj-body">
+  <article class="project proj-body opt-card">
     <h3>Kinetic Sculpture &mdash; Dual-Motor Moir&eacute; Interference Array</h3>
     <p class="tagline">Belt-and-pulley transmission driving two laser-cut moir&eacute; discs at independent speeds with ultrasonic proximity-reactive LED lighting.</p>
     <dl class="spec">
@@ -26,6 +238,47 @@
       <div><dt>Role</dt><dd>Individual Designer, Machinist &amp; Programmer</dd></div>
       <div><dt>Assembly Scale</dt><dd>Several Hundred Discrete Components</dd></div>
     </dl>
+
+    <!-- Interactive Dual-Motor Moire Interference Simulator -->
+    <div class="lab-bench" aria-label="Interactive dual-motor moire interference simulator">
+      <div class="lab-head">
+        <span class="lab-title">// Dual-Motor Moir&eacute; Phase &amp; Ultrasonic Proximity Simulator</span>
+        <div class="lab-controls">
+          <label for="moire-slider">PHASE: <strong id="moire-deg" style="color:var(--opt-violet);">18&deg;</strong></label>
+          <input type="range" id="moire-slider" min="0" max="180" value="18">
+          <button type="button" class="lab-btn active" id="moire-spin-btn">Auto-Spin Dual Motors</button>
+        </div>
+      </div>
+      <div class="lab-grid">
+        <div class="lab-viewport">
+          <svg id="moire-svg" width="164" height="164" viewBox="-82 -82 164 164" aria-hidden="true">
+            <circle cx="0" cy="0" r="76" fill="rgba(56,189,248,0.06)" stroke="#38BDF8" stroke-width="1.5"/>
+            <g id="disc-front"></g>
+            <g id="disc-rear"></g>
+            <circle cx="0" cy="0" r="10" fill="#06040C" stroke="#C084FC" stroke-width="1.8"/>
+          </svg>
+        </div>
+        <div class="lab-metrics">
+          <div class="l-cell">
+            <span class="l-k">Drive Transmission</span>
+            <span class="l-v">2x H-BRIDGE BELT</span>
+          </div>
+          <div class="l-cell">
+            <span class="l-k">Optical Pattern</span>
+            <span class="l-v" id="moire-state">COUNTER-ROTATING</span>
+          </div>
+          <div class="l-cell">
+            <span class="l-k">Proximity Sensor</span>
+            <span class="l-v">ULTRASONIC TRIG</span>
+          </div>
+          <div class="l-cell">
+            <span class="l-k">Mechanical Fit</span>
+            <span class="l-v">ARBOR-PRESSED</span>
+          </div>
+          <p class="lab-note">Two laser-cut interlocking polygon discs rotate at independent speeds via belt-and-pulley drives, shifting optical interference fringes as an ultrasonic rangefinder modulates the backlit LED hoop.</p>
+        </div>
+      </div>
+    </div>
 
     <div class="compare">
       <figure>
@@ -87,7 +340,7 @@
     </div>
   </article>
 
-  <article class="project proj-body">
+  <article class="project proj-body opt-card">
     <h3>Light Sculpture &mdash; Anodized Enclosure &amp; Edge-Lit Acrylic Array</h3>
     <p class="tagline">Machined and anodized aluminum housing with backlit acrylic rods, custom LED driver circuitry, and a lathe-turned Delrin control knob.</p>
     <dl class="spec">
@@ -137,13 +390,47 @@
     </div>
   </article>
 
-  <article class="project proj-body">
+  <article class="project proj-body opt-card">
     <h3>Luminism Shadow Box &mdash; Ambient-Light-Sensing Display</h3>
     <p class="tagline">Multi-layer perspective shadow box with photoresistor feedback control that automatically illuminates in low ambient light.</p>
     <dl class="spec">
       <div><dt>Organization</dt><dd>Dos Pueblos Engineering Academy</dd></div>
       <div><dt>Role</dt><dd>Individual Design, Fabrication &amp; Firmware</dd></div>
     </dl>
+
+    <!-- Interactive Photoresistor Voltage Divider & Auto-Illumination Bench -->
+    <div class="lab-bench" aria-label="Interactive photoresistor voltage divider simulator">
+      <div class="lab-head">
+        <span class="lab-title">// Photoresistor Voltage-Divider &amp; Darkness Threshold</span>
+        <div class="lab-controls">
+          <label for="lux-slider">AMBIENT LIGHT: <strong id="lux-val" style="color:var(--opt-violet);">22% (DUSK)</strong></label>
+          <input type="range" id="lux-slider" min="0" max="100" value="22">
+        </div>
+      </div>
+      <div class="lab-grid">
+        <div class="lab-viewport" style="padding:0.85rem;">
+          <svg width="100%" height="110" viewBox="0 0 280 110" aria-hidden="true">
+            <rect id="box-frame-glow" x="20" y="12" width="240" height="86" rx="4" fill="rgba(251,191,36,0.24)" stroke="#FBBF24" stroke-width="2"/>
+            <!-- Two-Point Perspective Horizon & Moon -->
+            <line x1="20" y1="62" x2="260" y2="62" stroke="rgba(255,255,255,0.28)" stroke-width="1"/>
+            <polyline points="20,98 140,62 260,98" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.3"/>
+            <circle id="box-moon" cx="212" cy="34" r="10" fill="#FDE68A"/>
+            <text id="box-hud-txt" x="140" y="88" text-anchor="middle" fill="#FDE68A" font-family="IBM Plex Mono, monospace" font-size="9">BACKLIGHT ACTIVE // V_ADC &lt; THRESHOLD</text>
+          </svg>
+        </div>
+        <div class="lab-metrics">
+          <div class="l-cell">
+            <span class="l-k">Analog ADC Readout</span>
+            <span class="l-v" id="adc-val">225 / 1023</span>
+          </div>
+          <div class="l-cell">
+            <span class="l-k">LED Array State</span>
+            <span class="l-v" id="led-state" style="color:var(--opt-gold);">ON (AUTO-TRIGGERED)</span>
+          </div>
+          <p class="lab-note">Drag <strong>Ambient Light</strong> above 40% to simulate daytime room lighting—once the photoresistor divider crosses the calibrated Arduino threshold, the multi-layer LED array shuts off automatically.</p>
+        </div>
+      </div>
+    </div>
 
     <div class="compare">
       <figure>
@@ -193,5 +480,123 @@
 <footer>Vraj R. Prajapati. Last updated November 2026.</footer>
 </div>
 <script src="lightbox.js" defer></script>
+<script>
+(function () {
+  // 1. Dual-Motor Moire Interference Disc Simulator
+  var frontDisc = document.getElementById('disc-front');
+  var rearDisc = document.getElementById('disc-rear');
+  var slider = document.getElementById('moire-slider');
+  var degLabel = document.getElementById('moire-deg');
+  var spinBtn = document.getElementById('moire-spin-btn');
+  var stateLabel = document.getElementById('moire-state');
+
+  if (frontDisc && rearDisc) {
+    var ns = 'http://www.w3.org/2000/svg';
+    var spokes = 24;
+    for (var i = 0; i < spokes; i++) {
+      var ang = (i * 360 / spokes);
+      var l1 = document.createElementNS(ns, 'line');
+      l1.setAttribute('x1', '0');
+      l1.setAttribute('y1', '-12');
+      l1.setAttribute('x2', '0');
+      l1.setAttribute('y2', '-72');
+      l1.setAttribute('stroke', '#38BDF8');
+      l1.setAttribute('stroke-width', '2.1');
+      l1.setAttribute('transform', 'rotate(' + ang + ')');
+      frontDisc.appendChild(l1);
+
+      var l2 = document.createElementNS(ns, 'line');
+      l2.setAttribute('x1', '0');
+      l2.setAttribute('y1', '-12');
+      l2.setAttribute('x2', '0');
+      l2.setAttribute('y2', '-72');
+      l2.setAttribute('stroke', '#C084FC');
+      l2.setAttribute('stroke-width', '2.1');
+      l2.setAttribute('stroke-opacity', '0.85');
+      l2.setAttribute('transform', 'rotate(' + ang + ')');
+      rearDisc.appendChild(l2);
+    }
+
+    var spinning = true;
+    var a1 = 0;
+    var a2 = 18;
+    var rafId = null;
+
+    function renderDiscs() {
+      frontDisc.setAttribute('transform', 'rotate(' + a1.toFixed(1) + ')');
+      rearDisc.setAttribute('transform', 'rotate(' + a2.toFixed(1) + ')');
+      var diff = Math.round(((a2 - a1) % 180 + 180) % 180);
+      degLabel.textContent = diff + '\u00B0';
+    }
+
+    function tick() {
+      if (!spinning) return;
+      a1 = (a1 + 0.45) % 360;
+      a2 = (a2 - 0.65) % 360;
+      renderDiscs();
+      rafId = requestAnimationFrame(tick);
+    }
+    rafId = requestAnimationFrame(tick);
+
+    spinBtn.addEventListener('click', function () {
+      spinning = !spinning;
+      spinBtn.classList.toggle('active', spinning);
+      spinBtn.textContent = spinning ? 'Auto-Spin Dual Motors' : 'Resume Dual Motors';
+      stateLabel.textContent = spinning ? 'COUNTER-ROTATING' : 'MANUAL PHASE HOLD';
+      if (spinning) rafId = requestAnimationFrame(tick);
+    });
+
+    slider.addEventListener('input', function () {
+      spinning = false;
+      spinBtn.classList.remove('active');
+      spinBtn.textContent = 'Resume Dual Motors';
+      stateLabel.textContent = 'MANUAL PHASE HOLD';
+      a1 = 0;
+      a2 = parseFloat(slider.value);
+      renderDiscs();
+    });
+  }
+
+  // 2. Luminism Shadow Box Photoresistor Voltage-Divider Simulator
+  var luxSlider = document.getElementById('lux-slider');
+  if (luxSlider) {
+    var luxVal = document.getElementById('lux-val');
+    var adcVal = document.getElementById('adc-val');
+    var ledState = document.getElementById('led-state');
+    var boxGlow = document.getElementById('box-frame-glow');
+    var boxMoon = document.getElementById('box-moon');
+    var boxHudTxt = document.getElementById('box-hud-txt');
+
+    function updateLux() {
+      var pct = parseInt(luxSlider.value, 10);
+      var adc = Math.round((pct / 100) * 1023);
+      var isDark = pct <= 40;
+
+      luxVal.textContent = pct + '% (' + (pct <= 15 ? 'NIGHT' : isDark ? 'DUSK' : 'DAYLIGHT') + ')';
+      adcVal.textContent = adc + ' / 1023';
+
+      if (isDark) {
+        ledState.textContent = 'ON (AUTO-TRIGGERED)';
+        ledState.style.color = '#FBBF24';
+        boxGlow.setAttribute('fill', 'rgba(251,191,36,0.24)');
+        boxGlow.setAttribute('stroke', '#FBBF24');
+        boxMoon.setAttribute('fill', '#FDE68A');
+        boxHudTxt.textContent = 'BACKLIGHT ACTIVE // V_ADC < THRESHOLD';
+        boxHudTxt.setAttribute('fill', '#FDE68A');
+      } else {
+        ledState.textContent = 'OFF (STANDBY)';
+        ledState.style.color = '#94A3B8';
+        boxGlow.setAttribute('fill', 'rgba(148,163,184,0.05)');
+        boxGlow.setAttribute('stroke', 'rgba(148,163,184,0.35)');
+        boxMoon.setAttribute('fill', 'rgba(148,163,184,0.3)');
+        boxHudTxt.textContent = 'STANDBY // AMBIENT ABOVE THRESHOLD';
+        boxHudTxt.setAttribute('fill', '#94A3B8');
+      }
+    }
+    luxSlider.addEventListener('input', updateLux);
+    updateLux();
+  }
+})();
+</script>
 </body>
 </html>
