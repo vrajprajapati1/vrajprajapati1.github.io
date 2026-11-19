@@ -416,63 +416,66 @@ function tryNextExt(img) {
     <p>During the final five months of my internship, my focus shifted from heavy shop equipment to designing tactile, durable 3D-printed physics demonstrations that elementary school students could spin, nudge, and test hands-on.</p>
 
     <h4>Incline Mobile &amp; Static Balance Ball (2-in-1 Equilibrium Demo)</h4>
-    <p>The Incline Mobile is a 2-in-1 tabletop center-of-mass demonstration inspired by Calder mobiles: colored disc weights suspend from two tiered crossarms balanced atop a vertical pivot over an angled ramp base carrying a weighted static balance ball. When students nudge the assembly, the weighted sphere climbs up the slope and holds position without rolling back down (since its offset center of mass stays below the contact support line), while the tiered arms oscillate and settle back into level equilibrium (&Sigma;(r &times; F) = 0).</p>
+    <p>The Incline Mobile is a 2-in-1 tabletop center-of-mass demonstration inspired by Calder mobiles: colored disc weights suspend from two tiered crossarms mounted directly atop a weighted static balance ball sitting on an angled ramp. When students nudge the assembly up the slope, the ball and mobile ride up the incline together and hold position without rolling back down (since the sphere&rsquo;s offset center of mass stays below the contact support line), while the tiered arms oscillate and settle back into level equilibrium (&Sigma;(r &times; F) = 0).</p>
 
-    <!-- Unified 2-in-1 Interactive Simulator: Incline Mobile + Static Balance Ball -->
-    <div class="sim-console" aria-label="2-in-1 Incline Mobile and Static Balance Ball simulator">
+    <!-- Connected 2-in-1 Interactive Simulator: Mobile Mounted on Balance Ball -->
+    <div class="sim-console" aria-label="Connected 2-in-1 Incline Mobile and Static Balance Ball simulator">
       <div class="sim-head">
-        <span class="sim-title">// 2-in-1 Incline Mobile &amp; Static Balance Ball Simulator</span>
+        <span class="sim-title">// Connected 2-in-1 Incline Mobile &amp; Balance Ball</span>
         <div class="slider-wrap">
-          <button type="button" class="sim-btn" id="nudge-2in1-btn">Nudge Up Slope &amp; Oscillate &uarr;</button>
+          <button type="button" class="sim-btn" id="nudge-2in1-btn">Nudge Up Slope &uarr;</button>
           <button type="button" class="sim-btn secondary" id="reset-2in1-btn">Reset Base</button>
         </div>
       </div>
       <div class="fitment-grid">
         <div class="fitment-svg-box">
-          <svg width="100%" height="146" viewBox="0 0 320 146" aria-hidden="true">
+          <svg width="100%" height="156" viewBox="0 0 320 156" aria-hidden="true">
             <!-- Inclined Ramp Base (slopes upward left-to-right) -->
-            <polygon points="24,132 296,132 296,76" fill="rgba(52,211,153,0.07)" stroke="rgba(52,211,153,0.35)" stroke-width="1.4"/>
-            <line x1="24" y1="132" x2="296" y2="76" stroke="#34D399" stroke-width="2"/>
+            <polygon points="22,144 298,144 298,92" fill="rgba(52,211,153,0.07)" stroke="rgba(52,211,153,0.35)" stroke-width="1.4"/>
+            <line x1="22" y1="144" x2="298" y2="92" stroke="#34D399" stroke-width="2"/>
 
-            <!-- Vertical Pivot Mast Rising from Ramp -->
-            <line x1="210" y1="93" x2="210" y2="18" stroke="#94A3B8" stroke-width="2"/>
-
-            <!-- Tiered Calder Mobile Crossarms on Top of Mast -->
-            <g id="mobile-arm-top" style="transform-origin: 210px 24px;">
-              <line x1="146" y1="24" x2="274" y2="24" stroke="#34D399" stroke-width="2"/>
-              <circle cx="146" cy="40" r="7.5" fill="rgba(245,158,11,0.28)" stroke="#F59E0B" stroke-width="1.4"/>
-              <line x1="146" y1="24" x2="146" y2="32.5" stroke="#94A3B8" stroke-width="1.2"/>
-              <g id="mobile-arm-sub" style="transform-origin: 274px 40px;">
-                <line x1="274" y1="24" x2="274" y2="40" stroke="#94A3B8" stroke-width="1.2"/>
-                <line x1="244" y1="40" x2="304" y2="40" stroke="#38BDF8" stroke-width="1.8"/>
-                <circle cx="244" cy="56" r="6" fill="rgba(56,189,248,0.28)" stroke="#38BDF8" stroke-width="1.4"/>
-                <line x1="244" y1="40" x2="244" y2="50" stroke="#94A3B8" stroke-width="1.1"/>
-                <circle cx="304" cy="56" r="6" fill="rgba(52,211,153,0.28)" stroke="#34D399" stroke-width="1.4"/>
-                <line x1="304" y1="40" x2="304" y2="50" stroke="#94A3B8" stroke-width="1.1"/>
-              </g>
-            </g>
-
-            <!-- Weighted Static Balance Ball on the Ramp Slope -->
-            <g id="balance-ball-group" transform="translate(66, 107)">
+            <!-- Connected Assembly: Weighted Ball + Rising Mobile Mast + Tiered Crossarms -->
+            <g id="connected-assembly" transform="translate(88, 116)">
+              <!-- Weighted Static Balance Ball Base -->
               <circle cx="0" cy="0" r="15" fill="rgba(16,185,129,0.16)" stroke="#34D399" stroke-width="1.7"/>
               <g id="ball-rotor">
                 <path d="M -10 8 A 13 13 0 0 0 10 8 Z" fill="rgba(245,158,11,0.6)" stroke="#F59E0B" stroke-width="1.1"/>
                 <circle cx="0" cy="8" r="2.5" fill="#FBBF24"/>
               </g>
               <line x1="0" y1="8" x2="0" y2="23" stroke="#F59E0B" stroke-width="1.2" stroke-dasharray="2 2"/>
+
+              <!-- Vertical Pivot Mast Rising Directly Out of the Ball -->
+              <line x1="0" y1="-15" x2="0" y2="-76" stroke="#94A3B8" stroke-width="2"/>
+
+              <!-- Upper Tier Calder Mobile Crossarm -->
+              <g id="mobile-arm-top" style="transform-origin: 0px -70px;">
+                <line x1="-54" y1="-70" x2="54" y2="-70" stroke="#34D399" stroke-width="2"/>
+                <circle cx="-54" cy="-54" r="7" fill="rgba(245,158,11,0.28)" stroke="#F59E0B" stroke-width="1.4"/>
+                <line x1="-54" y1="-70" x2="-54" y2="-61" stroke="#94A3B8" stroke-width="1.2"/>
+
+                <!-- Lower Tier Sub-Arm -->
+                <g id="mobile-arm-sub" style="transform-origin: 54px -54px;">
+                  <line x1="54" y1="-70" x2="54" y2="-54" stroke="#94A3B8" stroke-width="1.2"/>
+                  <line x1="28" y1="-54" x2="80" y2="-54" stroke="#38BDF8" stroke-width="1.8"/>
+                  <circle cx="28" cy="-38" r="5.5" fill="rgba(56,189,248,0.28)" stroke="#38BDF8" stroke-width="1.4"/>
+                  <line x1="28" y1="-54" x2="28" y2="-43.5" stroke="#94A3B8" stroke-width="1.1"/>
+                  <circle cx="80" cy="-38" r="5.5" fill="rgba(52,211,153,0.28)" stroke="#34D399" stroke-width="1.4"/>
+                  <line x1="80" y1="-54" x2="80" y2="-43.5" stroke="#94A3B8" stroke-width="1.1"/>
+                </g>
+              </g>
             </g>
           </svg>
         </div>
         <div class="fitment-metrics">
           <div class="m-cell">
-            <span class="m-k">Ball Slope Position</span>
-            <span class="m-v" id="ball-pos">16% UP RAMP</span>
+            <span class="m-k">Slope Position</span>
+            <span class="m-v" id="ball-pos">24% UP RAMP</span>
           </div>
           <div class="m-cell">
-            <span class="m-k">Ramp &amp; Arm State</span>
+            <span class="m-k">Assembly State</span>
             <span class="m-v" id="combo-state">HELD &amp; LEVEL</span>
           </div>
-          <p class="sim-caption">Click <strong>Nudge Up Slope &amp; Oscillate</strong>: the weighted sphere rolls upward along the incline and holds without rolling back down, while the upper mobile arms damp back to &Sigma;(r &times; F) = 0.</p>
+          <p class="sim-caption">Click <strong>Nudge Up Slope</strong>: the mobile and weighted sphere climb the incline together and hold position without rolling back down, while the tiered crossarms oscillate back to &Sigma;(r &times; F) = 0.</p>
         </div>
       </div>
     </div>
@@ -544,25 +547,25 @@ function tryNextExt(img) {
     updateUnit();
   }
 
-  // 2. Unified 2-in-1 Incline Mobile + Static Balance Ball Simulator
+  // 2. Connected 2-in-1 Incline Mobile + Balance Ball Assembly
   var nudgeBtn = document.getElementById('nudge-2in1-btn');
   var resetBtn = document.getElementById('reset-2in1-btn');
   if (nudgeBtn && resetBtn) {
-    var ballGroup = document.getElementById('balance-ball-group');
+    var assembly = document.getElementById('connected-assembly');
     var ballRotor = document.getElementById('ball-rotor');
     var topArm = document.getElementById('mobile-arm-top');
     var subArm = document.getElementById('mobile-arm-sub');
     var ballPosEl = document.getElementById('ball-pos');
     var stateEl = document.getElementById('combo-state');
 
-    // Ramp runs from (24,132) to (296,76): dx=272, dy=-56; keep ball below mast at x~210 (max frac ~ 0.62)
-    var currentFrac = 0.16;
+    // Ramp runs from (22,144) to (298,92): dx=276, dy=-52; radius=15 normal offset
+    var currentFrac = 0.24;
     var animFrame = null;
 
     function updateScene(frac, ballDeg, armDeg, subDeg) {
-      var sx = 24 + frac * 272 - 3;
-      var sy = 132 + frac * (-56) - 15;
-      ballGroup.setAttribute('transform', 'translate(' + sx.toFixed(1) + ',' + sy.toFixed(1) + ')');
+      var sx = 22 + frac * 276 - 2.8;
+      var sy = 144 + frac * (-52) - 14.8;
+      assembly.setAttribute('transform', 'translate(' + sx.toFixed(1) + ',' + sy.toFixed(1) + ')');
       ballRotor.setAttribute('transform', 'rotate(' + ballDeg.toFixed(1) + ')');
       topArm.style.transform = 'rotate(' + armDeg.toFixed(2) + 'deg)';
       subArm.style.transform = 'rotate(' + subDeg.toFixed(2) + 'deg)';
@@ -574,7 +577,7 @@ function tryNextExt(img) {
     nudgeBtn.addEventListener('click', function () {
       if (animFrame) cancelAnimationFrame(animFrame);
       var startFrac = currentFrac;
-      var targetFrac = currentFrac >= 0.56 ? 0.16 : Math.min(0.60, currentFrac + 0.15);
+      var targetFrac = currentFrac >= 0.64 ? 0.24 : Math.min(0.68, currentFrac + 0.15);
       var startTime = performance.now();
 
       stateEl.textContent = 'CLIMBING & OSCILLATING';
@@ -587,11 +590,11 @@ function tryNextExt(img) {
         currentFrac = startFrac + (targetFrac - startFrac) * eased;
 
         var ballDecay = Math.exp(-3.0 * t);
-        var ballWobble = 24 * ballDecay * Math.sin(10.5 * t);
+        var ballWobble = 22 * ballDecay * Math.sin(10.5 * t);
 
         var armDecay = Math.exp(-1.4 * t);
-        var armDeg = 13 * armDecay * Math.sin(5.2 * t);
-        var subDeg = -17 * armDecay * Math.sin(6.4 * t + 0.4);
+        var armDeg = 12 * armDecay * Math.sin(5.2 * t);
+        var subDeg = -16 * armDecay * Math.sin(6.4 * t + 0.4);
 
         updateScene(currentFrac, ballWobble, armDeg, subDeg);
 
@@ -608,7 +611,7 @@ function tryNextExt(img) {
 
     resetBtn.addEventListener('click', function () {
       if (animFrame) cancelAnimationFrame(animFrame);
-      currentFrac = 0.16;
+      currentFrac = 0.24;
       updateScene(currentFrac, 0, 0, 0);
       stateEl.textContent = 'HELD & LEVEL';
       stateEl.style.color = '#ECFDF5';
