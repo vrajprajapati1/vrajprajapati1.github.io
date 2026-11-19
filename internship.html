@@ -84,7 +84,6 @@
     box-shadow: 0 0 9px var(--dro-bright);
   }
 
-  /* Clean Metrology Cards */
   .dro-card {
     background: var(--dro-surface) !important;
     border: 1px solid rgba(16, 185, 129, 0.2) !important;
@@ -92,16 +91,16 @@
     box-shadow: 0 18px 44px rgba(0, 0, 0, 0.52);
   }
 
-  /* Interactive 3-Axis Digital Readout (DRO) & Fleet Console */
-  .dro-console {
+  /* Interactive Fitment & Equilibrium Consoles */
+  .sim-console {
     margin: 1.5rem 0 1.8rem;
     padding: 1.25rem;
     background: #040807;
-    border: 1px solid rgba(52, 211, 153, 0.32);
+    border: 1px solid rgba(52, 211, 153, 0.3);
     border-radius: 8px;
-    box-shadow: inset 0 0 28px rgba(16, 185, 129, 0.06);
+    box-shadow: inset 0 0 28px rgba(16, 185, 129, 0.05);
   }
-  .dro-console-head {
+  .sim-head {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -111,129 +110,83 @@
     margin-bottom: 1rem;
     border-bottom: 1px solid rgba(52, 211, 153, 0.16);
   }
-  .dro-console-title {
+  .sim-title {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.72rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--dro-bright);
   }
-  .dro-mode-btns {
+  .slider-wrap {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem;
-  }
-  .dro-btn {
+    align-items: center;
+    gap: 0.75rem;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.72rem;
-    padding: 0.36rem 0.72rem;
-    border-radius: 4px;
-    border: 1px solid rgba(52, 211, 153, 0.28);
-    background: rgba(16, 185, 129, 0.06);
-    color: #CBD5E1;
+    font-size: 0.74rem;
+    color: #E2E8F0;
+  }
+  .slider-wrap input[type="range"] {
+    accent-color: var(--dro-bright);
     cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  .dro-btn:hover {
-    border-color: var(--dro-bright);
-    color: #FFF;
-  }
-  .dro-btn.active {
-    background: rgba(16, 185, 129, 0.2);
-    border-color: var(--dro-bright);
-    color: var(--dro-bright);
-    box-shadow: 0 0 12px rgba(16, 185, 129, 0.22);
-  }
-  .dro-btn.stock.active {
-    background: rgba(245, 158, 11, 0.16);
-    border-color: var(--dro-amber);
-    color: var(--dro-amber);
+    width: 150px;
   }
 
-  .dro-axes-grid {
+  .fitment-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.75rem;
-    margin-bottom: 0.9rem;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 1.2rem;
+    align-items: center;
   }
-  @media (max-width: 720px) {
-    .dro-axes-grid {
+  @media (max-width: 760px) {
+    .fitment-grid {
       grid-template-columns: 1fr;
     }
   }
-  .axis-readout {
-    padding: 0.75rem 0.9rem;
-    background: rgba(16, 185, 129, 0.05);
-    border: 1px solid rgba(52, 211, 153, 0.22);
+  .fitment-svg-box {
+    background: rgba(16, 185, 129, 0.03);
+    border: 1px solid rgba(52, 211, 153, 0.2);
     border-radius: 6px;
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
+    padding: 0.65rem;
   }
-  .axis-readout.stock-mode {
-    background: rgba(245, 158, 11, 0.05);
-    border-color: rgba(245, 158, 11, 0.25);
-  }
-  .axis-tag {
-    font-family: 'Bricolage Grotesque', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--dro-bright);
-  }
-  .axis-readout.stock-mode .axis-tag {
-    color: var(--dro-amber);
-  }
-  .axis-digits {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 1.15rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    color: #ECFDF5;
-    text-shadow: 0 0 10px rgba(52, 211, 153, 0.45);
-  }
-  .axis-readout.stock-mode .axis-digits {
-    color: #FDE68A;
-    text-shadow: none;
-  }
-
-  .fleet-strip {
+  .fitment-metrics {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: 1fr 1fr;
     gap: 0.65rem;
   }
-  @media (max-width: 720px) {
-    .fleet-strip {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-  .fleet-stat {
-    padding: 0.55rem 0.7rem;
+  .m-cell {
+    padding: 0.6rem 0.75rem;
     background: rgba(255, 255, 255, 0.025);
     border-left: 2px solid var(--dro-bright);
     border-radius: 3px;
   }
-  .fleet-k {
+  .m-k {
     display: block;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.62rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: #94A3B8;
+    margin-bottom: 0.18rem;
   }
-  .fleet-v {
+  .m-v {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.85rem;
+    font-size: 0.86rem;
     font-weight: 600;
-    color: #F8FAFC;
+    color: #ECFDF5;
+  }
+  .sim-caption {
+    grid-column: 1 / -1;
+    margin: 0.2rem 0 0;
+    font-size: 0.84rem;
+    line-height: 1.5;
+    color: #CBD5E1;
   }
 
-  /* Subtle Sub-Section Header Accent */
   .dro-card h4 {
     padding-left: 0.75rem;
     border-left: 2px solid var(--dro-bright);
   }
 
-  /* Smooth Image Hover Polish */
   .hero-fig img,
   .compare figure img,
   .shot-row figure img,
@@ -284,46 +237,49 @@ function tryNextExt(img) {
       <div><dt>Fleet Scope</dt><dd>21 Milling Machines</dd></div>
     </dl>
 
-    <!-- Interactive 3-Axis Digital Readout (DRO) & Fleet Overhaul Simulator -->
-    <div class="dro-console" aria-label="Interactive 3-axis mill digital readout simulator">
-      <div class="dro-console-head">
-        <span class="dro-console-title">// Linear Glass-Scale DRO &amp; Fleet Calibration Readout</span>
-        <div class="dro-mode-btns">
-          <button type="button" class="dro-btn active" id="dro-rebuilt">Rebuilt DRO Fleet (21 Units)</button>
-          <button type="button" class="dro-btn" id="dro-zero">Zero Datum (0.0000")</button>
-          <button type="button" class="dro-btn stock" id="dro-stock">Baseline Factory Stock</button>
-        </div>
+    <!-- Relevant Interactive Tool: 21-Mill Cast Variance & Custom Spacer Fitment Inspector -->
+    <div class="sim-console" aria-label="21-Mill custom spacer fitment and casting tolerance inspector">
+      <div class="sim-head">
+        <span class="sim-title">// 21-Mill Cast Variance &amp; Custom Spacer Fitment Log</span>
+        <label class="slider-wrap" for="mill-slider">
+          <span>MILL UNIT: <strong id="mill-num" style="color:var(--dro-bright);">#07</strong> / 21</span>
+          <input type="range" id="mill-slider" min="1" max="21" value="7">
+        </label>
       </div>
-      <div class="dro-axes-grid">
-        <div class="axis-readout" id="card-x">
-          <span class="axis-tag">X</span>
-          <span class="axis-digits" id="val-x">+04.2500"</span>
+      <div class="fitment-grid">
+        <div class="fitment-svg-box">
+          <svg width="100%" height="122" viewBox="0 0 320 122" aria-hidden="true">
+            <!-- Cast Mill Column -->
+            <rect x="24" y="20" width="64" height="82" rx="3" fill="rgba(148,163,184,0.12)" stroke="#64748B" stroke-width="1.5"/>
+            <text x="56" y="65" text-anchor="middle" fill="#94A3B8" font-family="IBM Plex Mono, monospace" font-size="9">CASTING</text>
+            <!-- Custom Faced Aluminum Spacer (width dynamically adjusts) -->
+            <rect id="svg-spacer" x="88" y="34" width="46" height="54" fill="rgba(52,211,153,0.18)" stroke="#34D399" stroke-width="1.8"/>
+            <text id="svg-spacer-lbl" x="111" y="64" text-anchor="middle" fill="#34D399" font-family="IBM Plex Mono, monospace" font-size="8.5">SPACER</text>
+            <!-- DRO Linear Glass Scale -->
+            <rect id="svg-dro" x="134" y="26" width="20" height="70" rx="2" fill="rgba(16,185,129,0.22)" stroke="#10B981" stroke-width="1.5"/>
+            <line x1="154" y1="61" x2="292" y2="61" stroke="#34D399" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <text x="224" y="52" text-anchor="middle" fill="#34D399" font-family="IBM Plex Mono, monospace" font-size="9">DATUM PARALLELISM OK</text>
+            <text x="224" y="75" text-anchor="middle" fill="#94A3B8" font-family="IBM Plex Mono, monospace" font-size="8.5" id="svg-dim-txt">FACED: 0.494"</text>
+          </svg>
         </div>
-        <div class="axis-readout" id="card-y">
-          <span class="axis-tag">Y</span>
-          <span class="axis-digits" id="val-y">-01.8750"</span>
-        </div>
-        <div class="axis-readout" id="card-z">
-          <span class="axis-tag">Z</span>
-          <span class="axis-digits" id="val-z">+00.5005"</span>
-        </div>
-      </div>
-      <div class="fleet-strip">
-        <div class="fleet-stat">
-          <span class="fleet-k">Commissioned Fleet</span>
-          <span class="fleet-v" id="stat-fleet">21 / 21 MILLS</span>
-        </div>
-        <div class="fleet-stat">
-          <span class="fleet-k">Custom Spacers</span>
-          <span class="fleet-v" id="stat-spacers">42 INDIV. FITTED</span>
-        </div>
-        <div class="fleet-stat">
-          <span class="fleet-k">Cart Mounting Holes</span>
-          <span class="fleet-v" id="stat-holes">~75 PER FRAME</span>
-        </div>
-        <div class="fleet-stat">
-          <span class="fleet-k">CNC Batch Run</span>
-          <span class="fleet-v" id="stat-cnc">SAFETY CHUCK KEYS</span>
+        <div class="fitment-metrics">
+          <div class="m-cell">
+            <span class="m-k">Casting Offset</span>
+            <span class="m-v" id="m-offset">-0.006"</span>
+          </div>
+          <div class="m-cell">
+            <span class="m-k">Faced Spacer Pair</span>
+            <span class="m-v" id="m-spacer">0.494" (2x)</span>
+          </div>
+          <div class="m-cell">
+            <span class="m-k">Motor Mount Shim</span>
+            <span class="m-v" id="m-shim">0.004" SS</span>
+          </div>
+          <div class="m-cell">
+            <span class="m-k">Fleet Progress</span>
+            <span class="m-v">42 / 42 FITTED</span>
+          </div>
+          <p class="sim-caption" id="m-note">Because each cast mill housing varied slightly from nominal, all 42 aluminum spacers were individually measured and faced on the lathe to keep every DRO scale and shaft collar parallel.</p>
         </div>
       </div>
     </div>
@@ -440,6 +396,52 @@ function tryNextExt(img) {
 
     <h4>Incline Mobile (Center-of-Mass &amp; Torque Balance)</h4>
     <p>The Incline Mobile is a tabletop center-of-mass demonstration inspired by Calder mobiles: colored disc weights suspend from two tiered crossarms balanced atop a vertical pivot over an angled flywheel base. When students nudge or spin the flywheel, the tiered arms oscillate and settle back into level equilibrium, visibly demonstrating how moments (r &times; F) must balance around each pivot point.</p>
+
+    <!-- Relevant Interactive Tool: Incline Mobile Torque Balance Simulator -->
+    <div class="sim-console" aria-label="Incline Mobile torque equilibrium simulator">
+      <div class="sim-head">
+        <span class="sim-title">// Incline Mobile &mdash; Static Moment Equilibrium (&Sigma;&tau; = r &times; F = 0)</span>
+        <div class="slider-wrap">
+          <button type="button" id="nudge-mobile" style="font-family:'IBM Plex Mono',monospace;font-size:0.72rem;padding:0.35rem 0.75rem;border-radius:4px;border:1px solid rgba(52,211,153,0.4);background:rgba(16,185,129,0.14);color:#34D399;cursor:pointer;">Nudge Flywheel</button>
+        </div>
+      </div>
+      <div class="fitment-grid">
+        <div class="fitment-svg-box">
+          <svg width="100%" height="122" viewBox="0 0 320 122" aria-hidden="true">
+            <!-- Base & Vertical Pivot -->
+            <ellipse cx="160" cy="108" rx="54" ry="8" fill="rgba(52,211,153,0.14)" stroke="#34D399" stroke-width="1.4"/>
+            <line x1="160" y1="26" x2="160" y2="108" stroke="#94A3B8" stroke-width="2"/>
+            <!-- Upper Tier Crossarm -->
+            <g id="mobile-arm-top" style="transform-origin: 160px 34px;">
+              <line x1="88" y1="34" x2="232" y2="34" stroke="#34D399" stroke-width="2.2"/>
+              <circle cx="88" cy="52" r="9" fill="rgba(245,158,11,0.28)" stroke="#F59E0B" stroke-width="1.5"/>
+              <line x1="88" y1="34" x2="88" y2="43" stroke="#94A3B8" stroke-width="1.2"/>
+              <!-- Lower Tier Sub-Arm -->
+              <g id="mobile-arm-sub" style="transform-origin: 232px 52px;">
+                <line x1="232" y1="34" x2="232" y2="52" stroke="#94A3B8" stroke-width="1.2"/>
+                <line x1="194" y1="52" x2="270" y2="52" stroke="#38BDF8" stroke-width="2"/>
+                <circle cx="194" cy="72" r="7" fill="rgba(56,189,248,0.28)" stroke="#38BDF8" stroke-width="1.5"/>
+                <line x1="194" y1="52" x2="194" y2="65" stroke="#94A3B8" stroke-width="1.2"/>
+                <circle cx="270" cy="72" r="7" fill="rgba(52,211,153,0.28)" stroke="#34D399" stroke-width="1.5"/>
+                <line x1="270" y1="52" x2="270" y2="65" stroke="#94A3B8" stroke-width="1.2"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+        <div class="fitment-metrics">
+          <div class="m-cell">
+            <span class="m-k">Arm Tilt Angle</span>
+            <span class="m-v" id="mob-angle">0.0&deg; (LEVEL)</span>
+          </div>
+          <div class="m-cell">
+            <span class="m-k">Pivot State</span>
+            <span class="m-v" id="mob-state">EQUILIBRIUM</span>
+          </div>
+          <p class="sim-caption">Click <strong>Nudge Flywheel</strong> to disturb the tiered crossarms and watch damped oscillation restore &Sigma;(r &times; F) = 0 around both vertical pivots.</p>
+        </div>
+      </div>
+    </div>
+
     <div class="shot-row">
       <figure><img src="images/int-30-incline-mobile-overview.jpg" onerror="tryNextExt(this)" alt="3D-printed Incline Mobile balance demonstration mounted on weighted rotating base" loading="lazy"><figcaption>Incline Mobile fully assembled on its inclined flywheel base.</figcaption></figure>
       <figure><img src="images/int-31-incline-mobile-detail.jpg" onerror="tryNextExt(this)" alt="Close-up detail of the Incline Mobile crossarms and suspended disc weights" loading="lazy"><figcaption>Close-up of tiered crossarm pivots and suspended disc weights.</figcaption></figure>
@@ -469,56 +471,84 @@ function tryNextExt(img) {
 <script src="lightbox.js" defer></script>
 <script>
 (function () {
-  var btnRebuilt = document.getElementById('dro-rebuilt');
-  var btnZero = document.getElementById('dro-zero');
-  var btnStock = document.getElementById('dro-stock');
-  if (!btnRebuilt) return;
+  // 1. 21-Mill Cast Variance & Custom Spacer Fitment Slider
+  var slider = document.getElementById('mill-slider');
+  if (slider) {
+    var millNum = document.getElementById('mill-num');
+    var svgSpacer = document.getElementById('svg-spacer');
+    var svgSpacerLbl = document.getElementById('svg-spacer-lbl');
+    var svgDro = document.getElementById('svg-dro');
+    var svgDimTxt = document.getElementById('svg-dim-txt');
+    var mOffset = document.getElementById('m-offset');
+    var mSpacer = document.getElementById('m-spacer');
+    var mShim = document.getElementById('m-shim');
 
-  var cards = [document.getElementById('card-x'), document.getElementById('card-y'), document.getElementById('card-z')];
-  var valX = document.getElementById('val-x');
-  var valY = document.getElementById('val-y');
-  var valZ = document.getElementById('val-z');
-  var statFleet = document.getElementById('stat-fleet');
-  var statSpacers = document.getElementById('stat-spacers');
-  var statCnc = document.getElementById('stat-cnc');
+    // Deterministic realistic casting variance per unit (-0.011" to +0.012")
+    var offsets = [
+      -0.008, 0.004, -0.003, 0.011, -0.009, 0.002, -0.006,
+      0.007, -0.004, 0.009, -0.011, 0.005, -0.002, 0.008,
+      -0.007, 0.003, -0.005, 0.010, -0.003, 0.006, -0.004
+    ];
+    var shims = ['0.005" SS', '0.002" SS', '0.003" SS', '0.006" SS', '0.004" SS'];
 
-  function setActive(btn) {
-    [btnRebuilt, btnZero, btnStock].forEach(function (b) { b.classList.remove('active'); });
-    btn.classList.add('active');
+    function updateUnit() {
+      var unit = parseInt(slider.value, 10);
+      var off = offsets[unit - 1] || 0;
+      var faced = (0.500 + off).toFixed(3);
+      var sign = off >= 0 ? '+' : '';
+      var pxWidth = Math.round(46 + off * 700);
+
+      millNum.textContent = '#' + (unit < 10 ? '0' + unit : unit);
+      mOffset.textContent = sign + off.toFixed(3) + '"';
+      mSpacer.textContent = faced + '" (2x)';
+      mShim.textContent = shims[unit % shims.length];
+      svgSpacer.setAttribute('width', pxWidth);
+      svgSpacerLbl.setAttribute('x', 88 + pxWidth / 2);
+      svgDro.setAttribute('x', 88 + pxWidth);
+      svgDimTxt.textContent = 'FACED: ' + faced + '"';
+    }
+    slider.addEventListener('input', updateUnit);
+    updateUnit();
   }
 
-  btnRebuilt.addEventListener('click', function () {
-    setActive(btnRebuilt);
-    cards.forEach(function (c) { c.classList.remove('stock-mode'); });
-    valX.textContent = '+04.2500"';
-    valY.textContent = '-01.8750"';
-    valZ.textContent = '+00.5005"';
-    statFleet.textContent = '21 / 21 MILLS';
-    statSpacers.textContent = '42 INDIV. FITTED';
-    statCnc.textContent = 'SAFETY CHUCK KEYS';
-  });
+  // 2. Incline Mobile Damped Oscillation Simulator
+  var nudgeBtn = document.getElementById('nudge-mobile');
+  if (nudgeBtn) {
+    var topArm = document.getElementById('mobile-arm-top');
+    var subArm = document.getElementById('mobile-arm-sub');
+    var angleEl = document.getElementById('mob-angle');
+    var stateEl = document.getElementById('mob-state');
+    var animId = null;
 
-  btnZero.addEventListener('click', function () {
-    setActive(btnZero);
-    cards.forEach(function (c) { c.classList.remove('stock-mode'); });
-    valX.textContent = '+00.0000"';
-    valY.textContent = '+00.0000"';
-    valZ.textContent = '+00.0000"';
-    statFleet.textContent = 'DATUM ZEROED';
-    statSpacers.textContent = 'SHIMMED CONCENTRIC';
-    statCnc.textContent = 'LIMIT SWITCHES OK';
-  });
+    nudgeBtn.addEventListener('click', function () {
+      if (animId) cancelAnimationFrame(animId);
+      var start = performance.now();
+      stateEl.textContent = 'OSCILLATING';
+      stateEl.style.color = '#F59E0B';
 
-  btnStock.addEventListener('click', function () {
-    setActive(btnStock);
-    cards.forEach(function (c) { c.classList.add('stock-mode'); });
-    valX.textContent = 'NO DRO (DIAL)';
-    valY.textContent = 'NO DRO (DIAL)';
-    valZ.textContent = 'NO DRO (DIAL)';
-    statFleet.textContent = 'UNMODIFIED STOCK';
-    statSpacers.textContent = 'CAST VARIANCE';
-    statCnc.textContent = 'LEGACY TRANSFORMER';
-  });
+      function step(now) {
+        var t = (now - start) / 1000;
+        var decay = Math.exp(-1.35 * t);
+        var deg = 14 * decay * Math.sin(5.2 * t);
+        var subDeg = -18 * decay * Math.sin(6.4 * t + 0.5);
+
+        topArm.style.transform = 'rotate(' + deg.toFixed(2) + 'deg)';
+        subArm.style.transform = 'rotate(' + subDeg.toFixed(2) + 'deg)';
+        angleEl.textContent = deg.toFixed(1) + '\u00B0';
+
+        if (decay > 0.015) {
+          animId = requestAnimationFrame(step);
+        } else {
+          topArm.style.transform = 'rotate(0deg)';
+          subArm.style.transform = 'rotate(0deg)';
+          angleEl.textContent = '0.0\u00B0 (LEVEL)';
+          stateEl.textContent = 'EQUILIBRIUM';
+          stateEl.style.color = '#ECFDF5';
+        }
+      }
+      animId = requestAnimationFrame(step);
+    });
+  }
 })();
 </script>
 </body>
