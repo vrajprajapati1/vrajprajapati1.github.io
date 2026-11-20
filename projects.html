@@ -149,14 +149,57 @@
     }
   }
   .lab-viewport {
-    background: radial-gradient(circle at center, rgba(56, 189, 248, 0.12), rgba(6, 4, 12, 0.95) 75%);
+    background: radial-gradient(circle at center, rgba(56, 189, 248, 0.14), rgba(6, 4, 12, 0.95) 75%);
     border: 1px solid rgba(192, 132, 252, 0.24);
     border-radius: 6px;
-    padding: 0.65rem;
+    padding: 0.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
   }
+
+  /* Exact Disc Dual-Layer Stage */
+  .disc-stage {
+    position: relative;
+    width: 196px;
+    height: 196px;
+    border-radius: 50%;
+    border: 2px solid #38BDF8;
+    box-shadow: 0 0 26px rgba(56, 189, 248, 0.35), inset 0 0 24px rgba(56, 189, 248, 0.28);
+    background: radial-gradient(circle at center, #38BDF8 0%, #1D4ED8 55%, #090D1F 100%);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .disc-layer {
+    position: absolute;
+    inset: 4px;
+    width: calc(100% - 8px);
+    height: calc(100% - 8px);
+    border-radius: 50%;
+    object-fit: cover;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    will-change: transform;
+  }
+  .disc-layer.rear {
+    opacity: 0.9;
+  }
+  .disc-layer.front {
+    opacity: 0.95;
+  }
+  .disc-hub {
+    position: relative;
+    z-index: 3;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #06040C;
+    border: 2px solid #C084FC;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+  }
+
   .lab-metrics {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -239,10 +282,10 @@ function tryNextExt(img) {
       <div><dt>Assembly Scale</dt><dd>Several Hundred Discrete Components</dd></div>
     </dl>
 
-    <!-- Interactive Dual-Motor Interlocking Polygon Moire Disc Simulator -->
-    <div class="lab-bench" aria-label="Interactive dual-motor interlocking polygon moire disc simulator">
+    <!-- Interactive Dual-Motor Exact Moire Disc Simulator -->
+    <div class="lab-bench" aria-label="Interactive dual-motor exact moire disc simulator">
       <div class="lab-head">
-        <span class="lab-title">// Interlocking Polygon Moir&eacute; Discs &mdash; Phase Simulator</span>
+        <span class="lab-title">// Dual-Motor Moir&eacute; Disc Array &mdash; Phase Simulator</span>
         <div class="lab-controls">
           <label for="moire-slider">PHASE: <strong id="moire-deg" style="color:var(--opt-violet);">18&deg;</strong></label>
           <input type="range" id="moire-slider" min="0" max="180" value="18">
@@ -251,33 +294,19 @@ function tryNextExt(img) {
       </div>
       <div class="lab-grid">
         <div class="lab-viewport">
-          <svg id="moire-svg" width="176" height="176" viewBox="-88 -88 176 176" aria-hidden="true">
-            <defs>
-              <radialGradient id="ledBackglow" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.34"/>
-                <stop offset="70%" stop-color="#818CF8" stop-opacity="0.16"/>
-                <stop offset="100%" stop-color="#06040C" stop-opacity="0"/>
-              </radialGradient>
-            </defs>
-            <!-- Outer Backlit LED Hoop -->
-            <circle cx="0" cy="0" r="84" fill="url(#ledBackglow)" stroke="#38BDF8" stroke-width="1.6"/>
-            <circle cx="0" cy="0" r="78" fill="none" stroke="rgba(192,132,252,0.3)" stroke-width="0.8"/>
-            <!-- Rear Laser-Cut Interlocking Polygon Disc -->
-            <g id="disc-rear"></g>
-            <!-- Front Laser-Cut Interlocking Polygon Disc -->
-            <g id="disc-front"></g>
-            <!-- Center Arbor Hub & Fastener Ring -->
-            <circle cx="0" cy="0" r="12" fill="#06040C" stroke="#C084FC" stroke-width="1.8"/>
-            <circle cx="0" cy="0" r="4" fill="#38BDF8"/>
-          </svg>
+          <div class="disc-stage" aria-label="Dual counter-rotating laser-cut moire discs backlit in blue">
+            <img id="disc-rear" class="disc-layer rear" src="images/ks-20-moire-pattern-digital.png" onerror="tryNextExt(this)" alt="Rear counter-rotating moire disc layer">
+            <img id="disc-front" class="disc-layer front" src="images/ks-20-moire-pattern-digital.png" onerror="tryNextExt(this)" alt="Front counter-rotating moire disc layer">
+            <div class="disc-hub"></div>
+          </div>
         </div>
         <div class="lab-metrics">
           <div class="l-cell">
-            <span class="l-k">Disc Geometry</span>
-            <span class="l-v">INTERLOCKING POLYGONS</span>
+            <span class="l-k">Disc Pattern</span>
+            <span class="l-v">LASER-CUT CAD FILE</span>
           </div>
           <div class="l-cell">
-            <span class="l-k">Optical Pattern</span>
+            <span class="l-k">Optical State</span>
             <span class="l-v" id="moire-state">COUNTER-ROTATING</span>
           </div>
           <div class="l-cell">
@@ -288,7 +317,7 @@ function tryNextExt(img) {
             <span class="l-k">Proximity Sensor</span>
             <span class="l-v">ULTRASONIC TRIG</span>
           </div>
-          <p class="lab-note">Modeled on your interlocking polygon laser-cut disc pattern: two counter-rotating cutout discs weave in and out of phase to generate shifting moir&eacute; interference petals in front of the backlit LED hoop.</p>
+          <p class="lab-note">Uses your exact digital laser-cut disc design (<code>ks-20</code>) layered in front of a blue LED backlight: as the two discs counter-rotate out of phase, the cutouts generate real optical interference fringes.</p>
         </div>
       </div>
     </div>
@@ -494,7 +523,7 @@ function tryNextExt(img) {
 <script src="lightbox.js" defer></script>
 <script>
 (function () {
-  // 1. Interlocking Polygon Moire Interference Disc Simulator (matches ks-20-moire-pattern-digital)
+  // 1. Exact Laser-Cut Moire Disc Simulator (layers two instances of images/ks-20-moire-pattern-digital.png)
   var frontDisc = document.getElementById('disc-front');
   var rearDisc = document.getElementById('disc-rear');
   var slider = document.getElementById('moire-slider');
@@ -503,71 +532,14 @@ function tryNextExt(img) {
   var stateLabel = document.getElementById('moire-state');
 
   if (frontDisc && rearDisc) {
-    var ns = 'http://www.w3.org/2000/svg';
-
-    function buildPolygonDisc(targetGroup, strokeColor, fillOpacity, twistDir) {
-      // Concentric structural rings of the laser-cut disc
-      [75, 56, 37, 20].forEach(function (r) {
-        var ring = document.createElementNS(ns, 'circle');
-        ring.setAttribute('cx', '0');
-        ring.setAttribute('cy', '0');
-        ring.setAttribute('r', r);
-        ring.setAttribute('fill', 'none');
-        ring.setAttribute('stroke', strokeColor);
-        ring.setAttribute('stroke-width', r === 75 ? '2' : '1.1');
-        ring.setAttribute('stroke-opacity', '0.75');
-        targetGroup.appendChild(ring);
-      });
-
-      // 12-fold interlocking geometric polygon petals & chevron ribs
-      var sectors = 12;
-      for (var i = 0; i < sectors; i++) {
-        var baseAng = (i * 360 / sectors);
-        var g = document.createElementNS(ns, 'g');
-        g.setAttribute('transform', 'rotate(' + baseAng + ') scale(' + twistDir + ', 1)');
-
-        // Outer trapezoidal polygon window rib
-        var outerPoly = document.createElementNS(ns, 'polygon');
-        outerPoly.setAttribute('points', '-9,-56 9,-56 17,-74 -3,-74');
-        outerPoly.setAttribute('fill', strokeColor);
-        outerPoly.setAttribute('fill-opacity', fillOpacity);
-        outerPoly.setAttribute('stroke', strokeColor);
-        outerPoly.setAttribute('stroke-width', '1.25');
-        g.appendChild(outerPoly);
-
-        // Mid interlocking diamond/chevron cutout rib
-        var midPoly = document.createElementNS(ns, 'polygon');
-        midPoly.setAttribute('points', '0,-37 12,-46 4,-56 -8,-47');
-        midPoly.setAttribute('fill', strokeColor);
-        midPoly.setAttribute('fill-opacity', fillOpacity);
-        midPoly.setAttribute('stroke', strokeColor);
-        midPoly.setAttribute('stroke-width', '1.25');
-        g.appendChild(midPoly);
-
-        // Inner angular spoke strut
-        var innerPoly = document.createElementNS(ns, 'polygon');
-        innerPoly.setAttribute('points', '-5,-20 4,-20 9,-37 -1,-37');
-        innerPoly.setAttribute('fill', strokeColor);
-        innerPoly.setAttribute('fill-opacity', fillOpacity);
-        innerPoly.setAttribute('stroke', strokeColor);
-        innerPoly.setAttribute('stroke-width', '1.15');
-        g.appendChild(innerPoly);
-
-        targetGroup.appendChild(g);
-      }
-    }
-
-    buildPolygonDisc(rearDisc, '#C084FC', '0.16', -1);
-    buildPolygonDisc(frontDisc, '#38BDF8', '0.18', 1);
-
     var spinning = true;
     var a1 = 0;
     var a2 = 18;
     var rafId = null;
 
     function renderDiscs() {
-      frontDisc.setAttribute('transform', 'rotate(' + a1.toFixed(1) + ')');
-      rearDisc.setAttribute('transform', 'rotate(' + a2.toFixed(1) + ')');
+      frontDisc.style.transform = 'rotate(' + a1.toFixed(1) + 'deg)';
+      rearDisc.style.transform = 'scaleX(-1) rotate(' + a2.toFixed(1) + 'deg)';
       var diff = Math.round(((a2 - a1) % 180 + 180) % 180);
       degLabel.textContent = diff + '\u00B0';
     }
