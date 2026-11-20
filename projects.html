@@ -149,8 +149,8 @@
     }
   }
   .lab-viewport {
-    background: rgba(192, 132, 252, 0.03);
-    border: 1px solid rgba(192, 132, 252, 0.2);
+    background: radial-gradient(circle at center, rgba(56, 189, 248, 0.12), rgba(6, 4, 12, 0.95) 75%);
+    border: 1px solid rgba(192, 132, 252, 0.24);
     border-radius: 6px;
     padding: 0.65rem;
     display: flex;
@@ -239,10 +239,10 @@ function tryNextExt(img) {
       <div><dt>Assembly Scale</dt><dd>Several Hundred Discrete Components</dd></div>
     </dl>
 
-    <!-- Interactive Dual-Motor Moire Interference Simulator -->
-    <div class="lab-bench" aria-label="Interactive dual-motor moire interference simulator">
+    <!-- Interactive Dual-Motor Interlocking Polygon Moire Disc Simulator -->
+    <div class="lab-bench" aria-label="Interactive dual-motor interlocking polygon moire disc simulator">
       <div class="lab-head">
-        <span class="lab-title">// Dual-Motor Moir&eacute; Phase &amp; Ultrasonic Proximity Simulator</span>
+        <span class="lab-title">// Interlocking Polygon Moir&eacute; Discs &mdash; Phase Simulator</span>
         <div class="lab-controls">
           <label for="moire-slider">PHASE: <strong id="moire-deg" style="color:var(--opt-violet);">18&deg;</strong></label>
           <input type="range" id="moire-slider" min="0" max="180" value="18">
@@ -251,31 +251,44 @@ function tryNextExt(img) {
       </div>
       <div class="lab-grid">
         <div class="lab-viewport">
-          <svg id="moire-svg" width="164" height="164" viewBox="-82 -82 164 164" aria-hidden="true">
-            <circle cx="0" cy="0" r="76" fill="rgba(56,189,248,0.06)" stroke="#38BDF8" stroke-width="1.5"/>
-            <g id="disc-front"></g>
+          <svg id="moire-svg" width="176" height="176" viewBox="-88 -88 176 176" aria-hidden="true">
+            <defs>
+              <radialGradient id="ledBackglow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.34"/>
+                <stop offset="70%" stop-color="#818CF8" stop-opacity="0.16"/>
+                <stop offset="100%" stop-color="#06040C" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <!-- Outer Backlit LED Hoop -->
+            <circle cx="0" cy="0" r="84" fill="url(#ledBackglow)" stroke="#38BDF8" stroke-width="1.6"/>
+            <circle cx="0" cy="0" r="78" fill="none" stroke="rgba(192,132,252,0.3)" stroke-width="0.8"/>
+            <!-- Rear Laser-Cut Interlocking Polygon Disc -->
             <g id="disc-rear"></g>
-            <circle cx="0" cy="0" r="10" fill="#06040C" stroke="#C084FC" stroke-width="1.8"/>
+            <!-- Front Laser-Cut Interlocking Polygon Disc -->
+            <g id="disc-front"></g>
+            <!-- Center Arbor Hub & Fastener Ring -->
+            <circle cx="0" cy="0" r="12" fill="#06040C" stroke="#C084FC" stroke-width="1.8"/>
+            <circle cx="0" cy="0" r="4" fill="#38BDF8"/>
           </svg>
         </div>
         <div class="lab-metrics">
           <div class="l-cell">
-            <span class="l-k">Drive Transmission</span>
-            <span class="l-v">2x H-BRIDGE BELT</span>
+            <span class="l-k">Disc Geometry</span>
+            <span class="l-v">INTERLOCKING POLYGONS</span>
           </div>
           <div class="l-cell">
             <span class="l-k">Optical Pattern</span>
             <span class="l-v" id="moire-state">COUNTER-ROTATING</span>
           </div>
           <div class="l-cell">
+            <span class="l-k">Drive Transmission</span>
+            <span class="l-v">2x H-BRIDGE BELT</span>
+          </div>
+          <div class="l-cell">
             <span class="l-k">Proximity Sensor</span>
             <span class="l-v">ULTRASONIC TRIG</span>
           </div>
-          <div class="l-cell">
-            <span class="l-k">Mechanical Fit</span>
-            <span class="l-v">ARBOR-PRESSED</span>
-          </div>
-          <p class="lab-note">Two laser-cut interlocking polygon discs rotate at independent speeds via belt-and-pulley drives, shifting optical interference fringes as an ultrasonic rangefinder modulates the backlit LED hoop.</p>
+          <p class="lab-note">Modeled on your interlocking polygon laser-cut disc pattern: two counter-rotating cutout discs weave in and out of phase to generate shifting moir&eacute; interference petals in front of the backlit LED hoop.</p>
         </div>
       </div>
     </div>
@@ -411,7 +424,6 @@ function tryNextExt(img) {
         <div class="lab-viewport" style="padding:0.85rem;">
           <svg width="100%" height="110" viewBox="0 0 280 110" aria-hidden="true">
             <rect id="box-frame-glow" x="20" y="12" width="240" height="86" rx="4" fill="rgba(251,191,36,0.24)" stroke="#FBBF24" stroke-width="2"/>
-            <!-- Two-Point Perspective Horizon & Moon -->
             <line x1="20" y1="62" x2="260" y2="62" stroke="rgba(255,255,255,0.28)" stroke-width="1"/>
             <polyline points="20,98 140,62 260,98" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.3"/>
             <circle id="box-moon" cx="212" cy="34" r="10" fill="#FDE68A"/>
@@ -482,7 +494,7 @@ function tryNextExt(img) {
 <script src="lightbox.js" defer></script>
 <script>
 (function () {
-  // 1. Dual-Motor Moire Interference Disc Simulator
+  // 1. Interlocking Polygon Moire Interference Disc Simulator (matches ks-20-moire-pattern-digital)
   var frontDisc = document.getElementById('disc-front');
   var rearDisc = document.getElementById('disc-rear');
   var slider = document.getElementById('moire-slider');
@@ -492,30 +504,61 @@ function tryNextExt(img) {
 
   if (frontDisc && rearDisc) {
     var ns = 'http://www.w3.org/2000/svg';
-    var spokes = 24;
-    for (var i = 0; i < spokes; i++) {
-      var ang = (i * 360 / spokes);
-      var l1 = document.createElementNS(ns, 'line');
-      l1.setAttribute('x1', '0');
-      l1.setAttribute('y1', '-12');
-      l1.setAttribute('x2', '0');
-      l1.setAttribute('y2', '-72');
-      l1.setAttribute('stroke', '#38BDF8');
-      l1.setAttribute('stroke-width', '2.1');
-      l1.setAttribute('transform', 'rotate(' + ang + ')');
-      frontDisc.appendChild(l1);
 
-      var l2 = document.createElementNS(ns, 'line');
-      l2.setAttribute('x1', '0');
-      l2.setAttribute('y1', '-12');
-      l2.setAttribute('x2', '0');
-      l2.setAttribute('y2', '-72');
-      l2.setAttribute('stroke', '#C084FC');
-      l2.setAttribute('stroke-width', '2.1');
-      l2.setAttribute('stroke-opacity', '0.85');
-      l2.setAttribute('transform', 'rotate(' + ang + ')');
-      rearDisc.appendChild(l2);
+    function buildPolygonDisc(targetGroup, strokeColor, fillOpacity, twistDir) {
+      // Concentric structural rings of the laser-cut disc
+      [75, 56, 37, 20].forEach(function (r) {
+        var ring = document.createElementNS(ns, 'circle');
+        ring.setAttribute('cx', '0');
+        ring.setAttribute('cy', '0');
+        ring.setAttribute('r', r);
+        ring.setAttribute('fill', 'none');
+        ring.setAttribute('stroke', strokeColor);
+        ring.setAttribute('stroke-width', r === 75 ? '2' : '1.1');
+        ring.setAttribute('stroke-opacity', '0.75');
+        targetGroup.appendChild(ring);
+      });
+
+      // 12-fold interlocking geometric polygon petals & chevron ribs
+      var sectors = 12;
+      for (var i = 0; i < sectors; i++) {
+        var baseAng = (i * 360 / sectors);
+        var g = document.createElementNS(ns, 'g');
+        g.setAttribute('transform', 'rotate(' + baseAng + ') scale(' + twistDir + ', 1)');
+
+        // Outer trapezoidal polygon window rib
+        var outerPoly = document.createElementNS(ns, 'polygon');
+        outerPoly.setAttribute('points', '-9,-56 9,-56 17,-74 -3,-74');
+        outerPoly.setAttribute('fill', strokeColor);
+        outerPoly.setAttribute('fill-opacity', fillOpacity);
+        outerPoly.setAttribute('stroke', strokeColor);
+        outerPoly.setAttribute('stroke-width', '1.25');
+        g.appendChild(outerPoly);
+
+        // Mid interlocking diamond/chevron cutout rib
+        var midPoly = document.createElementNS(ns, 'polygon');
+        midPoly.setAttribute('points', '0,-37 12,-46 4,-56 -8,-47');
+        midPoly.setAttribute('fill', strokeColor);
+        midPoly.setAttribute('fill-opacity', fillOpacity);
+        midPoly.setAttribute('stroke', strokeColor);
+        midPoly.setAttribute('stroke-width', '1.25');
+        g.appendChild(midPoly);
+
+        // Inner angular spoke strut
+        var innerPoly = document.createElementNS(ns, 'polygon');
+        innerPoly.setAttribute('points', '-5,-20 4,-20 9,-37 -1,-37');
+        innerPoly.setAttribute('fill', strokeColor);
+        innerPoly.setAttribute('fill-opacity', fillOpacity);
+        innerPoly.setAttribute('stroke', strokeColor);
+        innerPoly.setAttribute('stroke-width', '1.15');
+        g.appendChild(innerPoly);
+
+        targetGroup.appendChild(g);
+      }
     }
+
+    buildPolygonDisc(rearDisc, '#C084FC', '0.16', -1);
+    buildPolygonDisc(frontDisc, '#38BDF8', '0.18', 1);
 
     var spinning = true;
     var a1 = 0;
@@ -531,8 +574,8 @@ function tryNextExt(img) {
 
     function tick() {
       if (!spinning) return;
-      a1 = (a1 + 0.45) % 360;
-      a2 = (a2 - 0.65) % 360;
+      a1 = (a1 + 0.42) % 360;
+      a2 = (a2 - 0.58) % 360;
       renderDiscs();
       rafId = requestAnimationFrame(tick);
     }
