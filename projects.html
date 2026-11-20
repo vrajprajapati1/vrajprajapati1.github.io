@@ -149,55 +149,28 @@
     }
   }
   .lab-viewport {
-    background: radial-gradient(circle at center, rgba(56, 189, 248, 0.14), rgba(6, 4, 12, 0.95) 75%);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(192, 132, 252, 0.24);
     border-radius: 6px;
-    padding: 0.75rem;
+    padding: 0.85rem;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  /* Exact Disc Dual-Layer Stage */
+  /* Crisp White-Backlit Dual Identical Moire Plate Stage */
   .disc-stage {
     position: relative;
     width: 196px;
     height: 196px;
     border-radius: 50%;
-    border: 2px solid #38BDF8;
-    box-shadow: 0 0 26px rgba(56, 189, 248, 0.35), inset 0 0 24px rgba(56, 189, 248, 0.28);
-    background: radial-gradient(circle at center, #38BDF8 0%, #1D4ED8 55%, #090D1F 100%);
-    overflow: hidden;
+    background: #FFFFFF;
+    border: 3px solid #38BDF8;
+    box-shadow: 0 0 24px rgba(56, 189, 248, 0.35);
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  .disc-layer {
-    position: absolute;
-    inset: 4px;
-    width: calc(100% - 8px);
-    height: calc(100% - 8px);
-    border-radius: 50%;
-    object-fit: cover;
-    mix-blend-mode: multiply;
-    pointer-events: none;
-    will-change: transform;
-  }
-  .disc-layer.rear {
-    opacity: 0.9;
-  }
-  .disc-layer.front {
-    opacity: 0.95;
-  }
-  .disc-hub {
-    position: relative;
-    z-index: 3;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: #06040C;
-    border: 2px solid #C084FC;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+    overflow: hidden;
   }
 
   .lab-metrics {
@@ -282,28 +255,41 @@ function tryNextExt(img) {
       <div><dt>Assembly Scale</dt><dd>Several Hundred Discrete Components</dd></div>
     </dl>
 
-    <!-- Interactive Dual-Motor Exact Moire Disc Simulator -->
-    <div class="lab-bench" aria-label="Interactive dual-motor exact moire disc simulator">
+    <!-- Interactive White-Backlit Dual Identical Moire Plate Simulator -->
+    <div class="lab-bench" aria-label="Interactive dual identical moire plate simulator">
       <div class="lab-head">
-        <span class="lab-title">// Dual-Motor Moir&eacute; Disc Array &mdash; Phase Simulator</span>
+        <span class="lab-title">// Dual-Motor Moir&eacute; Plates &mdash; Phase Interference Simulator</span>
         <div class="lab-controls">
-          <label for="moire-slider">PHASE: <strong id="moire-deg" style="color:var(--opt-violet);">18&deg;</strong></label>
-          <input type="range" id="moire-slider" min="0" max="180" value="18">
+          <label for="moire-slider">PHASE: <strong id="moire-deg" style="color:var(--opt-violet);">14&deg;</strong></label>
+          <input type="range" id="moire-slider" min="0" max="180" value="14">
           <button type="button" class="lab-btn active" id="moire-spin-btn">Auto-Spin Dual Motors</button>
         </div>
       </div>
       <div class="lab-grid">
         <div class="lab-viewport">
-          <div class="disc-stage" aria-label="Dual counter-rotating laser-cut moire discs backlit in blue">
-            <img id="disc-rear" class="disc-layer rear" src="images/ks-20-moire-pattern-digital.png" onerror="tryNextExt(this)" alt="Rear counter-rotating moire disc layer">
-            <img id="disc-front" class="disc-layer front" src="images/ks-20-moire-pattern-digital.png" onerror="tryNextExt(this)" alt="Front counter-rotating moire disc layer">
-            <div class="disc-hub"></div>
+          <div class="disc-stage" aria-label="White backlit stage with two identical overlapping moire discs">
+            <svg width="190" height="190" viewBox="-95 -95 190 190" aria-hidden="true">
+              <defs>
+                <!-- Single Laser-Cut Moire Plate Definition -->
+                <g id="single-moire-plate">
+                  <circle cx="0" cy="0" r="88" fill="none" stroke="#0F172A" stroke-width="4.5"/>
+                  <circle cx="0" cy="0" r="64" fill="none" stroke="#0F172A" stroke-width="2.2"/>
+                  <circle cx="0" cy="0" r="40" fill="none" stroke="#0F172A" stroke-width="2.0"/>
+                  <circle cx="0" cy="0" r="15" fill="#0F172A"/>
+                  <g id="plate-ribs"></g>
+                </g>
+              </defs>
+              <!-- Plate 1 & Identical Plate 2 Doubled Over -->
+              <use id="plate-rear" href="#single-moire-plate" opacity="0.88"/>
+              <use id="plate-front" href="#single-moire-plate" opacity="0.92"/>
+              <circle cx="0" cy="0" r="5" fill="#FFFFFF"/>
+            </svg>
           </div>
         </div>
         <div class="lab-metrics">
           <div class="l-cell">
-            <span class="l-k">Disc Pattern</span>
-            <span class="l-v">LASER-CUT CAD FILE</span>
+            <span class="l-k">Plate Geometry</span>
+            <span class="l-v">2x IDENTICAL PLATES</span>
           </div>
           <div class="l-cell">
             <span class="l-k">Optical State</span>
@@ -317,7 +303,7 @@ function tryNextExt(img) {
             <span class="l-k">Proximity Sensor</span>
             <span class="l-v">ULTRASONIC TRIG</span>
           </div>
-          <p class="lab-note">Uses your exact digital laser-cut disc design (<code>ks-20</code>) layered in front of a blue LED backlight: as the two discs counter-rotate out of phase, the cutouts generate real optical interference fringes.</p>
+          <p class="lab-note">Two identical laser-cut plates doubled over a bright white backdrop: as the front and rear discs counter-rotate out of phase, the overlapping curved ribs generate high-contrast moir&eacute; interference bands.</p>
         </div>
       </div>
     </div>
@@ -523,31 +509,47 @@ function tryNextExt(img) {
 <script src="lightbox.js" defer></script>
 <script>
 (function () {
-  // 1. Exact Laser-Cut Moire Disc Simulator (layers two instances of images/ks-20-moire-pattern-digital.png)
-  var frontDisc = document.getElementById('disc-front');
-  var rearDisc = document.getElementById('disc-rear');
+  // 1. Single-Plate Moire Disc Doubled Over on White Backlit Stage
+  var plateRibs = document.getElementById('plate-ribs');
+  var plateFront = document.getElementById('plate-front');
+  var plateRear = document.getElementById('plate-rear');
   var slider = document.getElementById('moire-slider');
   var degLabel = document.getElementById('moire-deg');
   var spinBtn = document.getElementById('moire-spin-btn');
   var stateLabel = document.getElementById('moire-state');
 
-  if (frontDisc && rearDisc) {
+  if (plateRibs && plateFront && plateRear) {
+    var ns = 'http://www.w3.org/2000/svg';
+    var count = 32;
+    for (var i = 0; i < count; i++) {
+      var ang = (i * 360 / count);
+      var path = document.createElementNS(ns, 'path');
+      // Curved radial spoke + interlocking polygon chevron rib
+      path.setAttribute('d', 'M 0,-15 Q 14,-40 0,-64 Q -14,-76 6,-88');
+      path.setAttribute('fill', 'none');
+      path.setAttribute('stroke', '#0F172A');
+      path.setAttribute('stroke-width', '2.15');
+      path.setAttribute('stroke-linecap', 'round');
+      path.setAttribute('transform', 'rotate(' + ang + ')');
+      plateRibs.appendChild(path);
+    }
+
     var spinning = true;
     var a1 = 0;
-    var a2 = 18;
+    var a2 = 14;
     var rafId = null;
 
     function renderDiscs() {
-      frontDisc.style.transform = 'rotate(' + a1.toFixed(1) + 'deg)';
-      rearDisc.style.transform = 'scaleX(-1) rotate(' + a2.toFixed(1) + 'deg)';
+      plateFront.setAttribute('transform', 'rotate(' + a1.toFixed(1) + ')');
+      plateRear.setAttribute('transform', 'scale(-1, 1) rotate(' + a2.toFixed(1) + ')');
       var diff = Math.round(((a2 - a1) % 180 + 180) % 180);
       degLabel.textContent = diff + '\u00B0';
     }
 
     function tick() {
       if (!spinning) return;
-      a1 = (a1 + 0.42) % 360;
-      a2 = (a2 - 0.58) % 360;
+      a1 = (a1 + 0.38) % 360;
+      a2 = (a2 - 0.52) % 360;
       renderDiscs();
       rafId = requestAnimationFrame(tick);
     }
