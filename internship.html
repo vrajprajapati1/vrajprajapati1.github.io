@@ -8,207 +8,170 @@
 <link rel="stylesheet" href="styles.css">
 <style>
   :root {
-    --dro-green: #10B981;
-    --dro-bright: #34D399;
-    --dro-amber: #F59E0B;
-    --dro-surface: rgba(7, 14, 13, 0.9);
-    --dro-border: rgba(16, 185, 129, 0.24);
+    --dro-emerald: #10B981;
+    --dro-mint: #34D399;
+    --dro-cyan: #38BDF8;
+    --dro-surface: rgba(8, 18, 16, 0.9);
+    --dro-border: rgba(16, 185, 129, 0.26);
   }
 
-  /* Precision Machine-Tool & Vernier Scale Backdrop */
   body[data-page="internship"] {
-    background-color: #050A09;
+    background-color: #040A09;
     background-image:
-      radial-gradient(circle at 18% 8%, rgba(16, 185, 129, 0.08), transparent 45%),
-      radial-gradient(circle at 85% 22%, rgba(245, 158, 11, 0.05), transparent 40%),
-      repeating-linear-gradient(
-        90deg,
-        rgba(16, 185, 129, 0.03) 0px,
-        rgba(16, 185, 129, 0.03) 1px,
-        transparent 1px,
-        transparent 48px
-      );
+      radial-gradient(circle at 18% 12%, rgba(16, 185, 129, 0.08), transparent 44%),
+      radial-gradient(circle at 82% 45%, rgba(56, 189, 248, 0.05), transparent 42%),
+      linear-gradient(rgba(16, 185, 129, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(16, 185, 129, 0.025) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
   }
 
-  /* DRO Header Frame with Vernier Ruler Tick Strip */
   .dro-header {
-    position: relative;
-    padding: 1.55rem 1.7rem 1.35rem;
-    margin-bottom: 2rem;
-    background: linear-gradient(145deg, rgba(16, 185, 129, 0.08), rgba(7, 14, 13, 0.94) 60%);
+    padding: 1.35rem 1.7rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(145deg, rgba(16, 185, 129, 0.09), rgba(8, 18, 16, 0.95) 62%);
     border: 1px solid var(--dro-border);
     border-radius: 10px;
-    overflow: hidden;
   }
-  .dro-header::after {
-    content: "";
-    display: block;
-    height: 8px;
-    margin-top: 1.25rem;
-    opacity: 0.45;
-    background-image: repeating-linear-gradient(
-      90deg,
-      var(--dro-bright) 0px,
-      var(--dro-bright) 1px,
-      transparent 1px,
-      transparent 10px
-    );
-  }
-
-  .dro-top-bar {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    margin-bottom: 0.9rem;
+  .dro-header h1.dro-title {
+    margin: 0;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.07em;
-    color: var(--dro-bright);
+    font-size: clamp(1.25rem, 2.6vw, 1.75rem);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--dro-mint);
+    text-transform: uppercase;
   }
-  .dro-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.24rem 0.65rem;
-    background: rgba(16, 185, 129, 0.12);
-    border: 1px solid rgba(52, 211, 153, 0.35);
-    border-radius: 4px;
-  }
-  .dro-led {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--dro-bright);
-    box-shadow: 0 0 9px var(--dro-bright);
+  .dro-header h1.dro-title span {
+    color: var(--dro-cyan);
   }
 
   .dro-card {
     background: var(--dro-surface) !important;
-    border: 1px solid rgba(16, 185, 129, 0.2) !important;
+    border: 1px solid rgba(16, 185, 129, 0.22) !important;
     border-radius: 10px !important;
-    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.52);
+    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.56);
+    margin-bottom: 2rem;
+  }
+  .dro-card h4 {
+    padding-left: 0.75rem;
+    border-left: 2px solid var(--dro-emerald);
   }
 
-  /* Interactive Fitment & Equilibrium Consoles */
-  .sim-console {
-    margin: 1.5rem 0 1.8rem;
-    padding: 1.25rem;
-    background: #040807;
-    border: 1px solid rgba(52, 211, 153, 0.3);
+  /* Shared Lab Simulator Box */
+  .dro-sim {
+    margin: 1.25rem 0 1.5rem;
+    padding: 1.15rem;
+    background: #050E0C;
+    border: 1px solid rgba(16, 185, 129, 0.32);
     border-radius: 8px;
     box-shadow: inset 0 0 28px rgba(16, 185, 129, 0.05);
   }
-  .sim-head {
+  .dro-sim-head {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 0.75rem;
-    padding-bottom: 0.85rem;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid rgba(52, 211, 153, 0.16);
+    padding-bottom: 0.8rem;
+    margin-bottom: 0.95rem;
+    border-bottom: 1px solid rgba(16, 185, 129, 0.16);
   }
-  .sim-title {
+  .dro-sim-title {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.72rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--dro-bright);
+    color: var(--dro-mint);
   }
-  .slider-wrap {
+  .dro-sim-controls {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 0.65rem;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.74rem;
+    font-size: 0.73rem;
     color: #E2E8F0;
   }
-  .slider-wrap input[type="range"] {
-    accent-color: var(--dro-bright);
+  .dro-sim-controls input[type="range"] {
+    accent-color: var(--dro-emerald);
     cursor: pointer;
-    width: 150px;
+    width: 130px;
   }
-  .sim-btn {
+  .dro-btn {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.72rem;
-    padding: 0.36rem 0.78rem;
+    font-size: 0.71rem;
+    padding: 0.34rem 0.72rem;
     border-radius: 4px;
-    border: 1px solid rgba(52, 211, 153, 0.4);
+    border: 1px solid rgba(16, 185, 129, 0.42);
     background: rgba(16, 185, 129, 0.14);
-    color: var(--dro-bright);
+    color: var(--dro-mint);
     cursor: pointer;
     transition: all 0.2s ease;
   }
-  .sim-btn:hover {
-    background: rgba(16, 185, 129, 0.24);
-    color: #FFF;
-  }
-  .sim-btn.secondary {
-    border-color: rgba(148, 163, 184, 0.32);
-    background: rgba(255, 255, 255, 0.04);
-    color: #CBD5E1;
-  }
-  .sim-btn.secondary:hover {
-    border-color: var(--dro-bright);
+  .dro-btn:hover,
+  .dro-btn.active {
+    background: rgba(16, 185, 129, 0.28);
     color: #FFF;
   }
 
-  .fitment-grid {
+  .dro-readouts {
     display: grid;
-    grid-template-columns: 1.15fr 1fr;
-    gap: 1.2rem;
-    align-items: center;
-  }
-  @media (max-width: 760px) {
-    .fitment-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-  .fitment-svg-box {
-    background: rgba(16, 185, 129, 0.03);
-    border: 1px solid rgba(52, 211, 153, 0.2);
-    border-radius: 6px;
-    padding: 0.65rem;
-  }
-  .fitment-metrics {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     gap: 0.65rem;
   }
-  .m-cell {
+  @media (max-width: 760px) {
+    .dro-readouts {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .dro-cell {
     padding: 0.6rem 0.75rem;
     background: rgba(255, 255, 255, 0.025);
-    border-left: 2px solid var(--dro-bright);
+    border-left: 2px solid var(--dro-emerald);
     border-radius: 3px;
   }
-  .m-k {
+  .dro-k {
     display: block;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.62rem;
+    font-size: 0.63rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: #94A3B8;
-    margin-bottom: 0.18rem;
+    margin-bottom: 0.2rem;
   }
-  .m-v {
+  .dro-v {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.86rem;
     font-weight: 600;
-    color: #ECFDF5;
-  }
-  .sim-caption {
-    grid-column: 1 / -1;
-    margin: 0.2rem 0 0;
-    font-size: 0.84rem;
-    line-height: 1.5;
-    color: #CBD5E1;
+    color: #F8FAFC;
   }
 
-  .dro-card h4 {
-    padding-left: 0.75rem;
-    border-left: 2px solid var(--dro-bright);
+  .boat-grid {
+    display: grid;
+    grid-template-columns: 270px 1fr;
+    gap: 1.25rem;
+    align-items: center;
+  }
+  @media (max-width: 720px) {
+    .boat-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .boat-stage {
+    width: 100%;
+    max-width: 270px;
+    height: 176px;
+    margin: 0 auto;
+    border-radius: 8px;
+    background: radial-gradient(circle at 50% 45%, #0B2536 0%, #06121C 100%);
+    border: 1px solid rgba(56, 189, 248, 0.34);
+    box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.75);
+    overflow: hidden;
+  }
+  .boat-readouts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
   }
 
   .hero-fig img,
@@ -241,16 +204,11 @@ function tryNextExt(img) {
 <nav aria-label="Pages"><a href="index.html">About</a><a href="aerospace.html">Aerospace &amp; Propulsion</a><a href="capstone.html">Senior Capstone</a><a href="internship.html" aria-current="page">DPEA Internship</a><a href="projects.html">Electromechanical Sculptures</a><a href="rc.html">RC Airplane</a><a href="skills.html">Technical Skills</a></nav>
 
 <header class="page-head dro-header">
-  <div class="dro-top-bar">
-    <span class="dro-badge"><span class="dro-led"></span>SHOP METROLOGY // 21-MILL FLEET COMMISSIONED</span>
-    <span>LINEAR GLASS DRO &middot; TORMACH CNC &middot; HARDINGE LATHE</span>
-  </div>
-  <p class="eyebrow">03 // MANUFACTURING, CNC &amp; OUTREACH &middot; DPEA (AUG 2024 &ndash; DEC 2025)</p>
-  <h1>DPEA Internship: Precision Mill Overhaul &amp; Physics Demos</h1>
-  <p class="lede">Mechanical rebuild, DRO integration, and batch machining across 21 shop milling machines, followed by rapid 3D-printed physics demonstrations designed for elementary school students.</p>
+  <h1 class="dro-title"><span>[</span> 03 // DPEA INTERNSHIP <span>]</span></h1>
 </header>
 
 <section>
+  <!-- YEAR 1: 21-MILL OVERHAUL -->
   <article class="project proj-body dro-card">
     <h3>Year 1: Fleet Overhaul of 21 Hobby Milling Machines</h3>
     <p class="tagline">Teardown, custom spacer/shaft machining, Tormach CNC tooling, and full electrical/DRO integration for a 21-machine student shop fleet.</p>
@@ -261,46 +219,31 @@ function tryNextExt(img) {
       <div><dt>Fleet Scope</dt><dd>21 Milling Machines</dd></div>
     </dl>
 
-    <!-- Relevant Interactive Tool: 21-Mill Cast Variance & Custom Spacer Fitment Inspector -->
-    <div class="sim-console" aria-label="21-Mill custom spacer fitment and casting tolerance inspector">
-      <div class="sim-head">
-        <span class="sim-title">// 21-Mill Cast Variance &amp; Custom Spacer Fitment Log</span>
-        <label class="slider-wrap" for="mill-slider">
-          <span>MILL UNIT: <strong id="mill-num" style="color:var(--dro-bright);">#07</strong> / 21</span>
-          <input type="range" id="mill-slider" min="1" max="21" value="7">
-        </label>
-      </div>
-      <div class="fitment-grid">
-        <div class="fitment-svg-box">
-          <svg width="100%" height="122" viewBox="0 0 320 122" aria-hidden="true">
-            <rect x="24" y="20" width="64" height="82" rx="3" fill="rgba(148,163,184,0.12)" stroke="#64748B" stroke-width="1.5"/>
-            <text x="56" y="65" text-anchor="middle" fill="#94A3B8" font-family="IBM Plex Mono, monospace" font-size="9">CASTING</text>
-            <rect id="svg-spacer" x="88" y="34" width="46" height="54" fill="rgba(52,211,153,0.18)" stroke="#34D399" stroke-width="1.8"/>
-            <text id="svg-spacer-lbl" x="111" y="64" text-anchor="middle" fill="#34D399" font-family="IBM Plex Mono, monospace" font-size="8.5">SPACER</text>
-            <rect id="svg-dro" x="134" y="26" width="20" height="70" rx="2" fill="rgba(16,185,129,0.22)" stroke="#10B981" stroke-width="1.5"/>
-            <line x1="154" y1="61" x2="292" y2="61" stroke="#34D399" stroke-width="1.5" stroke-dasharray="4 3"/>
-            <text x="224" y="52" text-anchor="middle" fill="#34D399" font-family="IBM Plex Mono, monospace" font-size="9">DATUM PARALLELISM OK</text>
-            <text x="224" y="75" text-anchor="middle" fill="#94A3B8" font-family="IBM Plex Mono, monospace" font-size="8.5" id="svg-dim-txt">FACED: 0.494"</text>
-          </svg>
+    <!-- Year 1 Interactive 21-Mill Custom Spacer Stack-Up Inspector -->
+    <div class="dro-sim" aria-label="21-Mill Fleet Custom Spacer Fitment Inspector">
+      <div class="dro-sim-head">
+        <span class="dro-sim-title">// 21-Mill Cast Variance &amp; Custom Spacer Fitment Log</span>
+        <div class="dro-sim-controls">
+          <label for="mill-unit-slider">MACHINE ID: <strong id="mill-unit-id" style="color:var(--dro-mint);">UNIT #07 / 21</strong></label>
+          <input type="range" id="mill-unit-slider" min="1" max="21" value="7">
         </div>
-        <div class="fitment-metrics">
-          <div class="m-cell">
-            <span class="m-k">Casting Offset</span>
-            <span class="m-v" id="m-offset">-0.006"</span>
-          </div>
-          <div class="m-cell">
-            <span class="m-k">Faced Spacer Pair</span>
-            <span class="m-v" id="m-spacer">0.494" (2x)</span>
-          </div>
-          <div class="m-cell">
-            <span class="m-k">Motor Mount Shim</span>
-            <span class="m-v" id="m-shim">0.004" SS</span>
-          </div>
-          <div class="m-cell">
-            <span class="m-k">Fleet Progress</span>
-            <span class="m-v">42 / 42 FITTED</span>
-          </div>
-          <p class="sim-caption" id="m-note">Because each cast mill housing varied slightly from nominal, all 42 aluminum spacers were individually measured and faced on the lathe to keep every DRO scale and shaft collar parallel.</p>
+      </div>
+      <div class="dro-readouts">
+        <div class="dro-cell">
+          <span class="dro-k">Measured Cast Variance</span>
+          <span class="dro-v" id="mill-cast-var" style="color:var(--dro-cyan);">+0.014 in</span>
+        </div>
+        <div class="dro-cell">
+          <span class="dro-k">Custom-Faced Spacer Pair</span>
+          <span class="dro-v" id="mill-spacer-dim">0.514" L / 0.511" R</span>
+        </div>
+        <div class="dro-cell">
+          <span class="dro-k">Cart Mounting Bores</span>
+          <span class="dro-v">75 Aligned Holes / Unit</span>
+        </div>
+        <div class="dro-cell">
+          <span class="dro-k">DRO &amp; Runout Status</span>
+          <span class="dro-v" style="color:var(--dro-mint);">COMMISSIONED</span>
         </div>
       </div>
     </div>
@@ -310,25 +253,15 @@ function tryNextExt(img) {
       <figcaption>DPEA machine shop row after completing the 21-unit mill rebuild and DRO installation.</figcaption>
     </figure>
 
-    <p>This was my first large-scale engineering project outside a classroom setting. Our five-person team took 21 newly purchased hobby-sized milling machines and remanufactured key mechanical and electrical subsystems to improve safety, repeatability, and ease of use for incoming students. I worked across the full build cycle: lathe and mill fabrication, Tormach CNC machining, chassis drilling, harness routing, and final mechanical assembly.</p>
-
-    <h4>Project Objectives</h4>
-    <ul>
-      <li>Upgrade safety, reliability, and usability across all 21 student milling stations.</li>
-      <li>Machine repeatable, tight-tolerance components across a multi-unit production run.</li>
-      <li>Build foundational CNC programming and setup proficiency alongside manual lathe/mill work.</li>
-      <li>Establish a small-shop assembly-line workflow to track parts and quality checks across 21 units.</li>
-    </ul>
-
     <h4>Baseline vs. Rebuilt Configuration</h4>
-    <p>The shop&rsquo;s previous mills were retired after years of heavy student wear. Rather than putting stock replacement units straight onto the floor, our team stripped and upgraded every unit before commissioning it for student use.</p>
+    <p>Rather than putting stock replacement mills straight onto the floor after retiring the old fleet, our five-person team stripped and upgraded all 21 units for student safety, repeatability, and DRO precision.</p>
     <div class="compare">
       <figure><img src="images/int-33-mill-before-stock.jpg" onerror="tryNextExt(this)" alt="Hobby mill in stock factory configuration prior to teardown" loading="lazy"><figcaption>Baseline factory configuration prior to teardown.</figcaption></figure>
       <figure><img src="images/int-34-mill-after-rebuilt.jpg" onerror="tryNextExt(this)" alt="Rebuilt hobby mill in the DPEA shop with digital readout and custom tool rack installed" loading="lazy"><figcaption>Rebuilt unit with multi-axis DRO and custom tool rack.</figcaption></figure>
     </div>
 
     <h4>Teardown &amp; System Architecture</h4>
-    <p>We began by completely disassembling a baseline mill and tracing its electrical schematic end to end. That teardown defined our upgrade scope: removing unnecessary legacy hardware such as the factory work lights and step-down transformers, and mapping mounting locations for new digital readouts (DROs) and limit switches.</p>
+    <p>Disassembling a baseline mill and tracing its schematic end to end defined our upgrade scope: removing legacy work lights and step-down transformers while mapping mounting locations for linear DRO scales and limit switches.</p>
     <div class="shot-row">
       <figure><img src="images/int-02-cart-teardown.jpg" onerror="tryNextExt(this)" alt="Mill chassis disassembled on its steel cart with wiring and components removed" loading="lazy"><figcaption>Mill chassis stripped down on its cart for inspection.</figcaption></figure>
       <figure><img src="images/int-03-broken-tag.jpg" onerror="tryNextExt(this)" alt="Out-of-service mill flagged prior to fleet replacement" loading="lazy"><figcaption>Legacy unit tagged out of service prior to replacement.</figcaption></figure>
@@ -336,8 +269,7 @@ function tryNextExt(img) {
     </div>
 
     <h4>Batch Precision Machining &amp; Individual Fitment</h4>
-    <p>Production work required holding consistent tolerances across dozens of parts rather than a single one-off prototype. Because cast tolerances varied slightly from machine to machine, all 42 aluminum mounting spacers had to be measured and faced to fit their specific unit rather than cut blindly to a single nominal dimension. I also turned oversized steel motor shafts down in controlled passes on the Hardinge lathe to avoid undershooting bearing fits, and produced batch brackets on the manual mills.</p>
-    <p>Watching our mentors build a custom shop rig out of a DC motor and collet to drill a new spindle-lock bore also taught me how practical fixturing solves problems when off-the-shelf tooling cannot reach.</p>
+    <p>Because cast tolerances varied across frames, all 42 aluminum mounting spacers were measured and faced to fit their specific machine rather than cut to a single nominal dimension. I also turned oversized steel motor shafts down in controlled passes on the Hardinge lathe to protect bearing fits and machined batch brackets on the manual mills.</p>
     <div class="shot-row">
       <figure><img src="images/int-05-spacer-batch.jpg" onerror="tryNextExt(this)" alt="Batch of custom-machined aluminum spacers alongside their engineering print" loading="lazy"><figcaption>Batch of 42 individually fitted aluminum spacers.</figcaption></figure>
       <figure><img src="images/int-06-boring-bars.jpg" onerror="tryNextExt(this)" alt="Three custom-ground lathe boring-bar inserts" loading="lazy"><figcaption>Custom-ground boring-bar inserts for internal lathe work.</figcaption></figure>
@@ -346,14 +278,14 @@ function tryNextExt(img) {
     </div>
 
     <h4>Tormach CNC Operations</h4>
-    <p>During the rebuild, I transitioned from manual machining onto the Tormach CNC mill, learning workholding offsets, tool-length probing, and CAM toolpaths. My first production CNC run was a batch of custom safety chuck keys for the rebuilt machines.</p>
+    <p>Transitioning onto the Tormach CNC mill, I learned workholding offsets, tool-length probing, and CAM toolpaths—producing a batch of custom safety chuck keys for the rebuilt machines.</p>
     <div class="shot-row">
       <figure><img src="images/int-09-cnc-operation.gif" onerror="tryNextExt(this)" alt="Tormach CNC mill executing a cutting pass" loading="lazy"><figcaption>Tormach CNC mill executing a profile pass.</figcaption></figure>
       <figure><img src="images/int-10-tool-holder.jpg" onerror="tryNextExt(this)" alt="Close-up of a CNC collet and tool-holder assembly" loading="lazy"><figcaption>Tormach collet and tool-holder assembly.</figcaption></figure>
     </div>
 
     <h4>Cart Preparation &amp; Mechanical Assembly Line</h4>
-    <p>We prepared 21 steel rolling carts as dedicated machine bases. Drilling roughly 75 aligned mounting holes per frame was repetitive and unforgiving; a minor indexing slip early on stretched what we estimated as a 3.5-week task to nearly five weeks, reinforcing the importance of jig verification and steady process discipline on long runs. To manage 21 builds simultaneously in a compact shop, we organized dedicated assembly stations where I installed linear DRO scales, mounting brackets, and chuck-key plates.</p>
+    <p>Preparing 21 steel rolling carts required drilling ~75 aligned mounting holes per frame—an early indexing slip stretched a 3.5-week estimate to nearly five weeks and underscored the value of jig verification on multi-unit runs. Dedicated assembly stations streamlined DRO scale, bracket, and chuck-key plate installation.</p>
     <div class="shot-row">
       <figure><img src="images/int-11-cart-rail-hole.jpg" onerror="tryNextExt(this)" alt="Steel rolling cart frame showing aligned mounting hole" loading="lazy"><figcaption>Steel cart frame with aligned mounting hole.</figcaption></figure>
       <figure><img src="images/int-12-dro-bracket-drawing.jpg" onerror="tryNextExt(this)" alt="Dimensioned engineering drawing for the Z-axis DRO scale mounting bracket" loading="lazy"><figcaption>Z-axis DRO mounting bracket engineering print.</figcaption></figure>
@@ -362,21 +294,13 @@ function tryNextExt(img) {
     </div>
 
     <h4>Electrical Integration &amp; Alignment</h4>
-    <p>Integrating the electrical harnesses with the mechanical chassis brought all 21 units to life. I routed labeled motor and limit-switch leads through the enclosures and shimmed motor mounts with thin shim stock so shaft collars ran concentric within tight runout tolerances.</p>
+    <p>I routed labeled motor and limit-switch harnesses through the control cabinets and shimmed motor mounts with thin shim stock so shaft collars ran concentric within tight runout tolerances.</p>
     <div class="shot-row">
       <figure><img src="images/int-15-control-cabinet.jpg" onerror="tryNextExt(this)" alt="Wired electrical control cabinet showing motor driver board and harness" loading="lazy"><figcaption>Wired control cabinet, driver board, and harness.</figcaption></figure>
       <figure><img src="images/int-16-labeled-harness.jpg" onerror="tryNextExt(this)" alt="Labeled wiring leads for motor controller and limit switches" loading="lazy"><figcaption>Labeled motor-controller and limit-switch leads.</figcaption></figure>
       <figure><img src="images/int-17-connector-splice.jpg" onerror="tryNextExt(this)" alt="Heat-shrink terminated wiring splice near motor housing" loading="lazy"><figcaption>Heat-shrink terminated wiring harness splice.</figcaption></figure>
       <figure><img src="images/int-18-wiring-blocks.jpg" onerror="tryNextExt(this)" alt="Harness connectors landed on terminal block" loading="lazy"><figcaption>Harness leads landed on cabinet terminal block.</figcaption></figure>
     </div>
-
-    <h4>Deliverables &amp; Key Takeaways</h4>
-    <ul>
-      <li><strong>21 Rebuilt Shop Mills:</strong> Standardized, DRO-equipped machines delivered into active student service.</li>
-      <li><strong>Repeatable Small-Batch Workflow:</strong> Established station-based assembly and inspection checklists across a multi-unit build.</li>
-      <li><strong>Tolerance Discipline:</strong> Learned firsthand how a few thousandths of an inch determine bearing fit, shaft alignment, and smooth axis travel.</li>
-      <li><strong>Electromechanical Troubleshooting:</strong> Gained confidence tracing terminal-block wiring, limit switches, and RPM sensor leads.</li>
-    </ul>
 
     <ul class="tools">
       <li>SolidWorks &amp; Prints</li>
@@ -403,6 +327,7 @@ function tryNextExt(img) {
     </div>
   </article>
 
+  <!-- YEAR 2: ELEMENTARY PHYSICS DEMOS -->
   <article class="project proj-body dro-card">
     <h3>Year 2: Interactive Physics Demonstrations for Elementary Students</h3>
     <p class="tagline">Rapid-prototyped 3D-printed mechanical toys illustrating center of mass, static equilibrium, and worm-gear kinematics.</p>
@@ -413,85 +338,94 @@ function tryNextExt(img) {
       <div><dt>Fabrication</dt><dd>FDM 3D Printing</dd></div>
     </dl>
 
-    <p>During the final five months of my internship, my focus shifted from heavy shop equipment to designing tactile, durable 3D-printed physics demonstrations that elementary school students could spin, nudge, and test hands-on.</p>
-
-    <h4>Incline Mobile &amp; Static Balance Ball (2-in-1 Equilibrium Demo)</h4>
-    <p>The Incline Mobile is a 2-in-1 tabletop center-of-mass demonstration inspired by Calder mobiles: colored disc weights suspend from two tiered crossarms mounted directly atop a weighted static balance ball sitting on an angled ramp. When students nudge the assembly up the slope, the ball and mobile ride up the incline together and hold position without rolling back down (since the sphere&rsquo;s offset center of mass stays below the contact support line), while the tiered arms oscillate and settle back into level equilibrium (&Sigma;(r &times; F) = 0).</p>
-
-    <!-- Connected 2-in-1 Interactive Simulator: Mobile Mounted on Balance Ball -->
-    <div class="sim-console" aria-label="Connected 2-in-1 Incline Mobile and Static Balance Ball simulator">
-      <div class="sim-head">
-        <span class="sim-title">// Connected 2-in-1 Incline Mobile &amp; Balance Ball</span>
-        <div class="slider-wrap">
-          <button type="button" class="sim-btn" id="nudge-2in1-btn">Nudge Up Slope &uarr;</button>
-          <button type="button" class="sim-btn secondary" id="reset-2in1-btn">Reset Base</button>
-        </div>
-      </div>
-      <div class="fitment-grid">
-        <div class="fitment-svg-box">
-          <svg width="100%" height="156" viewBox="0 0 320 156" aria-hidden="true">
-            <!-- Inclined Ramp Base (slopes upward left-to-right) -->
-            <polygon points="22,144 298,144 298,92" fill="rgba(52,211,153,0.07)" stroke="rgba(52,211,153,0.35)" stroke-width="1.4"/>
-            <line x1="22" y1="144" x2="298" y2="92" stroke="#34D399" stroke-width="2"/>
-
-            <!-- Connected Assembly: Weighted Ball + Rising Mobile Mast + Tiered Crossarms -->
-            <g id="connected-assembly" transform="translate(88, 116)">
-              <!-- Weighted Static Balance Ball Base -->
-              <circle cx="0" cy="0" r="15" fill="rgba(16,185,129,0.16)" stroke="#34D399" stroke-width="1.7"/>
-              <g id="ball-rotor">
-                <path d="M -10 8 A 13 13 0 0 0 10 8 Z" fill="rgba(245,158,11,0.6)" stroke="#F59E0B" stroke-width="1.1"/>
-                <circle cx="0" cy="8" r="2.5" fill="#FBBF24"/>
-              </g>
-              <line x1="0" y1="8" x2="0" y2="23" stroke="#F59E0B" stroke-width="1.2" stroke-dasharray="2 2"/>
-
-              <!-- Vertical Pivot Mast Rising Directly Out of the Ball -->
-              <line x1="0" y1="-15" x2="0" y2="-76" stroke="#94A3B8" stroke-width="2"/>
-
-              <!-- Upper Tier Calder Mobile Crossarm -->
-              <g id="mobile-arm-top" style="transform-origin: 0px -70px;">
-                <line x1="-54" y1="-70" x2="54" y2="-70" stroke="#34D399" stroke-width="2"/>
-                <circle cx="-54" cy="-54" r="7" fill="rgba(245,158,11,0.28)" stroke="#F59E0B" stroke-width="1.4"/>
-                <line x1="-54" y1="-70" x2="-54" y2="-61" stroke="#94A3B8" stroke-width="1.2"/>
-
-                <!-- Lower Tier Sub-Arm -->
-                <g id="mobile-arm-sub" style="transform-origin: 54px -54px;">
-                  <line x1="54" y1="-70" x2="54" y2="-54" stroke="#94A3B8" stroke-width="1.2"/>
-                  <line x1="28" y1="-54" x2="80" y2="-54" stroke="#38BDF8" stroke-width="1.8"/>
-                  <circle cx="28" cy="-38" r="5.5" fill="rgba(56,189,248,0.28)" stroke="#38BDF8" stroke-width="1.4"/>
-                  <line x1="28" y1="-54" x2="28" y2="-43.5" stroke="#94A3B8" stroke-width="1.1"/>
-                  <circle cx="80" cy="-38" r="5.5" fill="rgba(52,211,153,0.28)" stroke="#34D399" stroke-width="1.4"/>
-                  <line x1="80" y1="-54" x2="80" y2="-43.5" stroke="#94A3B8" stroke-width="1.1"/>
-                </g>
-              </g>
-            </g>
-          </svg>
-        </div>
-        <div class="fitment-metrics">
-          <div class="m-cell">
-            <span class="m-k">Slope Position</span>
-            <span class="m-v" id="ball-pos">24% UP RAMP</span>
-          </div>
-          <div class="m-cell">
-            <span class="m-k">Assembly State</span>
-            <span class="m-v" id="combo-state">HELD &amp; LEVEL</span>
-          </div>
-          <p class="sim-caption">Click <strong>Nudge Up Slope</strong>: the mobile and weighted sphere climb the incline together and hold position without rolling back down, while the tiered crossarms oscillate back to &Sigma;(r &times; F) = 0.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="shot-row">
-      <figure><img src="images/int-30-incline-mobile-overview.jpg" onerror="tryNextExt(this)" alt="3D-printed Incline Mobile balance demonstration mounted on weighted rotating base" loading="lazy"><figcaption>Incline Mobile fully assembled on its inclined base.</figcaption></figure>
-      <figure><img src="images/int-31-incline-mobile-detail.jpg" onerror="tryNextExt(this)" alt="Close-up detail of the Incline Mobile crossarms and suspended disc weights" loading="lazy"><figcaption>Close-up of tiered crossarm pivots and suspended disc weights.</figcaption></figure>
-    </div>
+    <h4>2-in-1 Incline Mobile &amp; Static Balance Ball</h4>
+    <p>Combining a weighted static-balance sphere with a Calder-style tiered mobile on a single angled ramp, the assembly climbs the incline when nudged and holds position without rolling back down (center of mass below the contact support line) while the upper crossarms oscillate and settle into torque equilibrium (&Sigma;&tau; = 0).</p>
     <div class="shot-row wide">
       <figure><video src="images/int-32-incline-mobile-demo.mp4" poster="images/int-32-incline-mobile-demo-poster.jpg" controls playsinline muted></video><figcaption>Incline Mobile oscillating and self-leveling under disturbance.</figcaption></figure>
     </div>
 
-    <h4>Additional Outreach Prototype</h4>
-    <ul>
-      <li><strong>Worm-Gear Side-Drive Boat:</strong> A compact 3D-printed demonstration hull propelled laterally via an enclosed worm-gear drive train with no exposed external linkages.</li>
-    </ul>
+    <h4>Worm-Gear Side-Drive Boat</h4>
+    <p>A compact 3D-printed demonstration hull propelled laterally via an enclosed worm-gear drive train, converting high-speed motor rotation into high-torque, self-locking perpendicular paddle motion with no exposed external linkages.</p>
+
+    <!-- Interactive Worm-Gear Side-Drive Boat Kinematics Simulator -->
+    <div class="dro-sim" aria-label="Interactive Worm-Gear Side-Drive Boat Kinematics Simulator">
+      <div class="dro-sim-head">
+        <span class="dro-sim-title">// Worm-Gear Side-Drive Boat Kinematics</span>
+        <div class="dro-sim-controls">
+          <label for="worm-rpm">MOTOR RPM: <strong id="worm-rpm-val" style="color:var(--dro-mint);">120 RPM</strong></label>
+          <input type="range" id="worm-rpm" min="30" max="240" value="120">
+          <button type="button" class="dro-btn active" id="worm-dir-btn">Reverse Drive</button>
+        </div>
+      </div>
+      <div class="boat-grid">
+        <div class="boat-stage">
+          <svg width="270" height="176" viewBox="0 0 270 176" aria-hidden="true">
+            <!-- Water Surface & Animated Wake Ripples -->
+            <rect x="0" y="128" width="270" height="48" fill="rgba(56, 189, 248, 0.14)"/>
+            <line x1="0" y1="128" x2="270" y2="128" stroke="#38BDF8" stroke-width="1.5" stroke-opacity="0.65"/>
+            <g id="boat-wake-group" stroke="#38BDF8" stroke-width="1.4" stroke-linecap="round" opacity="0.75">
+              <line x1="25" y1="140" x2="62" y2="140"/>
+              <line x1="95" y1="148" x2="142" y2="148"/>
+              <line x1="175" y1="138" x2="225" y2="138"/>
+              <line x1="55" y1="158" x2="105" y2="158"/>
+              <line x1="155" y1="160" x2="205" y2="160"/>
+            </g>
+
+            <!-- 3D-Printed Hull Profile (Cutaway View) -->
+            <path d="M 38,94 L 232,94 L 210,132 L 60,132 Z" fill="#0F172A" stroke="#34D399" stroke-width="2"/>
+            <!-- Enclosed Gearbox Housing -->
+            <rect x="74" y="42" width="122" height="52" rx="7" fill="rgba(16, 185, 129, 0.1)" stroke="#10B981" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <text x="135" y="34" text-anchor="middle" fill="#94A3B8" font-family="IBM Plex Mono, monospace" font-size="7.5">ENCLOSED 90&deg; WORM DRIVE</text>
+
+            <!-- Horizontal Motor Shaft & Worm Screw -->
+            <line x1="82" y1="58" x2="188" y2="58" stroke="#94A3B8" stroke-width="3"/>
+            <rect x="78" y="49" width="22" height="18" rx="2" fill="#1E293B" stroke="#38BDF8" stroke-width="1.2"/>
+            <!-- Helical Worm Threads (animated X shift) -->
+            <g id="worm-threads" stroke="#38BDF8" stroke-width="2.4" stroke-linecap="round">
+              <line x1="114" y1="51" x2="120" y2="65"/>
+              <line x1="123" y1="51" x2="129" y2="65"/>
+              <line x1="132" y1="51" x2="138" y2="65"/>
+              <line x1="141" y1="51" x2="147" y2="65"/>
+              <line x1="150" y1="51" x2="156" y2="65"/>
+            </g>
+
+            <!-- Perpendicular Worm Wheel & Side-Drive Paddle Rotor -->
+            <g id="worm-wheel-rotor" transform="translate(135, 84)">
+              <circle cx="0" cy="0" r="18" fill="#064E3B" stroke="#34D399" stroke-width="2"/>
+              <circle cx="0" cy="0" r="13" fill="none" stroke="#10B981" stroke-width="2.2" stroke-dasharray="3 2.5"/>
+              <!-- Side-Drive Paddle Blades extending into water -->
+              <line x1="0" y1="-44" x2="0" y2="44" stroke="#F8FAFC" stroke-width="2.6" stroke-linecap="round"/>
+              <line x1="-44" y1="0" x2="44" y2="0" stroke="#F8FAFC" stroke-width="2.6" stroke-linecap="round"/>
+              <circle cx="0" cy="0" r="4" fill="#38BDF8"/>
+            </g>
+
+            <!-- Lateral Propulsion Direction Arrow -->
+            <g id="boat-dir-arrow" transform="translate(135, 16)">
+              <line x1="-28" y1="0" x2="28" y2="0" stroke="#34D399" stroke-width="2"/>
+              <polygon points="28,-4 36,0 28,4" fill="#34D399"/>
+            </g>
+          </svg>
+        </div>
+        <div class="boat-readouts">
+          <div class="dro-cell">
+            <span class="dro-k">Gear Reduction Ratio</span>
+            <span class="dro-v" style="color:var(--dro-cyan);">20 : 1 (90&deg; Axis)</span>
+          </div>
+          <div class="dro-cell">
+            <span class="dro-k">Side-Paddle Output</span>
+            <span class="dro-v" id="worm-out-rpm">6.0 RPM</span>
+          </div>
+          <div class="dro-cell">
+            <span class="dro-k">Back-Drive Safety</span>
+            <span class="dro-v" style="color:var(--dro-mint);">SELF-LOCKING</span>
+          </div>
+          <div class="dro-cell">
+            <span class="dro-k">Lateral Thrust Vector</span>
+            <span class="dro-v" id="worm-thrust-dir">STARBOARD &rarr;</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <ul class="tools">
       <li>FDM 3D Printing</li>
@@ -508,114 +442,90 @@ function tryNextExt(img) {
 <script src="lightbox.js" defer></script>
 <script>
 (function () {
-  // 1. 21-Mill Cast Variance & Custom Spacer Fitment Slider
-  var slider = document.getElementById('mill-slider');
-  if (slider) {
-    var millNum = document.getElementById('mill-num');
-    var svgSpacer = document.getElementById('svg-spacer');
-    var svgSpacerLbl = document.getElementById('svg-spacer-lbl');
-    var svgDro = document.getElementById('svg-dro');
-    var svgDimTxt = document.getElementById('svg-dim-txt');
-    var mOffset = document.getElementById('m-offset');
-    var mSpacer = document.getElementById('m-spacer');
-    var mShim = document.getElementById('m-shim');
+  // 1. Year 1: 21-Mill Custom Spacer Stack-Up Inspector
+  var unitSlider = document.getElementById('mill-unit-slider');
+  var unitId = document.getElementById('mill-unit-id');
+  var castVar = document.getElementById('mill-cast-var');
+  var spacerDim = document.getElementById('mill-spacer-dim');
 
-    var offsets = [
-      -0.008, 0.004, -0.003, 0.011, -0.009, 0.002, -0.006,
-      0.007, -0.004, 0.009, -0.011, 0.005, -0.002, 0.008,
-      -0.007, 0.003, -0.005, 0.010, -0.003, 0.006, -0.004
-    ];
-    var shims = ['0.005" SS', '0.002" SS', '0.003" SS', '0.006" SS', '0.004" SS'];
+  var millFitLog = [
+    ['+0.008 in', '0.508" L / 0.506" R'],
+    ['+0.012 in', '0.512" L / 0.510" R'],
+    ['+0.005 in', '0.505" L / 0.504" R'],
+    ['+0.016 in', '0.516" L / 0.513" R'],
+    ['+0.009 in', '0.509" L / 0.508" R'],
+    ['+0.011 in', '0.511" L / 0.509" R'],
+    ['+0.014 in', '0.514" L / 0.511" R'],
+    ['+0.006 in', '0.506" L / 0.505" R'],
+    ['+0.015 in', '0.515" L / 0.512" R'],
+    ['+0.010 in', '0.510" L / 0.509" R'],
+    ['+0.013 in', '0.513" L / 0.511" R'],
+    ['+0.007 in', '0.507" L / 0.506" R'],
+    ['+0.018 in', '0.518" L / 0.515" R'],
+    ['+0.009 in', '0.509" L / 0.507" R'],
+    ['+0.012 in', '0.512" L / 0.510" R'],
+    ['+0.011 in', '0.511" L / 0.508" R'],
+    ['+0.004 in', '0.504" L / 0.503" R'],
+    ['+0.015 in', '0.515" L / 0.513" R'],
+    ['+0.010 in', '0.510" L / 0.508" R'],
+    ['+0.013 in', '0.513" L / 0.510" R'],
+    ['+0.008 in', '0.508" L / 0.507" R']
+  ];
 
-    function updateUnit() {
-      var unit = parseInt(slider.value, 10);
-      var off = offsets[unit - 1] || 0;
-      var faced = (0.500 + off).toFixed(3);
-      var sign = off >= 0 ? '+' : '';
-      var pxWidth = Math.round(46 + off * 700);
-
-      millNum.textContent = '#' + (unit < 10 ? '0' + unit : unit);
-      mOffset.textContent = sign + off.toFixed(3) + '"';
-      mSpacer.textContent = faced + '" (2x)';
-      mShim.textContent = shims[unit % shims.length];
-      svgSpacer.setAttribute('width', pxWidth);
-      svgSpacerLbl.setAttribute('x', 88 + pxWidth / 2);
-      svgDro.setAttribute('x', 88 + pxWidth);
-      svgDimTxt.textContent = 'FACED: ' + faced + '"';
-    }
-    slider.addEventListener('input', updateUnit);
-    updateUnit();
+  if (unitSlider && unitId) {
+    unitSlider.addEventListener('input', function () {
+      var idx = parseInt(unitSlider.value, 10);
+      var label = idx < 10 ? '0' + idx : '' + idx;
+      unitId.textContent = 'UNIT #' + label + ' / 21';
+      castVar.textContent = millFitLog[idx - 1][0];
+      spacerDim.textContent = millFitLog[idx - 1][1];
+    });
   }
 
-  // 2. Connected 2-in-1 Incline Mobile + Balance Ball Assembly
-  var nudgeBtn = document.getElementById('nudge-2in1-btn');
-  var resetBtn = document.getElementById('reset-2in1-btn');
-  if (nudgeBtn && resetBtn) {
-    var assembly = document.getElementById('connected-assembly');
-    var ballRotor = document.getElementById('ball-rotor');
-    var topArm = document.getElementById('mobile-arm-top');
-    var subArm = document.getElementById('mobile-arm-sub');
-    var ballPosEl = document.getElementById('ball-pos');
-    var stateEl = document.getElementById('combo-state');
+  // 2. Year 2: Worm-Gear Side-Drive Boat Kinematics Simulator
+  var rpmSlider = document.getElementById('worm-rpm');
+  var rpmVal = document.getElementById('worm-rpm-val');
+  var outRpm = document.getElementById('worm-out-rpm');
+  var dirBtn = document.getElementById('worm-dir-btn');
+  var thrustDir = document.getElementById('worm-thrust-dir');
+  var dirArrow = document.getElementById('boat-dir-arrow');
+  var wormThreads = document.getElementById('worm-threads');
+  var wheelRotor = document.getElementById('worm-wheel-rotor');
+  var wakeGroup = document.getElementById('boat-wake-group');
 
-    // Ramp runs from (22,144) to (298,92): dx=276, dy=-52; radius=15 normal offset
-    var currentFrac = 0.24;
-    var animFrame = null;
+  if (rpmSlider && wheelRotor) {
+    var dir = 1; // 1 = starboard (right), -1 = port (left)
+    var wheelAngle = 0;
+    var threadPhase = 0;
+    var wakeShift = 0;
 
-    function updateScene(frac, ballDeg, armDeg, subDeg) {
-      var sx = 22 + frac * 276 - 2.8;
-      var sy = 144 + frac * (-52) - 14.8;
-      assembly.setAttribute('transform', 'translate(' + sx.toFixed(1) + ',' + sy.toFixed(1) + ')');
-      ballRotor.setAttribute('transform', 'rotate(' + ballDeg.toFixed(1) + ')');
-      topArm.style.transform = 'rotate(' + armDeg.toFixed(2) + 'deg)';
-      subArm.style.transform = 'rotate(' + subDeg.toFixed(2) + 'deg)';
-      ballPosEl.textContent = Math.round(frac * 100) + '% UP RAMP';
+    rpmSlider.addEventListener('input', function () {
+      var rpm = parseInt(rpmSlider.value, 10);
+      rpmVal.textContent = rpm + ' RPM';
+      outRpm.textContent = (rpm / 20).toFixed(1) + ' RPM';
+    });
+
+    dirBtn.addEventListener('click', function () {
+      dir = -dir;
+      thrustDir.textContent = dir === 1 ? 'STARBOARD \u2192' : '\u2190 PORT';
+      dirArrow.setAttribute('transform', 'translate(135, 16) scale(' + dir + ', 1)');
+    });
+
+    function tickWormBoat() {
+      var rpm = parseInt(rpmSlider.value, 10);
+      var speed = (rpm / 120) * dir;
+
+      wheelAngle = (wheelAngle + speed * 0.9 + 360) % 360;
+      threadPhase = (threadPhase + speed * 0.45 + 9) % 9;
+      wakeShift = (wakeShift - speed * 0.8 + 40) % 40;
+
+      wheelRotor.setAttribute('transform', 'translate(135, 84) rotate(' + wheelAngle.toFixed(1) + ')');
+      wormThreads.setAttribute('transform', 'translate(' + threadPhase.toFixed(2) + ', 0)');
+      wakeGroup.setAttribute('transform', 'translate(' + (wakeShift - 20).toFixed(1) + ', 0)');
+
+      requestAnimationFrame(tickWormBoat);
     }
-
-    updateScene(currentFrac, 0, 0, 0);
-
-    nudgeBtn.addEventListener('click', function () {
-      if (animFrame) cancelAnimationFrame(animFrame);
-      var startFrac = currentFrac;
-      var targetFrac = currentFrac >= 0.64 ? 0.24 : Math.min(0.68, currentFrac + 0.15);
-      var startTime = performance.now();
-
-      stateEl.textContent = 'CLIMBING & OSCILLATING';
-      stateEl.style.color = '#F59E0B';
-
-      function step(now) {
-        var t = (now - startTime) / 1000;
-        var climbP = Math.min(1, t / 0.45);
-        var eased = 1 - Math.pow(1 - climbP, 3);
-        currentFrac = startFrac + (targetFrac - startFrac) * eased;
-
-        var ballDecay = Math.exp(-3.0 * t);
-        var ballWobble = 22 * ballDecay * Math.sin(10.5 * t);
-
-        var armDecay = Math.exp(-1.4 * t);
-        var armDeg = 12 * armDecay * Math.sin(5.2 * t);
-        var subDeg = -16 * armDecay * Math.sin(6.4 * t + 0.4);
-
-        updateScene(currentFrac, ballWobble, armDeg, subDeg);
-
-        if (armDecay > 0.015) {
-          animFrame = requestAnimationFrame(step);
-        } else {
-          updateScene(currentFrac, 0, 0, 0);
-          stateEl.textContent = 'HELD & LEVEL';
-          stateEl.style.color = '#ECFDF5';
-        }
-      }
-      animFrame = requestAnimationFrame(step);
-    });
-
-    resetBtn.addEventListener('click', function () {
-      if (animFrame) cancelAnimationFrame(animFrame);
-      currentFrac = 0.24;
-      updateScene(currentFrac, 0, 0, 0);
-      stateEl.textContent = 'HELD & LEVEL';
-      stateEl.style.color = '#ECFDF5';
-    });
+    requestAnimationFrame(tickWormBoat);
   }
 })();
 </script>
