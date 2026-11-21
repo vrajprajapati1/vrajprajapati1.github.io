@@ -4,21 +4,230 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fixed-Wing RC Aircraft &mdash; Vraj R. Prajapati</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="styles.css">
+<style>
+  :root {
+    --flt-sky: #38BDF8;
+    --flt-coral: #FB7185;
+    --flt-amber: #FBBF24;
+    --flt-emerald: #34D399;
+    --flt-surface: rgba(7, 13, 24, 0.9);
+    --flt-border: rgba(56, 189, 248, 0.25);
+  }
+
+  /* Flight-Test Corridor & Artificial Horizon Backdrop */
+  body[data-page="rc"] {
+    background-color: #040914;
+    background-image:
+      linear-gradient(180deg, rgba(56, 189, 248, 0.07) 0%, transparent 32%),
+      radial-gradient(circle at 82% 14%, rgba(251, 113, 133, 0.06), transparent 42%),
+      repeating-linear-gradient(
+        0deg,
+        rgba(56, 189, 248, 0.03) 0px,
+        rgba(56, 189, 248, 0.03) 1px,
+        transparent 1px,
+        transparent 52px
+      );
+  }
+
+  /* Aviation HUD Header Frame */
+  .flt-header {
+    position: relative;
+    padding: 1.55rem 1.7rem 1.4rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(155deg, rgba(56, 189, 248, 0.09), rgba(7, 13, 24, 0.95) 62%);
+    border: 1px solid var(--flt-border);
+    border-radius: 10px;
+  }
+  .flt-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-bottom: 0.85rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.07em;
+    color: var(--flt-sky);
+  }
+  .flt-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.23rem 0.65rem;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    border-radius: 4px;
+  }
+  .flt-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--flt-sky);
+    box-shadow: 0 0 9px var(--flt-sky);
+  }
+
+  .flt-card {
+    background: var(--flt-surface) !important;
+    border: 1px solid rgba(56, 189, 248, 0.2) !important;
+    border-radius: 10px !important;
+    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.56);
+  }
+  .flt-card h4 {
+    padding-left: 0.75rem;
+    border-left: 2px solid var(--flt-sky);
+  }
+
+  /* Interactive Thrust-Stand & Flight-Equilibrium Console */
+  .aero-console {
+    margin: 1.5rem 0 1.8rem;
+    padding: 1.25rem;
+    background: #040812;
+    border: 1px solid rgba(56, 189, 248, 0.32);
+    border-radius: 8px;
+    box-shadow: inset 0 0 30px rgba(56, 189, 248, 0.05);
+  }
+  .aero-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-bottom: 0.85rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.16);
+  }
+  .aero-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--flt-sky);
+  }
+  .aero-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.73rem;
+    color: #E2E8F0;
+  }
+  .aero-controls input[type="range"] {
+    accent-color: var(--flt-sky);
+    cursor: pointer;
+    width: 145px;
+  }
+  .aero-btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.71rem;
+    padding: 0.34rem 0.72rem;
+    border-radius: 4px;
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    background: rgba(56, 189, 248, 0.14);
+    color: var(--flt-sky);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .aero-btn:hover,
+  .aero-btn.active {
+    background: rgba(56, 189, 248, 0.25);
+    color: #FFF;
+  }
+
+  .aero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 1.2rem;
+    align-items: center;
+  }
+  @media (max-width: 760px) {
+    .aero-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .aero-svg-box {
+    background: rgba(56, 189, 248, 0.03);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 6px;
+    padding: 0.65rem;
+  }
+  .aero-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+  }
+  .a-cell {
+    padding: 0.6rem 0.75rem;
+    background: rgba(255, 255, 255, 0.025);
+    border-left: 2px solid var(--flt-sky);
+    border-radius: 3px;
+  }
+  .a-k {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #94A3B8;
+    margin-bottom: 0.18rem;
+  }
+  .a-v {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: #F8FAFC;
+  }
+  .aero-note {
+    grid-column: 1 / -1;
+    margin: 0.2rem 0 0;
+    font-size: 0.84rem;
+    line-height: 1.5;
+    color: #CBD5E1;
+  }
+
+  /* Smooth Photo Hover Lift */
+  .hero-fig img,
+  .shot-row figure img {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .hero-fig:hover img,
+  .shot-row figure:hover img {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+  }
+</style>
+<script>
+function tryNextExt(img) {
+  var exts = ['.JPG', '.jpeg', '.JPEG', '.png', '.PNG'];
+  var step = parseInt(img.dataset.step || '0', 10);
+  if (step < exts.length) {
+    img.dataset.step = step + 1;
+    img.src = img.src.replace(/\.[^.]+$/, exts[step]);
+  }
+}
+</script>
 </head>
-<body>
+<body data-page="rc" data-palette="sky">
 <div class="wrap">
 <nav aria-label="Pages"><a href="index.html">About</a><a href="aerospace.html">Aerospace &amp; Propulsion</a><a href="capstone.html">Senior Capstone</a><a href="internship.html">DPEA Internship</a><a href="projects.html">Electromechanical Sculptures</a><a href="rc.html" aria-current="page">RC Airplane</a><a href="skills.html">Technical Skills</a></nav>
 
-<header class="page-head">
+<header class="page-head flt-header">
+  <div class="flt-strip">
+    <span class="flt-badge"><span class="flt-dot"></span>FLIGHT TEST // FT TUTOR MKR2 (720 g)</span>
+    <span>b = 41.5 in &middot; S = 2.45 ft&sup2; &middot; AR = 4.88 &middot; L/D = 1.93</span>
+  </div>
   <p class="eyebrow">04 // FLIGHT TEST &amp; AERODYNAMIC REDUCTION &middot; ARO 1011L (FALL 2026)</p>
   <h1>Fixed-Wing RC Aircraft Build &amp; Flight Test</h1>
   <p class="lede">Team-built FT Tutor MKR2 foam trainer taken from bench assembly through static thrust calibration and a 200 ft timed flight course to compare measured lift and drag against steady-level-flight theory.</p>
 </header>
 
 <section>
-  <article class="project proj-body">
+  <article class="project proj-body flt-card">
     <h3>FT Tutor MKR2 Airframe &amp; Flight Mechanics Characterization</h3>
     <p class="tagline">Ground thrust-stand calibration and free-flight data reduction for a 1.587 lbf electric fixed-wing trainer.</p>
     <dl class="spec">
@@ -27,6 +236,68 @@
       <div><dt>Airframe</dt><dd>FT Tutor MKR2 Kit (720 g)</dd></div>
       <div><dt>Test Scope</dt><dd>Thrust Stand + 200 ft Course</dd></div>
     </dl>
+
+    <!-- Interactive REDBIRD MCX Thrust-Stand & Cruise Equilibrium Simulator -->
+    <div class="aero-console" aria-label="REDBIRD MCX thrust stand and cruise equilibrium simulator">
+      <div class="aero-head">
+        <span class="aero-title">// REDBIRD MCX Thrust Calibration &amp; Cruise Force Balance</span>
+        <div class="aero-controls">
+          <label for="thr-slider">THROTTLE: <strong id="thr-pct" style="color:var(--flt-sky);">65% (CRUISE)</strong></label>
+          <input type="range" id="thr-slider" min="25" max="100" value="65">
+          <button type="button" class="aero-btn active" id="cruise-snap-btn">65% Cruise Point</button>
+        </div>
+      </div>
+      <div class="aero-grid">
+        <div class="aero-svg-box">
+          <svg width="100%" height="148" viewBox="0 0 320 148" aria-hidden="true">
+            <!-- Horizon & Velocity Reference Line -->
+            <line x1="16" y1="76" x2="304" y2="76" stroke="rgba(56,189,248,0.18)" stroke-width="1" stroke-dasharray="4 4"/>
+            <!-- Lift Vector (Upward, L = W = 1.587 lbf) -->
+            <line x1="160" y1="76" x2="160" y2="24" stroke="#34D399" stroke-width="2.2"/>
+            <polygon points="160,18 155,27 165,27" fill="#34D399"/>
+            <text x="168" y="27" fill="#34D399" font-family="IBM Plex Mono, monospace" font-size="8.5">L = 1.587 lbf</text>
+
+            <!-- Weight Vector (Downward, W = 1.587 lbf) -->
+            <line x1="160" y1="76" x2="160" y2="128" stroke="#94A3B8" stroke-width="2.2"/>
+            <polygon points="160,134 155,125 165,125" fill="#94A3B8"/>
+            <text x="168" y="132" fill="#94A3B8" font-family="IBM Plex Mono, monospace" font-size="8.5">W = 1.587 lbf</text>
+
+            <!-- Thrust Vector (Forward Right, dynamically scaled) -->
+            <line id="vec-thrust" x1="160" y1="76" x2="232" y2="76" stroke="#38BDF8" stroke-width="2.6"/>
+            <polygon id="arr-thrust" points="238,76 229,71 229,81" fill="#38BDF8"/>
+            <text id="lbl-thrust" x="234" y="66" text-anchor="end" fill="#38BDF8" font-family="IBM Plex Mono, monospace" font-size="8.5">T = 1.009 lbf</text>
+
+            <!-- Drag Vector (Aft Left, D = 0.908 lbf at cruise) -->
+            <line id="vec-drag" x1="160" y1="76" x2="96" y2="76" stroke="#FB7185" stroke-width="2.4"/>
+            <polygon id="arr-drag" points="90,76 99,71 99,81" fill="#FB7185"/>
+            <text x="86" y="66" text-anchor="start" fill="#FB7185" font-family="IBM Plex Mono, monospace" font-size="8.5">D = 0.908 lbf</text>
+
+            <!-- Stylized FT Tutor MKR2 Side Silhouette -->
+            <path d="M 118,76 L 194,76 L 202,71 L 176,68 L 154,68 L 122,72 L 114,62 L 109,62 L 114,76 Z" fill="rgba(56,189,248,0.22)" stroke="#38BDF8" stroke-width="1.4"/>
+            <circle cx="160" cy="76" r="3" fill="#FFF"/>
+          </svg>
+        </div>
+        <div class="aero-metrics">
+          <div class="a-cell">
+            <span class="a-k">Static Thrust, T</span>
+            <span class="a-v" id="val-thrust">1.009 lbf</span>
+          </div>
+          <div class="a-cell">
+            <span class="a-k">3S LiPo Bus, V<sub>DC</sub></span>
+            <span class="a-v" id="val-vdc">8.38 V</span>
+          </div>
+          <div class="a-cell">
+            <span class="a-k">Shaft Power (&eta;=0.85)</span>
+            <span class="a-v" id="val-pshaft">81.6 W</span>
+          </div>
+          <div class="a-cell">
+            <span class="a-k">T/W &amp; Flight Regime</span>
+            <span class="a-v" id="val-regime">0.636 (CRUISE)</span>
+          </div>
+          <p class="aero-note" id="aero-caption">At the 65% cruise test setting, bench-inferred thrust (1.009 lbf) exceeded power-derived drag (0.908 lbf) by 0.101 lbf (11.1% residual). Drag above 70% throttle to observe LiPo voltage sag down to 7.50 V.</p>
+        </div>
+      </div>
+    </div>
 
     <figure class="hero-fig">
       <img src="images/rc-01-airframe-complete.jpg" onerror="tryNextExt(this)" alt="Completed FT Tutor MKR2 foam trainer assembled on workbench cutting mat" loading="lazy">
@@ -129,5 +400,85 @@
 <footer>Vraj R. Prajapati. Last updated November 2026.</footer>
 </div>
 <script src="lightbox.js" defer></script>
+<script>
+(function () {
+  var slider = document.getElementById('thr-slider');
+  var cruiseBtn = document.getElementById('cruise-snap-btn');
+  if (!slider) return;
+
+  var thrPctEl = document.getElementById('thr-pct');
+  var valThrust = document.getElementById('val-thrust');
+  var valVdc = document.getElementById('val-vdc');
+  var valPshaft = document.getElementById('val-pshaft');
+  var valRegime = document.getElementById('val-regime');
+  var vecThrust = document.getElementById('vec-thrust');
+  var arrThrust = document.getElementById('arr-thrust');
+  var lblThrust = document.getElementById('lbl-thrust');
+
+  // Exact REDBIRD MCX calibration breakpoints from table
+  var pts = [
+    { thr: 25,  T: 0.287, V: 9.25, P: 31.45 },
+    { thr: 50,  T: 0.606, V: 9.71, P: 70.13 },
+    { thr: 65,  T: 1.009, V: 8.38, P: 81.60 },
+    { thr: 75,  T: 1.157, V: 7.50, P: 89.25 },
+    { thr: 100, T: 1.984, V: 7.50, P: 114.75 }
+  ];
+
+  function interp(thr) {
+    for (var i = 0; i < pts.length - 1; i++) {
+      if (thr >= pts[i].thr && thr <= pts[i + 1].thr) {
+        var f = (thr - pts[i].thr) / (pts[i + 1].thr - pts[i].thr);
+        return {
+          T: pts[i].T + f * (pts[i + 1].T - pts[i].T),
+          V: pts[i].V + f * (pts[i + 1].V - pts[i].V),
+          P: pts[i].P + f * (pts[i + 1].P - pts[i].P)
+        };
+      }
+    }
+    return pts[2];
+  }
+
+  function update() {
+    var thr = parseInt(slider.value, 10);
+    var d = interp(thr);
+    var tw = d.T / 1.587;
+    var isCruise = thr === 65;
+
+    cruiseBtn.classList.toggle('active', isCruise);
+    thrPctEl.textContent = thr + '%' + (isCruise ? ' (CRUISE)' : '');
+    valThrust.textContent = d.T.toFixed(3) + ' lbf';
+    valVdc.textContent = d.V.toFixed(2) + ' V';
+    valVdc.style.color = d.V <= 7.6 ? '#FBBF24' : '#F8FAFC';
+    valPshaft.textContent = d.P.toFixed(1) + ' W';
+
+    var regimeTxt = tw.toFixed(3) + ' ';
+    if (thr < 58) {
+      regimeTxt += '(DESCENT)';
+      valRegime.style.color = '#FB7185';
+    } else if (thr <= 68) {
+      regimeTxt += '(CRUISE)';
+      valRegime.style.color = '#34D399';
+    } else {
+      regimeTxt += '(CLIMB / SAG)';
+      valRegime.style.color = '#38BDF8';
+    }
+    valRegime.textContent = regimeTxt;
+
+    // Scale thrust vector arrow cleanly from x=160 up to x=302
+    var tipX = Math.round(160 + d.T * 70);
+    vecThrust.setAttribute('x2', tipX);
+    arrThrust.setAttribute('points', (tipX + 6) + ',76 ' + (tipX - 3) + ',71 ' + (tipX - 3) + ',81');
+    lblThrust.setAttribute('x', Math.max(215, tipX + 4));
+    lblThrust.textContent = 'T = ' + d.T.toFixed(3) + ' lbf';
+  }
+
+  slider.addEventListener('input', update);
+  cruiseBtn.addEventListener('click', function () {
+    slider.value = 65;
+    update();
+  });
+  update();
+})();
+</script>
 </body>
 </html>
