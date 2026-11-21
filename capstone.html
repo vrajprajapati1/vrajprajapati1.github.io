@@ -312,4 +312,228 @@ function tryNextExt(img) {
           </div>
           <div class="gear-cell">
             <span class="gear-k">Transmission Ratio</span>
-            <span class="gear-v">1 : 1 (90&deg; Miter Drive
+            <span class="gear-v">1 : 1 (90&deg; Miter Drive)</span>
+          </div>
+          <div class="gear-cell">
+            <span class="gear-k">Shaft &amp; Pulley Fit</span>
+            <span class="gear-v">Flatted Round + D-Bore</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="compare">
+      <figure>
+        <img src="images/cap-01-mechanism-overview.jpg" onerror="tryNextExt(this)" alt="Completed half-fold mechanism, overhead view showing precision plate and roller drive" loading="lazy">
+        <figcaption>Completed half-fold mechanism, overhead view.</figcaption>
+      </figure>
+      <figure>
+        <img src="images/cap-24-completed-mechanism-bench.jpg" onerror="tryNextExt(this)" alt="The completed half-fold mechanism assembled on the workbench" loading="lazy">
+        <figcaption>Half-fold module assembled and wired on the workbench.</figcaption>
+      </figure>
+    </div>
+
+    <p>After early monolithic machine concepts proved too difficult to test in parallel, our four-person team divided the origami penguin sequence into modular stations. I owned the half-fold module end to end&mdash;SolidWorks modeling, tolerance stack-up, manual lathe/mill fabrication, microcontroller sequencing, and root-cause debugging&mdash;delivering three connected prototypes that executed the first three sequential folds.</p>
+  </article>
+
+  <!-- DEVELOPMENT TIMELINE -->
+  <article class="project proj-body cap-card">
+    <h3>Development Timeline &amp; Iteration Log</h3>
+
+    <div class="phase">
+      <div class="phase-top">
+        <h3>Foundation Skills &amp; Hardware Teardown</h3>
+        <span class="phase-tag">LOG 01 // AUG &ndash; SEP 2023</span>
+      </div>
+      <p>Qualified on vertical mill power-feeds and Hardinge lathe collet stops, built a shop tool-wall French cleat warm-up project, and tore down a salvaged office printer to study sheet-paper roller friction, timing belts, and anti-jam gear trains.</p>
+      <div class="shot-row">
+        <figure><img src="images/cap-03-hardinge-lathe.jpg" onerror="tryNextExt(this)" alt="Hardinge precision lathe in the DPEA machine shop" loading="lazy"><figcaption>Hardinge lathe setup during shop qualification.</figcaption></figure>
+        <figure><img src="images/cap-04-power-feed-control.jpg" onerror="tryNextExt(this)" alt="Vertical mill power-feed control box showing speed dial and directional switch" loading="lazy"><figcaption>Mill power-feed control box, auto-feed training.</figcaption></figure>
+        <figure><img src="images/cap-02-collet-stop.jpg" onerror="tryNextExt(this)" alt="Machined collet stop assembly mounted on the lathe" loading="lazy"><figcaption>Custom-machined collet stop assembly.</figcaption></figure>
+        <figure><img src="images/cap-05-french-cleat-cad.png" onerror="tryNextExt(this)" alt="SolidWorks CAD model of a French cleat for the shop tool wall" loading="lazy"><figcaption>Shop tool-wall French cleat, CAD model.</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-top">
+        <h3>Modular Architecture &amp; Miter Gearbox Design</h3>
+        <span class="phase-tag">LOG 02 // OCT &ndash; DEC 2023</span>
+      </div>
+      <p>Flat folding plates failed to overcome natural paper curvature without positive roller nip, prompting our pivot to modular stations. Across three carriage iterations, I designed a custom 90&deg; miter gearbox with our faculty mentor to convert vertical drive rotation into horizontal counter-rotation above the paper path.</p>
+      <div class="shot-row">
+        <figure><img src="images/cap-08-halffold-early-model.png" onerror="tryNextExt(this)" alt="Early SolidWorks assembly model of the half-fold mechanism, motor, and pulley drive" loading="lazy"><figcaption>Half-fold mechanism, early SolidWorks assembly.</figcaption></figure>
+        <figure><img src="images/cap-09-miter-gearbox-cad.png" onerror="tryNextExt(this)" alt="SolidWorks model of the custom 90-degree miter gearbox assembly" loading="lazy"><figcaption>Custom 90&deg; miter gearbox, CAD assembly.</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-top">
+        <h3>CAD Finalization &amp; Digital Fabrication</h3>
+        <span class="phase-tag">LOG 03 // JAN &ndash; MAR 2024</span>
+      </div>
+      <p>Nested laser-cut acrylic DXF profiles onto a single sheet, verified shifted STL bracket hole centers with a physical cardboard template before re-printing, and replaced an inconsistent hex drive shaft with a precision flatted round shaft and matched 3D-printed D-bore timing pulleys.</p>
+      <div class="shot-row">
+        <figure><img src="images/cap-11-dxf-parts-vise.jpg" onerror="tryNextExt(this)" alt="Laser-cut acrylic plates checked against their DXF engineering drawing" loading="lazy"><figcaption>Laser-cut acrylic parts verified against DXF print.</figcaption></figure>
+        <figure><img src="images/cap-13-base-drilling.jpg" onerror="tryNextExt(this)" alt="3D-printed base bracket being re-drilled on the manual mill" loading="lazy"><figcaption>Correcting mounting hole locations on the mill.</figcaption></figure>
+        <figure><img src="images/cap-14-roller-pulley-cad.png" onerror="tryNextExt(this)" alt="SolidWorks model of the roller and timing pulley assembly" loading="lazy"><figcaption>Roller and timing-pulley subassembly, CAD.</figcaption></figure>
+        <figure><img src="images/cap-15-mounting-plate-cad.png" onerror="tryNextExt(this)" alt="Dimensioned CAD drawing of the acrylic mounting plate" loading="lazy"><figcaption>Acrylic mounting plate, dimensioned drawing.</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-top">
+        <h3>Precision Machining &amp; Fixture Work</h3>
+        <span class="phase-tag">LOG 04 // FEB &ndash; APR 2024</span>
+      </div>
+      <p>Turned concentric brass roller inserts on the Hardinge lathe, cross-drilled shafts in V-block mill fixtures, resolved a binding keyway broach by re-drilling an undersized pilot bore, turned passive Delrin rollers, and hand-filed extruded aluminum L-stock inside corners square so the motor mounted flush.</p>
+      <div class="shot-row">
+        <figure><img src="images/cap-17-brass-insert-a.jpg" onerror="tryNextExt(this)" alt="Lathe-turned brass roller insert showing stepped shoulder" loading="lazy"><figcaption>Lathe-turned brass roller insert.</figcaption></figure>
+        <figure><img src="images/cap-19-housing-cavity.jpg" onerror="tryNextExt(this)" alt="Machined aluminum bearing housing bore" loading="lazy"><figcaption>Machined aluminum housing and bearing bore.</figcaption></figure>
+        <figure><img src="images/cap-20-bearing-mount-detail.png" onerror="tryNextExt(this)" alt="CAD detail of bearing mount retention in the roller assembly" loading="lazy"><figcaption>Bearing mount retention detail, CAD.</figcaption></figure>
+        <figure><img src="images/cap-21-delrin-roller-built.png" onerror="tryNextExt(this)" alt="SolidWorks model of the Delrin passive roller assembly" loading="lazy"><figcaption>Delrin passive roller assembly, CAD.</figcaption></figure>
+        <figure><img src="images/cap-22-motor-mount-cad.png" onerror="tryNextExt(this)" alt="CAD model of the motor mount bracket" loading="lazy"><figcaption>Motor mount bracket, CAD model.</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="phase debug-highlight">
+      <div class="phase-top">
+        <h3>Assembly &amp; Reversed-Gearbox Root-Cause Analysis</h3>
+        <span class="phase-tag">LOG 05 // ROOT-CAUSE DEBUG (APR &ndash; JUN 2024)</span>
+      </div>
+      <p>After bridging an oversized belt order with pitch-matched shop belts, our May bench test spun cleanly&mdash;but ejected paper backward. Kinematic tracing revealed the driven bevel gear was mounted on the opposite side of the pinion mesh; machining a redesigned output shaft and installing corrected belts restored positive paper feed and creasing.</p>
+      <div class="shot-row">
+        <figure><img src="images/cap-23-final-assembly-cad.png" onerror="tryNextExt(this)" alt="Completed SolidWorks assembly model of the half-fold mechanism" loading="lazy"><figcaption>Final half-fold mechanism, SolidWorks assembly.</figcaption></figure>
+        <figure><img src="images/cap-25-completed-assembly-side.png" onerror="tryNextExt(this)" alt="Side elevation view of the completed half-fold mechanism in SolidWorks" loading="lazy"><figcaption>Completed assembly side elevation, CAD.</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-top">
+        <h3>Cross-Module Integration &amp; Public Showcase</h3>
+        <span class="phase-tag">LOG 06 // LATE MAY &ndash; JUN 2024</span>
+      </div>
+      <p>Built a magnetic coupling interface linking my teammate&rsquo;s paper-transfer stage into my half-fold inlet, slotted baseplates and machined brass inserts to align shared datum heights, and demonstrated all three connected prototypes live at the June DPEA showcase.</p>
+      <div class="shot-row">
+        <figure><img src="images/cap-27-modules-demo-table.jpg" onerror="tryNextExt(this)" alt="Paper Transmission Systems and Half Fold Mechanism modules aligned on the showcase table" loading="lazy"><figcaption>Paper transfer and half-fold modules coupled on the demo table.</figcaption></figure>
+        <figure><img src="images/cap-26-team-showcase.jpg" onerror="tryNextExt(this)" alt="The four-person capstone team presenting at the DPEA showcase" loading="lazy"><figcaption>Four-student capstone team at the year-end showcase.</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+  <!-- OUTCOMES & FULL ARCHIVE -->
+  <article class="project proj-body cap-card">
+    <h3>Outcomes &amp; Engineering Takeaways</h3>
+    <ul>
+      <li><strong>Verify kinematics on real hardware:</strong> A single mirrored gear placement in CAD inverted roller feed direction&mdash;bench testing caught what visual CAD checks missed.</li>
+      <li><strong>Interface control is systems engineering:</strong> Shared datum heights and magnetic coupling tolerances enabled reliable multi-student module integration.</li>
+      <li><strong>Design for assembly &amp; vendor checks:</strong> Accessible set-screw flats and pre-order belt pitch verification protect schedule margin.</li>
+    </ul>
+
+    <ul class="tools">
+      <li>SolidWorks Assemblies &amp; Prints</li>
+      <li>90&deg; Miter Gearbox Design</li>
+      <li>Hardinge Lathe &amp; Manual Mill</li>
+      <li>Laser Cutting (DXF)</li>
+      <li>FDM 3D Printing</li>
+      <li>Root-Cause Analysis</li>
+    </ul>
+
+    <div class="shot-row wide">
+      <figure><img src="images/cap-29-showcase-full-lineup.jpg" onerror="tryNextExt(this)" alt="Full showcase table showing Origami Penguin Machine, Corner Fold, Reverse Fold, Paper Transmission, and Half Fold modules" loading="lazy"><figcaption>Full four-module system lineup at the DPEA engineering showcase.</figcaption></figure>
+    </div>
+
+    <p class="gallery-head">Build &amp; Fabrication Archive</p>
+    <div class="gallery">
+      <figure><img src="images/cap-06-printer-teardown-a.png" onerror="tryNextExt(this)" alt="Salvaged office printer disassembled to study paper-feed rollers and gear trains" loading="lazy"><figcaption>Salvaged printer teardown, roller and gear study.</figcaption></figure>
+      <figure><img src="images/cap-07-printer-teardown-b.png" onerror="tryNextExt(this)" alt="Disassembled printer drive belts and gear components" loading="lazy"><figcaption>Salvaged printer teardown, drive components.</figcaption></figure>
+      <figure><img src="images/cap-10-dxf-parts-a.jpg" onerror="tryNextExt(this)" alt="Laser-cut acrylic parts laid out against their engineering drawing" loading="lazy"><figcaption>Laser-cut parts checked against reference print.</figcaption></figure>
+      <figure><img src="images/cap-12-dxf-parts-square.jpg" onerror="tryNextExt(this)" alt="Laser-cut acrylic parts verified for perpendicularity with a machinist square" loading="lazy"><figcaption>Laser-cut parts, machinist-square check.</figcaption></figure>
+      <figure><img src="images/cap-16-roller-render-detail.png" onerror="tryNextExt(this)" alt="Detailed SolidWorks render of the roller subassembly" loading="lazy"><figcaption>Roller subassembly, CAD detail.</figcaption></figure>
+      <figure><img src="images/cap-18-brass-insert-b.jpg" onerror="tryNextExt(this)" alt="Lathe-turned brass roller insert showing bore and shoulder finish" loading="lazy"><figcaption>Brass roller insert, alternate angle.</figcaption></figure>
+      <figure><img src="images/cap-28-halffold-module-showcase.jpg" onerror="tryNextExt(this)" alt="Half Fold Mechanism module displayed at the engineering showcase" loading="lazy"><figcaption>Half-fold mechanism module at the showcase.</figcaption></figure>
+    </div>
+  </article>
+</section>
+
+<p class="back"><a href="index.html">&larr; Back to overview</a></p>
+<footer>Vraj R. Prajapati. Last updated November 2026.</footer>
+</div>
+<script src="lightbox.js" defer></script>
+<script>
+(function () {
+  var fixedBtn = document.getElementById('gb-fixed-btn');
+  var bugBtn = document.getElementById('gb-bug-btn');
+  var drivenBevel = document.getElementById('gb-driven-bevel');
+  var bevelPoly = document.getElementById('gb-bevel-poly');
+  var roller = document.getElementById('gb-roller');
+  var rollerRing = document.getElementById('gb-roller-ring');
+  var arrowGroup = document.getElementById('gb-feed-arrow');
+  var arrowLine = document.getElementById('gb-arrow-line');
+  var arrowHead = document.getElementById('gb-arrow-head');
+  var feedLabel = document.getElementById('gb-feed-label');
+  var meshVal = document.getElementById('gb-mesh-val');
+  var feedVal = document.getElementById('gb-feed-val');
+  var cellMesh = document.getElementById('gb-cell-mesh');
+  var cellFeed = document.getElementById('gb-cell-feed');
+  var pinionTeeth = document.getElementById('gb-pinion-teeth');
+
+  if (!fixedBtn || !roller) return;
+
+  var isBug = false;
+  var angle = 0;
+  var toothShift = 0;
+
+  function setMode(bug) {
+    isBug = bug;
+    fixedBtn.classList.toggle('active', !isBug);
+    bugBtn.classList.toggle('active', isBug);
+
+    if (!isBug) {
+      drivenBevel.setAttribute('transform', 'translate(92, 92) scale(1, 1)');
+      bevelPoly.setAttribute('fill', '#10B981');
+      bevelPoly.setAttribute('stroke', '#10B981');
+      rollerRing.setAttribute('stroke', '#38BDF8');
+      arrowGroup.setAttribute('transform', 'translate(178, 138) scale(1, 1)');
+      arrowLine.setAttribute('stroke', '#10B981');
+      arrowHead.setAttribute('fill', '#10B981');
+      feedLabel.textContent = 'FEED INTO CREASE ZONE \u2192';
+      meshVal.textContent = 'CORRECTED (+X MESH)';
+      meshVal.style.color = '#10B981';
+      feedVal.textContent = 'FORWARD INTO CREASE';
+      feedVal.style.color = '#38BDF8';
+      cellMesh.style.borderLeftColor = '#10B981';
+      cellFeed.style.borderLeftColor = '#38BDF8';
+    } else {
+      drivenBevel.setAttribute('transform', 'translate(60, 92) scale(-1, 1)');
+      bevelPoly.setAttribute('fill', '#F59E0B');
+      bevelPoly.setAttribute('stroke', '#F59E0B');
+      rollerRing.setAttribute('stroke', '#F59E0B');
+      arrowGroup.setAttribute('transform', 'translate(178, 138) scale(-1, 1)');
+      arrowLine.setAttribute('stroke', '#F59E0B');
+      arrowHead.setAttribute('fill', '#F59E0B');
+      feedLabel.textContent = '\u2190 EJECTED PAPER BACKWARD';
+      meshVal.textContent = 'MIRRORED (-X MESH BUG)';
+      meshVal.style.color = '#FBBF24';
+      feedVal.textContent = 'REVERSED (PAPER EJECTED)';
+      feedVal.style.color = '#FBBF24';
+      cellMesh.style.borderLeftColor = '#F59E0B';
+      cellFeed.style.borderLeftColor = '#F59E0B';
+    }
+  }
+
+  fixedBtn.addEventListener('click', function () { setMode(false); });
+  bugBtn.addEventListener('click', function () { setMode(true); });
+
+  function tickGearbox() {
+    var dir = isBug ? -1 : 1;
+    angle = (angle + 1.4 * dir + 360) % 360;
+    toothShift = (toothShift + 0.35 + 8) % 8;
+    roller.setAttribute('transform', 'translate(178, 92) rotate(' + angle.toFixed(1) + ')');
+    pinionTeeth.setAttribute('transform', 'translate(' + (toothShift - 4).toFixed(2) + ', 0)');
+    requestAnimationFrame(tickGearbox);
+  }
+  requestAnimationFrame(tickGearbox);
+})();
+</script>
+</body>
+</html>
