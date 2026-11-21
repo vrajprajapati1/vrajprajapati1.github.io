@@ -26,11 +26,23 @@
   }
 
   .sk-header {
-    padding: 1.5rem 1.7rem 1.35rem;
-    margin-bottom: 1.5rem;
+    padding: 1.35rem 1.7rem;
+    margin-bottom: 1.35rem;
     background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(10, 15, 26, 0.95) 60%);
     border: 1px solid rgba(56, 189, 248, 0.24);
     border-radius: 10px;
+  }
+  .sk-header h1.sk-title {
+    margin: 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--sk-cyan);
+    text-transform: uppercase;
+  }
+  .sk-header h1.sk-title span {
+    color: var(--sk-brass);
   }
 
   .sk-toolbar {
@@ -173,9 +185,7 @@
 <nav aria-label="Pages"><a href="index.html">About</a><a href="aerospace.html">Aerospace &amp; Propulsion</a><a href="capstone.html">Senior Capstone</a><a href="internship.html">DPEA Internship</a><a href="projects.html">Electromechanical Sculptures</a><a href="rc.html">RC Airplane</a><a href="skills.html" aria-current="page">Technical Skills</a></nav>
 
 <header class="page-head sk-header">
-  <p class="eyebrow">06 // TECHNICAL SKILLS</p>
-  <h1>Technical Skills</h1>
-  <p class="lede">CAD packages, machine-shop equipment, rapid prototyping tools, and test instrumentation used across my coursework, club builds, and shop projects.</p>
+  <h1 class="sk-title"><span>[</span> 06 // TECHNICAL SKILLS <span>]</span></h1>
 </header>
 
 <section>
