@@ -4,88 +4,228 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Aerospace &amp; Propulsion &mdash; Vraj R. Prajapati</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="styles.css">
 <style>
-  /* Vertical Flight-Profile Telemetry Track (Pinned on Desktop Margin) */
-  @media (min-width: 1180px) {
-    .trajectory-hud {
-      position: fixed;
-      right: max(1.25rem, calc((100vw - 980px) / 2 - 195px));
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1.35rem;
-      padding: 1rem 0.95rem 1rem 1.25rem;
-      background: rgba(9, 10, 15, 0.86);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 158, 0, 0.24);
-      border-radius: 12px;
-      z-index: 40;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  :root {
+    --aero-amber: #F59E0B;
+    --aero-gold: #FBBF24;
+    --aero-orange: #FB923C;
+    --aero-cyan: #38BDF8;
+    --aero-surface: rgba(16, 12, 8, 0.9);
+    --aero-border: rgba(245, 158, 11, 0.26);
+  }
+
+  body[data-page="aerospace"] {
+    background-color: #090705;
+    background-image:
+      radial-gradient(circle at 18% 10%, rgba(245, 158, 11, 0.09), transparent 44%),
+      radial-gradient(circle at 84% 48%, rgba(251, 146, 60, 0.06), transparent 42%),
+      linear-gradient(rgba(245, 158, 11, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245, 158, 11, 0.025) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px;
+  }
+
+  .aero-header {
+    padding: 1.35rem 1.7rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(145deg, rgba(245, 158, 11, 0.1), rgba(16, 12, 8, 0.95) 62%);
+    border: 1px solid var(--aero-border);
+    border-radius: 10px;
+  }
+  .aero-header h1.aero-title {
+    margin: 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: clamp(1.25rem, 2.6vw, 1.75rem);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--aero-gold);
+    text-transform: uppercase;
+  }
+  .aero-header h1.aero-title span {
+    color: var(--aero-orange);
+  }
+
+  .aero-card {
+    background: var(--aero-surface) !important;
+    border: 1px solid rgba(245, 158, 11, 0.2) !important;
+    border-radius: 10px !important;
+    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.56);
+    margin-bottom: 2rem;
+  }
+  .aero-card h4 {
+    padding-left: 0.75rem;
+    border-left: 2px solid var(--aero-amber);
+  }
+
+  /* Pinned Vertical Launching Rocket HUD */
+  .rocket-hud {
+    position: fixed;
+    right: 1.35rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 40;
+    width: 214px;
+    padding: 0.95rem 0.95rem 0.85rem;
+    background: rgba(11, 13, 20, 0.92);
+    border: 1px solid rgba(245, 158, 11, 0.34);
+    border-radius: 12px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.68), inset 0 0 24px rgba(245, 158, 11, 0.05);
+    backdrop-filter: blur(8px);
+  }
+  .rocket-hud-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.64rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #94A3B8;
+    padding-bottom: 0.55rem;
+    margin-bottom: 0.7rem;
+    border-bottom: 1px solid rgba(245, 158, 11, 0.16);
+  }
+  .rocket-hud-head strong {
+    color: var(--aero-gold);
+  }
+  .rocket-track-wrap {
+    position: relative;
+    height: 230px;
+    padding-left: 34px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  /* Vertical Altitude Rail */
+  .rocket-rail-bg {
+    position: absolute;
+    left: 13px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: rgba(245, 158, 11, 0.22);
+    border-radius: 2px;
+  }
+  .rocket-rail-fill {
+    position: absolute;
+    left: 13px;
+    bottom: 8px;
+    width: 2px;
+    height: 0%;
+    max-height: calc(100% - 16px);
+    background: linear-gradient(to top, #FB923C, #FBBF24, #38BDF8);
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.7);
+    border-radius: 2px;
+  }
+  /* Moving Rocket Vehicle SVG Container */
+  .rocket-vehicle {
+    position: absolute;
+    left: 1px;
+    bottom: 0px;
+    width: 26px;
+    height: 44px;
+    pointer-events: none;
+    transition: transform 0.25s ease;
+    filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.65));
+  }
+  @keyframes plumeFlicker {
+    0%, 100% { transform: scaleY(1) scaleX(1); opacity: 0.95; }
+    50% { transform: scaleY(1.26) scaleX(0.86); opacity: 0.78; }
+  }
+  .rocket-plume {
+    transform-origin: 13px 27px;
+    animation: plumeFlicker 0.16s infinite ease-in-out;
+  }
+  .rocket-stage {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.71rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: #64748B;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+  .rocket-stage::before {
+    content: "";
+    position: absolute;
+    left: -24px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #1E293B;
+    border: 1.5px solid rgba(245, 158, 11, 0.45);
+    transition: all 0.2s ease;
+  }
+  .rocket-stage.active {
+    color: var(--aero-gold);
+    font-weight: 600;
+    transform: translateX(2px);
+  }
+  .rocket-stage.active::before {
+    background: var(--aero-gold);
+    border-color: #FFF;
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.9);
+  }
+  .rocket-stage.passed {
+    color: #CBD5E1;
+  }
+  .rocket-stage.passed::before {
+    background: var(--aero-amber);
+    border-color: var(--aero-amber);
+  }
+  .rocket-hud-foot {
+    margin-top: 0.7rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(245, 158, 11, 0.16);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.64rem;
+    color: #94A3B8;
+  }
+  .rocket-hud-foot span {
+    color: var(--aero-cyan);
+    font-weight: 600;
+  }
+
+  @media (max-width: 1240px) {
+    .rocket-hud {
+      position: sticky;
+      top: 0.6rem;
+      right: auto;
+      transform: none;
+      width: 100%;
+      margin-bottom: 1.25rem;
+      padding: 0.65rem 0.9rem;
     }
-    /* Vertical rail line */
-    .trajectory-hud::before {
-      content: "";
-      position: absolute;
-      left: 1.52rem;
-      top: 1.45rem;
-      bottom: 1.45rem;
-      width: 2px;
-      background: rgba(255, 158, 0, 0.18);
-      border-radius: 2px;
+    .rocket-track-wrap {
+      height: auto;
+      padding-left: 0;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.9rem;
     }
-    /* Live vertical fill bar driven by --traj-pct */
-    .trajectory-hud::after {
-      content: "";
-      position: absolute;
-      left: 1.52rem;
-      top: 1.45rem;
-      width: 2px;
-      height: calc((100% - 2.9rem) * var(--traj-pct, 0));
-      background: var(--accent, #FF9E00);
-      box-shadow: 0 0 10px var(--accent, #FF9E00);
-      border-radius: 2px;
-      transition: height 80ms linear;
+    .rocket-rail-bg,
+    .rocket-rail-fill,
+    .rocket-vehicle,
+    .rocket-stage::before {
+      display: none;
     }
-    .trajectory-hud .traj-step {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.06em;
-      color: var(--muted, #94A3B8);
-      transition: color 0.2s ease, transform 0.2s ease;
-      z-index: 1;
-    }
-    .trajectory-hud .traj-step .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #090A0F;
-      border: 2px solid rgba(255, 158, 0, 0.4);
-      flex-shrink: 0;
-      transition: all 0.25s ease;
-    }
-    .trajectory-hud .traj-step.passed .dot {
-      background: var(--accent, #FF9E00);
-      border-color: var(--accent, #FF9E00);
-    }
-    .trajectory-hud .traj-step.active {
-      color: var(--accent, #FF9E00);
-      transform: translateX(-2px);
-    }
-    .trajectory-hud .traj-step.active .dot {
-      background: var(--accent, #FF9E00);
-      border-color: #FFF;
-      box-shadow: 0 0 12px var(--accent, #FF9E00);
-      transform: scale(1.25);
-    }
+  }
+
+  .shot-row figure img,
+  .shot-row figure video,
+  .gallery figure img {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .shot-row figure:hover img,
+  .gallery figure:hover img {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
   }
 </style>
 <script>
@@ -99,110 +239,136 @@ function tryNextExt(img) {
 }
 </script>
 </head>
-<body data-palette="amber">
+<body data-page="aerospace" data-palette="amber">
 <div class="wrap">
 <nav aria-label="Pages"><a href="index.html">About</a><a href="aerospace.html" aria-current="page">Aerospace &amp; Propulsion</a><a href="capstone.html">Senior Capstone</a><a href="internship.html">DPEA Internship</a><a href="projects.html">Electromechanical Sculptures</a><a href="rc.html">RC Airplane</a><a href="skills.html">Technical Skills</a></nav>
 
-<header class="page-head">
-  <p class="eyebrow">01 // PROPULSION &amp; HIGH-POWER ROCKETRY</p>
-  <h1>Aerospace &amp; Propulsion</h1>
-  <p class="lede">High-power rocketry airframe fabrication, manual lathe machining, desert launch operations, pre-hardware recovery and thermal diagnostic research, and propulsion sub-team work at Cal Poly Pomona.</p>
-  <aside class="trajectory-hud" id="traj-hud" aria-label="Scroll-linked flight profile">
-    <span class="traj-step active"><span class="dot"></span>01 // PAD</span>
-    <span class="traj-step"><span class="dot"></span>02 // MAX-Q</span>
-    <span class="traj-step"><span class="dot"></span>03 // APOGEE</span>
-    <span class="traj-step"><span class="dot"></span>04 // MAIN DEPLOY</span>
-    <span class="traj-step"><span class="dot"></span>05 // TOUCHDOWN</span>
-  </aside>
+<header class="page-head aero-header">
+  <h1 class="aero-title"><span>[</span> 01 // AEROSPACE &amp; PROPULSION <span>]</span></h1>
 </header>
 
-<section id="thrust">
-  <h2>Cal Poly Pomona &mdash; THRUST</h2>
-  <article class="project proj-body">
-    <h3>THRUST Propulsion Sub-Team <span class="pill">Active &middot; Cal Poly Pomona</span></h3>
-    <p class="tagline">Propulsion hardware design, plumbing, and test-stand operations at Cal Poly Pomona.</p>
+<!-- Scroll-Driven Launching Rocket Telemetry HUD -->
+<aside class="rocket-hud" aria-label="Scroll-linked rocket launch trajectory">
+  <div class="rocket-hud-head">
+    <span>FLIGHT PROFILE</span>
+    <strong id="hud-phase-badge">IGNITION</strong>
+  </div>
+  <div class="rocket-track-wrap" id="rocket-track">
+    <div class="rocket-rail-bg"></div>
+    <div class="rocket-rail-fill" id="rocket-rail-fill"></div>
+
+    <!-- Animated SVG Rocket -->
+    <div class="rocket-vehicle" id="rocket-vehicle">
+      <svg width="26" height="44" viewBox="0 0 26 44" aria-hidden="true">
+        <!-- Exhaust Plume -->
+        <g class="rocket-plume" id="rocket-plume-group">
+          <polygon points="9,27 17,27 13,43" fill="#F59E0B"/>
+          <polygon points="10.5,27 15.5,27 13,37" fill="#FEF08A"/>
+        </g>
+        <!-- Fins -->
+        <polygon points="8,20 3,27 8,26" fill="#FB923C"/>
+        <polygon points="18,20 23,27 18,26" fill="#FB923C"/>
+        <!-- Fuselage & Nosecone -->
+        <path d="M13 2 C9.5 8 8.5 14 8.5 26 L17.5 26 C17.5 14 16.5 8 13 2 Z" fill="#F8FAFC" stroke="#F59E0B" stroke-width="1.2"/>
+        <!-- Avionics Window -->
+        <circle cx="13" cy="13.5" r="2" fill="#38BDF8"/>
+        <!-- Nozzle Bell -->
+        <polygon points="10,26 16,26 17,28.5 9,28.5" fill="#475569"/>
+      </svg>
+    </div>
+
+    <!-- Stages ordered top-to-bottom visually as rocket climbs upward -->
+    <div class="rocket-stage" data-stage="4">05 // TOUCHDOWN</div>
+    <div class="rocket-stage" data-stage="3">04 // MAIN DEPLOY</div>
+    <div class="rocket-stage" data-stage="2">03 // APOGEE</div>
+    <div class="rocket-stage" data-stage="1">02 // MAX-Q</div>
+    <div class="rocket-stage active" data-stage="0">01 // PAD</div>
+  </div>
+  <div class="rocket-hud-foot">
+    <div>ALT: <span id="hud-alt">0 FT</span></div>
+    <div>PROG: <span id="hud-pct">0%</span></div>
+  </div>
+</aside>
+
+<section>
+  <!-- 01: CAL POLY POMONA THRUST -->
+  <article class="project proj-body aero-card">
+    <h3>THRUST Propulsion Sub-Team <span class="pill">Current &middot; Cal Poly Pomona</span></h3>
+    <p class="tagline">Feed-system, injector, and test-stand hardware design for student liquid-rocket propulsion at Cal Poly Pomona.</p>
     <dl class="spec">
-      <div><dt>Organization</dt><dd>THRUST (Cal Poly Pomona)</dd></div>
+      <div><dt>Organization</dt><dd>THRUST, Cal Poly Pomona</dd></div>
       <div><dt>Role</dt><dd>Propulsion Sub-Team Member</dd></div>
-      <div><dt>Focus</dt><dd>CAD, DFM &amp; Test Hardware</dd></div>
+      <div><dt>Focus</dt><dd>CAD Packaging, Plumbing &amp; Test Hardware</dd></div>
       <div><dt>Status</dt><dd>Active (Junior Year)</dd></div>
     </dl>
-    <p>Currently contributing to propulsion hardware and test-stand integration with THRUST at Cal Poly Pomona. Detailed CAD, test-stand photos, and cold-flow/hot-fire documentation will be uploaded as this cycle progresses.</p>
+    <p>As a junior in Aerospace Engineering at Cal Poly Pomona, I design manufacturable CAD assemblies, mounting brackets, and pressurized test-stand interfaces for the THRUST liquid-propulsion sub-team&mdash;prioritizing fastener accessibility, O-ring gland tolerances, and clean routing for pressure transducers and solenoid valves during stand leak checks.</p>
     <ul class="tools">
       <li>SolidWorks</li>
-      <li>Propulsion Hardware</li>
-      <li>DFM</li>
-      <li>Test Operations</li>
+      <li>Fluid Systems &amp; Fittings</li>
+      <li>DFMA</li>
+      <li>Test-Stand Integration</li>
     </ul>
   </article>
-</section>
 
-<section id="sbcc-flight">
-  <h2>SBCC Rocketry &mdash; Airframe, Shop Work &amp; Flight</h2>
-  <article class="project">
-    <h3>High-Power Rocketry &amp; Shop Fabrication</h3>
-    <p class="tagline">Hands-on airframe integration, manual lathe machining on phenolic stock, and desert launch/recovery operations with the Santa Barbara City College Aerospace &amp; Rocket Club.</p>
+  <!-- 02: SBCC ROCKETRY - L1/L2 & NOZZLE PRINTS -->
+  <article class="project proj-body aero-card">
+    <h3>SBCC Aerospace &amp; Rocket Club &mdash; Airframe, Shop Work &amp; Flight</h3>
+    <p class="tagline">Composite airframe assembly, structural fin-can bonding, manual lathe machining, and desert qualification flights.</p>
     <dl class="spec">
       <div><dt>Organization</dt><dd>SBCC Aerospace &amp; Rocket Club</dd></div>
-      <div><dt>Role</dt><dd>Payload &amp; Recovery Lead / Shop Machinist</dd></div>
-      <div><dt>Vehicles</dt><dd>Level 1 &amp; Level 2 Team Builds</dd></div>
+      <div><dt>Role</dt><dd>Airframe Builder &amp; Student Machinist</dd></div>
+      <div><dt>Flights</dt><dd>L1 / L2 Qualification Launches (Mojave Desert)</dd></div>
     </dl>
 
-    <div class="proj-body">
-      <h4>L1 / L2 Certification Flights &amp; Airframe Prep</h4>
-      <p>The core mission of the Santa Barbara City College Aerospace &amp; Rocket Club was to obtain our Level 1 and Level 2 high-power certifications so we could progress to fabricating and flying our own custom-built rocket. As one of the primary hands-on builders, I worked across airframe assembly, structural fin-can epoxy bonding, recovery harness rigging, and range prep for our L1 and L2 qualification flights (with a teammate serving as the certified flyer of record). On launch day in the Mojave desert, the vehicle achieved a clean boost off the rail, nominal apogee separation, and full parachute inflation for a damage-free recovery.</p>
+    <h4>L1 / L2 Certification Flights &amp; Airframe Prep</h4>
+    <p>Working as one of the primary hands-on builders for the Santa Barbara City College Aerospace &amp; Rocket Club, I assembled airframe sections, mixed and applied structural fin-can epoxy fillets, rigged recovery harnesses, and completed launch-rail range prep for our L1 and L2 qualification flights. In the Mojave desert, the rocket achieved a clean rail boost, nominal apogee separation, and full parachute inflation for a damage-free recovery.</p>
+    <div class="shot-row">
+      <figure>
+        <video controls preload="metadata" playsinline>
+          <source src="images/aero-02-launch-video.mp4" type="video/mp4">
+          Your browser does not support embedded video.
+        </video>
+        <figcaption>Mojave desert launch sequence: rail ignition, boost, apogee separation, and drogue/main deployment.</figcaption>
+      </figure>
+      <figure>
+        <img src="images/aero-01-desert-recovery.jpg" onerror="tryNextExt(this)" alt="Recovered ARC rocket on the Mojave desert floor with nosecone and pink parachute deployed" loading="lazy">
+        <figcaption>Post-flight recovery in the Mojave desert with intact airframe, shock cord, and deployed parachute.</figcaption>
+      </figure>
+      <figure>
+        <img src="images/aero-03-team-desert.jpg" onerror="tryNextExt(this)" alt="SBCC Aerospace and Rocket Club team on the desert launch range with the rocket and flight card" loading="lazy">
+        <figcaption>SBCC Aerospace &amp; Rocket Club range crew after successful qualification flight and recovery.</figcaption>
+      </figure>
+    </div>
+    <div class="shot-row">
+      <figure>
+        <img src="images/aero-04-fin-can.jpg" onerror="tryNextExt(this)" alt="Close-up of the painted ARC fin can and aft motor retainer" loading="lazy">
+        <figcaption>Finished ARC fin can, aerodynamic fillets, and aft motor retention hardware.</figcaption>
+      </figure>
+      <figure>
+        <img src="images/aero-05-epoxy-prep.jpg" onerror="tryNextExt(this)" alt="Mixing structural epoxy and bonding the fin assembly outdoors with teammates" loading="lazy">
+        <figcaption>Structural epoxy mixing and fin-can bonding during airframe assembly.</figcaption>
+      </figure>
+      <figure>
+        <img src="images/aero-13-shop-build-prep.jpg" onerror="tryNextExt(this)" alt="Vraj Prajapati in the lab with drill, epoxy supplies, and the ARC rocket airframe" loading="lazy">
+        <figcaption>Drilling retention hardware holes and prepping the aft airframe in the lab.</figcaption>
+      </figure>
+    </div>
 
-      <div class="shot-row">
-        <figure>
-          <video controls preload="metadata" playsinline>
-            <source src="images/aero-02-launch-video.mp4" type="video/mp4">
-            Your browser does not support embedded video.
-          </video>
-          <figcaption>Mojave desert launch sequence: rail ignition, boost, apogee separation, and drogue/main deployment.</figcaption>
-        </figure>
-        <figure>
-          <img src="images/aero-01-desert-recovery.jpg" onerror="tryNextExt(this)" alt="Recovered ARC rocket on the Mojave desert floor with nosecone and pink parachute deployed" loading="lazy">
-          <figcaption>Post-flight recovery in the Mojave desert with intact airframe, shock cord, and deployed parachute.</figcaption>
-        </figure>
-        <figure>
-          <img src="images/aero-03-team-desert.jpg" onerror="tryNextExt(this)" alt="SBCC Aerospace and Rocket Club team on the desert launch range with the rocket and flight card" loading="lazy">
-          <figcaption>SBCC Aerospace &amp; Rocket Club range crew after successful qualification flight and recovery.</figcaption>
-        </figure>
-      </div>
-
-      <div class="shot-row">
-        <figure>
-          <img src="images/aero-04-fin-can.jpg" onerror="tryNextExt(this)" alt="Close-up of the painted ARC fin can and aft motor retainer" loading="lazy">
-          <figcaption>Finished ARC fin can, aerodynamic fillets, and aft motor retention hardware.</figcaption>
-        </figure>
-        <figure>
-          <img src="images/aero-05-epoxy-prep.jpg" onerror="tryNextExt(this)" alt="Mixing structural epoxy and bonding the fin assembly outdoors with teammates" loading="lazy">
-          <figcaption>Structural epoxy mixing and fin-can bonding during airframe assembly.</figcaption>
-        </figure>
-        <figure>
-          <img src="images/aero-13-shop-build-prep.jpg" onerror="tryNextExt(this)" alt="Vraj R. Prajapati in the lab with drill, epoxy supplies, and the ARC rocket airframe" loading="lazy">
-          <figcaption>Drilling retention hardware holes and prepping the aft airframe in the lab.</figcaption>
-        </figure>
-      </div>
-
-      <h4>Shop Machining &amp; Custom Rocket Nozzle Prints</h4>
-      <p>Alongside another student machinist, I operated the manual lathe in the campus shop to perform smaller machining operations on aluminum and phenolic stock. To prepare for fabricating our own custom rocket after the certification flights, the team also completed CAD cross-sections and dimensioned engineering prints for 6061-T6 aluminum and phenolic linen converging-diverging nozzles; physical machining of the nozzles and full custom airframe was paused before fabrication when club funding ran out.</p>
-
-      <div class="shot-row">
-        <figure>
-          <img src="images/aero-06-lathe-machining.jpg" onerror="tryNextExt(this)" alt="Vraj R. Prajapati inspecting cylindrical stock at the manual lathe chuck" loading="lazy">
-          <figcaption>Inspecting cylindrical aluminum stock and setup at the manual lathe chuck in the machine shop.</figcaption>
-        </figure>
-        <figure>
-          <img src="images/aero-07-nozzle-cad-section.PNG" onerror="tryNextExt(this)" alt="CAD cross-section of the converging-diverging nozzle showing internal contour, O-ring grooves, and threaded ports" loading="lazy">
-          <figcaption>Converging-diverging nozzle CAD cross-section with O-ring seal glands and threaded radial ports.</figcaption>
-        </figure>
-      </div>
-
-      <div class="links" style="margin-top:0.5rem;">
-        <a class="btn" href="images/aero-08a-aluminum-nozzle-print.pdf" target="_blank" rel="noopener">View 6061-T6 Aluminum Nozzle Print (PDF)</a>
-        <a class="btn" href="images/aero-08b-phenolic-nozzle-print.pdf" target="_blank" rel="noopener">View Phenolic Linen Nozzle Print (PDF)</a>
-      </div>
+    <h4>Shop Machining &amp; Custom Rocket Nozzle Prints</h4>
+    <p>Alongside a fellow student machinist, I operated the manual lathe in the campus machine shop to turn aluminum and phenolic stock. To prepare for our custom post-certification rocket, the team completed CAD cross-sections and dimensioned engineering prints for 6061-T6 aluminum and phenolic linen converging-diverging nozzles before club funding concluded prior to physical fabrication.</p>
+    <div class="shot-row">
+      <figure>
+        <img src="images/aero-06-lathe-machining.jpg" onerror="tryNextExt(this)" alt="Vraj Prajapati inspecting cylindrical stock at the manual lathe chuck" loading="lazy">
+        <figcaption>Inspecting cylindrical aluminum stock and setup at the manual lathe chuck in the machine shop.</figcaption>
+      </figure>
+      <figure>
+        <img src="images/aero-07-nozzle-cad-section.PNG" onerror="tryNextExt(this)" alt="CAD cross-section of the converging-diverging nozzle showing internal contour, O-ring grooves, and threaded ports" loading="lazy">
+        <figcaption>Converging-diverging nozzle CAD cross-section with O-ring seal glands and threaded radial ports.</figcaption>
+      </figure>
+    </div>
+    <div class="links" style="margin-top:0.5rem;">
+      <a class="btn" href="images/aero-08a-aluminum-nozzle-print.pdf" target="_blank" rel="noopener">View 6061-T6 Aluminum Nozzle Print (PDF)</a>
+      <a class="btn" href="images/aero-08b-phenolic-nozzle-print.pdf" target="_blank" rel="noopener">View Phenolic Linen Nozzle Print (PDF)</a>
     </div>
 
     <ul class="tools">
@@ -214,13 +380,9 @@ function tryNextExt(img) {
       <li>Range Operations</li>
     </ul>
   </article>
-</section>
 
-<section id="sbcc-research">
-  <h2>Payload &amp; Recovery Systems Research</h2>
-  <p class="sub">As Payload &amp; Recovery Lead at SBCC, I led our sub-team in authoring trade studies, CAD assemblies, and test protocols for our custom rocket&rsquo;s recovery and payload subsystems. Both concepts were paused prior to hardware procurement due to club funding limits.</p>
-
-  <article class="project">
+  <!-- 03: DUAL-STAGE PISTON RECOVERY & PARAFOIL STUDY -->
+  <article class="project proj-body aero-card">
     <h3>Dual-Stage Piston Recovery &amp; GPS-Guided Parafoil Study <span class="pill">Concept &amp; CAD</span></h3>
     <p class="tagline">Team architecture trade study and Onshape mechanical assembly for active apogee piston ejection and steerable parafoil descent.</p>
     <dl class="spec">
@@ -229,27 +391,24 @@ function tryNextExt(img) {
       <div><dt>Architecture</dt><dd>CO&#8322;/Pyro Piston + Steerable Parafoil</dd></div>
     </dl>
 
-    <div class="proj-body">
-      <h4>Recovery Architecture &amp; Rigging Design</h4>
-      <p>To protect onboard electronics and minimize post-touchdown desert recovery distance on our custom vehicle, my team and I evaluated passive vs. active recovery architectures and designed a two-stage sequence: a pressurized piston ejection system at apogee to deploy a high-speed stabilizing drogue chute, followed by a lower-altitude (500&ndash;1,000 ft) main parafoil deployment. Using whiteboard rigging schematics, we mapped load paths across the bulkhead (&ldquo;godnut&rdquo;), quick links, shock cord, deployment bag retention (&ldquo;hairtie&rdquo; staging), and drogue riser so lines would deploy cleanly without tangling.</p>
+    <h4>Recovery Architecture &amp; Rigging Design</h4>
+    <p>To protect onboard electronics and reduce desert recovery walk distances, our team designed a two-stage recovery sequence: a pressurized piston ejection system at apogee for high-speed drogue stabilization, followed by main parafoil deployment at 500&ndash;1,000 ft. Whiteboard schematics mapped load paths across the bulkhead (&ldquo;godnut&rdquo;), quick links, shock cord, deployment bag retention (&ldquo;hairtie&rdquo; staging), and drogue riser to prevent line fouling.</p>
 
-      <h4>GPS-Guided Parafoil Concept &amp; Onshape Model</h4>
-      <p>For guided landing near the launch rail, we studied servo-actuated parafoil guidance units (referencing COTS 1-axis/2-axis steering controllers with swivel-mounted control lines) and modeled a full-vehicle recovery housing in Onshape&mdash;integrating the bulkhead, puncture needle/CO&#8322; canister actuator, and shock-cord eyebolts. Because club funding stopped before hardware procurement, the physical unit was never built, but the study established packaging constraints and deployment sequencing for future club teams.</p>
-
-      <div class="shot-row">
-        <figure>
-          <img src="images/aero-11-onshape-recovery-cad.jpg" onerror="tryNextExt(this)" alt="Onshape CAD assembly titled Final Recovery System showing full rocket and recovery bay integration" loading="lazy">
-          <figcaption>Onshape assembly (&ldquo;Final Recovery System&rdquo;) integrating the CO&#8322; actuator, puncture needle, and eyebolt bulkheads.</figcaption>
-        </figure>
-        <figure>
-          <img src="images/aero-09-recovery-whiteboard-piston.jpg" onerror="tryNextExt(this)" alt="Whiteboard diagram of the piston ejection system, cut shell interface, shock cord, and parachute bay" loading="lazy">
-          <figcaption>Internal piston ejection and shock-cord load-path schematic.</figcaption>
-        </figure>
-        <figure>
-          <img src="images/aero-10-recovery-whiteboard-rigging.jpg" onerror="tryNextExt(this)" alt="Whiteboard rigging diagram showing bulkhead, quick link, deployment bag, hairtie retention, and drogue riser" loading="lazy">
-          <figcaption>Harness rigging sequence mapping quick links, deployment bag staging, and drogue riser.</figcaption>
-        </figure>
-      </div>
+    <h4>GPS-Guided Parafoil Concept &amp; Onshape Model</h4>
+    <p>Evaluating COTS 1-axis and 2-axis servo parafoil guidance controllers with swivel-mounted steering lines, we modeled a complete recovery bay in Onshape integrating the bulkhead, puncture needle/CO&#8322; canister actuator, and shock-cord eyebolts to establish packaging constraints for future club builds.</p>
+    <div class="shot-row">
+      <figure>
+        <img src="images/aero-11-onshape-recovery-cad.jpg" onerror="tryNextExt(this)" alt="Onshape CAD assembly titled Final Recovery System showing full rocket and recovery bay integration" loading="lazy">
+        <figcaption>Onshape assembly (&ldquo;Final Recovery System&rdquo;) integrating the CO&#8322; actuator, puncture needle, and eyebolt bulkheads.</figcaption>
+      </figure>
+      <figure>
+        <img src="images/aero-09-recovery-whiteboard-piston.jpg" onerror="tryNextExt(this)" alt="Whiteboard diagram of the piston ejection system, cut shell interface, shock cord, and parachute bay" loading="lazy">
+        <figcaption>Internal piston ejection and shock-cord load-path schematic.</figcaption>
+      </figure>
+      <figure>
+        <img src="images/aero-10-recovery-whiteboard-rigging.jpg" onerror="tryNextExt(this)" alt="Whiteboard rigging diagram showing bulkhead, quick link, deployment bag, hairtie retention, and drogue riser" loading="lazy">
+        <figcaption>Harness rigging sequence mapping quick links, deployment bag staging, and drogue riser.</figcaption>
+      </figure>
     </div>
 
     <ul class="tools">
@@ -261,7 +420,8 @@ function tryNextExt(img) {
     </ul>
   </article>
 
-  <article class="project">
+  <!-- 04: IR THERMAL DIAGNOSTIC PAYLOAD -->
+  <article class="project proj-body aero-card">
     <h3>IR Thermal Diagnostic Payload &amp; Static-Fire Protocol <span class="pill">Research Protocol</span></h3>
     <p class="tagline">16-page experimental research document and operating procedure for infrared hotspot detection during static-fire and flight testing.</p>
     <dl class="spec">
@@ -270,13 +430,11 @@ function tryNextExt(img) {
       <div><dt>Telemetry Stack</dt><dd>Raspberry Pi + Barometer + Triaxial Accel</dd></div>
     </dl>
 
-    <div class="proj-body">
-      <h4>Research Objective &amp; Instrumentation Architecture</h4>
-      <p>To evaluate methods for detecting casing insulation breakdown, uneven propellant burn, or gas leaks before structural burn-through, I researched and authored a complete experimental payload proposal and standard operating procedure (SOP). The proposed architecture paired a Raspberry Pi flight computer, barometric altimeter, triaxial accelerometer, and RF telemetry transceiver with a TOPDON TC004 thermal camera to compare ground static-fire thermal profiles against flight conditions.</p>
+    <h4>Research Objective &amp; Instrumentation Architecture</h4>
+    <p>Authored a 16-page experimental payload proposal and standard operating procedure (SOP) to detect casing insulation breakdown, uneven propellant burn, or gas leaks prior to burn-through&mdash;pairing a Raspberry Pi flight computer, barometric altimeter, triaxial accelerometer, and RF transceiver with a TOPDON TC004 thermal camera.</p>
 
-      <h4>Calibration, Emissivity &amp; Quantitative Anomaly Thresholds</h4>
-      <p>Because bare metallic motor casings reflect ambient IR radiation, the protocol specifies surface prep using high-temperature matte black reference patches (&epsilon; &approx; 0.95 vs. &epsilon; = 0.60&ndash;0.80 for bare aluminum), dual-band temperature switching (&minus;20 to 100&deg;C pre-launch; up to 350&deg;C at T&minus;30 s before ignition), and quantitative abort/inspection flags&mdash;such as localized spikes exceeding 50&deg;C within 2 seconds or persistent post-burn heat soak above 30&ndash;40&deg;C outside the nozzle zone.</p>
-    </div>
+    <h4>Calibration, Emissivity &amp; Quantitative Anomaly Thresholds</h4>
+    <p>To eliminate ambient IR reflections off bare aluminum casings, the SOP specifies high-temperature matte black reference patches (&epsilon; &approx; 0.95 vs. &epsilon; = 0.60&ndash;0.80 for bare metal), dual-band thermal switching (&minus;20 to 100&deg;C pre-launch; up to 350&deg;C at T&minus;30 s), and abort/inspection triggers for localized spikes &gt;50&deg;C within 2 seconds or persistent post-burn heat soak &gt;30&ndash;40&deg;C outside the nozzle zone.</p>
 
     <ul class="tools">
       <li>Infrared Thermography</li>
@@ -286,21 +444,19 @@ function tryNextExt(img) {
       <li>Static-Fire Diagnostics</li>
     </ul>
   </article>
-</section>
 
-<section id="jpl">
-  <h2>NASA Jet Propulsion Laboratory &mdash; Facility Visit</h2>
-  <article class="project">
-    <h3>Space Flight Operations Facility (Building 230)</h3>
-    <p class="tagline">Behind-the-scenes tour of JPL&rsquo;s Deep Space Network mission control and spacecraft assembly facilities in Pasadena, CA.</p>
+  <!-- 05: NASA JPL VISIT -->
+  <article class="project proj-body aero-card">
+    <h3>NASA Jet Propulsion Laboratory &mdash; Facility Visit</h3>
+    <p class="tagline">Behind-the-scenes tour of mission control and flight hardware displays in Pasadena, CA.</p>
     <div class="shot-row">
       <figure>
-        <img src="images/aero-14-jpl-center-of-universe.jpg" onerror="tryNextExt(this)" alt="Vraj R. Prajapati standing beside the illuminated JPL seal known as the Center of the Universe inside the Charles Elachi Mission Control Center" loading="lazy">
-        <figcaption>Standing at &ldquo;The Center of the Universe&rdquo;&mdash;the famous illuminated floor seal inside JPL&rsquo;s Charles Elachi Mission Control Center, where Deep Space Network telemetry links to active interplanetary missions.</figcaption>
+        <img src="images/aero-14-jpl-center-of-universe.jpg" onerror="tryNextExt(this)" alt="Vraj Prajapati standing at the Center of the Universe plaque outside NASA JPL" loading="lazy">
+        <figcaption>Center of the Universe marker outside NASA Jet Propulsion Laboratory.</figcaption>
       </figure>
       <figure>
-        <img src="images/aero-15-jpl-voyager-model.jpg" onerror="tryNextExt(this)" alt="Vraj R. Prajapati and teammate in front of the full-scale Voyager spacecraft model at NASA JPL" loading="lazy">
-        <figcaption>In front of the full-scale Voyager spacecraft model during the JPL technical visit.</figcaption>
+        <img src="images/aero-15-jpl-voyager-model.jpg" onerror="tryNextExt(this)" alt="Full-scale Voyager spacecraft model on display at NASA JPL" loading="lazy">
+        <figcaption>Full-scale Voyager spacecraft engineering model at JPL.</figcaption>
       </figure>
     </div>
   </article>
@@ -309,28 +465,59 @@ function tryNextExt(img) {
 <p class="back"><a href="index.html">&larr; Back to overview</a></p>
 <footer>Vraj R. Prajapati. Last updated November 2026.</footer>
 </div>
-
 <script src="lightbox.js" defer></script>
-<script src="hud.js" defer></script>
 <script>
 (function () {
-  var hud = document.getElementById('traj-hud');
-  if (!hud) return;
-  var steps = hud.querySelectorAll('.traj-step');
-  function updateTraj() {
+  var track = document.getElementById('rocket-track');
+  var rocket = document.getElementById('rocket-vehicle');
+  var railFill = document.getElementById('rocket-rail-fill');
+  var plume = document.getElementById('rocket-plume-group');
+  var stages = document.querySelectorAll('.rocket-stage');
+  var hudAlt = document.getElementById('hud-alt');
+  var hudPct = document.getElementById('hud-pct');
+  var hudBadge = document.getElementById('hud-phase-badge');
+
+  if (!track || !rocket) return;
+
+  var stageNames = ['PAD // READY', 'BOOST // MAX-Q', 'COAST // APOGEE', 'MAIN CHUTE', 'TOUCHDOWN'];
+  var stageAlts = ['0 FT', '2,400 FT', '5,850 FT', '950 FT', '0 FT (SAFE)'];
+
+  function updateRocketLaunch() {
     var doc = document.documentElement;
+    var scrollTop = window.scrollY || doc.scrollTop || 0;
     var maxScroll = Math.max(1, doc.scrollHeight - window.innerHeight);
-    var pct = Math.min(1, Math.max(0, window.scrollY / maxScroll));
-    hud.style.setProperty('--traj-pct', pct.toFixed(4));
-    var activeIdx = Math.min(steps.length - 1, Math.floor(pct * steps.length));
-    steps.forEach(function (step, idx) {
-      step.classList.toggle('active', idx === activeIdx);
-      step.classList.toggle('passed', idx < activeIdx);
+    var pct = Math.min(1, Math.max(0, scrollTop / maxScroll));
+
+    var trackH = track.clientHeight || 230;
+    var travel = Math.max(0, trackH - 44);
+    var liftY = pct * travel;
+
+    // Rocket climbs upward from the bottom pad as user scrolls down
+    rocket.style.bottom = liftY.toFixed(1) + 'px';
+    railFill.style.height = Math.min(trackH - 16, liftY + 12).toFixed(1) + 'px';
+
+    // Determine active stage (0 = PAD at bottom -> 4 = TOUCHDOWN at top)
+    var activeIdx = Math.min(4, Math.floor(pct * 4.99));
+
+    // Cut engine flame at apogee/chute/touchdown, ignite during pad & max-q boost
+    if (plume) {
+      plume.style.opacity = activeIdx <= 1 ? '1' : '0.15';
+    }
+
+    stages.forEach(function (el) {
+      var idx = parseInt(el.getAttribute('data-stage'), 10);
+      el.classList.toggle('active', idx === activeIdx);
+      el.classList.toggle('passed', idx < activeIdx);
     });
+
+    if (hudAlt) hudAlt.textContent = stageAlts[activeIdx];
+    if (hudPct) hudPct.textContent = Math.round(pct * 100) + '%';
+    if (hudBadge) hudBadge.textContent = stageNames[activeIdx];
   }
-  window.addEventListener('scroll', updateTraj, { passive: true });
-  window.addEventListener('resize', updateTraj, { passive: true });
-  updateTraj();
+
+  window.addEventListener('scroll', updateRocketLaunch, { passive: true });
+  window.addEventListener('resize', updateRocketLaunch);
+  updateRocketLaunch();
 })();
 </script>
 </body>
