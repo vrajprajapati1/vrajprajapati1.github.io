@@ -120,7 +120,7 @@
   .aero-controls input[type="range"] {
     accent-color: var(--flt-sky);
     cursor: pointer;
-    width: 145px;
+    width: 140px;
   }
   .aero-btn {
     font-family: 'IBM Plex Mono', monospace;
@@ -141,7 +141,7 @@
 
   .aero-grid {
     display: grid;
-    grid-template-columns: 1.15fr 1fr;
+    grid-template-columns: 1.25fr 1fr;
     gap: 1.2rem;
     align-items: center;
   }
@@ -237,44 +237,66 @@ function tryNextExt(img) {
       <div><dt>Test Scope</dt><dd>Thrust Stand + 200 ft Course</dd></div>
     </dl>
 
-    <!-- Interactive REDBIRD MCX Thrust-Stand & Cruise Equilibrium Simulator -->
-    <div class="aero-console" aria-label="REDBIRD MCX thrust stand and cruise equilibrium simulator">
+    <!-- Animated 200 ft Flight-Test Corridor & REDBIRD MCX Thrust Simulator -->
+    <div class="aero-console" aria-label="Animated 200 ft flight corridor and REDBIRD MCX thrust simulator">
       <div class="aero-head">
-        <span class="aero-title">// REDBIRD MCX Thrust Calibration &amp; Cruise Force Balance</span>
+        <span class="aero-title">// 200 ft Flight-Test Corridor &amp; Force Balance</span>
         <div class="aero-controls">
           <label for="thr-slider">THROTTLE: <strong id="thr-pct" style="color:var(--flt-sky);">65% (CRUISE)</strong></label>
           <input type="range" id="thr-slider" min="25" max="100" value="65">
-          <button type="button" class="aero-btn active" id="cruise-snap-btn">65% Cruise Point</button>
+          <button type="button" class="aero-btn active" id="cruise-snap-btn">65% Cruise</button>
+          <button type="button" class="aero-btn" id="fly-toggle-btn">Pause</button>
         </div>
       </div>
       <div class="aero-grid">
         <div class="aero-svg-box">
-          <svg width="100%" height="148" viewBox="0 0 320 148" aria-hidden="true">
-            <!-- Horizon & Velocity Reference Line -->
-            <line x1="16" y1="76" x2="304" y2="76" stroke="rgba(56,189,248,0.18)" stroke-width="1" stroke-dasharray="4 4"/>
-            <!-- Lift Vector (Upward, L = W = 1.587 lbf) -->
-            <line x1="160" y1="76" x2="160" y2="24" stroke="#34D399" stroke-width="2.2"/>
-            <polygon points="160,18 155,27 165,27" fill="#34D399"/>
-            <text x="168" y="27" fill="#34D399" font-family="IBM Plex Mono, monospace" font-size="8.5">L = 1.587 lbf</text>
+          <svg width="100%" height="162" viewBox="0 0 340 162" aria-hidden="true">
+            <!-- Ground Line & 200 ft Range Cones -->
+            <line x1="14" y1="142" x2="326" y2="142" stroke="rgba(148,163,184,0.35)" stroke-width="1.4"/>
+            <!-- Start Cone (0 ft) -->
+            <polygon points="34,142 39,129 44,142" fill="#FB7185"/>
+            <line x1="39" y1="22" x2="39" y2="128" stroke="rgba(251,113,133,0.22)" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="39" y="155" text-anchor="middle" fill="#94A3B8" font-family="IBM Plex Mono, monospace" font-size="8">0 ft</text>
 
-            <!-- Weight Vector (Downward, W = 1.587 lbf) -->
-            <line x1="160" y1="76" x2="160" y2="128" stroke="#94A3B8" stroke-width="2.2"/>
-            <polygon points="160,134 155,125 165,125" fill="#94A3B8"/>
-            <text x="168" y="132" fill="#94A3B8" font-family="IBM Plex Mono, monospace" font-size="8.5">W = 1.587 lbf</text>
+            <!-- Finish Cone (200 ft) -->
+            <polygon points="296,142 301,129 306,142" fill="#FB7185"/>
+            <line x1="301" y1="22" x2="301" y2="128" stroke="rgba(251,113,133,0.22)" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="301" y="155" text-anchor="middle" fill="#94A3B8" font-family="IBM Plex Mono, monospace" font-size="8">200 ft</text>
 
-            <!-- Thrust Vector (Forward Right, dynamically scaled) -->
-            <line id="vec-thrust" x1="160" y1="76" x2="232" y2="76" stroke="#38BDF8" stroke-width="2.6"/>
-            <polygon id="arr-thrust" points="238,76 229,71 229,81" fill="#38BDF8"/>
-            <text id="lbl-thrust" x="234" y="66" text-anchor="end" fill="#38BDF8" font-family="IBM Plex Mono, monospace" font-size="8.5">T = 1.009 lbf</text>
+            <!-- Live Lap Stopwatch & Speed Readout -->
+            <text x="170" y="16" text-anchor="middle" fill="#38BDF8" font-family="IBM Plex Mono, monospace" font-size="8.5" id="hud-lap">LAP TIMER: 0.00 s // V = 26.65 ft/s</text>
 
-            <!-- Drag Vector (Aft Left, D = 0.908 lbf at cruise) -->
-            <line id="vec-drag" x1="160" y1="76" x2="96" y2="76" stroke="#FB7185" stroke-width="2.4"/>
-            <polygon id="arr-drag" points="90,76 99,71 99,81" fill="#FB7185"/>
-            <text x="86" y="66" text-anchor="start" fill="#FB7185" font-family="IBM Plex Mono, monospace" font-size="8.5">D = 0.908 lbf</text>
+            <!-- Steady Cruise Altitude Reference Line -->
+            <line x1="39" y1="78" x2="301" y2="78" stroke="rgba(56,189,248,0.16)" stroke-width="1" stroke-dasharray="4 4"/>
 
-            <!-- Stylized FT Tutor MKR2 Side Silhouette -->
-            <path d="M 118,76 L 194,76 L 202,71 L 176,68 L 154,68 L 122,72 L 114,62 L 109,62 L 114,76 Z" fill="rgba(56,189,248,0.22)" stroke="#38BDF8" stroke-width="1.4"/>
-            <circle cx="160" cy="76" r="3" fill="#FFF"/>
+            <!-- Moving FT Tutor MKR2 + Live Force Vectors -->
+            <g id="plane-group" transform="translate(80, 78)">
+              <!-- Lift Vector (Upward) -->
+              <line x1="0" y1="0" x2="0" y2="-34" stroke="#34D399" stroke-width="1.8"/>
+              <polygon points="0,-39 -3.5,-32 3.5,-32" fill="#34D399"/>
+              <text x="6" y="-31" fill="#34D399" font-family="IBM Plex Mono, monospace" font-size="7.5">L</text>
+
+              <!-- Weight Vector (Downward) -->
+              <line x1="0" y1="0" x2="0" y2="34" stroke="#94A3B8" stroke-width="1.8"/>
+              <polygon points="0,39 -3.5,32 3.5,32" fill="#94A3B8"/>
+              <text x="6" y="37" fill="#94A3B8" font-family="IBM Plex Mono, monospace" font-size="7.5">W</text>
+
+              <!-- Thrust Vector (Forward) -->
+              <line id="vec-thrust" x1="0" y1="0" x2="48" y2="0" stroke="#38BDF8" stroke-width="2.1"/>
+              <polygon id="arr-thrust" points="53,0 46,-3.5 46,3.5" fill="#38BDF8"/>
+              <text id="lbl-thrust" x="50" y="-6" text-anchor="end" fill="#38BDF8" font-family="IBM Plex Mono, monospace" font-size="7.5">T</text>
+
+              <!-- Drag Vector (Aft) -->
+              <line id="vec-drag" x1="0" y1="0" x2="-42" y2="0" stroke="#FB7185" stroke-width="2"/>
+              <polygon id="arr-drag" points="-47,0 -40,-3.5 -40,3.5" fill="#FB7185"/>
+              <text x="-43" y="-6" text-anchor="start" fill="#FB7185" font-family="IBM Plex Mono, monospace" font-size="7.5">D</text>
+
+              <!-- Aircraft Silhouette & Spinning Propeller -->
+              <g id="plane-pitch">
+                <path d="M -26,0 L 24,0 L 29,-3 L 12,-5 L -2,-5 L -23,-2 L -28,-9 L -32,-9 L -29,0 Z" fill="rgba(56,189,248,0.28)" stroke="#38BDF8" stroke-width="1.3"/>
+                <line id="prop-blade" x1="30" y1="-9" x2="30" y2="9" stroke="#FBBF24" stroke-width="1.8" stroke-linecap="round"/>
+              </g>
+            </g>
           </svg>
         </div>
         <div class="aero-metrics">
@@ -287,14 +309,14 @@ function tryNextExt(img) {
             <span class="a-v" id="val-vdc">8.38 V</span>
           </div>
           <div class="a-cell">
-            <span class="a-k">Shaft Power (&eta;=0.85)</span>
-            <span class="a-v" id="val-pshaft">81.6 W</span>
+            <span class="a-k">200 ft Lap Time</span>
+            <span class="a-v" id="val-laptime">7.50 s (26.7 ft/s)</span>
           </div>
           <div class="a-cell">
-            <span class="a-k">T/W &amp; Flight Regime</span>
-            <span class="a-v" id="val-regime">0.636 (CRUISE)</span>
+            <span class="a-k">Flight Regime</span>
+            <span class="a-v" id="val-regime" style="color:#34D399;">STEADY CRUISE</span>
           </div>
-          <p class="aero-note" id="aero-caption">At the 65% cruise test setting, bench-inferred thrust (1.009 lbf) exceeded power-derived drag (0.908 lbf) by 0.101 lbf (11.1% residual). Drag above 70% throttle to observe LiPo voltage sag down to 7.50 V.</p>
+          <p class="aero-note">Watch the FT Tutor MKR2 traverse the 200 ft cone course: at <strong>65% cruise</strong> it holds level flight in ~7.50 s, whereas pushing throttle higher induces climb/acceleration and LiPo voltage sag down to 7.50 V.</p>
         </div>
       </div>
     </div>
@@ -404,24 +426,29 @@ function tryNextExt(img) {
 (function () {
   var slider = document.getElementById('thr-slider');
   var cruiseBtn = document.getElementById('cruise-snap-btn');
+  var flyBtn = document.getElementById('fly-toggle-btn');
   if (!slider) return;
 
   var thrPctEl = document.getElementById('thr-pct');
   var valThrust = document.getElementById('val-thrust');
   var valVdc = document.getElementById('val-vdc');
-  var valPshaft = document.getElementById('val-pshaft');
+  var valLaptime = document.getElementById('val-laptime');
   var valRegime = document.getElementById('val-regime');
+  var hudLap = document.getElementById('hud-lap');
+
+  var planeGroup = document.getElementById('plane-group');
+  var planePitch = document.getElementById('plane-pitch');
+  var propBlade = document.getElementById('prop-blade');
   var vecThrust = document.getElementById('vec-thrust');
   var arrThrust = document.getElementById('arr-thrust');
   var lblThrust = document.getElementById('lbl-thrust');
 
-  // Exact REDBIRD MCX calibration breakpoints from table
   var pts = [
-    { thr: 25,  T: 0.287, V: 9.25, P: 31.45 },
-    { thr: 50,  T: 0.606, V: 9.71, P: 70.13 },
-    { thr: 65,  T: 1.009, V: 8.38, P: 81.60 },
-    { thr: 75,  T: 1.157, V: 7.50, P: 89.25 },
-    { thr: 100, T: 1.984, V: 7.50, P: 114.75 }
+    { thr: 25,  T: 0.287, V: 9.25, Vair: 17.8 },
+    { thr: 50,  T: 0.606, V: 9.71, Vair: 22.9 },
+    { thr: 65,  T: 1.009, V: 8.38, Vair: 26.652 },
+    { thr: 75,  T: 1.157, V: 7.50, Vair: 29.4 },
+    { thr: 100, T: 1.984, V: 7.50, Vair: 36.8 }
   ];
 
   function interp(thr) {
@@ -431,53 +458,96 @@ function tryNextExt(img) {
         return {
           T: pts[i].T + f * (pts[i + 1].T - pts[i].T),
           V: pts[i].V + f * (pts[i + 1].V - pts[i].V),
-          P: pts[i].P + f * (pts[i + 1].P - pts[i].P)
+          Vair: pts[i].Vair + f * (pts[i + 1].Vair - pts[i].Vair)
         };
       }
     }
     return pts[2];
   }
 
-  function update() {
+  var currentData = interp(65);
+  var flying = true;
+  var progress = 0; // 0 to 1 across 200 ft corridor
+  var lastTime = performance.now();
+  var propPhase = 0;
+
+  function updateReadouts() {
     var thr = parseInt(slider.value, 10);
-    var d = interp(thr);
-    var tw = d.T / 1.587;
+    currentData = interp(thr);
     var isCruise = thr === 65;
+    var lapSec = 200 / currentData.Vair;
 
     cruiseBtn.classList.toggle('active', isCruise);
     thrPctEl.textContent = thr + '%' + (isCruise ? ' (CRUISE)' : '');
-    valThrust.textContent = d.T.toFixed(3) + ' lbf';
-    valVdc.textContent = d.V.toFixed(2) + ' V';
-    valVdc.style.color = d.V <= 7.6 ? '#FBBF24' : '#F8FAFC';
-    valPshaft.textContent = d.P.toFixed(1) + ' W';
+    valThrust.textContent = currentData.T.toFixed(3) + ' lbf';
+    valVdc.textContent = currentData.V.toFixed(2) + ' V';
+    valVdc.style.color = currentData.V <= 7.6 ? '#FBBF24' : '#F8FAFC';
+    valLaptime.textContent = lapSec.toFixed(2) + ' s (' + currentData.Vair.toFixed(1) + ' ft/s)';
 
-    var regimeTxt = tw.toFixed(3) + ' ';
     if (thr < 58) {
-      regimeTxt += '(DESCENT)';
+      valRegime.textContent = 'DESCENT (T < D)';
       valRegime.style.color = '#FB7185';
     } else if (thr <= 68) {
-      regimeTxt += '(CRUISE)';
+      valRegime.textContent = 'STEADY CRUISE';
       valRegime.style.color = '#34D399';
     } else {
-      regimeTxt += '(CLIMB / SAG)';
+      valRegime.textContent = 'CLIMB / ACCEL';
       valRegime.style.color = '#38BDF8';
     }
-    valRegime.textContent = regimeTxt;
 
-    // Scale thrust vector arrow cleanly from x=160 up to x=302
-    var tipX = Math.round(160 + d.T * 70);
+    var tipX = Math.round(24 + currentData.T * 32);
     vecThrust.setAttribute('x2', tipX);
-    arrThrust.setAttribute('points', (tipX + 6) + ',76 ' + (tipX - 3) + ',71 ' + (tipX - 3) + ',81');
-    lblThrust.setAttribute('x', Math.max(215, tipX + 4));
-    lblThrust.textContent = 'T = ' + d.T.toFixed(3) + ' lbf';
+    arrThrust.setAttribute('points', (tipX + 5) + ',0 ' + (tipX - 2) + ',-3.5 ' + (tipX - 2) + ',3.5');
+    lblThrust.setAttribute('x', tipX + 2);
   }
 
-  slider.addEventListener('input', update);
+  function animateFlight(now) {
+    var dt = Math.min(0.05, (now - lastTime) / 1000);
+    lastTime = now;
+
+    if (flying) {
+      var thr = parseInt(slider.value, 10);
+      var lapDuration = 200 / currentData.Vair;
+      // Smooth visual pacing (~1.6x real-time so laps complete briskly)
+      progress += (dt * 1.6) / lapDuration;
+      if (progress > 1) progress -= 1;
+
+      var x = 39 + progress * (301 - 39);
+      // Altitude slope based on excess thrust (T - D_cruise)
+      var excess = currentData.T - 0.908;
+      var climbOffset = Math.max(-34, Math.min(34, excess * 36));
+      var y = 78 - (progress - 0.15) * climbOffset;
+      var pitchDeg = Math.max(-14, Math.min(14, -excess * 12));
+
+      planeGroup.setAttribute('transform', 'translate(' + x.toFixed(1) + ',' + y.toFixed(1) + ')');
+      planePitch.setAttribute('transform', 'rotate(' + pitchDeg.toFixed(1) + ')');
+
+      // Spinning propeller blur
+      propPhase += dt * (18 + thr * 0.45);
+      var bladeHalf = Math.max(1.5, Math.abs(Math.sin(propPhase)) * 9);
+      propBlade.setAttribute('y1', (-bladeHalf).toFixed(1));
+      propBlade.setAttribute('y2', bladeHalf.toFixed(1));
+
+      var elapsedLap = progress * lapDuration;
+      hudLap.textContent = 'LAP TIMER: ' + elapsedLap.toFixed(2) + ' s // V = ' + currentData.Vair.toFixed(2) + ' ft/s';
+    }
+    requestAnimationFrame(animateFlight);
+  }
+
+  slider.addEventListener('input', updateReadouts);
   cruiseBtn.addEventListener('click', function () {
     slider.value = 65;
-    update();
+    progress = 0;
+    updateReadouts();
   });
-  update();
+  flyBtn.addEventListener('click', function () {
+    flying = !flying;
+    flyBtn.textContent = flying ? 'Pause' : 'Resume';
+    lastTime = performance.now();
+  });
+
+  updateReadouts();
+  requestAnimationFrame(animateFlight);
 })();
 </script>
 </body>
