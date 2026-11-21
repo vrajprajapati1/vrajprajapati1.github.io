@@ -98,7 +98,7 @@
   .lab-sim-controls input[type="range"] {
     accent-color: var(--opt-violet);
     cursor: pointer;
-    width: 135px;
+    width: 115px;
   }
   .opt-btn {
     font-family: 'IBM Plex Mono', monospace;
@@ -230,35 +230,31 @@ function tryNextExt(img) {
       <div><dt>Assembly Scale</dt><dd>Several Hundred Discrete Components</dd></div>
     </dl>
 
-    <!-- Custom 12-Sector Stepped Tangent-Chord Moire Plate Simulator -->
+    <!-- Custom 12-Sector Stepped Tangent-Chord Moire Plate Simulator with Speed Changer -->
     <div class="lab-sim" aria-label="Interactive Dual-Motor Moire Interference Simulator">
       <div class="lab-sim-head">
         <span class="lab-sim-title">// Dual-Plate Moir&eacute; Optical Phase Simulator</span>
         <div class="lab-sim-controls">
-          <label for="moire-slider">PHASE OFFSET: <strong id="moire-deg" style="color:var(--opt-cyan);">18&deg;</strong></label>
+          <label for="moire-speed">SPEED: <strong id="moire-speed-val" style="color:var(--opt-violet);">0.35x</strong></label>
+          <input type="range" id="moire-speed" min="0" max="200" value="35">
+          <label for="moire-slider">PHASE: <strong id="moire-deg" style="color:var(--opt-cyan);">18&deg;</strong></label>
           <input type="range" id="moire-slider" min="0" max="360" value="18">
-          <button type="button" class="opt-btn active" id="moire-spin-btn">Pause Drive</button>
+          <button type="button" class="opt-btn active" id="moire-spin-btn">Pause</button>
         </div>
       </div>
       <div class="sim-grid">
         <div class="moire-stage">
           <svg width="194" height="194" viewBox="-100 -100 200 200" aria-hidden="true">
             <defs>
-              <!-- Single laser-cut plate modeled after your SolidWorks disc:
-                   4 concentric rings + 12-fold stepped tangent-chord ribs + 6 outer rim bosses -->
               <g id="single-moire-plate">
-                <!-- Outer Solid Rim & Concentric Divider Rings -->
                 <circle cx="0" cy="0" r="93" fill="none" stroke="#0F172A" stroke-width="5.5"/>
                 <circle cx="0" cy="0" r="78" fill="none" stroke="#0F172A" stroke-width="2.4"/>
                 <circle cx="0" cy="0" r="59" fill="none" stroke="#0F172A" stroke-width="2.6"/>
                 <circle cx="0" cy="0" r="41" fill="none" stroke="#0F172A" stroke-width="2.6"/>
                 <circle cx="0" cy="0" r="24" fill="none" stroke="#0F172A" stroke-width="2.4"/>
-                <!-- Center Hub & Shaft Bore -->
                 <circle cx="0" cy="0" r="8.5" fill="#0F172A"/>
                 <circle cx="0" cy="0" r="2.6" fill="#FFFFFF"/>
-                <!-- 12-Fold Stepped Tangent-Chord Webs (rendered dynamically on load) -->
                 <g id="moire-ribs-group" stroke="#0F172A" stroke-linecap="round"></g>
-                <!-- 6 Perimeter Mounting Bosses (every 60 deg) -->
                 <g id="moire-bosses-group"></g>
               </g>
             </defs>
@@ -281,7 +277,7 @@ function tryNextExt(img) {
           </div>
           <div class="sim-cell">
             <span class="sim-k">Interference State</span>
-            <span class="sim-v" id="moire-state" style="color:var(--opt-cyan);">COUNTER-ROTATING</span>
+            <span class="sim-v" id="moire-state" style="color:var(--opt-cyan);">GENTLE DRIVE (0.35x)</span>
           </div>
         </div>
       </div>
@@ -353,7 +349,7 @@ function tryNextExt(img) {
       <div><dt>Schedule</dt><dd>Delivered 2 Weeks Ahead of Deadline</dd></div>
     </dl>
 
-    <!-- Custom Top-Down 15-Rod Diagonal Tricolor Array Simulator (from your top-view sketch) -->
+    <!-- Top-Down Symmetric Mirrored Saffron/Green + 6-Hole Center Chakra Ring -->
     <div class="lab-sim" aria-label="Top-Down Diagonal Acrylic Rod Array Simulator">
       <div class="lab-sim-head">
         <span class="lab-sim-title">// Top-Down Acrylic Rod Layout &amp; Indian Tricolor Sequence</span>
@@ -369,24 +365,24 @@ function tryNextExt(img) {
           <svg width="194" height="194" viewBox="-100 -100 200 200" aria-hidden="true">
             <defs>
               <filter id="glow-saffron" x="-60%" y="-60%" width="220%" height="220%">
-                <feGaussianBlur stdDeviation="3.5" result="blur"/>
+                <feGaussianBlur stdDeviation="3.2" result="blur"/>
                 <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
               </filter>
               <filter id="glow-navy" x="-60%" y="-60%" width="220%" height="220%">
-                <feGaussianBlur stdDeviation="3.5" result="blur"/>
+                <feGaussianBlur stdDeviation="3.2" result="blur"/>
                 <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
               </filter>
               <filter id="glow-white" x="-70%" y="-70%" width="240%" height="240%">
-                <feGaussianBlur stdDeviation="2.8" result="blur"/>
+                <feGaussianBlur stdDeviation="2.6" result="blur"/>
                 <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
               </filter>
               <filter id="glow-green" x="-60%" y="-60%" width="220%" height="220%">
-                <feGaussianBlur stdDeviation="3.5" result="blur"/>
+                <feGaussianBlur stdDeviation="3.2" result="blur"/>
                 <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
               </filter>
             </defs>
 
-            <!-- Rounded Square Anodized Aluminum Plate (from your top-view drawing) -->
+            <!-- Rounded Square Anodized Aluminum Plate -->
             <rect x="-86" y="-86" width="172" height="172" rx="18" fill="#0F172A" stroke="#CBD5E1" stroke-width="5.5"/>
             <!-- 4 Corner Mounting Screws -->
             <circle cx="-69" cy="-69" r="4.5" fill="#475569" stroke="#020617" stroke-width="1"/>
@@ -394,44 +390,45 @@ function tryNextExt(img) {
             <circle cx="-69" cy="69" r="4.5" fill="#475569" stroke="#020617" stroke-width="1"/>
             <circle cx="69" cy="69" r="4.5" fill="#475569" stroke="#020617" stroke-width="1"/>
 
-            <!-- Band 1 (Bottom-Left Diagonal): 4 Large Saffron Rods -->
+            <!-- Band 1 (Bottom-Left): 4 Saffron Rods (Exact point-mirror of Green) -->
             <g class="ls-band-saffron" filter="url(#glow-saffron)">
-              <circle cx="-58" cy="54" r="7.5" fill="#FF9933" stroke="#FED7AA" stroke-width="1"/>
-              <circle cx="-36" cy="30" r="8" fill="#FF9933" stroke="#FED7AA" stroke-width="1"/>
-              <circle cx="-48" cy="-4" r="8" fill="#FF9933" stroke="#FED7AA" stroke-width="1"/>
-              <circle cx="-4" cy="38" r="8" fill="#FF9933" stroke="#FED7AA" stroke-width="1"/>
+              <circle cx="-62" cy="62" r="7.5" fill="#FF9933" stroke="#FED7AA" stroke-width="1"/>
+              <circle cx="-36" cy="40" r="7.5" fill="#FF9933" stroke="#FED7AA" stroke-width="1"/>
+              <circle cx="-54" cy="10" r="7.5" fill="#FF9933" stroke="#FED7AA" stroke-width="1"/>
+              <circle cx="-10" cy="54" r="7.5" fill="#FF9933" stroke="#FED7AA" stroke-width="1"/>
             </g>
 
-            <!-- Band 2 (Center Diagonal): 3 Large Dark Blue Rods (Ashoka Chakra) + 4 Small White Rods -->
+            <!-- Center 6-Dot Circular Ring (3 Large Dark Blue + 3 Small White Alternating) -->
             <g class="ls-band-navy" filter="url(#glow-navy)">
-              <circle cx="-18" cy="-28" r="8" fill="#1D4ED8" stroke="#60A5FA" stroke-width="1.3"/>
-              <circle cx="-8" cy="14" r="8" fill="#1D4ED8" stroke="#60A5FA" stroke-width="1.3"/>
-              <circle cx="22" cy="-10" r="8" fill="#1D4ED8" stroke="#60A5FA" stroke-width="1.3"/>
+              <!-- Angles: 150 deg, 30 deg, 270 deg (3 large dark blue rods) -->
+              <circle cx="-21.6" cy="-12.5" r="7.2" fill="#1D4ED8" stroke="#60A5FA" stroke-width="1.3"/>
+              <circle cx="21.6" cy="-12.5" r="7.2" fill="#1D4ED8" stroke="#60A5FA" stroke-width="1.3"/>
+              <circle cx="0" cy="25" r="7.2" fill="#1D4ED8" stroke="#60A5FA" stroke-width="1.3"/>
             </g>
             <g class="ls-band-white" filter="url(#glow-white)">
-              <circle cx="6" cy="-40" r="4.4" fill="#FFFFFF"/>
-              <circle cx="-27" cy="-10" r="4.4" fill="#FFFFFF"/>
-              <circle cx="15" cy="12" r="4.4" fill="#FFFFFF"/>
-              <circle cx="38" cy="-32" r="4.4" fill="#FFFFFF"/>
+              <!-- Angles: 270-180=90 deg (top), 210 deg (bottom-left), 330 deg (bottom-right) -->
+              <circle cx="0" cy="-25" r="4.3" fill="#FFFFFF"/>
+              <circle cx="-21.6" cy="12.5" r="4.3" fill="#FFFFFF"/>
+              <circle cx="21.6" cy="12.5" r="4.3" fill="#FFFFFF"/>
             </g>
 
-            <!-- Band 3 (Top-Right Diagonal): 4 Large India Green Rods -->
+            <!-- Band 3 (Top-Right): 4 India Green Rods (Exact point-mirror of Saffron) -->
             <g class="ls-band-green" filter="url(#glow-green)">
-              <circle cx="-2" cy="-58" r="8" fill="#16A34A" stroke="#86EFAC" stroke-width="1"/>
-              <circle cx="40" cy="-50" r="8" fill="#16A34A" stroke="#86EFAC" stroke-width="1"/>
-              <circle cx="64" cy="-70" r="8" fill="#16A34A" stroke="#86EFAC" stroke-width="1"/>
-              <circle cx="56" cy="-6" r="8" fill="#16A34A" stroke="#86EFAC" stroke-width="1"/>
+              <circle cx="62" cy="-62" r="7.5" fill="#16A34A" stroke="#86EFAC" stroke-width="1"/>
+              <circle cx="36" cy="-40" r="7.5" fill="#16A34A" stroke="#86EFAC" stroke-width="1"/>
+              <circle cx="54" cy="-10" r="7.5" fill="#16A34A" stroke="#86EFAC" stroke-width="1"/>
+              <circle cx="10" cy="-54" r="7.5" fill="#16A34A" stroke="#86EFAC" stroke-width="1"/>
             </g>
           </svg>
         </div>
         <div class="sim-readouts">
           <div class="sim-cell" style="border-left-color:#FF9933;">
-            <span class="sim-k">Outer Diagonal Bands</span>
-            <span class="sim-v">4 Saffron &amp; 4 Green Rods</span>
+            <span class="sim-k">Mirrored Outer Bands</span>
+            <span class="sim-v">4 Saffron &harr; 4 Green Rods</span>
           </div>
           <div class="sim-cell" style="border-left-color:#2563EB;">
-            <span class="sim-k">Center Chakra Band</span>
-            <span class="sim-v">3 Dark Blue + 4 Small White</span>
+            <span class="sim-k">Center 6-Rod Ring</span>
+            <span class="sim-v">3 Dark Blue + 3 Small White</span>
           </div>
           <div class="sim-cell" style="border-left-color:#16A34A;">
             <span class="sim-k">Potentiometer Dial</span>
@@ -555,7 +552,7 @@ function tryNextExt(img) {
 (function () {
   var svgNS = 'http://www.w3.org/2000/svg';
 
-  // 0. Build the 12-Fold Stepped Tangent-Chord Moire Plate (matching your SolidWorks disc)
+  // 0. Build the 12-Fold Stepped Tangent-Chord Moire Plate
   var ribsGroup = document.getElementById('moire-ribs-group');
   var bossesGroup = document.getElementById('moire-bosses-group');
   if (ribsGroup && bossesGroup) {
@@ -571,25 +568,18 @@ function tryNextExt(img) {
       parent.appendChild(line);
     }
 
-    // 12-fold stepped spiral-chord struts across the 4 annular rings
     for (var i = 0; i < 12; i++) {
       var base = i * 30;
-      // Ring 1 (hub r=8.5 to r=24): steep spiral vanes
       addLine(ribsGroup, 8.5, base, 24, base + 34, 2.2);
-      // Ring 2 (r=24 to r=41): counter-angled tangent chords + radial rib
       addLine(ribsGroup, 24, base + 12, 41, base + 42, 2.5);
       addLine(ribsGroup, 24, base + 26, 41, base + 8, 2.1);
-      // Ring 3 (r=41 to r=59): stepped polygon chords
       addLine(ribsGroup, 41, base + 6, 59, base + 34, 2.7);
       addLine(ribsGroup, 41, base + 22, 59, base + 6, 2.2);
-      // Ring 4 (r=59 to r=78): outer trapezoidal window chords
       addLine(ribsGroup, 59, base + 14, 78, base + 38, 2.9);
       addLine(ribsGroup, 59, base + 28, 78, base + 14, 2.3);
-      // Outer Rim Ring (r=78 to r=93): peripheral struts
       addLine(ribsGroup, 78, base + 15, 93, base + 15, 2.6);
     }
 
-    // 6 Perimeter Mounting Hole Bosses (at 0, 60, 120, 180, 240, 300 deg)
     for (var b = 0; b < 6; b++) {
       var ang = (b * 60 * Math.PI) / 180;
       var cx = (85.5 * Math.cos(ang)).toFixed(2);
@@ -611,9 +601,11 @@ function tryNextExt(img) {
     }
   }
 
-  // 1. Dual-Plate Moire Simulator
+  // 1. Dual-Plate Moire Simulator with Adjustable Speed Control
   var moireSlider = document.getElementById('moire-slider');
   var moireDeg = document.getElementById('moire-deg');
+  var moireSpeed = document.getElementById('moire-speed');
+  var moireSpeedVal = document.getElementById('moire-speed-val');
   var moireBtn = document.getElementById('moire-spin-btn');
   var plateRear = document.getElementById('plate-rear');
   var plateFront = document.getElementById('plate-front');
@@ -623,25 +615,41 @@ function tryNextExt(img) {
     var spinning = true;
     var rearAngle = 0;
     var frontOffset = 18;
+    var speedMult = 0.35;
+
+    function updateMoireStatus() {
+      if (!spinning || speedMult === 0) {
+        moireState.textContent = 'MANUAL PHASE HOLD';
+      } else {
+        moireState.textContent = 'DRIVE SPEED: ' + speedMult.toFixed(2) + 'x';
+      }
+    }
+
+    moireSpeed.addEventListener('input', function () {
+      speedMult = parseInt(moireSpeed.value, 10) / 100;
+      moireSpeedVal.textContent = speedMult.toFixed(2) + 'x';
+      updateMoireStatus();
+    });
 
     moireSlider.addEventListener('input', function () {
       frontOffset = parseInt(moireSlider.value, 10);
       moireDeg.textContent = frontOffset + '\u00b0';
-      if (!spinning) {
-        plateFront.setAttribute('transform', 'rotate(' + frontOffset + ')');
+      if (!spinning || speedMult === 0) {
+        var frontAngle = (frontOffset - rearAngle * 1.3 + 720) % 360;
+        plateFront.setAttribute('transform', 'rotate(' + frontAngle.toFixed(1) + ')');
       }
     });
 
     moireBtn.addEventListener('click', function () {
       spinning = !spinning;
-      moireBtn.textContent = spinning ? 'Pause Drive' : 'Resume Drive';
+      moireBtn.textContent = spinning ? 'Pause' : 'Resume';
       moireBtn.classList.toggle('active', spinning);
-      moireState.textContent = spinning ? 'COUNTER-ROTATING' : 'MANUAL PHASE HOLD';
+      updateMoireStatus();
     });
 
     function tickMoire() {
-      if (spinning) {
-        rearAngle = (rearAngle + 0.32) % 360;
+      if (spinning && speedMult > 0) {
+        rearAngle = (rearAngle + 0.55 * speedMult) % 360;
         var frontAngle = (frontOffset - rearAngle * 1.3 + 720) % 360;
         plateRear.setAttribute('transform', 'rotate(' + rearAngle.toFixed(1) + ')');
         plateFront.setAttribute('transform', 'rotate(' + frontAngle.toFixed(1) + ')');
