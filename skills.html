@@ -15,67 +15,32 @@
     --sk-border: rgba(148, 163, 184, 0.22);
   }
 
-  /* Precision Engineering Spec-Sheet Backdrop */
   body[data-page="skills"] {
     background-color: #060A12;
     background-image:
       radial-gradient(circle at 14% 12%, rgba(56, 189, 248, 0.08), transparent 44%),
       radial-gradient(circle at 86% 24%, rgba(251, 191, 36, 0.06), transparent 42%),
-      radial-gradient(circle at 50% 88%, rgba(52, 211, 153, 0.06), transparent 44%),
       linear-gradient(rgba(148, 163, 184, 0.03) 1px, transparent 1px),
       linear-gradient(90deg, rgba(148, 163, 184, 0.03) 1px, transparent 1px);
-    background-size: 100% 100%, 100% 100%, 100% 100%, 36px 36px, 36px 36px;
+    background-size: 100% 100%, 100% 100%, 36px 36px, 36px 36px;
   }
 
-  /* Arsenal Header Frame */
   .sk-header {
-    position: relative;
-    padding: 1.55rem 1.7rem 1.4rem;
-    margin-bottom: 1.75rem;
+    padding: 1.5rem 1.7rem 1.35rem;
+    margin-bottom: 1.5rem;
     background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(10, 15, 26, 0.95) 60%);
     border: 1px solid rgba(56, 189, 248, 0.24);
     border-radius: 10px;
   }
-  .sk-ribbon {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    padding-bottom: 0.85rem;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid rgba(148, 163, 184, 0.18);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.07em;
-    color: var(--sk-cyan);
-  }
-  .sk-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.23rem 0.65rem;
-    background: rgba(56, 189, 248, 0.12);
-    border: 1px solid rgba(56, 189, 248, 0.34);
-    border-radius: 4px;
-  }
-  .sk-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--sk-cyan);
-    box-shadow: 0 0 9px var(--sk-cyan);
-  }
 
-  /* Interactive Discipline Filter Console */
   .sk-toolbar {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 0.75rem;
-    padding: 0.85rem 1rem;
-    margin-bottom: 1.5rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.35rem;
     background: rgba(10, 15, 26, 0.92);
     border: 1px solid var(--sk-border);
     border-radius: 8px;
@@ -89,7 +54,7 @@
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.72rem;
     letter-spacing: 0.04em;
-    padding: 0.38rem 0.78rem;
+    padding: 0.36rem 0.75rem;
     border-radius: 5px;
     border: 1px solid rgba(148, 163, 184, 0.28);
     background: rgba(255, 255, 255, 0.03);
@@ -116,7 +81,7 @@
     border-color: var(--sk-brass);
     color: var(--sk-brass);
   }
-  .sk-tab.active[data-filter="avionics"] {
+  .sk-tab.active[data-filter="test"] {
     background: rgba(52, 211, 153, 0.18);
     border-color: var(--sk-emerald);
     color: var(--sk-emerald);
@@ -127,7 +92,6 @@
     color: #94A3B8;
   }
 
-  /* Upgraded Domain Cards with Color-Coded Discipline Accents */
   .skills {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -139,15 +103,12 @@
     }
   }
   .sk-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 1.35rem 1.4rem 1.15rem;
+    padding: 1.35rem 1.4rem 1.2rem;
     background: var(--sk-surface) !important;
     border: 1px solid var(--sk-border) !important;
     border-radius: 10px !important;
     box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
-    transition: transform 0.22s ease, border-color 0.22s ease, opacity 0.22s ease;
+    transition: transform 0.2s ease;
   }
   .sk-card:hover {
     transform: translateY(-2px);
@@ -158,7 +119,7 @@
   .sk-card[data-category="machining"] {
     border-top: 3px solid var(--sk-brass) !important;
   }
-  .sk-card[data-category="avionics"] {
+  .sk-card[data-category="test"] {
     border-top: 3px solid var(--sk-emerald) !important;
   }
   .sk-card.is-hidden {
@@ -174,7 +135,7 @@
   }
   .sk-card-head h3 {
     margin: 0 !important;
-    font-size: 1.12rem;
+    font-size: 1.1rem;
   }
   .sk-tag {
     font-family: 'IBM Plex Mono', monospace;
@@ -192,41 +153,18 @@
     background: rgba(251, 191, 36, 0.12);
     color: var(--sk-brass);
   }
-  .sk-card[data-category="avionics"] .sk-tag {
+  .sk-card[data-category="test"] .sk-tag {
     background: rgba(52, 211, 153, 0.12);
     color: var(--sk-emerald);
   }
 
   .sk-card ul {
-    margin: 0 0 1rem;
+    margin: 0;
     padding-left: 1.15rem;
   }
   .sk-card ul li {
     margin-bottom: 0.45rem;
     line-height: 1.48;
-  }
-
-  /* Hardware Proof Footer Link on Each Card */
-  .sk-proof {
-    padding-top: 0.7rem;
-    border-top: 1px solid rgba(148, 163, 184, 0.14);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.69rem;
-    color: #94A3B8;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.4rem;
-  }
-  .sk-proof a {
-    color: #E2E8F0;
-    text-decoration: none;
-    border-bottom: 1px dashed rgba(226, 232, 240, 0.4);
-  }
-  .sk-proof a:hover {
-    color: var(--sk-cyan);
-    border-bottom-color: var(--sk-cyan);
   }
 </style>
 </head>
@@ -235,146 +173,76 @@
 <nav aria-label="Pages"><a href="index.html">About</a><a href="aerospace.html">Aerospace &amp; Propulsion</a><a href="capstone.html">Senior Capstone</a><a href="internship.html">DPEA Internship</a><a href="projects.html">Electromechanical Sculptures</a><a href="rc.html">RC Airplane</a><a href="skills.html" aria-current="page">Technical Skills</a></nav>
 
 <header class="page-head sk-header">
-  <div class="sk-ribbon">
-    <span class="sk-badge"><span class="sk-dot"></span>WORKSHOP CAPABILITIES // 6 DOMAINS</span>
-    <span>SOLIDWORKS (CSWA) &middot; HAAS / TORMACH &middot; EMBEDDED C/C++</span>
-  </div>
-  <p class="eyebrow">06 // TECHNICAL ARSENAL &amp; SHOP CAPABILITIES</p>
+  <p class="eyebrow">06 // TECHNICAL SKILLS</p>
   <h1>Technical Skills</h1>
-  <p class="lede">CAD packages, machine-shop equipment, rapid prototyping tools, and embedded test hardware applied across propulsion, mechanisms, and mechatronics projects.</p>
+  <p class="lede">CAD packages, machine-shop equipment, rapid prototyping tools, and test instrumentation used across my coursework, club builds, and shop projects.</p>
 </header>
 
 <section>
-  <!-- Interactive Discipline Filter Bar -->
-  <div class="sk-toolbar" role="region" aria-label="Filter technical skills by discipline">
+  <div class="sk-toolbar" role="region" aria-label="Filter technical skills">
     <div class="sk-filters">
-      <button type="button" class="sk-tab active" data-filter="all">All Systems (6)</button>
-      <button type="button" class="sk-tab" data-filter="cad">CAD &amp; Workflow (2)</button>
-      <button type="button" class="sk-tab" data-filter="machining">Machining &amp; Shop (2)</button>
-      <button type="button" class="sk-tab" data-filter="avionics">Avionics &amp; Controls (2)</button>
+      <button type="button" class="sk-tab active" data-filter="all">All (4)</button>
+      <button type="button" class="sk-tab" data-filter="cad">CAD &amp; Simulation</button>
+      <button type="button" class="sk-tab" data-filter="machining">Machining &amp; Shop</button>
+      <button type="button" class="sk-tab" data-filter="test">Electronics &amp; Test</button>
     </div>
-    <span class="sk-count" id="sk-status">SHOWING ALL 31 CAPABILITIES</span>
+    <span class="sk-count" id="sk-status">20 SKILLS LISTED</span>
   </div>
 
   <div class="skills" id="skills-grid">
     <div class="sk-card" data-category="cad">
-      <div>
-        <div class="sk-card-head">
-          <h3>CAD &amp; Analysis</h3>
-          <span class="sk-tag">CAD / SIM</span>
-        </div>
-        <ul>
-          <li>SolidWorks (3D part modeling, large assemblies, GD&amp;T drawings, CSWA prep)</li>
-          <li>Onshape (cloud collaborative assemblies &amp; recovery bay packaging)</li>
-          <li>Creo Parametric &amp; Autodesk Fusion 360</li>
-          <li>MATLAB &amp; OpenRocket (flight trajectory &amp; data reduction)</li>
-          <li>Design for Manufacturing &amp; Assembly (DFMA)</li>
-          <li>Tolerance stack-up &amp; iterative prototyping</li>
-        </ul>
+      <div class="sk-card-head">
+        <h3>CAD &amp; Simulation</h3>
+        <span class="sk-tag">SOFTWARE</span>
       </div>
-      <div class="sk-proof">
-        <span>Applied in:</span>
-        <span><a href="capstone.html">Capstone</a> &middot; <a href="aerospace.html">Rocketry</a></span>
-      </div>
+      <ul>
+        <li>SolidWorks (3D part modeling, assemblies, dimensioned drawings, CSWA prep)</li>
+        <li>Onshape &amp; Creo Parametric</li>
+        <li>Autodesk Fusion 360 &amp; OpenSCAD</li>
+        <li>MATLAB &amp; OpenRocket</li>
+      </ul>
     </div>
 
     <div class="sk-card" data-category="machining">
-      <div>
-        <div class="sk-card-head">
-          <h3>CNC &amp; Manual Machining</h3>
-          <span class="sk-tag">SUBTRACTIVE</span>
-        </div>
-        <ul>
-          <li>Manual Precision Lathe (Hardinge &mdash; facing, turning, shoulders, collet stops)</li>
-          <li>Manual Vertical Mill (edge-finder setups, V-block fixturing, boring, broaching)</li>
-          <li>CNC Mill &amp; Lathe Operations (Tormach &amp; Haas setups)</li>
-          <li>SolidWorks CAM, G-code &amp; M-code fundamentals</li>
-          <li>Aluminum (6061-T6), brass, steel, Delrin &amp; phenolic stock</li>
-          <li>Precision metrology (calipers, micrometers, dial indicators, DROs)</li>
-        </ul>
+      <div class="sk-card-head">
+        <h3>CNC &amp; Manual Machining</h3>
+        <span class="sk-tag">MACHINING</span>
       </div>
-      <div class="sk-proof">
-        <span>Applied in:</span>
-        <span><a href="internship.html">DPEA Internship</a> &middot; <a href="projects.html">Sculptures</a></span>
-      </div>
+      <ul>
+        <li>Manual Precision Lathe (Hardinge &mdash; facing, turning, shoulders, collet stops)</li>
+        <li>Manual Vertical Mill (edge-finder setups, V-block fixturing, boring)</li>
+        <li>Tormach CNC Mill (setup &amp; operation) and Haas CNC Mill operation</li>
+        <li>SolidWorks CAM (toolpath generation &amp; post-processed G-code)</li>
+        <li>6061-T6 aluminum, brass, steel, Delrin &amp; phenolic stock</li>
+        <li>Shop metrology (calipers, micrometers, dial indicators, DROs)</li>
+      </ul>
     </div>
 
     <div class="sk-card" data-category="machining">
-      <div>
-        <div class="sk-card-head">
-          <h3>Rapid Prototyping &amp; Shop</h3>
-          <span class="sk-tag">FABRICATION</span>
-        </div>
-        <ul>
-          <li>FDM 3D Printing (PLA, PETG, ABS, carbon-fiber composites) &amp; SLA resin</li>
-          <li>CO&#8322; Laser Cutting &amp; DXF nesting (acrylic, wood, neoprene, cardboard)</li>
-          <li>Composite wet layup &amp; structural epoxy bonding (high-power rocketry)</li>
-          <li>Sheet-metal cutting, bending, arbor-press bearing seating &amp; hand tapping</li>
-        </ul>
+      <div class="sk-card-head">
+        <h3>Rapid Prototyping &amp; Fabrication</h3>
+        <span class="sk-tag">PROTOTYPING</span>
       </div>
-      <div class="sk-proof">
-        <span>Applied in:</span>
-        <span><a href="aerospace.html">L1/L2 Composites</a> &middot; <a href="internship.html">3D Print</a></span>
-      </div>
+      <ul>
+        <li>FDM 3D Printing (PLA, PETG, ABS, carbon-fiber composites) &amp; SLA resin printing</li>
+        <li>CO&#8322; Laser Cutting &amp; DXF nesting (acrylic, wood, neoprene, cardboard)</li>
+        <li>Fiberglass wet layup &amp; structural epoxy bonding (high-power rocketry)</li>
+        <li>Arbor-press bearing seating, sheet-metal bending &amp; hand tapping</li>
+      </ul>
     </div>
 
-    <div class="sk-card" data-category="avionics">
-      <div>
-        <div class="sk-card-head">
-          <h3>Electronics &amp; Instrumentation</h3>
-          <span class="sk-tag">HARDWARE / TEST</span>
-        </div>
-        <ul>
-          <li>Analog &amp; digital circuit breadboarding and schematic verification</li>
-          <li>Through-hole &amp; surface-mount PCB soldering and harness dressing</li>
-          <li>Multimeter, bench power supply &amp; function generator diagnostics</li>
-          <li>Infrared thermography calibration (emissivity compensation &amp; SOPs)</li>
-          <li>Static thrust-stand &amp; voltage/current power characterization</li>
-        </ul>
+    <div class="sk-card" data-category="test">
+      <div class="sk-card-head">
+        <h3>Electronics &amp; Test Instrumentation</h3>
+        <span class="sk-tag">HARDWARE / TEST</span>
       </div>
-      <div class="sk-proof">
-        <span>Applied in:</span>
-        <span><a href="aerospace.html">THRUST IR</a> &middot; <a href="rc.html">Thrust Stand</a></span>
-      </div>
-    </div>
-
-    <div class="sk-card" data-category="avionics">
-      <div>
-        <div class="sk-card-head">
-          <h3>Embedded Controls &amp; Actuators</h3>
-          <span class="sk-tag">FIRMWARE</span>
-        </div>
-        <ul>
-          <li>Arduino (Uno, Nano) &amp; ESP32 firmware in C/C++</li>
-          <li>Raspberry Pi flight-computer &amp; sensor-logging architectures</li>
-          <li>Ultrasonic, infrared, photoresistor, barometric &amp; accelerometer sensors</li>
-          <li>Brushless motors/ESCs, NEMA 17 steppers, servos &amp; DC gearmotors</li>
-          <li>LiPo battery safety, XT60 power distribution &amp; RC transmitter binding</li>
-        </ul>
-      </div>
-      <div class="sk-proof">
-        <span>Applied in:</span>
-        <span><a href="projects.html">Mechatronics</a> &middot; <a href="rc.html">RC Avionics</a></span>
-      </div>
-    </div>
-
-    <div class="sk-card" data-category="cad">
-      <div>
-        <div class="sk-card-head">
-          <h3>Engineering Workflow</h3>
-          <span class="sk-tag">SYSTEMS</span>
-        </div>
-        <ul>
-          <li>Hardware root-cause failure analysis &amp; teardown documentation</li>
-          <li>Standard Operating Procedures (SOPs) &amp; range safety checklists</li>
-          <li>Trade studies &amp; subsystem interface control</li>
-          <li>Small-batch shop assembly-line setup &amp; quality inspection</li>
-        </ul>
-      </div>
-      <div class="sk-proof">
-        <span>Applied in:</span>
-        <span><a href="capstone.html">Gearbox Teardown</a> &middot; <a href="aerospace.html">SOPs</a></span>
-      </div>
+      <ul>
+        <li>Circuit breadboarding and schematic wiring</li>
+        <li>Through-hole PCB and wire-harness soldering</li>
+        <li>Multimeter and bench power supply diagnostics</li>
+        <li>Static thrust-stand and voltage/current power characterization</li>
+        <li>Infrared thermography calibration &amp; test protocols (emissivity compensation, TOPDON TC004 research)</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -396,18 +264,14 @@
       tabs.forEach(function (t) { t.classList.remove('active'); });
       tab.classList.add('active');
 
-      var visibleItems = 0;
+      var count = 0;
       cards.forEach(function (card) {
         var match = filter === 'all' || card.getAttribute('data-category') === filter;
         card.classList.toggle('is-hidden', !match);
-        if (match) {
-          visibleItems += card.querySelectorAll('li').length;
-        }
+        if (match) count += card.querySelectorAll('li').length;
       });
 
-      status.textContent = filter === 'all'
-        ? 'SHOWING ALL ' + visibleItems + ' CAPABILITIES'
-        : 'FILTERED: ' + visibleItems + ' ' + filter.toUpperCase() + ' CAPABILITIES';
+      status.textContent = count + ' SKILLS LISTED';
     });
   });
 })();
