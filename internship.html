@@ -142,34 +142,34 @@
   }
   .dro-v {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.86rem;
+    font-size: 0.85rem;
     font-weight: 600;
     color: #F8FAFC;
   }
 
-  .boat-grid {
+  .srs-grid {
     display: grid;
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: 310px 1fr;
     gap: 1.25rem;
     align-items: center;
   }
-  @media (max-width: 720px) {
-    .boat-grid {
+  @media (max-width: 760px) {
+    .srs-grid {
       grid-template-columns: 1fr;
     }
   }
-  .boat-stage {
+  .srs-stage {
     width: 100%;
-    max-width: 280px;
-    height: 184px;
+    max-width: 310px;
+    height: 196px;
     margin: 0 auto;
     border-radius: 8px;
-    background: radial-gradient(circle at 50% 45%, #0B2536 0%, #06121C 100%);
+    background: radial-gradient(circle at 50% 45%, #0B1926 0%, #050C12 100%);
     border: 1px solid rgba(56, 189, 248, 0.34);
-    box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.75);
+    box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.78);
     overflow: hidden;
   }
-  .boat-readouts {
+  .srs-readouts {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.65rem;
@@ -346,104 +346,142 @@ function tryNextExt(img) {
     </div>
 
     <h4>Self-Reversing Screw Side-Drive Boat</h4>
-    <p>A compact 3D-printed demonstration hull propelled back and forth via a worm-gear-driven <strong>self-reversing screw</strong> (diamond-thread lead screw), showing elementary students how continuous one-way motor rotation automatically reverses travel direction at each end without switching motor polarity or adding electronics.</p>
+    <p>A compact 3D-printed demonstration hull propelled back and forth via a worm-gear-driven <strong>self-reversing screw</strong> (overlapping left- and right-hand helical tracks joined by U-turn loops at both ends). A swiveling crescent pawl inside the carriage tracks straight across groove intersections and pivots at each end loop&mdash;automatically reversing travel direction while the motor spins continuously in one direction without limit switches or reverse polarity.</p>
 
-    <!-- Interactive Self-Reversing Screw Boat Kinematics Simulator -->
-    <div class="dro-sim" aria-label="Interactive Self-Reversing Screw Boat Kinematics Simulator">
+    <!-- Close-Up Self-Reversing Screw & Swiveling Crescent Pawl Mechanism Simulator -->
+    <div class="dro-sim" aria-label="Interactive Self-Reversing Screw Mechanism Simulator">
       <div class="dro-sim-head">
-        <span class="dro-sim-title">// Self-Reversing Screw &amp; Worm-Drive Kinematics</span>
+        <span class="dro-sim-title">// Self-Reversing Screw &amp; Swiveling Crescent Pawl</span>
         <div class="dro-sim-controls">
-          <label for="srs-speed">DRIVE SPEED: <strong id="srs-speed-val" style="color:var(--dro-mint);">1.0x</strong></label>
-          <input type="range" id="srs-speed" min="30" max="200" value="100">
+          <label for="srs-speed">SHAFT SPEED: <strong id="srs-speed-val" style="color:var(--dro-mint);">0.75x</strong></label>
+          <input type="range" id="srs-speed" min="20" max="180" value="75">
           <button type="button" class="dro-btn active" id="srs-toggle-btn">Pause</button>
         </div>
       </div>
-      <div class="boat-grid">
-        <div class="boat-stage">
-          <svg width="280" height="184" viewBox="0 0 280 184" aria-hidden="true">
-            <!-- Water Surface & Wake Ripples -->
-            <rect x="0" y="136" width="280" height="48" fill="rgba(56, 189, 248, 0.14)"/>
-            <line x1="0" y1="136" x2="280" y2="136" stroke="#38BDF8" stroke-width="1.5" stroke-opacity="0.65"/>
-            <g id="srs-wake-group" stroke="#38BDF8" stroke-width="1.4" stroke-linecap="round" opacity="0.75">
-              <line x1="25" y1="148" x2="62" y2="148"/>
-              <line x1="100" y1="156" x2="148" y2="156"/>
-              <line x1="180" y1="146" x2="230" y2="146"/>
-              <line x1="60" y1="166" x2="110" y2="166"/>
-              <line x1="160" y1="168" x2="210" y2="168"/>
-            </g>
+      <div class="srs-grid">
+        <div class="srs-stage">
+          <svg width="310" height="196" viewBox="0 0 310 196" aria-hidden="true">
+            <defs>
+              <!-- Clip path for rotating helical grooves inside the cylindrical drum -->
+              <clipPath id="screw-drum-clip">
+                <rect x="64" y="72" width="186" height="44" rx="5"/>
+              </clipPath>
+              <linearGradient id="drumShade" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#0F172A"/>
+                <stop offset="35%" stop-color="#1E293B"/>
+                <stop offset="70%" stop-color="#1E293B"/>
+                <stop offset="100%" stop-color="#090D16"/>
+              </linearGradient>
+            </defs>
 
-            <!-- 3D-Printed Hull Profile -->
-            <path d="M 32,102 L 248,102 L 226,138 L 54,138 Z" fill="#0F172A" stroke="#34D399" stroke-width="2"/>
+            <!-- Top Legend: Opposite-Hand Helices -->
+            <circle cx="72" cy="18" r="3.5" fill="#38BDF8"/>
+            <text x="80" y="21" fill="#38BDF8" font-family="IBM Plex Mono, monospace" font-size="7.5">FWD HELIX (RH)</text>
+            <circle cx="174" cy="18" r="3.5" fill="#34D399"/>
+            <text x="182" y="21" fill="#34D399" font-family="IBM Plex Mono, monospace" font-size="7.5">REV HELIX (LH)</text>
 
-            <!-- Constant-Direction Motor & Worm Gear Reduction Stage -->
-            <rect x="38" y="54" width="28" height="22" rx="3" fill="#1E293B" stroke="#38BDF8" stroke-width="1.4"/>
-            <text x="52" y="47" text-anchor="middle" fill="#38BDF8" font-family="IBM Plex Mono, monospace" font-size="6.8">1-WAY MOTOR</text>
-            <!-- Worm Screw -->
-            <line x1="66" y1="65" x2="88" y2="65" stroke="#94A3B8" stroke-width="3"/>
+            <!-- Upper Anti-Rotation Guide Rail (keeps carriage from spinning) -->
+            <rect x="46" y="34" width="222" height="7" rx="3.5" fill="#334155" stroke="#64748B" stroke-width="1"/>
+            <text x="157" y="31" text-anchor="middle" fill="#94A3B8" font-family="IBM Plex Mono, monospace" font-size="6.5">ANTI-ROTATION GUIDE RAIL</text>
+
+            <!-- Left Worm-Gear Input Drive (Continuous 1-Way Rotation) -->
+            <rect x="14" y="54" width="22" height="18" rx="3" fill="#0F172A" stroke="#38BDF8" stroke-width="1.3"/>
+            <line x1="25" y1="72" x2="25" y2="94" stroke="#94A3B8" stroke-width="2.6"/>
             <g id="srs-worm-helix" stroke="#38BDF8" stroke-width="2">
-              <line x1="70" y1="60" x2="74" y2="70"/>
-              <line x1="76" y1="60" x2="80" y2="70"/>
-              <line x1="82" y1="60" x2="86" y2="70"/>
+              <line x1="20" y1="77" x2="30" y2="81"/>
+              <line x1="20" y1="84" x2="30" y2="88"/>
             </g>
-            <!-- Driven Worm Wheel on Screw End -->
-            <g id="srs-worm-gear" transform="translate(94, 72)">
-              <circle cx="0" cy="0" r="11" fill="#064E3B" stroke="#34D399" stroke-width="1.8"/>
-              <line x1="-8" y1="0" x2="8" y2="0" stroke="#34D399" stroke-width="1.4"/>
-              <line x1="0" y1="-8" x2="0" y2="8" stroke="#34D399" stroke-width="1.4"/>
+            <!-- Worm Wheel coupled to Screw Shaft -->
+            <g id="srs-worm-gear" transform="translate(38, 94)">
+              <circle cx="0" cy="0" r="13" fill="#064E3B" stroke="#34D399" stroke-width="1.8"/>
+              <line x1="-9" y1="0" x2="9" y2="0" stroke="#34D399" stroke-width="1.5"/>
+              <line x1="0" y1="-9" x2="0" y2="9" stroke="#34D399" stroke-width="1.5"/>
+            </g>
+            <!-- Continuous 1-Way Shaft Rotation Arrow -->
+            <path d="M 55 76 A 14 18 0 0 0 55 112" fill="none" stroke="#FBBF24" stroke-width="1.6"/>
+            <polygon points="52,110 56,115 58,109" fill="#FBBF24"/>
+            <text x="34" y="124" text-anchor="middle" fill="#FBBF24" font-family="IBM Plex Mono, monospace" font-size="6.5">1-WAY CW</text>
+
+            <!-- Bearing End Caps -->
+            <rect x="56" y="68" width="8" height="52" rx="2" fill="#475569" stroke="#94A3B8" stroke-width="1"/>
+            <rect x="250" y="68" width="8" height="52" rx="2" fill="#475569" stroke="#94A3B8" stroke-width="1"/>
+
+            <!-- Main Cylindrical Self-Reversing Screw Drum -->
+            <rect x="64" y="72" width="186" height="44" rx="5" fill="url(#drumShade)" stroke="#94A3B8" stroke-width="1.6"/>
+
+            <!-- Animated Overlapping Left & Right Helical Grooves + End U-Turn Loops -->
+            <g clip-path="url(#screw-drum-clip)">
+              <!-- Forward Right-Hand Helix Stripes (Cyan) -->
+              <g id="srs-helix-fwd" stroke="#38BDF8" stroke-width="3.2" stroke-linecap="round" opacity="0.82">
+                <line x1="40" y1="118" x2="72" y2="70"/>
+                <line x1="76" y1="118" x2="108" y2="70"/>
+                <line x1="112" y1="118" x2="144" y2="70"/>
+                <line x1="148" y1="118" x2="180" y2="70"/>
+                <line x1="184" y1="118" x2="216" y2="70"/>
+                <line x1="220" y1="118" x2="252" y2="70"/>
+                <line x1="256" y1="118" x2="288" y2="70"/>
+              </g>
+              <!-- Reverse Left-Hand Helix Stripes (Emerald) -->
+              <g id="srs-helix-rev" stroke="#34D399" stroke-width="3.2" stroke-linecap="round" opacity="0.82">
+                <line x1="40" y1="70" x2="72" y2="118"/>
+                <line x1="76" y1="70" x2="108" y2="118"/>
+                <line x1="112" y1="70" x2="144" y2="118"/>
+                <line x1="148" y1="70" x2="180" y2="118"/>
+                <line x1="184" y1="70" x2="216" y2="118"/>
+                <line x1="220" y1="70" x2="252" y2="118"/>
+                <line x1="256" y1="70" x2="288" y2="118"/>
+              </g>
+              <!-- Smooth End U-Turn Turnaround Loops connecting both helices -->
+              <path d="M 80 78 C 66 78, 66 110, 80 110" fill="none" stroke="#FBBF24" stroke-width="3" id="srs-uturn-left"/>
+              <path d="M 234 78 C 248 78, 248 110, 234 110" fill="none" stroke="#FBBF24" stroke-width="3" id="srs-uturn-right"/>
             </g>
 
-            <!-- Self-Reversing Diamond-Thread Shaft (x=105 to x=235) -->
-            <rect x="105" y="66" width="130" height="12" rx="2" fill="#1E293B" stroke="#94A3B8" stroke-width="1.4"/>
-            <!-- End Turnaround Stops -->
-            <rect x="102" y="61" width="4" height="22" rx="1" fill="#F59E0B" id="srs-stop-left"/>
-            <rect x="234" y="61" width="4" height="22" rx="1" fill="#F59E0B" id="srs-stop-right"/>
-
-            <!-- Criss-Cross Diamond Helix Grooves -->
-            <g stroke="#38BDF8" stroke-width="1.2" stroke-opacity="0.72">
-              <line x1="110" y1="67" x2="124" y2="77"/><line x1="124" y1="67" x2="138" y2="77"/>
-              <line x1="138" y1="67" x2="152" y2="77"/><line x1="152" y1="67" x2="166" y2="77"/>
-              <line x1="166" y1="67" x2="180" y2="77"/><line x1="180" y1="67" x2="194" y2="77"/>
-              <line x1="194" y1="67" x2="208" y2="77"/><line x1="208" y1="67" x2="222" y2="77"/>
-              <line x1="124" y1="67" x2="110" y2="77"/><line x1="138" y1="67" x2="124" y2="77"/>
-              <line x1="152" y1="67" x2="138" y2="77"/><line x1="166" y1="67" x2="152" y2="77"/>
-              <line x1="180" y1="67" x2="166" y2="77"/><line x1="194" y1="67" x2="180" y2="77"/>
-              <line x1="208" y1="67" x2="194" y2="77"/><line x1="222" y1="67" x2="208" y2="77"/>
+            <!-- Sliding Carriage Block Riding on Guide Rail & Screw -->
+            <g id="srs-carriage" transform="translate(157, 0)">
+              <!-- Linear Bushing on Upper Guide Rail -->
+              <rect x="-13" y="30" width="26" height="15" rx="3" fill="#1E293B" stroke="#94A3B8" stroke-width="1.4"/>
+              <!-- Vertical Carriage Neck -->
+              <rect x="-5" y="45" width="10" height="21" fill="#334155" stroke="#64748B" stroke-width="1"/>
+              <!-- Transparent Window Housing around Screw -->
+              <rect x="-17" y="66" width="34" height="56" rx="5" fill="rgba(15, 23, 42, 0.55)" stroke="#F8FAFC" stroke-width="1.6"/>
+              <!-- Swiveling Boat-Shaped Crescent Pawl (pivots +28 deg / -28 deg to bridge X-crossings!) -->
+              <g id="srs-crescent-pawl" transform="translate(0, 94) rotate(28)">
+                <path d="M -11 -3 Q 0 -7 11 -3 Q 13 0 11 3 Q 0 7 -11 3 Q -13 0 -11 -3 Z" fill="#FBBF24" stroke="#FFF" stroke-width="1"/>
+                <circle cx="0" cy="0" r="2.3" fill="#0F172A"/>
+              </g>
+              <!-- Lower Paddle Linkage into Water -->
+              <line x1="0" y1="122" x2="0" y2="178" stroke="#F8FAFC" stroke-width="2.5" stroke-linecap="round"/>
+              <rect x="-8" y="164" width="16" height="14" rx="2" fill="#38BDF8" fill-opacity="0.45" stroke="#38BDF8" stroke-width="1.3"/>
             </g>
 
-            <!-- Sliding Pawl Shuttle & Side-Drive Paddle Extending Into Water -->
-            <g id="srs-shuttle" transform="translate(170, 72)">
-              <rect x="-11" y="-12" width="22" height="24" rx="4" fill="#10B981" fill-opacity="0.32" stroke="#34D399" stroke-width="1.8"/>
-              <!-- Guide Pawl Pin engaging diamond groove -->
-              <circle cx="0" cy="0" r="3.2" fill="#FBBF24"/>
-              <!-- Side-Drive Paddle Arm reaching down into water -->
-              <line x1="0" y1="12" x2="0" y2="78" stroke="#F8FAFC" stroke-width="2.6" stroke-linecap="round"/>
-              <rect x="-7" y="66" width="14" height="14" rx="2" fill="#38BDF8" fill-opacity="0.45" stroke="#38BDF8" stroke-width="1.4"/>
+            <!-- Waterline & Wake Ripples -->
+            <rect x="0" y="156" width="310" height="40" fill="rgba(56, 189, 248, 0.13)"/>
+            <line x1="0" y1="156" x2="310" y2="156" stroke="#38BDF8" stroke-width="1.4" stroke-opacity="0.65"/>
+            <g id="srs-wake-group" stroke="#38BDF8" stroke-width="1.3" stroke-linecap="round" opacity="0.72">
+              <line x1="25" y1="168" x2="65" y2="168"/>
+              <line x1="115" y1="176" x2="165" y2="176"/>
+              <line x1="205" y1="166" x2="255" y2="166"/>
+              <line x1="70" y1="186" x2="120" y2="186"/>
+              <line x1="180" y1="186" x2="230" y2="186"/>
             </g>
-
-            <!-- Auto-Reversing Lateral Travel Indicator -->
-            <g id="srs-dir-arrow" transform="translate(170, 26)">
-              <line x1="-26" y1="0" x2="26" y2="0" stroke="#34D399" stroke-width="2"/>
-              <polygon points="26,-4.5 35,0 26,4.5" fill="#34D399"/>
-            </g>
-            <text x="170" y="16" text-anchor="middle" fill="#94A3B8" font-family="IBM Plex Mono, monospace" font-size="7">SELF-REVERSING DIAMOND SCREW</text>
           </svg>
         </div>
-        <div class="boat-readouts">
+        <div class="srs-readouts">
           <div class="dro-cell">
-            <span class="dro-k">Motor Input</span>
-            <span class="dro-v" style="color:var(--dro-cyan);">CONSTANT 1-WAY CW</span>
+            <span class="dro-k">Input Motor &amp; Worm</span>
+            <span class="dro-v" style="color:#FBBF24;">CONTINUOUS 1-WAY CW</span>
+          </div>
+          <div class="dro-cell" id="srs-cell-helix">
+            <span class="dro-k">Engaged Helix Groove</span>
+            <span class="dro-v" id="srs-helix-label" style="color:var(--dro-cyan);">RIGHT-HAND (FWD)</span>
           </div>
           <div class="dro-cell">
-            <span class="dro-k">Primary Stage</span>
-            <span class="dro-v">Worm Gear Reduction</span>
+            <span class="dro-k">Crescent Pawl Angle</span>
+            <span class="dro-v" id="srs-pawl-angle">+28&deg; (BRIDGING X)</span>
           </div>
-          <div class="dro-cell">
-            <span class="dro-k">Reversing Mechanism</span>
-            <span class="dro-v" style="color:var(--dro-mint);">CROSS-HELIX PAWL</span>
-          </div>
-          <div class="dro-cell">
-            <span class="dro-k">Shuttle Travel State</span>
-            <span class="dro-v" id="srs-travel-state" style="color:var(--dro-mint);">ADVANCING RIGHT &rarr;</span>
+          <div class="dro-cell" id="srs-cell-state">
+            <span class="dro-k">Turnaround Behavior</span>
+            <span class="dro-v" id="srs-travel-state" style="color:var(--dro-cyan);">TRACKING RIGHT &rarr;</span>
           </div>
         </div>
       </div>
@@ -504,31 +542,39 @@ function tryNextExt(img) {
     });
   }
 
-  // 2. Year 2: Self-Reversing Screw Side-Drive Boat Simulator
+  // 2. Year 2: Self-Reversing Screw & Swiveling Crescent Pawl Simulator
   var speedSlider = document.getElementById('srs-speed');
   var speedVal = document.getElementById('srs-speed-val');
   var toggleBtn = document.getElementById('srs-toggle-btn');
-  var shuttle = document.getElementById('srs-shuttle');
-  var dirArrow = document.getElementById('srs-dir-arrow');
-  var travelState = document.getElementById('srs-travel-state');
+  var carriage = document.getElementById('srs-carriage');
+  var crescentPawl = document.getElementById('srs-crescent-pawl');
+  var helixFwd = document.getElementById('srs-helix-fwd');
+  var helixRev = document.getElementById('srs-helix-rev');
+  var uturnLeft = document.getElementById('srs-uturn-left');
+  var uturnRight = document.getElementById('srs-uturn-right');
   var wormGear = document.getElementById('srs-worm-gear');
   var wormHelix = document.getElementById('srs-worm-helix');
   var wakeGroup = document.getElementById('srs-wake-group');
-  var stopLeft = document.getElementById('srs-stop-left');
-  var stopRight = document.getElementById('srs-stop-right');
+  var helixLabel = document.getElementById('srs-helix-label');
+  var pawlAngleEl = document.getElementById('srs-pawl-angle');
+  var travelState = document.getElementById('srs-travel-state');
+  var cellHelix = document.getElementById('srs-cell-helix');
+  var cellState = document.getElementById('srs-cell-state');
 
-  if (speedSlider && shuttle) {
+  if (speedSlider && carriage) {
     var running = true;
-    var shuttleX = 170;
-    var dir = 1; // 1 = right, -1 = left (auto-reverses at x=120 and x=220)
+    var posX = 157;
+    var dir = 1; // 1 = right (RH helix), -1 = left (LH helix)
+    var pawlDeg = 28;
+    var helixPhase = 0;
     var gearAngle = 0;
-    var helixShift = 0;
+    var wormShift = 0;
     var wakeShift = 0;
-    var flashTimer = 0;
+    var uturnFlash = 0;
 
     speedSlider.addEventListener('input', function () {
       var mult = parseInt(speedSlider.value, 10) / 100;
-      speedVal.textContent = mult.toFixed(1) + 'x';
+      speedVal.textContent = mult.toFixed(2) + 'x';
     });
 
     toggleBtn.addEventListener('click', function () {
@@ -541,43 +587,66 @@ function tryNextExt(img) {
       if (running) {
         var mult = parseInt(speedSlider.value, 10) / 100;
 
-        // Motor & worm gear spin continuously in one direction
-        gearAngle = (gearAngle + 2.2 * mult) % 360;
-        helixShift = (helixShift + 0.4 * mult) % 6;
-        wormGear.setAttribute('transform', 'translate(94, 72) rotate(' + gearAngle.toFixed(1) + ')');
-        wormHelix.setAttribute('transform', 'translate(' + helixShift.toFixed(2) + ', 0)');
+        // 1. Continuous 1-way motor & worm gear rotation
+        gearAngle = (gearAngle + 2.4 * mult) % 360;
+        wormShift = (wormShift + 0.35 * mult) % 7;
+        wormGear.setAttribute('transform', 'translate(38, 94) rotate(' + gearAngle.toFixed(1) + ')');
+        wormHelix.setAttribute('transform', 'translate(0, ' + wormShift.toFixed(2) + ')');
 
-        // Shuttle advances along diamond screw and self-reverses at both ends
-        shuttleX += 0.75 * mult * dir;
-        if (shuttleX >= 220) {
-          shuttleX = 220;
+        // 2. Apparent vertical travel of right-hand and left-hand helical grooves on rotating drum
+        helixPhase = (helixPhase + 0.65 * mult) % 36;
+        helixFwd.setAttribute('transform', 'translate(' + helixPhase.toFixed(2) + ', 0)');
+        helixRev.setAttribute('transform', 'translate(' + (-helixPhase).toFixed(2) + ', 0)');
+
+        // 3. Carriage linear travel & U-turn turnaround loop pivot
+        posX += 0.85 * mult * dir;
+        if (posX >= 234) {
+          posX = 234;
           dir = -1;
-          flashTimer = 18;
-          travelState.textContent = 'AUTO-REVERSED \u2190 LEFT';
+          uturnFlash = 24;
+          helixLabel.textContent = 'LEFT-HAND (REV)';
+          helixLabel.style.color = '#34D399';
+          cellHelix.style.borderLeftColor = '#34D399';
+          travelState.textContent = 'U-TURN LOOP \u2190 REV';
           travelState.style.color = '#FBBF24';
-        } else if (shuttleX <= 120) {
-          shuttleX = 120;
+          cellState.style.borderLeftColor = '#FBBF24';
+        } else if (posX <= 80) {
+          posX = 80;
           dir = 1;
-          flashTimer = 18;
-          travelState.textContent = 'AUTO-REVERSED RIGHT \u2192';
-          travelState.style.color = '#34D399';
-        } else if (flashTimer > 0) {
-          flashTimer--;
-          if (flashTimer === 0) {
-            travelState.textContent = dir === 1 ? 'ADVANCING RIGHT \u2192' : '\u2190 ADVANCING LEFT';
-            travelState.style.color = '#34D399';
+          uturnFlash = 24;
+          helixLabel.textContent = 'RIGHT-HAND (FWD)';
+          helixLabel.style.color = '#38BDF8';
+          cellHelix.style.borderLeftColor = '#38BDF8';
+          travelState.textContent = 'U-TURN LOOP \u2192 FWD';
+          travelState.style.color = '#FBBF24';
+          cellState.style.borderLeftColor = '#FBBF24';
+        } else if (uturnFlash > 0) {
+          uturnFlash--;
+          if (uturnFlash === 0) {
+            travelState.textContent = dir === 1 ? 'TRACKING RIGHT \u2192' : '\u2190 TRACKING LEFT';
+            travelState.style.color = dir === 1 ? '#38BDF8' : '#34D399';
+            cellState.style.borderLeftColor = dir === 1 ? '#38BDF8' : '#34D399';
           }
         }
 
-        // Highlight turnaround stop on reversal
-        stopRight.setAttribute('fill', (flashTimer > 0 && dir === -1) ? '#FFFFFF' : '#F59E0B');
-        stopLeft.setAttribute('fill', (flashTimer > 0 && dir === 1) ? '#FFFFFF' : '#F59E0B');
+        // Smoothly swivel crescent pawl angle between +28 deg (RH groove) and -28 deg (LH groove)
+        var targetDeg = dir === 1 ? 28 : -28;
+        pawlDeg += (targetDeg - pawlDeg) * 0.22;
+        pawlAngleEl.textContent = (pawlDeg >= 0 ? '+' : '') + Math.round(pawlDeg) + '\u00b0 (BRIDGING X)';
 
-        shuttle.setAttribute('transform', 'translate(' + shuttleX.toFixed(1) + ', 72)');
-        dirArrow.setAttribute('transform', 'translate(170, 26) scale(' + dir + ', 1)');
+        // Highlight active U-turn turnaround loop during reversal
+        uturnRight.setAttribute('stroke', (uturnFlash > 0 && dir === -1) ? '#FFFFFF' : '#FBBF24');
+        uturnLeft.setAttribute('stroke', (uturnFlash > 0 && dir === 1) ? '#FFFFFF' : '#FBBF24');
 
-        wakeShift = (wakeShift - 0.75 * mult * dir + 40) % 40;
-        wakeGroup.setAttribute('transform', 'translate(' + (wakeShift - 20).toFixed(1) + ', 0)');
+        // Highlight active helix groove brightness
+        helixFwd.setAttribute('opacity', dir === 1 ? '0.95' : '0.32');
+        helixRev.setAttribute('opacity', dir === -1 ? '0.95' : '0.32');
+
+        carriage.setAttribute('transform', 'translate(' + posX.toFixed(1) + ', 0)');
+        crescentPawl.setAttribute('transform', 'translate(0, 94) rotate(' + pawlDeg.toFixed(1) + ')');
+
+        wakeShift = (wakeShift - 0.85 * mult * dir + 50) % 50;
+        wakeGroup.setAttribute('transform', 'translate(' + (wakeShift - 25).toFixed(1) + ', 0)');
       }
       requestAnimationFrame(tickSelfReversingScrew);
     }
