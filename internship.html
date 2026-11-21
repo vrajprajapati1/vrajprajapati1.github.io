@@ -11,6 +11,7 @@
     --dro-emerald: #10B981;
     --dro-mint: #34D399;
     --dro-cyan: #38BDF8;
+    --dro-amber: #F59E0B;
     --dro-surface: rgba(8, 18, 16, 0.9);
     --dro-border: rgba(16, 185, 129, 0.26);
   }
@@ -148,7 +149,7 @@
 
   .boat-grid {
     display: grid;
-    grid-template-columns: 270px 1fr;
+    grid-template-columns: 280px 1fr;
     gap: 1.25rem;
     align-items: center;
   }
@@ -159,8 +160,8 @@
   }
   .boat-stage {
     width: 100%;
-    max-width: 270px;
-    height: 176px;
+    max-width: 280px;
+    height: 184px;
     margin: 0 auto;
     border-radius: 8px;
     background: radial-gradient(circle at 50% 45%, #0B2536 0%, #06121C 100%);
@@ -278,14 +279,14 @@ function tryNextExt(img) {
     </div>
 
     <h4>Tormach CNC Operations</h4>
-    <p>Transitioning onto the Tormach CNC mill, I learned workholding offsets, tool-length probing, and CAM toolpaths—producing a batch of custom safety chuck keys for the rebuilt machines.</p>
+    <p>Transitioning onto the Tormach CNC mill, I learned workholding offsets, tool-length probing, and CAM toolpaths&mdash;producing a batch of custom safety chuck keys for the rebuilt machines.</p>
     <div class="shot-row">
       <figure><img src="images/int-09-cnc-operation.gif" onerror="tryNextExt(this)" alt="Tormach CNC mill executing a cutting pass" loading="lazy"><figcaption>Tormach CNC mill executing a profile pass.</figcaption></figure>
       <figure><img src="images/int-10-tool-holder.jpg" onerror="tryNextExt(this)" alt="Close-up of a CNC collet and tool-holder assembly" loading="lazy"><figcaption>Tormach collet and tool-holder assembly.</figcaption></figure>
     </div>
 
     <h4>Cart Preparation &amp; Mechanical Assembly Line</h4>
-    <p>Preparing 21 steel rolling carts required drilling ~75 aligned mounting holes per frame—an early indexing slip stretched a 3.5-week estimate to nearly five weeks and underscored the value of jig verification on multi-unit runs. Dedicated assembly stations streamlined DRO scale, bracket, and chuck-key plate installation.</p>
+    <p>Preparing 21 steel rolling carts required drilling ~75 aligned mounting holes per frame&mdash;an early indexing slip stretched a 3.5-week estimate to nearly five weeks and underscored the value of jig verification on multi-unit runs. Dedicated assembly stations streamlined DRO scale, bracket, and chuck-key plate installation.</p>
     <div class="shot-row">
       <figure><img src="images/int-11-cart-rail-hole.jpg" onerror="tryNextExt(this)" alt="Steel rolling cart frame showing aligned mounting hole" loading="lazy"><figcaption>Steel cart frame with aligned mounting hole.</figcaption></figure>
       <figure><img src="images/int-12-dro-bracket-drawing.jpg" onerror="tryNextExt(this)" alt="Dimensioned engineering drawing for the Z-axis DRO scale mounting bracket" loading="lazy"><figcaption>Z-axis DRO mounting bracket engineering print.</figcaption></figure>
@@ -330,7 +331,7 @@ function tryNextExt(img) {
   <!-- YEAR 2: ELEMENTARY PHYSICS DEMOS -->
   <article class="project proj-body dro-card">
     <h3>Year 2: Interactive Physics Demonstrations for Elementary Students</h3>
-    <p class="tagline">Rapid-prototyped 3D-printed mechanical toys illustrating center of mass, static equilibrium, and worm-gear kinematics.</p>
+    <p class="tagline">Rapid-prototyped 3D-printed mechanical toys illustrating center of mass, static equilibrium, and self-reversing screw kinematics.</p>
     <dl class="spec">
       <div><dt>Organization</dt><dd>Dos Pueblos Engineering Academy</dd></div>
       <div><dt>Duration</dt><dd>~5 Months (Ending Dec 2025)</dd></div>
@@ -344,84 +345,105 @@ function tryNextExt(img) {
       <figure><video src="images/int-32-incline-mobile-demo.mp4" poster="images/int-32-incline-mobile-demo-poster.jpg" controls playsinline muted></video><figcaption>Incline Mobile oscillating and self-leveling under disturbance.</figcaption></figure>
     </div>
 
-    <h4>Worm-Gear Side-Drive Boat</h4>
-    <p>A compact 3D-printed demonstration hull propelled laterally via an enclosed worm-gear drive train, converting high-speed motor rotation into high-torque, self-locking perpendicular paddle motion with no exposed external linkages.</p>
+    <h4>Self-Reversing Screw Side-Drive Boat</h4>
+    <p>A compact 3D-printed demonstration hull propelled back and forth via a worm-gear-driven <strong>self-reversing screw</strong> (diamond-thread lead screw), showing elementary students how continuous one-way motor rotation automatically reverses travel direction at each end without switching motor polarity or adding electronics.</p>
 
-    <!-- Interactive Worm-Gear Side-Drive Boat Kinematics Simulator -->
-    <div class="dro-sim" aria-label="Interactive Worm-Gear Side-Drive Boat Kinematics Simulator">
+    <!-- Interactive Self-Reversing Screw Boat Kinematics Simulator -->
+    <div class="dro-sim" aria-label="Interactive Self-Reversing Screw Boat Kinematics Simulator">
       <div class="dro-sim-head">
-        <span class="dro-sim-title">// Worm-Gear Side-Drive Boat Kinematics</span>
+        <span class="dro-sim-title">// Self-Reversing Screw &amp; Worm-Drive Kinematics</span>
         <div class="dro-sim-controls">
-          <label for="worm-rpm">MOTOR RPM: <strong id="worm-rpm-val" style="color:var(--dro-mint);">120 RPM</strong></label>
-          <input type="range" id="worm-rpm" min="30" max="240" value="120">
-          <button type="button" class="dro-btn active" id="worm-dir-btn">Reverse Drive</button>
+          <label for="srs-speed">DRIVE SPEED: <strong id="srs-speed-val" style="color:var(--dro-mint);">1.0x</strong></label>
+          <input type="range" id="srs-speed" min="30" max="200" value="100">
+          <button type="button" class="dro-btn active" id="srs-toggle-btn">Pause</button>
         </div>
       </div>
       <div class="boat-grid">
         <div class="boat-stage">
-          <svg width="270" height="176" viewBox="0 0 270 176" aria-hidden="true">
-            <!-- Water Surface & Animated Wake Ripples -->
-            <rect x="0" y="128" width="270" height="48" fill="rgba(56, 189, 248, 0.14)"/>
-            <line x1="0" y1="128" x2="270" y2="128" stroke="#38BDF8" stroke-width="1.5" stroke-opacity="0.65"/>
-            <g id="boat-wake-group" stroke="#38BDF8" stroke-width="1.4" stroke-linecap="round" opacity="0.75">
-              <line x1="25" y1="140" x2="62" y2="140"/>
-              <line x1="95" y1="148" x2="142" y2="148"/>
-              <line x1="175" y1="138" x2="225" y2="138"/>
-              <line x1="55" y1="158" x2="105" y2="158"/>
-              <line x1="155" y1="160" x2="205" y2="160"/>
+          <svg width="280" height="184" viewBox="0 0 280 184" aria-hidden="true">
+            <!-- Water Surface & Wake Ripples -->
+            <rect x="0" y="136" width="280" height="48" fill="rgba(56, 189, 248, 0.14)"/>
+            <line x1="0" y1="136" x2="280" y2="136" stroke="#38BDF8" stroke-width="1.5" stroke-opacity="0.65"/>
+            <g id="srs-wake-group" stroke="#38BDF8" stroke-width="1.4" stroke-linecap="round" opacity="0.75">
+              <line x1="25" y1="148" x2="62" y2="148"/>
+              <line x1="100" y1="156" x2="148" y2="156"/>
+              <line x1="180" y1="146" x2="230" y2="146"/>
+              <line x1="60" y1="166" x2="110" y2="166"/>
+              <line x1="160" y1="168" x2="210" y2="168"/>
             </g>
 
-            <!-- 3D-Printed Hull Profile (Cutaway View) -->
-            <path d="M 38,94 L 232,94 L 210,132 L 60,132 Z" fill="#0F172A" stroke="#34D399" stroke-width="2"/>
-            <!-- Enclosed Gearbox Housing -->
-            <rect x="74" y="42" width="122" height="52" rx="7" fill="rgba(16, 185, 129, 0.1)" stroke="#10B981" stroke-width="1.5" stroke-dasharray="4 3"/>
-            <text x="135" y="34" text-anchor="middle" fill="#94A3B8" font-family="IBM Plex Mono, monospace" font-size="7.5">ENCLOSED 90&deg; WORM DRIVE</text>
+            <!-- 3D-Printed Hull Profile -->
+            <path d="M 32,102 L 248,102 L 226,138 L 54,138 Z" fill="#0F172A" stroke="#34D399" stroke-width="2"/>
 
-            <!-- Horizontal Motor Shaft & Worm Screw -->
-            <line x1="82" y1="58" x2="188" y2="58" stroke="#94A3B8" stroke-width="3"/>
-            <rect x="78" y="49" width="22" height="18" rx="2" fill="#1E293B" stroke="#38BDF8" stroke-width="1.2"/>
-            <!-- Helical Worm Threads (animated X shift) -->
-            <g id="worm-threads" stroke="#38BDF8" stroke-width="2.4" stroke-linecap="round">
-              <line x1="114" y1="51" x2="120" y2="65"/>
-              <line x1="123" y1="51" x2="129" y2="65"/>
-              <line x1="132" y1="51" x2="138" y2="65"/>
-              <line x1="141" y1="51" x2="147" y2="65"/>
-              <line x1="150" y1="51" x2="156" y2="65"/>
+            <!-- Constant-Direction Motor & Worm Gear Reduction Stage -->
+            <rect x="38" y="54" width="28" height="22" rx="3" fill="#1E293B" stroke="#38BDF8" stroke-width="1.4"/>
+            <text x="52" y="47" text-anchor="middle" fill="#38BDF8" font-family="IBM Plex Mono, monospace" font-size="6.8">1-WAY MOTOR</text>
+            <!-- Worm Screw -->
+            <line x1="66" y1="65" x2="88" y2="65" stroke="#94A3B8" stroke-width="3"/>
+            <g id="srs-worm-helix" stroke="#38BDF8" stroke-width="2">
+              <line x1="70" y1="60" x2="74" y2="70"/>
+              <line x1="76" y1="60" x2="80" y2="70"/>
+              <line x1="82" y1="60" x2="86" y2="70"/>
+            </g>
+            <!-- Driven Worm Wheel on Screw End -->
+            <g id="srs-worm-gear" transform="translate(94, 72)">
+              <circle cx="0" cy="0" r="11" fill="#064E3B" stroke="#34D399" stroke-width="1.8"/>
+              <line x1="-8" y1="0" x2="8" y2="0" stroke="#34D399" stroke-width="1.4"/>
+              <line x1="0" y1="-8" x2="0" y2="8" stroke="#34D399" stroke-width="1.4"/>
             </g>
 
-            <!-- Perpendicular Worm Wheel & Side-Drive Paddle Rotor -->
-            <g id="worm-wheel-rotor" transform="translate(135, 84)">
-              <circle cx="0" cy="0" r="18" fill="#064E3B" stroke="#34D399" stroke-width="2"/>
-              <circle cx="0" cy="0" r="13" fill="none" stroke="#10B981" stroke-width="2.2" stroke-dasharray="3 2.5"/>
-              <!-- Side-Drive Paddle Blades extending into water -->
-              <line x1="0" y1="-44" x2="0" y2="44" stroke="#F8FAFC" stroke-width="2.6" stroke-linecap="round"/>
-              <line x1="-44" y1="0" x2="44" y2="0" stroke="#F8FAFC" stroke-width="2.6" stroke-linecap="round"/>
-              <circle cx="0" cy="0" r="4" fill="#38BDF8"/>
+            <!-- Self-Reversing Diamond-Thread Shaft (x=105 to x=235) -->
+            <rect x="105" y="66" width="130" height="12" rx="2" fill="#1E293B" stroke="#94A3B8" stroke-width="1.4"/>
+            <!-- End Turnaround Stops -->
+            <rect x="102" y="61" width="4" height="22" rx="1" fill="#F59E0B" id="srs-stop-left"/>
+            <rect x="234" y="61" width="4" height="22" rx="1" fill="#F59E0B" id="srs-stop-right"/>
+
+            <!-- Criss-Cross Diamond Helix Grooves -->
+            <g stroke="#38BDF8" stroke-width="1.2" stroke-opacity="0.72">
+              <line x1="110" y1="67" x2="124" y2="77"/><line x1="124" y1="67" x2="138" y2="77"/>
+              <line x1="138" y1="67" x2="152" y2="77"/><line x1="152" y1="67" x2="166" y2="77"/>
+              <line x1="166" y1="67" x2="180" y2="77"/><line x1="180" y1="67" x2="194" y2="77"/>
+              <line x1="194" y1="67" x2="208" y2="77"/><line x1="208" y1="67" x2="222" y2="77"/>
+              <line x1="124" y1="67" x2="110" y2="77"/><line x1="138" y1="67" x2="124" y2="77"/>
+              <line x1="152" y1="67" x2="138" y2="77"/><line x1="166" y1="67" x2="152" y2="77"/>
+              <line x1="180" y1="67" x2="166" y2="77"/><line x1="194" y1="67" x2="180" y2="77"/>
+              <line x1="208" y1="67" x2="194" y2="77"/><line x1="222" y1="67" x2="208" y2="77"/>
             </g>
 
-            <!-- Lateral Propulsion Direction Arrow -->
-            <g id="boat-dir-arrow" transform="translate(135, 16)">
-              <line x1="-28" y1="0" x2="28" y2="0" stroke="#34D399" stroke-width="2"/>
-              <polygon points="28,-4 36,0 28,4" fill="#34D399"/>
+            <!-- Sliding Pawl Shuttle & Side-Drive Paddle Extending Into Water -->
+            <g id="srs-shuttle" transform="translate(170, 72)">
+              <rect x="-11" y="-12" width="22" height="24" rx="4" fill="#10B981" fill-opacity="0.32" stroke="#34D399" stroke-width="1.8"/>
+              <!-- Guide Pawl Pin engaging diamond groove -->
+              <circle cx="0" cy="0" r="3.2" fill="#FBBF24"/>
+              <!-- Side-Drive Paddle Arm reaching down into water -->
+              <line x1="0" y1="12" x2="0" y2="78" stroke="#F8FAFC" stroke-width="2.6" stroke-linecap="round"/>
+              <rect x="-7" y="66" width="14" height="14" rx="2" fill="#38BDF8" fill-opacity="0.45" stroke="#38BDF8" stroke-width="1.4"/>
             </g>
+
+            <!-- Auto-Reversing Lateral Travel Indicator -->
+            <g id="srs-dir-arrow" transform="translate(170, 26)">
+              <line x1="-26" y1="0" x2="26" y2="0" stroke="#34D399" stroke-width="2"/>
+              <polygon points="26,-4.5 35,0 26,4.5" fill="#34D399"/>
+            </g>
+            <text x="170" y="16" text-anchor="middle" fill="#94A3B8" font-family="IBM Plex Mono, monospace" font-size="7">SELF-REVERSING DIAMOND SCREW</text>
           </svg>
         </div>
         <div class="boat-readouts">
           <div class="dro-cell">
-            <span class="dro-k">Gear Reduction Ratio</span>
-            <span class="dro-v" style="color:var(--dro-cyan);">20 : 1 (90&deg; Axis)</span>
+            <span class="dro-k">Motor Input</span>
+            <span class="dro-v" style="color:var(--dro-cyan);">CONSTANT 1-WAY CW</span>
           </div>
           <div class="dro-cell">
-            <span class="dro-k">Side-Paddle Output</span>
-            <span class="dro-v" id="worm-out-rpm">6.0 RPM</span>
+            <span class="dro-k">Primary Stage</span>
+            <span class="dro-v">Worm Gear Reduction</span>
           </div>
           <div class="dro-cell">
-            <span class="dro-k">Back-Drive Safety</span>
-            <span class="dro-v" style="color:var(--dro-mint);">SELF-LOCKING</span>
+            <span class="dro-k">Reversing Mechanism</span>
+            <span class="dro-v" style="color:var(--dro-mint);">CROSS-HELIX PAWL</span>
           </div>
           <div class="dro-cell">
-            <span class="dro-k">Lateral Thrust Vector</span>
-            <span class="dro-v" id="worm-thrust-dir">STARBOARD &rarr;</span>
+            <span class="dro-k">Shuttle Travel State</span>
+            <span class="dro-v" id="srs-travel-state" style="color:var(--dro-mint);">ADVANCING RIGHT &rarr;</span>
           </div>
         </div>
       </div>
@@ -430,7 +452,7 @@ function tryNextExt(img) {
     <ul class="tools">
       <li>FDM 3D Printing</li>
       <li>Center-of-Mass &amp; Torque Balance</li>
-      <li>Worm-Gear Kinematics</li>
+      <li>Self-Reversing Screw Kinematics</li>
       <li>STEM Outreach Design</li>
     </ul>
   </article>
@@ -482,50 +504,84 @@ function tryNextExt(img) {
     });
   }
 
-  // 2. Year 2: Worm-Gear Side-Drive Boat Kinematics Simulator
-  var rpmSlider = document.getElementById('worm-rpm');
-  var rpmVal = document.getElementById('worm-rpm-val');
-  var outRpm = document.getElementById('worm-out-rpm');
-  var dirBtn = document.getElementById('worm-dir-btn');
-  var thrustDir = document.getElementById('worm-thrust-dir');
-  var dirArrow = document.getElementById('boat-dir-arrow');
-  var wormThreads = document.getElementById('worm-threads');
-  var wheelRotor = document.getElementById('worm-wheel-rotor');
-  var wakeGroup = document.getElementById('boat-wake-group');
+  // 2. Year 2: Self-Reversing Screw Side-Drive Boat Simulator
+  var speedSlider = document.getElementById('srs-speed');
+  var speedVal = document.getElementById('srs-speed-val');
+  var toggleBtn = document.getElementById('srs-toggle-btn');
+  var shuttle = document.getElementById('srs-shuttle');
+  var dirArrow = document.getElementById('srs-dir-arrow');
+  var travelState = document.getElementById('srs-travel-state');
+  var wormGear = document.getElementById('srs-worm-gear');
+  var wormHelix = document.getElementById('srs-worm-helix');
+  var wakeGroup = document.getElementById('srs-wake-group');
+  var stopLeft = document.getElementById('srs-stop-left');
+  var stopRight = document.getElementById('srs-stop-right');
 
-  if (rpmSlider && wheelRotor) {
-    var dir = 1; // 1 = starboard (right), -1 = port (left)
-    var wheelAngle = 0;
-    var threadPhase = 0;
+  if (speedSlider && shuttle) {
+    var running = true;
+    var shuttleX = 170;
+    var dir = 1; // 1 = right, -1 = left (auto-reverses at x=120 and x=220)
+    var gearAngle = 0;
+    var helixShift = 0;
     var wakeShift = 0;
+    var flashTimer = 0;
 
-    rpmSlider.addEventListener('input', function () {
-      var rpm = parseInt(rpmSlider.value, 10);
-      rpmVal.textContent = rpm + ' RPM';
-      outRpm.textContent = (rpm / 20).toFixed(1) + ' RPM';
+    speedSlider.addEventListener('input', function () {
+      var mult = parseInt(speedSlider.value, 10) / 100;
+      speedVal.textContent = mult.toFixed(1) + 'x';
     });
 
-    dirBtn.addEventListener('click', function () {
-      dir = -dir;
-      thrustDir.textContent = dir === 1 ? 'STARBOARD \u2192' : '\u2190 PORT';
-      dirArrow.setAttribute('transform', 'translate(135, 16) scale(' + dir + ', 1)');
+    toggleBtn.addEventListener('click', function () {
+      running = !running;
+      toggleBtn.textContent = running ? 'Pause' : 'Resume';
+      toggleBtn.classList.toggle('active', running);
     });
 
-    function tickWormBoat() {
-      var rpm = parseInt(rpmSlider.value, 10);
-      var speed = (rpm / 120) * dir;
+    function tickSelfReversingScrew() {
+      if (running) {
+        var mult = parseInt(speedSlider.value, 10) / 100;
 
-      wheelAngle = (wheelAngle + speed * 0.9 + 360) % 360;
-      threadPhase = (threadPhase + speed * 0.45 + 9) % 9;
-      wakeShift = (wakeShift - speed * 0.8 + 40) % 40;
+        // Motor & worm gear spin continuously in one direction
+        gearAngle = (gearAngle + 2.2 * mult) % 360;
+        helixShift = (helixShift + 0.4 * mult) % 6;
+        wormGear.setAttribute('transform', 'translate(94, 72) rotate(' + gearAngle.toFixed(1) + ')');
+        wormHelix.setAttribute('transform', 'translate(' + helixShift.toFixed(2) + ', 0)');
 
-      wheelRotor.setAttribute('transform', 'translate(135, 84) rotate(' + wheelAngle.toFixed(1) + ')');
-      wormThreads.setAttribute('transform', 'translate(' + threadPhase.toFixed(2) + ', 0)');
-      wakeGroup.setAttribute('transform', 'translate(' + (wakeShift - 20).toFixed(1) + ', 0)');
+        // Shuttle advances along diamond screw and self-reverses at both ends
+        shuttleX += 0.75 * mult * dir;
+        if (shuttleX >= 220) {
+          shuttleX = 220;
+          dir = -1;
+          flashTimer = 18;
+          travelState.textContent = 'AUTO-REVERSED \u2190 LEFT';
+          travelState.style.color = '#FBBF24';
+        } else if (shuttleX <= 120) {
+          shuttleX = 120;
+          dir = 1;
+          flashTimer = 18;
+          travelState.textContent = 'AUTO-REVERSED RIGHT \u2192';
+          travelState.style.color = '#34D399';
+        } else if (flashTimer > 0) {
+          flashTimer--;
+          if (flashTimer === 0) {
+            travelState.textContent = dir === 1 ? 'ADVANCING RIGHT \u2192' : '\u2190 ADVANCING LEFT';
+            travelState.style.color = '#34D399';
+          }
+        }
 
-      requestAnimationFrame(tickWormBoat);
+        // Highlight turnaround stop on reversal
+        stopRight.setAttribute('fill', (flashTimer > 0 && dir === -1) ? '#FFFFFF' : '#F59E0B');
+        stopLeft.setAttribute('fill', (flashTimer > 0 && dir === 1) ? '#FFFFFF' : '#F59E0B');
+
+        shuttle.setAttribute('transform', 'translate(' + shuttleX.toFixed(1) + ', 72)');
+        dirArrow.setAttribute('transform', 'translate(170, 26) scale(' + dir + ', 1)');
+
+        wakeShift = (wakeShift - 0.75 * mult * dir + 40) % 40;
+        wakeGroup.setAttribute('transform', 'translate(' + (wakeShift - 20).toFixed(1) + ', 0)');
+      }
+      requestAnimationFrame(tickSelfReversingScrew);
     }
-    requestAnimationFrame(tickWormBoat);
+    requestAnimationFrame(tickSelfReversingScrew);
   }
 })();
 </script>
