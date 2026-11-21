@@ -16,7 +16,6 @@
     --flt-border: rgba(56, 189, 248, 0.25);
   }
 
-  /* Flight-Test Corridor & Artificial Horizon Backdrop */
   body[data-page="rc"] {
     background-color: #040914;
     background-image:
@@ -31,44 +30,24 @@
       );
   }
 
-  /* Aviation HUD Header Frame */
   .flt-header {
-    position: relative;
-    padding: 1.55rem 1.7rem 1.4rem;
-    margin-bottom: 2rem;
+    padding: 1.35rem 1.7rem;
+    margin-bottom: 1.5rem;
     background: linear-gradient(155deg, rgba(56, 189, 248, 0.09), rgba(7, 13, 24, 0.95) 62%);
     border: 1px solid var(--flt-border);
     border-radius: 10px;
   }
-  .flt-strip {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    padding-bottom: 0.85rem;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+  .flt-header h1.flt-title {
+    margin: 0;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.07em;
+    font-size: clamp(1.25rem, 2.6vw, 1.75rem);
+    font-weight: 600;
+    letter-spacing: 0.05em;
     color: var(--flt-sky);
+    text-transform: uppercase;
   }
-  .flt-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.23rem 0.65rem;
-    background: rgba(56, 189, 248, 0.12);
-    border: 1px solid rgba(56, 189, 248, 0.35);
-    border-radius: 4px;
-  }
-  .flt-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--flt-sky);
-    box-shadow: 0 0 9px var(--flt-sky);
+  .flt-header h1.flt-title span {
+    color: var(--flt-coral);
   }
 
   .flt-card {
@@ -82,10 +61,10 @@
     border-left: 2px solid var(--flt-sky);
   }
 
-  /* Interactive Thrust-Stand & Flight-Equilibrium Console */
+  /* Interactive 200 ft Flight-Test Corridor Console */
   .aero-console {
-    margin: 1.5rem 0 1.8rem;
-    padding: 1.25rem;
+    margin: 1.25rem 0 1.6rem;
+    padding: 1.15rem;
     background: #040812;
     border: 1px solid rgba(56, 189, 248, 0.32);
     border-radius: 8px;
@@ -97,8 +76,8 @@
     align-items: center;
     justify-content: space-between;
     gap: 0.75rem;
-    padding-bottom: 0.85rem;
-    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    margin-bottom: 0.95rem;
     border-bottom: 1px solid rgba(56, 189, 248, 0.16);
   }
   .aero-title {
@@ -142,7 +121,7 @@
   .aero-grid {
     display: grid;
     grid-template-columns: 1.25fr 1fr;
-    gap: 1.2rem;
+    gap: 1.15rem;
     align-items: center;
   }
   @media (max-width: 760px) {
@@ -154,15 +133,15 @@
     background: rgba(56, 189, 248, 0.03);
     border: 1px solid rgba(56, 189, 248, 0.2);
     border-radius: 6px;
-    padding: 0.65rem;
+    padding: 0.6rem;
   }
   .aero-metrics {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.65rem;
+    gap: 0.6rem;
   }
   .a-cell {
-    padding: 0.6rem 0.75rem;
+    padding: 0.55rem 0.7rem;
     background: rgba(255, 255, 255, 0.025);
     border-left: 2px solid var(--flt-sky);
     border-radius: 3px;
@@ -174,23 +153,15 @@
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: #94A3B8;
-    margin-bottom: 0.18rem;
+    margin-bottom: 0.16rem;
   }
   .a-v {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.86rem;
+    font-size: 0.85rem;
     font-weight: 600;
     color: #F8FAFC;
   }
-  .aero-note {
-    grid-column: 1 / -1;
-    margin: 0.2rem 0 0;
-    font-size: 0.84rem;
-    line-height: 1.5;
-    color: #CBD5E1;
-  }
 
-  /* Smooth Photo Hover Lift */
   .hero-fig img,
   .shot-row figure img {
     transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -217,27 +188,19 @@ function tryNextExt(img) {
 <nav aria-label="Pages"><a href="index.html">About</a><a href="aerospace.html">Aerospace &amp; Propulsion</a><a href="capstone.html">Senior Capstone</a><a href="internship.html">DPEA Internship</a><a href="projects.html">Electromechanical Sculptures</a><a href="rc.html" aria-current="page">RC Airplane</a><a href="skills.html">Technical Skills</a></nav>
 
 <header class="page-head flt-header">
-  <div class="flt-strip">
-    <span class="flt-badge"><span class="flt-dot"></span>FLIGHT TEST // FT TUTOR MKR2 (720 g)</span>
-    <span>b = 41.5 in &middot; S = 2.45 ft&sup2; &middot; AR = 4.88 &middot; L/D = 1.93</span>
-  </div>
-  <p class="eyebrow">04 // FLIGHT TEST &amp; AERODYNAMIC REDUCTION &middot; ARO 1011L (FALL 2026)</p>
-  <h1>Fixed-Wing RC Aircraft Build &amp; Flight Test</h1>
-  <p class="lede">Team-built FT Tutor MKR2 foam trainer taken from bench assembly through static thrust calibration and a 200 ft timed flight course to compare measured lift and drag against steady-level-flight theory.</p>
+  <h1 class="flt-title"><span>[</span> 04 // FIXED-WING RC AIRCRAFT &amp; FLIGHT TEST <span>]</span></h1>
 </header>
 
 <section>
   <article class="project proj-body flt-card">
-    <h3>FT Tutor MKR2 Airframe &amp; Flight Mechanics Characterization</h3>
-    <p class="tagline">Ground thrust-stand calibration and free-flight data reduction for a 1.587 lbf electric fixed-wing trainer.</p>
     <dl class="spec">
       <div><dt>Course</dt><dd>ARO 1011L, Cal Poly Pomona</dd></div>
       <div><dt>Role</dt><dd>Team Lead (5-Student Team)</dd></div>
-      <div><dt>Airframe</dt><dd>FT Tutor MKR2 Kit (720 g)</dd></div>
+      <div><dt>Airframe</dt><dd>FT Tutor MKR2 (720 g / 1.587 lbf)</dd></div>
       <div><dt>Test Scope</dt><dd>Thrust Stand + 200 ft Course</dd></div>
     </dl>
 
-    <!-- Animated 200 ft Flight-Test Corridor & REDBIRD MCX Thrust Simulator -->
+    <!-- Animated 200 ft Flight-Test Corridor -->
     <div class="aero-console" aria-label="Animated 200 ft flight corridor and REDBIRD MCX thrust simulator">
       <div class="aero-head">
         <span class="aero-title">// 200 ft Flight-Test Corridor &amp; Force Balance</span>
@@ -250,48 +213,36 @@ function tryNextExt(img) {
       </div>
       <div class="aero-grid">
         <div class="aero-svg-box">
-          <svg width="100%" height="162" viewBox="0 0 340 162" aria-hidden="true">
-            <!-- Ground Line & 200 ft Range Cones -->
-            <line x1="14" y1="142" x2="326" y2="142" stroke="rgba(148,163,184,0.35)" stroke-width="1.4"/>
-            <!-- Start Cone (0 ft) -->
-            <polygon points="34,142 39,129 44,142" fill="#FB7185"/>
-            <line x1="39" y1="22" x2="39" y2="128" stroke="rgba(251,113,133,0.22)" stroke-width="1" stroke-dasharray="3 3"/>
-            <text x="39" y="155" text-anchor="middle" fill="#94A3B8" font-family="IBM Plex Mono, monospace" font-size="8">0 ft</text>
+          <svg width="100%" height="156" viewBox="0 0 340 156" aria-hidden="true">
+            <line x1="14" y1="138" x2="326" y2="138" stroke="rgba(148,163,184,0.35)" stroke-width="1.4"/>
+            <polygon points="34,138 39,125 44,138" fill="#FB7185"/>
+            <line x1="39" y1="22" x2="39" y2="124" stroke="rgba(251,113,133,0.22)" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="39" y="151" text-anchor="middle" fill="#94A3B8" font-family="IBM Plex Mono, monospace" font-size="8">0 ft</text>
 
-            <!-- Finish Cone (200 ft) -->
-            <polygon points="296,142 301,129 306,142" fill="#FB7185"/>
-            <line x1="301" y1="22" x2="301" y2="128" stroke="rgba(251,113,133,0.22)" stroke-width="1" stroke-dasharray="3 3"/>
-            <text x="301" y="155" text-anchor="middle" fill="#94A3B8" font-family="IBM Plex Mono, monospace" font-size="8">200 ft</text>
+            <polygon points="296,138 301,125 306,138" fill="#FB7185"/>
+            <line x1="301" y1="22" x2="301" y2="124" stroke="rgba(251,113,133,0.22)" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="301" y="151" text-anchor="middle" fill="#94A3B8" font-family="IBM Plex Mono, monospace" font-size="8">200 ft</text>
 
-            <!-- Live Lap Stopwatch & Speed Readout -->
             <text x="170" y="16" text-anchor="middle" fill="#38BDF8" font-family="IBM Plex Mono, monospace" font-size="8.5" id="hud-lap">LAP TIMER: 0.00 s // V = 26.65 ft/s</text>
+            <line x1="39" y1="76" x2="301" y2="76" stroke="rgba(56,189,248,0.16)" stroke-width="1" stroke-dasharray="4 4"/>
 
-            <!-- Steady Cruise Altitude Reference Line -->
-            <line x1="39" y1="78" x2="301" y2="78" stroke="rgba(56,189,248,0.16)" stroke-width="1" stroke-dasharray="4 4"/>
-
-            <!-- Moving FT Tutor MKR2 + Live Force Vectors -->
-            <g id="plane-group" transform="translate(80, 78)">
-              <!-- Lift Vector (Upward) -->
+            <g id="plane-group" transform="translate(80, 76)">
               <line x1="0" y1="0" x2="0" y2="-34" stroke="#34D399" stroke-width="1.8"/>
               <polygon points="0,-39 -3.5,-32 3.5,-32" fill="#34D399"/>
               <text x="6" y="-31" fill="#34D399" font-family="IBM Plex Mono, monospace" font-size="7.5">L</text>
 
-              <!-- Weight Vector (Downward) -->
               <line x1="0" y1="0" x2="0" y2="34" stroke="#94A3B8" stroke-width="1.8"/>
               <polygon points="0,39 -3.5,32 3.5,32" fill="#94A3B8"/>
               <text x="6" y="37" fill="#94A3B8" font-family="IBM Plex Mono, monospace" font-size="7.5">W</text>
 
-              <!-- Thrust Vector (Forward) -->
               <line id="vec-thrust" x1="0" y1="0" x2="48" y2="0" stroke="#38BDF8" stroke-width="2.1"/>
               <polygon id="arr-thrust" points="53,0 46,-3.5 46,3.5" fill="#38BDF8"/>
               <text id="lbl-thrust" x="50" y="-6" text-anchor="end" fill="#38BDF8" font-family="IBM Plex Mono, monospace" font-size="7.5">T</text>
 
-              <!-- Drag Vector (Aft) -->
               <line id="vec-drag" x1="0" y1="0" x2="-42" y2="0" stroke="#FB7185" stroke-width="2"/>
               <polygon id="arr-drag" points="-47,0 -40,-3.5 -40,3.5" fill="#FB7185"/>
               <text x="-43" y="-6" text-anchor="start" fill="#FB7185" font-family="IBM Plex Mono, monospace" font-size="7.5">D</text>
 
-              <!-- Aircraft Silhouette & Spinning Propeller -->
               <g id="plane-pitch">
                 <path d="M -26,0 L 24,0 L 29,-3 L 12,-5 L -2,-5 L -23,-2 L -28,-9 L -32,-9 L -29,0 Z" fill="rgba(56,189,248,0.28)" stroke="#38BDF8" stroke-width="1.3"/>
                 <line id="prop-blade" x1="30" y1="-9" x2="30" y2="9" stroke="#FBBF24" stroke-width="1.8" stroke-linecap="round"/>
@@ -316,7 +267,6 @@ function tryNextExt(img) {
             <span class="a-k">Flight Regime</span>
             <span class="a-v" id="val-regime" style="color:#34D399;">STEADY CRUISE</span>
           </div>
-          <p class="aero-note">Watch the FT Tutor MKR2 traverse the 200 ft cone course: at <strong>65% cruise</strong> it holds level flight in ~7.50 s, whereas pushing throttle higher induces climb/acceleration and LiPo voltage sag down to 7.50 V.</p>
         </div>
       </div>
     </div>
@@ -326,18 +276,16 @@ function tryNextExt(img) {
       <figcaption>Completed FT Tutor MKR2 airframe rigged and balanced prior to thrust-stand and field testing.</figcaption>
     </figure>
 
-    <p>This lab project combined hands-on airframe fabrication with experimental flight-mechanics analysis. As team lead for a five-student group, I coordinated structural assembly, electronics integration, and test-day roles across two evaluations: a static ground bench calibration of motor thrust and electrical power across throttle steps, and seven timed cruise laps over a measured 200&nbsp;ft outdoor course. Because onboard air-data sensors were not fitted, in-flight lift and drag were backed out using steady-level-flight equilibrium (L&nbsp;=&nbsp;W and T&nbsp;=&nbsp;D).</p>
-
     <h4>Airframe Fabrication &amp; Radio Integration</h4>
-    <p>We divided into two sub-groups working in parallel from the FT Tutor MKR2 reference plans&mdash;one building the main wing with its carbon spar, and the other assembling the fuselage pod, tail surfaces, and landing gear&mdash;while I managed fit-up and final integration. During transmitter binding inside a crowded lab room, the receiver repeatedly locked onto neighboring teams&rsquo; radios until we moved to an isolated corner of the shop. On initial bench power-up, both elevator and rudder channels operated in reverse and were corrected cleanly through transmitter channel-reverse settings.</p>
+    <p>As team lead for a five-student group, I split the build into parallel wing and fuselage sub-assemblies while managing final integration. Moving transmitter binding to an isolated shop corner eliminated cross-talk from neighboring radios, and reversed elevator/rudder channels on initial bench power-up were fixed via transmitter channel-reverse settings.</p>
     <div class="shot-row">
       <figure><img src="images/rc-02-kit-assembly-table.jpg" onerror="tryNextExt(this)" alt="Three team members assembling foam wing and fuselage panels at a lab workbench" loading="lazy"><figcaption>Foam wing and fuselage panel layout during build session.</figcaption></figure>
       <figure><img src="images/rc-03-wing-panel-fit.jpg" onerror="tryNextExt(this)" alt="Two team members checking foam wing panel alignment with a straightedge" loading="lazy"><figcaption>Wing panel dimensional and straightedge check.</figcaption></figure>
       <figure><img src="images/rc-05-fuselage-landing-gear.jpg" onerror="tryNextExt(this)" alt="Team members inspecting tail assembly and landing gear fitment on the shop floor" loading="lazy"><figcaption>Tail assembly and landing-gear alignment check.</figcaption></figure>
     </div>
 
-    <h4>Propulsion System &amp; Avionics Layout</h4>
-    <p>A nose-mounted brushless motor and propeller bolted to a plywood firewall drew power from a 3-cell LiPo pack (Tattu 1300&nbsp;mAh, 45C discharge, 11.1&nbsp;V nominal, 14.43&nbsp;Wh). Servo and ESC leads routed aft through the wing root into the fuselage bay. Hot-glue bead consistency and re-shimming the plywood motor firewall to eliminate thrust-line offset were the primary mechanical adjustments required during final assembly.</p>
+    <h4>Propulsion &amp; Avionics Layout</h4>
+    <p>A nose-mounted brushless motor bolted to a plywood firewall drew power from a 3S LiPo pack (Tattu 1300&nbsp;mAh, 45C, 11.1&nbsp;V nominal), with servo and ESC leads routed through the wing root into the fuselage bay. Re-shimming the firewall to zero out thrust-line offset and keeping hot-glue fillets consistent were the main mechanical adjustments before flight.</p>
     <div class="shot-row">
       <figure><img src="images/rc-04-wing-servo-wiring.jpg" onerror="tryNextExt(this)" alt="Close-up of wing servo leads and carbon-fiber spar installation inside foam wing bay" loading="lazy"><figcaption>Wing servo wiring and carbon-fiber spar installation.</figcaption></figure>
       <figure><img src="images/rc-07-motor-mount-wiring.jpg" onerror="tryNextExt(this)" alt="Nose motor mount and wiring harness held up for bench inspection" loading="lazy"><figcaption>Firewall motor mount and power harness inspection.</figcaption></figure>
@@ -345,11 +293,8 @@ function tryNextExt(img) {
       <figure><img src="images/rc-08-battery-pack.jpg" onerror="tryNextExt(this)" alt="Tattu 1300 mAh 3S 45C lithium-polymer battery pack with XT60 connector" loading="lazy"><figcaption>Tattu 1300&nbsp;mAh 3S 45C LiPo flight battery pack.</figcaption></figure>
     </div>
 
-    <h4>Reference Wing Geometry &amp; Mass</h4>
-    <p>To reduce flight velocities to non-dimensional aerodynamic coefficients, we measured a wingspan of b&nbsp;=&nbsp;41.5&nbsp;in (3.458&nbsp;ft) and constant chord c&nbsp;=&nbsp;8.5&nbsp;in (0.708&nbsp;ft), giving a reference planform area S&nbsp;=&nbsp;(b/2)&middot;(c<sub>root</sub>&nbsp;+&nbsp;c<sub>tip</sub>)&nbsp;&approx;&nbsp;2.45&nbsp;ft&sup2; and aspect ratio AR&nbsp;=&nbsp;b&sup2;/S&nbsp;&approx;&nbsp;4.88. Pre-flight aircraft mass measured 720&nbsp;g (1.587&nbsp;lbf).</p>
-
     <h4>Static Thrust &amp; Power Bench Calibration</h4>
-    <p>Prior to flight, we mounted the completed airplane on a REDBIRD MCX thrust stand and stepped throttle in 25% increments while recording static thrust, DC bus voltage, and motor current. Shaft power was estimated from electrical power (P<sub>elec</sub>&nbsp;=&nbsp;V<sub>DC</sub>&middot;I<sub>motor</sub>) using an assumed propeller efficiency of &eta;&nbsp;=&nbsp;0.85.</p>
+    <p>Mounted on a REDBIRD MCX thrust stand, we stepped throttle in 25% increments to measure static thrust, DC bus voltage, and motor current, estimating shaft power at an assumed &eta;&nbsp;=&nbsp;0.85 propeller efficiency. Bus voltage dropped from 9.71&nbsp;V to 7.50&nbsp;V at 75%&ndash;100% throttle due to LiPo internal-resistance sag under high current draw.</p>
 
     <table class="data-table">
       <caption>Static Thrust &amp; Electrical Power Calibration by Throttle Setting</caption>
@@ -371,15 +316,13 @@ function tryNextExt(img) {
       </tbody>
     </table>
 
-    <p>Static thrust scaled nearly linearly with power up to ~80&nbsp;W before rising more steeply at 75%&ndash;100% throttle. That inflection coincides with a bus voltage drop from 9.71&nbsp;V down to 7.50&nbsp;V under higher current draw, reflecting LiPo internal-resistance voltage sag rather than an aerodynamic change at the propeller.</p>
     <div class="shot-row">
       <figure><img src="images/rc-10-thrust-stand-bench.jpg" onerror="tryNextExt(this)" alt="Completed FT Tutor MKR2 mounted on REDBIRD MCX static thrust test stand" loading="lazy"><figcaption>Airframe mounted on the REDBIRD MCX static thrust stand.</figcaption></figure>
       <figure><img src="images/rc-09-prelaunch-wiring-check.jpg" onerror="tryNextExt(this)" alt="Checking avionics wiring harness on the lab bench prior to flight test" loading="lazy"><figcaption>Pre-flight avionics and control-surface check on the bench.</figcaption></figure>
     </div>
 
     <h4>200 ft Free-Flight Course &amp; Aerodynamic Reduction</h4>
-    <p>Field testing used two range cones spaced 200&nbsp;ft apart with dedicated team roles for pilot, stopwatch timer, far-cone line observer, data recorder, and videographer. Following a hand launch, the pilot flew seven steady cruise passes at roughly 65% throttle, averaging V<sub>avg</sub>&nbsp;=&nbsp;26.652&nbsp;ft/s across an average pass time of 7.504&nbsp;s.</p>
-    <p>Applying L&nbsp;=&nbsp;W directly sets cruise lift equal to aircraft weight, while dividing interpolated shaft power by cruise velocity (D&nbsp;=&nbsp;P<sub>shaft</sub>/V<sub>avg</sub>) yields drag. Dividing by local dynamic pressure (&frac12;&rho;V<sub>avg</sub>&sup2;S) produces the non-dimensional cruise coefficients below.</p>
+    <p>Using measured wing geometry (b&nbsp;=&nbsp;41.5&nbsp;in, c&nbsp;=&nbsp;8.5&nbsp;in, S&nbsp;&approx;&nbsp;2.45&nbsp;ft&sup2;, AR&nbsp;&approx;&nbsp;4.88) and mass (720&nbsp;g / 1.587&nbsp;lbf), we flew seven steady passes at ~65% throttle across a 200&nbsp;ft cone course, averaging V<sub>avg</sub>&nbsp;=&nbsp;26.652&nbsp;ft/s (7.504&nbsp;s per pass). Without onboard air-data sensors, lift and drag were backed out from steady-level-flight equilibrium (L&nbsp;=&nbsp;W, D&nbsp;=&nbsp;P<sub>shaft</sub>/V<sub>avg</sub>).</p>
 
     <table class="data-table">
       <caption>Reduced Cruise Flight-Test Performance (7-Lap Average)</caption>
@@ -395,17 +338,12 @@ function tryNextExt(img) {
       </tbody>
     </table>
 
-    <p>Bench-inferred thrust exceeded calculated drag by 0.101&nbsp;lbf&mdash;an 11.1% residual against the lab&rsquo;s &plusmn;10% steady-flight tolerance band&mdash;indicating mild unmodeled climb or longitudinal acceleration during the timed passes. The resulting L/D of 1.93 is modest compared to high-aspect-ratio composite airframes, but aligns well with a thick-airfoil foam trainer operating at low Reynolds numbers.</p>
+    <p>Bench-inferred thrust exceeded calculated drag by 0.101&nbsp;lbf (an 11.1% residual against the lab&rsquo;s &plusmn;10% tolerance band), pointing to mild unmodeled climb or longitudinal acceleration during passes. Key scatter sources included manual stopwatch timing (&plusmn;0.1&ndash;0.2&nbsp;s), wind gusts, constant &eta;&nbsp;=&nbsp;0.85 assumption, and foam glue-joint asymmetries&mdash;all addressable on a repeat run using reciprocal upwind/downwind passes and onboard airspeed logging.</p>
 
-    <div class="shot-row wide">
+    <div class="shot-row">
       <figure><video src="images/rc-12-launch.mp4" poster="images/rc-12-launch-poster.jpg" controls playsinline muted></video><figcaption>Hand launch entering the 200&nbsp;ft flight-test corridor.</figcaption></figure>
-    </div>
-    <div class="shot-row wide">
       <figure><video src="images/rc-11-flight-laps.mp4" poster="images/rc-11-flight-laps-poster.jpg" controls playsinline muted></video><figcaption>Timed cruise pass across the 200&nbsp;ft cone course.</figcaption></figure>
     </div>
-
-    <h4>Experimental Uncertainty &amp; Next-Iteration Improvements</h4>
-    <p>Key error contributors included manual stopwatch reaction-time scatter (&plusmn;0.1&ndash;0.2&nbsp;s per pass), local wind gusts relative to ground speed, lap-to-lap altitude variance, assuming a constant &eta;&nbsp;=&nbsp;0.85 propeller efficiency, and minor airframe build asymmetries from hot-glue fillets and horizontal stabilizer seating. Flying reciprocal upwind/downwind passes, logging airspeed/RPM onboard, and calibrating static thrust at loaded flight bus voltage would tighten experimental closure on a repeat test. Following data collection, the foam airframe was retired and its electronics were reclaimed for subsequent builds.</p>
 
     <ul class="tools">
       <li>Foam Airframe Fabrication</li>
@@ -467,7 +405,7 @@ function tryNextExt(img) {
 
   var currentData = interp(65);
   var flying = true;
-  var progress = 0; // 0 to 1 across 200 ft corridor
+  var progress = 0;
   var lastTime = performance.now();
   var propPhase = 0;
 
@@ -508,21 +446,18 @@ function tryNextExt(img) {
     if (flying) {
       var thr = parseInt(slider.value, 10);
       var lapDuration = 200 / currentData.Vair;
-      // Smooth visual pacing (~1.6x real-time so laps complete briskly)
       progress += (dt * 1.6) / lapDuration;
       if (progress > 1) progress -= 1;
 
       var x = 39 + progress * (301 - 39);
-      // Altitude slope based on excess thrust (T - D_cruise)
       var excess = currentData.T - 0.908;
       var climbOffset = Math.max(-34, Math.min(34, excess * 36));
-      var y = 78 - (progress - 0.15) * climbOffset;
+      var y = 76 - (progress - 0.15) * climbOffset;
       var pitchDeg = Math.max(-14, Math.min(14, -excess * 12));
 
       planeGroup.setAttribute('transform', 'translate(' + x.toFixed(1) + ',' + y.toFixed(1) + ')');
       planePitch.setAttribute('transform', 'rotate(' + pitchDeg.toFixed(1) + ')');
 
-      // Spinning propeller blur
       propPhase += dt * (18 + thr * 0.45);
       var bladeHalf = Math.max(1.5, Math.abs(Math.sin(propPhase)) * 9);
       propBlade.setAttribute('y1', (-bladeHalf).toFixed(1));
